@@ -4,7 +4,7 @@ using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class NetPlayerMovement : NetworkBehaviour
 {
     
     [SerializeField] private float speed = 10;
@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (!IsOwner) return;
         movementDirection = new Vector2(Input.GetAxisRaw("Horizontal"), 0);
         
         if (Input.GetButtonDown("Jump")) {
