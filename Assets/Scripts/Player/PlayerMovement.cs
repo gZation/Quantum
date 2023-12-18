@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float fallMultiplier = 2.5f;
+    [SerializeField] private float fallMultiplier = 3f;
     [SerializeField] private float lowJumpMultiplier = 2f;
-    [SerializeField] private float speed = 10;
-    [SerializeField] private float jumpForce = 1;
+    [SerializeField] private float speed = 8;
+    [SerializeField] private float jumpForce = 8;
     [SerializeField] private float slideSpeed = 5;
-    [SerializeField] private float dashSpeed = 5;
+    [SerializeField] private float dashSpeed = 20;
 
     [SerializeField] private Vector2 bottomOffset = new Vector2(0, -0.45f);
     [SerializeField] private Vector2 leftOffset = new Vector2(-0.45f, 0);
