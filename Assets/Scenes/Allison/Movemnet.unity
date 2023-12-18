@@ -428,7 +428,7 @@ MonoBehaviour:
   lowJumpMultiplier: 2
   speed: 8
   jumpForce: 8
-  slideSpeed: 1
+  slideSpeed: 5
   dashSpeed: 20
   bottomOffset: {x: 0, y: -0.45}
   leftOffset: {x: -0.45, y: 0}

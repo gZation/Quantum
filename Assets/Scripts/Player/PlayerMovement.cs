@@ -56,11 +56,6 @@ public class PlayerMovement : MonoBehaviour
             wallJumped = false;
         }
 
-        if (onWall && !grounded)
-        {
-            WallSlide();
-        }
-
         if (Input.GetButtonDown("Jump")) 
         {
             if (grounded)
@@ -71,6 +66,9 @@ public class PlayerMovement : MonoBehaviour
             {
                 WallJump();
             }
+        } else if (onWall && !grounded && !wallJumped)
+        {
+            WallSlide();
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
@@ -125,8 +123,15 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(DisableMovement(.1f));
 
         Vector2 wallDir = onRightWall ? Vector2.left : Vector2.right;
-        Jump((Vector2.up / 0.1f + wallDir / 1.5f));
+        Jump((Vector2.up / 2f + wallDir / 0.4f));
+        StartCoroutine(WallJumpWait());
+    }
+
+    IEnumerator WallJumpWait()
+    {
         wallJumped = true;
+        yield return new WaitForSeconds(.2f);
+        wallJumped = false;
     }
 
     private void WallSlide()
