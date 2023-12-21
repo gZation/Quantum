@@ -32,7 +32,7 @@ public class MovementArrows : MonoBehaviour
         sharingMomentum = false;
     }
 
-    //Arrow to move, Right shift to dash, right ctrl to jump
+    //Arrow to move,Keypad 0 to dash, right ctrl to jump, right shift to quantum lock
     void Update()
     {
         //if falling
@@ -100,9 +100,14 @@ public class MovementArrows : MonoBehaviour
             WallSlide();
         }
 
-        if (Input.GetKeyDown(KeyCode.RightShift))
+        if (Input.GetKeyDown(KeyCode.Keypad0))
         {
             Dash(movementDirection.x, movementDirection.y);
+        }
+
+        if (Input.GetKeyDown(KeyCode.RightShift))
+        {
+            QuantumLock();
         }
     }
 
@@ -193,7 +198,9 @@ public class MovementArrows : MonoBehaviour
     public void AddMomentum(Vector2 momentum)
     {
         rb.velocity += momentum;
+        StartCoroutine(DisableMovement(.2f));
     }
+
     //GIZMOs
     private void OnDrawGizmos()
     {

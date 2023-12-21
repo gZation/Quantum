@@ -197,7 +197,6 @@ public class MovementWASD : MonoBehaviour
     public void AddMomentum(Vector2 momentum)
     {
         rb.velocity += momentum;
-        print(rb.velocity);
         StartCoroutine(DisableMovement(.2f));
     }
 

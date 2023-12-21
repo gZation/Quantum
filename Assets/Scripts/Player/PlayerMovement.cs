@@ -171,6 +171,7 @@ public class PlayerMovement : MonoBehaviour
     public void AddMomentum(Vector2 momentum)
     {
         rb.velocity += momentum;
+        StartCoroutine(DisableMovement(.2f));
     }
 
     //GIZMOs
