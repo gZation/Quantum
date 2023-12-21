@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class MovementArrows : MonoBehaviour
 {
     [SerializeField] private float fallMultiplier = 3f;
     [SerializeField] private float lowJumpMultiplier = 2f;
@@ -32,18 +32,44 @@ public class PlayerMovement : MonoBehaviour
         sharingMomentum = false;
     }
 
+    //Arrow to move, Right shift to dash, right ctrl to jump
     void Update()
     {
         //if falling
         if (rb.velocity.y < 0)
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
-        } else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
+        }
+        else if (rb.velocity.y > 0 && !Input.GetKey(KeyCode.RightControl))
         {
-            rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+            Vector2 m = Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+            rb.velocity += m;
+            if (sharingMomentum)
+            {
+                GameManager.instance.SendMomentum(m, this.gameObject);
+            }
         }
 
-        Vector2 movementDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        Vector2 movementDirection = new Vector2(0, 0);
+
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            movementDirection.y += 1;
+        }
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            movementDirection.y -= 1;
+        }
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            movementDirection.x -= 1;
+        }
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            movementDirection.x += 1;
+        }
+
+
         Walk(movementDirection);
 
         //Check if gounded or on a wall
@@ -58,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
             wallJumped = false;
         }
 
-        if (Input.GetButtonDown("Jump")) 
+        if (Input.GetKeyDown(KeyCode.RightControl))
         {
             if (grounded)
             {
@@ -68,19 +94,15 @@ public class PlayerMovement : MonoBehaviour
             {
                 WallJump();
             }
-        } else if (onWall && !grounded && !wallJumped)
+        }
+        else if (onWall && !grounded && !wallJumped)
         {
             WallSlide();
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.RightShift))
         {
-            Dash(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        }
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            QuantumLock();
+            Dash(movementDirection.x, movementDirection.y);
         }
     }
 
@@ -94,7 +116,8 @@ public class PlayerMovement : MonoBehaviour
         if (!wallJumped)
         {
             rb.velocity = (new Vector2(direction.x * speed, rb.velocity.y));
-        } else
+        }
+        else
         {
             rb.velocity = Vector2.Lerp(rb.velocity, (new Vector2(direction.x * speed, rb.velocity.y)), 10 * Time.deltaTime);
         }
@@ -162,7 +185,6 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(time);
         canMove = true;
     }
-
     private void QuantumLock()
     {
         GameManager.instance.QuantumLockPlayer(this.gameObject);
@@ -172,7 +194,6 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.velocity += momentum;
     }
-
     //GIZMOs
     private void OnDrawGizmos()
     {

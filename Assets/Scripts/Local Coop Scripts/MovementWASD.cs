@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class MovementWASD : MonoBehaviour
 {
     [SerializeField] private float fallMultiplier = 3f;
     [SerializeField] private float lowJumpMultiplier = 2f;
@@ -24,7 +25,9 @@ public class PlayerMovement : MonoBehaviour
     public bool dashing = false;
 
     Rigidbody2D rb;
+
     public bool sharingMomentum { get; set; }
+
 
     void Awake()
     {
@@ -32,18 +35,39 @@ public class PlayerMovement : MonoBehaviour
         sharingMomentum = false;
     }
 
+    //Arrow to move, Right shift to dash, right ctrl to jump
     void Update()
     {
         //if falling
         if (rb.velocity.y < 0)
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
-        } else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
+        }
+        else if (rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
 
-        Vector2 movementDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        Vector2 movementDirection = new Vector2(0, 0);
+
+        if (Input.GetKey(KeyCode.W))
+        {
+            movementDirection.y += 1;
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            movementDirection.y -= 1;
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            movementDirection.x -= 1;
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            movementDirection.x += 1;
+        }
+
+
         Walk(movementDirection);
 
         //Check if gounded or on a wall
@@ -58,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
             wallJumped = false;
         }
 
-        if (Input.GetButtonDown("Jump")) 
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             if (grounded)
             {
@@ -68,14 +92,15 @@ public class PlayerMovement : MonoBehaviour
             {
                 WallJump();
             }
-        } else if (onWall && !grounded && !wallJumped)
+        }
+        else if (onWall && !grounded && !wallJumped)
         {
             WallSlide();
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            Dash(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+            Dash(movementDirection.x, movementDirection.y);
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
@@ -94,7 +119,8 @@ public class PlayerMovement : MonoBehaviour
         if (!wallJumped)
         {
             rb.velocity = (new Vector2(direction.x * speed, rb.velocity.y));
-        } else
+        }
+        else
         {
             rb.velocity = Vector2.Lerp(rb.velocity, (new Vector2(direction.x * speed, rb.velocity.y)), 10 * Time.deltaTime);
         }
@@ -107,8 +133,8 @@ public class PlayerMovement : MonoBehaviour
         Vector2 direction = new Vector2(x, y);
         rb.velocity += direction.normalized * dashSpeed;
         StartCoroutine(DashWait());
-
-        if (sharingMomentum)
+        
+        if(sharingMomentum)
         {
             GameManager.instance.SendMomentum(direction.normalized * dashSpeed, this.gameObject);
         }
@@ -171,6 +197,8 @@ public class PlayerMovement : MonoBehaviour
     public void AddMomentum(Vector2 momentum)
     {
         rb.velocity += momentum;
+        print(rb.velocity);
+        StartCoroutine(DisableMovement(.2f));
     }
 
     //GIZMOs
