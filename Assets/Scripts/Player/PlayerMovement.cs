@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float slideSpeed = 5;
     [SerializeField] private float dashSpeed = 20;
 
-    [SerializeField] private Vector2 bottomOffset = new Vector2(0, -0.45f);
+    [SerializeField] private Vector2 bottomOffset = new Vector2(0, -0.65f);
     [SerializeField] private Vector2 leftOffset = new Vector2(-0.45f, 0);
     [SerializeField] private Vector2 rightOffset = new Vector2(0.45f, 0);
     [SerializeField] private float collisionRadius = 0.25f;
@@ -24,11 +24,13 @@ public class PlayerMovement : MonoBehaviour
     public bool dashing = false;
 
     Rigidbody2D rb;
+    Animator animator;
     public bool sharingMomentum { get; set; }
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         sharingMomentum = false;
     }
 
@@ -98,6 +100,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = Vector2.Lerp(rb.velocity, (new Vector2(direction.x * speed, rb.velocity.y)), 10 * Time.deltaTime);
         }
+        animator.SetFloat("speed", rb.velocity.x);
     }
 
     private void Dash(float x, float y)
