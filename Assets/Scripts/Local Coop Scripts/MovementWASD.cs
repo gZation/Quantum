@@ -134,12 +134,24 @@ public class MovementWASD : MonoBehaviour
         wallJumped = true;
         rb.velocity = Vector2.zero;
         Vector2 direction = new Vector2(x, y);
-        rb.velocity += direction.normalized * dashSpeed;
-        StartCoroutine(DashWait());
-        
-        if(sharingMomentum)
+
+        Vector2 dashExtra = direction.normalized * dashSpeed;
+
+        if (direction.y > 0)
         {
-            GameManager.instance.SendMomentum(direction.normalized * dashSpeed, this.gameObject);
+            dashExtra.y = dashExtra.y / 2;
+        }
+
+        rb.velocity += dashExtra;
+
+        if (dashExtra.magnitude > 0)
+        {
+            StartCoroutine(DashWait());
+        }
+
+        if (sharingMomentum)
+        {
+            GameManager.instance.SendMomentum(dashExtra, this.gameObject);
         }
     }
     IEnumerator DashWait()

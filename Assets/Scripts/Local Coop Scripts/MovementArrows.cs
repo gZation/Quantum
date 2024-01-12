@@ -136,12 +136,24 @@ public class MovementArrows : MonoBehaviour
         wallJumped = true;
         rb.velocity = Vector2.zero;
         Vector2 direction = new Vector2(x, y);
-        rb.velocity += direction.normalized * dashSpeed;
-        StartCoroutine(DashWait());
+
+        Vector2 dashExtra = direction.normalized * dashSpeed;
+
+        if (direction.y > 0)
+        {
+            dashExtra.y = dashExtra.y / 2;
+        }
+
+        rb.velocity += dashExtra;
+
+        if (dashExtra.magnitude > 0)
+        {
+            StartCoroutine(DashWait());
+        }
 
         if (sharingMomentum)
         {
-            GameManager.instance.SendMomentum(direction.normalized * dashSpeed, this.gameObject);
+            GameManager.instance.SendMomentum(dashExtra, this.gameObject);
         }
     }
     IEnumerator DashWait()
