@@ -31,32 +31,32 @@ namespace DebugStuff
             logLines.Add(logString);
         }
 
-        void OnGUI()
-        {
+        //void OnGUI()
+        //{
             
-            GUI.Box(new Rect(0, 0, Screen.width, numLinesToShow * 20), "");
+        //    GUI.Box(new Rect(0, 0, Screen.width, numLinesToShow * 20), "");
 
-            Rect viewport = new Rect(0, 0, Screen.width - 30, 20 * logLines.Count);
-            if (prevLogLen != logLines.Count)
-            {
-                if (scrollPos.y == prevBottomScrollPos || prevBottomScrollPos - scrollPos.y < 20)
-                {
-                    scrollPos = new Vector2(0, 20 * (logLines.Count - numLinesToShow) + 10);
-                }
-                prevLogLen = logLines.Count;
-                prevBottomScrollPos = 20 * (logLines.Count - numLinesToShow) + 10;
-            }
+        //    Rect viewport = new Rect(0, 0, Screen.width - 30, 20 * logLines.Count);
+        //    if (prevLogLen != logLines.Count)
+        //    {
+        //        if (scrollPos.y == prevBottomScrollPos || prevBottomScrollPos - scrollPos.y < 20)
+        //        {
+        //            scrollPos = new Vector2(0, 20 * (logLines.Count - numLinesToShow) + 10);
+        //        }
+        //        prevLogLen = logLines.Count;
+        //        prevBottomScrollPos = 20 * (logLines.Count - numLinesToShow) + 10;
+        //    }
 
-            scrollPos = GUI.BeginScrollView(new Rect(0, 5f, Screen.width, numLinesToShow * 20 - 10), scrollPos, viewport);
+        //    scrollPos = GUI.BeginScrollView(new Rect(0, 5f, Screen.width, numLinesToShow * 20 - 10), scrollPos, viewport);
 
-            for (int i = 0; i < logLines.Count; i++)
-            {
-                string line = logLines[i];
-                Rect labelRect = new Rect(0, 20 * i, viewport.width, 20);
-                GUI.Label(labelRect, line);
-            }
-            GUI.EndScrollView();
-        }
+        //    for (int i = 0; i < logLines.Count; i++)
+        //    {
+        //        string line = logLines[i];
+        //        Rect labelRect = new Rect(0, 20 * i, viewport.width, 20);
+        //        GUI.Label(labelRect, line);
+        //    }
+        //    GUI.EndScrollView();
+        //}
         //#endif
     }
 }
