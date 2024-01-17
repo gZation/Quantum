@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float fallMultiplier = 3f;
-    [SerializeField] private float lowJumpMultiplier = 2f;
-    [SerializeField] private float speed = 8;
-    [SerializeField] private float jumpForce = 8;
-    [SerializeField] private float slideSpeed = 5;
-    [SerializeField] private float dashSpeed = 20;
+    [SerializeField] protected float fallMultiplier = 3f;
+    [SerializeField] protected float lowJumpMultiplier = 2f;
+    [SerializeField] protected float speed = 8;
+    [SerializeField] protected float jumpForce = 8;
+    [SerializeField] protected float slideSpeed = 5;
+    [SerializeField] protected float dashSpeed = 20;
 
-    [SerializeField] private Vector2 bottomOffset = new Vector2(0, -0.65f);
-    [SerializeField] private Vector2 leftOffset = new Vector2(-0.45f, 0);
-    [SerializeField] private Vector2 rightOffset = new Vector2(0.45f, 0);
-    [SerializeField] private float collisionRadius = 0.25f;
+    [SerializeField] protected Vector2 bottomOffset = new Vector2(0, -0.65f);
+    [SerializeField] protected Vector2 leftOffset = new Vector2(-0.45f, 0);
+    [SerializeField] protected Vector2 rightOffset = new Vector2(0.45f, 0);
+    [SerializeField] protected float collisionRadius = 0.25f;
 
     public bool grounded = false;
     public bool onWall = false;
@@ -22,9 +22,12 @@ public class PlayerMovement : MonoBehaviour
     public bool canMove = true;
     public bool wallJumped = false;
     public bool dashing = false;
+    public bool canDash = true;
 
-    Rigidbody2D rb;
-    Animator animator;
+    public bool world1 = false;
+
+    protected Rigidbody2D rb;
+    protected Animator animator;
     public bool sharingMomentum { get; set; }
 
     void Awake()
@@ -34,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
         sharingMomentum = false;
     }
 
-    void Update()
+    public virtual void Update()
     {
         //if falling
         if (rb.velocity.y < 0)
@@ -50,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
 
         //Check if gounded or on a wall
         int mask = LayerMask.GetMask("ground");
+
         grounded = Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, collisionRadius, mask);
         onWall = Physics2D.OverlapCircle((Vector2)transform.position + leftOffset, collisionRadius, mask)
             || Physics2D.OverlapCircle((Vector2)transform.position + rightOffset, collisionRadius, mask);
@@ -58,6 +62,7 @@ public class PlayerMovement : MonoBehaviour
         if (grounded && !dashing)
         {
             wallJumped = false;
+            canDash = true;
         }
 
         if (Input.GetButtonDown("Jump")) 
@@ -86,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void Walk(Vector2 direction)
+    protected void Walk(Vector2 direction)
     {
         if (!canMove)
         {
@@ -103,7 +108,7 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("speed", rb.velocity.x);
     }
 
-    private void Dash(float x, float y)
+    protected void Dash(float x, float y)
     {
         wallJumped = true;
         rb.velocity = Vector2.zero;
@@ -113,7 +118,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (direction.y > 0)
         {
-            dashExtra.y = dashExtra.y / 5;
+            dashExtra.y = dashExtra.y / 3;
         }
 
         rb.velocity += dashExtra;
@@ -128,6 +133,8 @@ public class PlayerMovement : MonoBehaviour
         {
             GameManager.instance.SendMomentum(dashExtra, this.gameObject);
         }
+
+        canDash = false;
     }
     IEnumerator DashWait()
     {
@@ -139,7 +146,7 @@ public class PlayerMovement : MonoBehaviour
         dashing = false;
     }
 
-    private void Jump(Vector2 direction)
+    protected void Jump(Vector2 direction)
     {
         rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.velocity += direction * jumpForce;
@@ -150,7 +157,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void WallJump()
+    protected void WallJump()
     {
         StopCoroutine(DisableMovement(0));
         StartCoroutine(DisableMovement(.1f));
@@ -167,7 +174,7 @@ public class PlayerMovement : MonoBehaviour
         wallJumped = false;
     }
 
-    private void WallSlide()
+    protected void WallSlide()
     {
         rb.velocity = new Vector2(rb.velocity.x, -slideSpeed);
     }
@@ -179,7 +186,7 @@ public class PlayerMovement : MonoBehaviour
         canMove = true;
     }
 
-    private void QuantumLock()
+    protected void QuantumLock()
     {
         GameManager.instance.QuantumLockPlayer(this.gameObject);
     }
