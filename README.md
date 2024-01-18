@@ -1,4 +1,4 @@
 # Quantum
-The new, up and coming 2D puzzle game utilizing the most interesting Quantum game mechanics the world has ever seen.
+A co-op 2d pixel platformer :)
 
-Currently uses Unity Version: 2022.3.3f1
+Currently uses Unity Version: 2022.3.14f1
