@@ -9,6 +9,10 @@ public class GameManager : MonoBehaviour
 
     public GameObject player1;
     public GameObject player2;
+
+    public GameObject shadow1;
+    public GameObject shadow2;
+
     private bool networked = false;
 
     private void Awake()
@@ -24,6 +28,11 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         LoadNextLevel();
+    }
+
+    private void Update()
+    {
+        CopyAndSendPlayerInfo();
     }
 
     public void QuantumLockPlayer(GameObject listener) 
@@ -114,7 +123,15 @@ public class GameManager : MonoBehaviour
 
     public void CopyAndSendPlayerInfo()
     {
+        // rn the position is done by just making the shadow under the prefab
 
+        shadow1.transform.position = player1.transform.position + new Vector3(32, 0, 0);
+        SpriteRenderer one = shadow1.GetComponent<SpriteRenderer>();
+        one.sprite = player1.GetComponent<SpriteRenderer>().sprite;
+
+        shadow2.transform.position = player2.transform.position + new Vector3(-32, 0, 0);
+        SpriteRenderer two = shadow2.GetComponent<SpriteRenderer>();
+        two.sprite = player2.GetComponent<SpriteRenderer>().sprite;
     }
 
     public void SetNetworked()
