@@ -241,6 +241,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void AddMomentum() {
+        print(momentumToAdd.Count);
         foreach (Vector2 momentum in momentumToAdd)
         {
             rb.AddForce(momentum, ForceMode2D.Impulse);
