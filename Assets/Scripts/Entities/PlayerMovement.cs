@@ -193,7 +193,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void QuantumLockAddMomentum(Vector2 momentum)
     {
-        rb.AddForce(momentum);
+        //doens't work when it is sent after the other was like moved??
+        rb.velocity += momentum;
         StartCoroutine(DisableMovement(.2f));
     }
 
