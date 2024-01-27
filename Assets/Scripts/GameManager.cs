@@ -51,19 +51,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void SendMomentum(Vector2 velocity, GameObject sender)
+    public void SendMomentum(Vector2 momentum, GameObject sender)
     {
         if (sender == player1)
         {
-            print("sending to player2");
+            //print("sending to player2");
             MovementArrows playerMovement = player2.gameObject.GetComponent<MovementArrows>();
-            playerMovement.AddMomentum(velocity);
+            playerMovement.QuantumLockAddMomentum(momentum);
         }
         else
         {
-            print("sending to player1");
+            //print("sending to player1");
             MovementWASD playerMovement = player1.gameObject.GetComponent<MovementWASD>();
-            playerMovement.AddMomentum(velocity);
+            playerMovement.QuantumLockAddMomentum(momentum);
         }
     }
 
