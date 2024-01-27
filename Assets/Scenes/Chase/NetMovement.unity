@@ -5088,8 +5088,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66c7dab2079c5fc45b2ccb16f1bea89c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefabA: {fileID: 106941480838844296, guid: b2039085561329543995b3c5e313b3b0, type: 3}
-  playerPrefabB: {fileID: 7901648596648922838, guid: 30063eee9c085c24da5c556c890eb64a, type: 3}
+  playerPrefab1: {fileID: 106941480838844296, guid: b2039085561329543995b3c5e313b3b0, type: 3}
+  playerShadowPrefab1: {fileID: 8187047507008814382, guid: 2aa0fec4f2ffa0c4aac1e11c5b184623, type: 3}
+  playerPrefab2: {fileID: 7901648596648922838, guid: 30063eee9c085c24da5c556c890eb64a, type: 3}
+  playerShadowPrefab2: {fileID: 1404036277695456856, guid: 9cbd0968fe05ead4fb45b52a14fe7a66, type: 3}
   player1Spawn: {fileID: 1336635015}
   player2Spawn: {fileID: 1182070091}
 --- !u!4 &407030868
@@ -10276,6 +10278,63 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1708644817
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1708644819}
+  - component: {fileID: 1708644818}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1708644818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708644817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37fa839f6e77ad64780f6c099c0f9b23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  networkingOn: 1
+  player1: {fileID: 0}
+  player2: {fileID: 0}
+  shadow1: {fileID: 0}
+  shadow2: {fileID: 0}
+  netPlayer1:
+    m_InternalValue: {fileID: 0}
+  netPlayer2:
+    m_InternalValue: {fileID: 0}
+  netShadow1:
+    m_InternalValue: {fileID: 0}
+  netShadow2:
+    m_InternalValue: {fileID: 0}
+--- !u!4 &1708644819
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708644817}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.3529825, y: 7.354777, z: 2.3281703}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1716010369
 GameObject:
   m_ObjectHideFlags: 0

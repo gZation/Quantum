@@ -1,24 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance { get; private set; }
+    [SerializeField] bool networkingOn = false;
+    public static GameManager instance;
 
     public GameObject player1;
     public GameObject player2;
-
     public GameObject shadow1;
     public GameObject shadow2;
 
-    private bool networked = false;
 
     private void Awake()
     {
-        if (instance != null)
-        {
+        if (instance != null) {
             Debug.LogError("Found more than one Game Manager in the scene.");
         }
 
@@ -30,8 +27,14 @@ public class GameManager : MonoBehaviour
         LoadNextLevel();
     }
 
-    private void Update()
-    {
+    public void updateFromNetworkVariables(GameObject player1, GameObject player2, GameObject shadow1, GameObject shadow2) {
+        this.player1 = player1;
+        this.player2 = player2;
+        this.shadow1 = shadow1;
+        this.shadow2 = shadow2;
+    }
+
+    private void Update() {
         CopyAndSendPlayerInfo();
     }
 
@@ -124,18 +127,16 @@ public class GameManager : MonoBehaviour
     public void CopyAndSendPlayerInfo()
     {
         // rn the position is done by just making the shadow under the prefab
-
-        shadow1.transform.position = player1.transform.position + new Vector3(32, 0, 0);
-        SpriteRenderer one = shadow1.GetComponent<SpriteRenderer>();
-        one.sprite = player1.GetComponent<SpriteRenderer>().sprite;
-
-        shadow2.transform.position = player2.transform.position + new Vector3(-32, 0, 0);
-        SpriteRenderer two = shadow2.GetComponent<SpriteRenderer>();
-        two.sprite = player2.GetComponent<SpriteRenderer>().sprite;
+        if (player1 != null) {
+            shadow1.transform.position = player1.transform.position + new Vector3(32, 0, 0);
+            SpriteRenderer one = shadow1.GetComponent<SpriteRenderer>();
+            one.sprite = player1.GetComponent<SpriteRenderer>().sprite;
+        }
+        if (player2 != null) {
+            shadow2.transform.position = player2.transform.position + new Vector3(-32, 0, 0);
+            SpriteRenderer two = shadow2.GetComponent<SpriteRenderer>();
+            two.sprite = player2.GetComponent<SpriteRenderer>().sprite;
+        }
     }
 
-    public void SetNetworked()
-    {
-        networked = true;
-    }
 }
