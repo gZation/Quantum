@@ -8,14 +8,6 @@ public class PlayerSpawner : NetworkBehaviour {
     public GameObject player1Spawn;
     public GameObject player2Spawn;
 
-    public static PlayerSpawner instance { get; private set; }
-
-    private void Awake() {
-        if (instance != null) {
-            Debug.LogError("Found more than one PlayerSpawner in the scene.");
-        }
-        instance = this;
-    }
 
     [ServerRpc(RequireOwnership = false)] //server owns this object but client can request a spawn
     public void SpawnPlayerServerRpc(ulong clientId) {
@@ -30,8 +22,17 @@ public class PlayerSpawner : NetworkBehaviour {
         netObj.SpawnAsPlayerObject(clientId, true);
     }
 
+    private void Start() {
+        Debug.Log("Start");
+    }
+
+    private void Awake() {
+        Debug.Log("Awake");
+    }
+
     public override void OnNetworkSpawn() {
-        if (IsServer)
+        Debug.Log("OnNetworkSpawned called");
+        if (IsHost)
             SpawnPlayerServerRpc(0);
         else
             SpawnPlayerServerRpc(1);
