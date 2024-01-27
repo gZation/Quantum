@@ -16356,6 +16356,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1368356209}
     m_Modifications:
+    - target: {fileID: 839304528931508227, guid: ca12ff33344d8f9448ac7429a5280f01, type: 3}
+      propertyPath: strength
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 5920403373723903517, guid: ca12ff33344d8f9448ac7429a5280f01, type: 3}
       propertyPath: m_Name
       value: ConveyorBelt
