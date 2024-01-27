@@ -60,13 +60,13 @@ public class GameManager : MonoBehaviour
         {
             print("sending to player2");
             MovementArrows playerMovement = player2.gameObject.GetComponent<MovementArrows>();
-            playerMovement.AddMomentum(velocity);
+            playerMovement.QuantumLockAddMomentum(velocity);
         }
         else
         {
             print("sending to player1");
             MovementWASD playerMovement = player1.gameObject.GetComponent<MovementWASD>();
-            playerMovement.AddMomentum(velocity);
+            playerMovement.QuantumLockAddMomentum(velocity);
         }
     }
 

@@ -191,10 +191,23 @@ public class PlayerMovement : MonoBehaviour
         GameManager.instance.QuantumLockPlayer(this.gameObject);
     }
 
-    public void AddMomentum(Vector2 momentum)
+    public void QuantumLockAddMomentum(Vector2 momentum)
     {
+        //doens't work when it is sent after the other was like moved??
         rb.velocity += momentum;
         StartCoroutine(DisableMovement(.2f));
+    }
+
+    public void WorldAddMomentum(Vector2 momentum)
+    {
+        rb.AddForce(momentum);
+
+        StartCoroutine(DisableMovement(.2f));
+
+        if (sharingMomentum)
+        {
+            GameManager.instance.SendMomentum(momentum, this.gameObject);
+        }
     }
 
     //GIZMOs
