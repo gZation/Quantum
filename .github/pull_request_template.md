@@ -6,7 +6,7 @@ PLEASE FOLLOW THE BELOW PR TEMPLATE
 <!--- Describe your changes in detail -->
 
 ## Related Task
-<!--- Please Link click-up task related to this PR -->
+<!--- Please Link trello task related to this PR -->
 
 ## How Has This Been Tested?
 <!--- Please describe in detail how you tested your changes. -->
