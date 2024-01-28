@@ -93,8 +93,22 @@ public class PlayerMovement : MonoBehaviour
         {
             Dash(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         }
+    }
+
+    private void FixedUpdate()
+    {
 
         AddMomentum();
+    }
+
+    public void DisableMovement()
+    {
+        canMove = false;
+    }
+
+    public void EnableMovement()
+    {
+        canMove = true;
     }
 
     protected virtual Vector2 GetMovementDirection()
@@ -228,24 +242,25 @@ public class PlayerMovement : MonoBehaviour
     public void QuantumLockAddMomentum(Vector2 momentum)
     {
         momentumToAdd.Add(momentum);
+        //rb.AddForce(momentum, ForceMode2D.Impulse);
     }
 
     public void WorldAddMomentum(Vector2 momentum)
     {
         momentumToAdd.Add(momentum);
-        print(momentumToAdd.Count);
+        //rb.AddForce(momentum, ForceMode2D.Impulse);
+
         if (sharingMomentum)
         {
             GameManager.instance.SendMomentum(momentum, this.gameObject);
         }
     }
 
-    private void AddMomentum() {
-        print(momentumToAdd.Count);
+    protected void AddMomentum()
+    {
         foreach (Vector2 momentum in momentumToAdd)
         {
             rb.AddForce(momentum, ForceMode2D.Impulse);
-            print(momentum);
         }
 
         momentumToAdd = new List<Vector2>();
