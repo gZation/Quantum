@@ -10,8 +10,10 @@ public class GameManager : MonoBehaviour
     public GameObject player1;
     public GameObject player2;
 
-    public GameObject shadow1;
-    public GameObject shadow2;
+    public GameObject shadowPrefab;
+
+    private GameObject shadow1;
+    private GameObject shadow2;
 
     private bool networked = false;
 
@@ -23,6 +25,9 @@ public class GameManager : MonoBehaviour
         }
 
         instance = this;
+
+        shadow1 = Instantiate(shadowPrefab);
+        shadow2 = Instantiate(shadowPrefab);
     }
 
     private void Start()
