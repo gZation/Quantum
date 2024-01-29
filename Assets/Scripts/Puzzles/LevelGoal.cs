@@ -15,7 +15,6 @@ public class LevelGoal : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            print("player at goal");
             lm.AddPlayerSuccess();
         }
     }

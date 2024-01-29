@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance { get; private set; }
 
-    private GameObject player1;
-    private GameObject player2;
+    [SerializeField] private GameObject player1;
+    [SerializeField] private GameObject player2;
 
     public GameObject shadowPrefab;
 
@@ -16,6 +17,8 @@ public class GameManager : MonoBehaviour
     private GameObject shadow2;
 
     private bool networked = false;
+
+    private int currentScene;
 
     private void Awake()
     {
@@ -28,26 +31,35 @@ public class GameManager : MonoBehaviour
 
         instance = this;
 
-        shadow1 = Instantiate(shadowPrefab);
-        shadow2 = Instantiate(shadowPrefab);
+        MakeShadows();
+
+        currentScene = SceneManager.GetActiveScene().buildIndex;
     }
 
     private void Start()
     {
-        GetPlayers();
         LoadNextLevel();
     }
 
     private void Update()
     {
         CopyAndSendPlayerInfo();
+
+        int scene = SceneManager.GetActiveScene().buildIndex;
+
+        print(scene);
+
+        if (currentScene != scene)
+        {
+            print("new scene");
+            currentScene = scene;
+            LoadNextLevel();
+        }
     }
 
     private void GetPlayers()
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-
-        print(players.Length);
 
         foreach (GameObject p in players)
         {
@@ -60,6 +72,12 @@ public class GameManager : MonoBehaviour
                 player2 = p;
             }
         }
+    }
+
+    private void MakeShadows()
+    {
+        shadow1 = Instantiate(shadowPrefab);
+        shadow2 = Instantiate(shadowPrefab);
     }
 
     public void QuantumLockPlayer(GameObject listener) 
@@ -96,6 +114,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadNextLevel()
     {
+        GetPlayers();
         CopyAndSendWorldInfo();
     }
 

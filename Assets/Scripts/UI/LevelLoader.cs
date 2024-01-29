@@ -47,7 +47,6 @@ public class LevelLoader : MonoBehaviour
         // if T is string, convert levelIndex from T type to string
         if (typeof(T) == typeof(string))
         {
-            Debug.Log("String");
             SceneManager.LoadScene((string)(object)levelIndex);
         }
         else
