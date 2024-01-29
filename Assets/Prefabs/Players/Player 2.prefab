@@ -190,7 +190,7 @@ MonoBehaviour:
   wallJumped: 0
   dashing: 0
   canDash: 1
-  world1: 1
+  world1: 0
 --- !u!114 &6896141567494045033
 MonoBehaviour:
   m_ObjectHideFlags: 0

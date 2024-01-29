@@ -31,5 +31,6 @@ public class LevelManager : MonoBehaviour
     void MoveOn()
     {
         levelLoader.LoadLevelByName(nextLevel);
+        GameManager.instance.LoadNextLevel();
     }
 }

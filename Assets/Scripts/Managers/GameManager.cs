@@ -7,8 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance { get; private set; }
 
-    public GameObject player1;
-    public GameObject player2;
+    private GameObject player1;
+    private GameObject player2;
 
     public GameObject shadowPrefab;
 
@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        GetPlayers();
+
         if (instance != null)
         {
             Debug.LogError("Found more than one Game Manager in the scene.");
@@ -32,12 +34,32 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        GetPlayers();
         LoadNextLevel();
     }
 
     private void Update()
     {
         CopyAndSendPlayerInfo();
+    }
+
+    private void GetPlayers()
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+
+        print(players.Length);
+
+        foreach (GameObject p in players)
+        {
+            PlayerMovement player = p.GetComponent<PlayerMovement>();
+            if (player.world1)
+            {
+                player1 = p;
+            } else
+            {
+                player2 = p;
+            }
+        }
     }
 
     public void QuantumLockPlayer(GameObject listener) 
