@@ -25,6 +25,11 @@ public class LevelLoader : MonoBehaviour
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
+    public void LoadLevelByName(string name)
+    {
+        StartCoroutine(LoadLevel(name));
+    }
+
     public void LoadLoseScreen()
     {
         StartCoroutine(LoadLevel("Lose Screen"));
