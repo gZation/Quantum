@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
         if (instance != null)
         {
             Debug.LogError("Found more than one Game Manager in the scene.");
+            Destroy(this.gameObject);
         }
 
         instance = this;
@@ -46,8 +47,6 @@ public class GameManager : MonoBehaviour
         CopyAndSendPlayerInfo();
 
         int scene = SceneManager.GetActiveScene().buildIndex;
-
-        print(scene);
 
         if (currentScene != scene)
         {

@@ -4,18 +4,11 @@ using UnityEngine;
 
 public class LevelGoal : MonoBehaviour
 {
-    LevelManager lm;
-
-    public void Start()
-    {
-        lm = this.transform.parent.GetComponent<LevelManager>();
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            lm.AddPlayerSuccess();
+            LevelManager.instance.AddPlayerSuccess();
         }
     }
 
@@ -23,7 +16,7 @@ public class LevelGoal : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            lm.RemovePlayerSuccess();
+            LevelManager.instance.RemovePlayerSuccess();
         }
     }
 }
