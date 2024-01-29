@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 748dfc9651d890a44a5b323df55d80f6
+guid: a2bde9d512bf16648b09b04ba3be7d31
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,74 +123,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Old MC guy sheet_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 60
-        width: 20
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c19ac9ce0c054764d8456c602cc43bd3
-      internalID: -323302081
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Old MC guy sheet_1
-      rect:
-        serializedVersion: 2
-        x: 20
-        y: 60
-        width: 20
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 38573db83b4c1b64db9493c234934665
-      internalID: 758170918
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Old MC guy sheet_2
-      rect:
-        serializedVersion: 2
-        x: 40
-        y: 60
-        width: 20
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 638d578c31904db4ab680e3425b93e1f
-      internalID: -569883771
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Old MC guy sheet_3
+      name: Cyber_tiles_0
       rect:
         serializedVersion: 2
         x: 60
-        y: 60
+        y: 180
         width: 20
         height: 20
       alignment: 0
@@ -200,39 +137,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 938120c6084415c4f872013b387b6336
-      internalID: -771245483
+      spriteID: 6c4170f7e03a90c41a65250bfe73bb05
+      internalID: -1801153470
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Old MC guy sheet_4
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 40
-        width: 20
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c00e10088b57de94bbc26035fdefadd9
-      internalID: -411554564
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Old MC guy sheet_5
+      name: Cyber_tiles_1
       rect:
         serializedVersion: 2
         x: 20
-        y: 40
+        y: 160
         width: 20
         height: 20
       alignment: 0
@@ -242,18 +158,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c1c60e9cfe71b6d44a67f766acb647c5
-      internalID: 1593630701
+      spriteID: dadc54ecadf09f7478ec948c7f249334
+      internalID: 1310035527
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Old MC guy sheet_6
+      name: Cyber_tiles_2
       rect:
         serializedVersion: 2
-        x: 40
-        y: 40
+        x: 120
+        y: 160
         width: 20
         height: 20
       alignment: 0
@@ -263,18 +179,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0520dd4ac76f06f4fab7fccf684445ae
-      internalID: -211134543
+      spriteID: d1c2972e1e3258b44a5763170879725b
+      internalID: -902305428
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Old MC guy sheet_7
+      name: Cyber_tiles_3
       rect:
         serializedVersion: 2
-        x: 60
-        y: 40
+        x: 140
+        y: 160
         width: 20
         height: 20
       alignment: 0
@@ -284,39 +200,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e75a0b9b180c0bf4b879f2ce48311810
-      internalID: -809072012
+      spriteID: a3270aa456b353446b6dcec0da856195
+      internalID: -1932587052
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Old MC guy sheet_8
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 20
-        width: 20
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9763fba4c756a9d4f9d1d7a2d6b552c1
-      internalID: -1084977601
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Old MC guy sheet_9
+      name: Cyber_tiles_4
       rect:
         serializedVersion: 2
         x: 20
-        y: 20
+        y: 140
         width: 20
         height: 20
       alignment: 0
@@ -326,18 +221,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f33156daec57df4884a1ebb1fedec61
-      internalID: -1692766941
+      spriteID: b417d2a766a9d574198817923aafc214
+      internalID: -2040213865
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Old MC guy sheet_10
+      name: Cyber_tiles_5
       rect:
         serializedVersion: 2
-        x: 40
-        y: 20
+        x: 120
+        y: 140
         width: 20
         height: 20
       alignment: 0
@@ -347,18 +242,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0aee1b07e3e49d04ab361984d910b8e0
-      internalID: 646940561
+      spriteID: 1e3512a3f87147e47aa8146f37220b9a
+      internalID: 743014218
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Old MC guy sheet_11
+      name: Cyber_tiles_6
       rect:
         serializedVersion: 2
-        x: 60
-        y: 20
+        x: 140
+        y: 140
         width: 20
         height: 20
       alignment: 0
@@ -368,39 +263,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bce63d179e29fb248bd01759d2ec8db3
-      internalID: -1160051597
+      spriteID: 328a7b0501f833145be9728dcc78636a
+      internalID: -1344926454
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Old MC guy sheet_12
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 20
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c9f8807d3cdc58e4eb6790a814f29ddd
-      internalID: 591839352
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Old MC guy sheet_13
+      name: Cyber_tiles_7
       rect:
         serializedVersion: 2
         x: 20
-        y: 0
+        y: 120
         width: 20
         height: 20
       alignment: 0
@@ -410,50 +284,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5a55aac91ba89044d989ea874a405f0b
-      internalID: 1237548045
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Old MC guy sheet_14
-      rect:
-        serializedVersion: 2
-        x: 40
-        y: 0
-        width: 20
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: aeda7025b5ba94444937ffb8b2815e00
-      internalID: 1569916950
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Old MC guy sheet_15
-      rect:
-        serializedVersion: 2
-        x: 60
-        y: 0
-        width: 20
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 999e77ca3d05ef24983330c0d3e4d0e4
-      internalID: 23617174
+      spriteID: 0686d3b44568ed5408c88cd275ffbc1b
+      internalID: -2050383869
       vertices: []
       indices: 
       edges: []
@@ -469,22 +301,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Old MC guy sheet_0: -323302081
-      Old MC guy sheet_1: 758170918
-      Old MC guy sheet_10: 646940561
-      Old MC guy sheet_11: -1160051597
-      Old MC guy sheet_12: 591839352
-      Old MC guy sheet_13: 1237548045
-      Old MC guy sheet_14: 1569916950
-      Old MC guy sheet_15: 23617174
-      Old MC guy sheet_2: -569883771
-      Old MC guy sheet_3: -771245483
-      Old MC guy sheet_4: -411554564
-      Old MC guy sheet_5: 1593630701
-      Old MC guy sheet_6: -211134543
-      Old MC guy sheet_7: -809072012
-      Old MC guy sheet_8: -1084977601
-      Old MC guy sheet_9: -1692766941
+      Cyber_tiles_0: -1801153470
+      Cyber_tiles_1: 1310035527
+      Cyber_tiles_2: -902305428
+      Cyber_tiles_3: -1932587052
+      Cyber_tiles_4: -2040213865
+      Cyber_tiles_5: 743014218
+      Cyber_tiles_6: -1344926454
+      Cyber_tiles_7: -2050383869
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

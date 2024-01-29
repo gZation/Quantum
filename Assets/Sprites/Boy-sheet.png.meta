@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3fe12fd78db7f49449f383c564669a60
+guid: 9ed27c85dc876694c919e3033a244a9f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: old mc girl sheet_0
+      name: Boy-sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5a37494a2c11081429940473129d788f
-      internalID: 1330404208
+      spriteID: 79916870249228f4cb5b8aa27463fdc1
+      internalID: -1227483758
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: old mc girl sheet_1
+      name: Boy-sheet_1
       rect:
         serializedVersion: 2
         x: 20
@@ -158,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da2d69202e83e86449dec0a10c2d6f22
-      internalID: -22341313
+      spriteID: 86a2614cb4303a04c8f87fdf8002ded3
+      internalID: 107196839
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: old mc girl sheet_2
+      name: Boy-sheet_2
       rect:
         serializedVersion: 2
         x: 40
@@ -179,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ffd099af6736344794e93f078e95e90
-      internalID: 2007201855
+      spriteID: 8dae719bff68d5349928eba74a5f3f37
+      internalID: 817913342
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: old mc girl sheet_3
+      name: Boy-sheet_3
       rect:
         serializedVersion: 2
         x: 60
@@ -200,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5a3898a636aa2d744940fab05d69214d
-      internalID: -1925016477
+      spriteID: 663b9baa1f4ab1441beb316bb3df2213
+      internalID: 475169473
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: old mc girl sheet_4
+      name: Boy-sheet_4
       rect:
         serializedVersion: 2
         x: 0
@@ -221,14 +221,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b2a210fcae86e774792b5a8bf82883d6
-      internalID: 801053457
+      spriteID: abd7fc6579a236f4b8879c76209422d8
+      internalID: 980469920
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: old mc girl sheet_5
+      name: Boy-sheet_5
       rect:
         serializedVersion: 2
         x: 20
@@ -242,14 +242,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5de09ca80423c2c4e96d286515e92b50
-      internalID: 505833014
+      spriteID: bf19491c27ac3204db02dd3e9b93d97a
+      internalID: 1473127037
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: old mc girl sheet_6
+      name: Boy-sheet_6
       rect:
         serializedVersion: 2
         x: 40
@@ -263,14 +263,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 636034633a38ada42b5cbaa8c34baf71
-      internalID: -1988817037
+      spriteID: 5d4f7f8738551a34295239423956a609
+      internalID: -1743886773
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: old mc girl sheet_7
+      name: Boy-sheet_7
       rect:
         serializedVersion: 2
         x: 60
@@ -284,14 +284,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ecf79a4233c36a34ab655ab829bdb613
-      internalID: 756053869
+      spriteID: 6bcdb412659b51241b7a88b0f3d01cda
+      internalID: -1917184998
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: old mc girl sheet_8
+      name: Boy-sheet_8
       rect:
         serializedVersion: 2
         x: 0
@@ -305,14 +305,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c629893d733915459a406daffc660b9
-      internalID: 150521830
+      spriteID: 2bf85e47f4dc7d74aa97a750a90fbe38
+      internalID: 1897467317
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: old mc girl sheet_9
+      name: Boy-sheet_9
       rect:
         serializedVersion: 2
         x: 20
@@ -326,14 +326,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 832041b92cfb23542b1a18cd908f6ae4
-      internalID: 1627956585
+      spriteID: 61aff8d995997614b885e68a53da55da
+      internalID: -411758747
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: old mc girl sheet_10
+      name: Boy-sheet_10
       rect:
         serializedVersion: 2
         x: 40
@@ -347,14 +347,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1010fe68d38fee3488ba98c1c93afcfd
-      internalID: 404240516
+      spriteID: 8da5b63bb09da9f45976266b4dd5cac6
+      internalID: 2035844494
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: old mc girl sheet_11
+      name: Boy-sheet_11
       rect:
         serializedVersion: 2
         x: 60
@@ -368,14 +368,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42cc3d9c7bff8e446ac212148e73e58b
-      internalID: -568807483
+      spriteID: d64dde0ff9512db4bb25f418651687ea
+      internalID: 1050346039
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: old mc girl sheet_12
+      name: Boy-sheet_12
       rect:
         serializedVersion: 2
         x: 0
@@ -389,14 +389,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f2159104df02d0d46bd7e97a541cf2d3
-      internalID: 155727157
+      spriteID: 253e70ca416aa2e44bd0bdd4cdbc343e
+      internalID: -2145730378
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: old mc girl sheet_13
+      name: Boy-sheet_13
       rect:
         serializedVersion: 2
         x: 20
@@ -410,14 +410,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2a1ef20bddcdefa4ca03ebd9e6553912
-      internalID: -1703179963
+      spriteID: d3995de100ca78742a91ee2641429f4c
+      internalID: -1488003281
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: old mc girl sheet_14
+      name: Boy-sheet_14
       rect:
         serializedVersion: 2
         x: 40
@@ -431,14 +431,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 95aefcaf924961e4f826ba52d572655d
-      internalID: 1835572426
+      spriteID: 69d9056bbfabfe94f8729e5fa3e0a62c
+      internalID: 1495776620
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: old mc girl sheet_15
+      name: Boy-sheet_15
       rect:
         serializedVersion: 2
         x: 60
@@ -452,8 +452,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 81561bd85b3167b48a34431babe93108
-      internalID: 18929463
+      spriteID: 4a54cb48570632a47bfdc44e286ec380
+      internalID: 1670993232
       vertices: []
       indices: 
       edges: []
@@ -469,22 +469,22 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      old mc girl sheet_0: 1330404208
-      old mc girl sheet_1: -22341313
-      old mc girl sheet_10: 404240516
-      old mc girl sheet_11: -568807483
-      old mc girl sheet_12: 155727157
-      old mc girl sheet_13: -1703179963
-      old mc girl sheet_14: 1835572426
-      old mc girl sheet_15: 18929463
-      old mc girl sheet_2: 2007201855
-      old mc girl sheet_3: -1925016477
-      old mc girl sheet_4: 801053457
-      old mc girl sheet_5: 505833014
-      old mc girl sheet_6: -1988817037
-      old mc girl sheet_7: 756053869
-      old mc girl sheet_8: 150521830
-      old mc girl sheet_9: 1627956585
+      Boy-sheet_0: -1227483758
+      Boy-sheet_1: 107196839
+      Boy-sheet_10: 2035844494
+      Boy-sheet_11: 1050346039
+      Boy-sheet_12: -2145730378
+      Boy-sheet_13: -1488003281
+      Boy-sheet_14: 1495776620
+      Boy-sheet_15: 1670993232
+      Boy-sheet_2: 817913342
+      Boy-sheet_3: 475169473
+      Boy-sheet_4: 980469920
+      Boy-sheet_5: 1473127037
+      Boy-sheet_6: -1743886773
+      Boy-sheet_7: -1917184998
+      Boy-sheet_8: 1897467317
+      Boy-sheet_9: -411758747
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
