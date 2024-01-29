@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
             print("new scene");
             currentScene = scene;
             LoadNextLevel();
+            MakeShadows();
         }
     }
 
