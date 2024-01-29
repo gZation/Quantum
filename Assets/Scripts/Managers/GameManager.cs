@@ -37,12 +37,12 @@ public class GameManager : MonoBehaviour
         currentScene = SceneManager.GetActiveScene().buildIndex;
     }
 
-    private void Start()
+    void Start()
     {
         LoadNextLevel();
     }
 
-    private void Update()
+    void Update()
     {
         CopyAndSendPlayerInfo();
 
