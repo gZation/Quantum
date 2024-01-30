@@ -11,13 +11,11 @@ public class DirectionalMomentumAddition : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        direction = direction.normalized;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     private void OnTriggerStay2D(Collider2D collision)

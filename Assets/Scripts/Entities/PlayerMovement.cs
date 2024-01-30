@@ -30,25 +30,34 @@ public class PlayerMovement : MonoBehaviour
     protected Animator animator;
     public bool sharingMomentum { get; set; }
 
+    private List<Vector2> momentumToAdd;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         sharingMomentum = false;
+        momentumToAdd = new List<Vector2>();
     }
 
-    public virtual void Update()
+    public void Update()
     {
+        if (IsQLock())
+        {
+            QuantumLock();
+        }
+
         //if falling
         if (rb.velocity.y < 0)
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
-        } else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
+        } else if (rb.velocity.y > 0 && !IsJump())
         {
-            rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+            Vector2 m = Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+            rb.velocity += m;
         }
 
-        Vector2 movementDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        Vector2 movementDirection = GetMovementDirection();
         Walk(movementDirection);
 
         //Check if gounded or on a wall
@@ -65,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
             canDash = true;
         }
 
-        if (Input.GetButtonDown("Jump")) 
+        if (IsJump()) 
         {
             if (grounded)
             {
@@ -80,15 +89,46 @@ public class PlayerMovement : MonoBehaviour
             WallSlide();
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (IsDash())
         {
             Dash(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         }
+    }
 
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            QuantumLock();
-        }
+    private void FixedUpdate()
+    {
+
+        AddMomentum();
+    }
+
+    public void DisableMovement()
+    {
+        canMove = false;
+    }
+
+    public void EnableMovement()
+    {
+        canMove = true;
+    }
+
+    protected virtual Vector2 GetMovementDirection()
+    {
+        return new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+    }
+
+    protected virtual bool IsJump()
+    {
+        return Input.GetButtonDown("Jump");
+    }
+
+    protected virtual bool IsDash()
+    {
+        return Input.GetKeyDown(KeyCode.LeftShift);
+    }
+
+    protected virtual bool IsQLock()
+    {
+        return Input.GetKeyDown(KeyCode.Q);
     }
 
     protected void Walk(Vector2 direction)
@@ -154,6 +194,7 @@ public class PlayerMovement : MonoBehaviour
         if (sharingMomentum)
         {
             GameManager.instance.SendMomentum(direction.normalized * jumpForce, this.gameObject);
+            DisableLocking(.2f);
         }
     }
 
@@ -186,6 +227,13 @@ public class PlayerMovement : MonoBehaviour
         canMove = true;
     }
 
+    IEnumerable DisableLocking(float time)
+    {
+        sharingMomentum = false;
+        yield return new WaitForSeconds(time);
+        sharingMomentum = true;
+    }
+
     protected void QuantumLock()
     {
         GameManager.instance.QuantumLockPlayer(this.gameObject);
@@ -193,21 +241,29 @@ public class PlayerMovement : MonoBehaviour
 
     public void QuantumLockAddMomentum(Vector2 momentum)
     {
-        //doens't work when it is sent after the other was like moved??
-        rb.velocity += momentum;
-        StartCoroutine(DisableMovement(.2f));
+        momentumToAdd.Add(momentum);
+        //rb.AddForce(momentum, ForceMode2D.Impulse);
     }
 
     public void WorldAddMomentum(Vector2 momentum)
     {
-        rb.AddForce(momentum);
-
-        StartCoroutine(DisableMovement(.2f));
+        momentumToAdd.Add(momentum);
+        //rb.AddForce(momentum, ForceMode2D.Impulse);
 
         if (sharingMomentum)
         {
             GameManager.instance.SendMomentum(momentum, this.gameObject);
         }
+    }
+
+    protected void AddMomentum()
+    {
+        foreach (Vector2 momentum in momentumToAdd)
+        {
+            rb.AddForce(momentum, ForceMode2D.Impulse);
+        }
+
+        momentumToAdd = new List<Vector2>();
     }
 
     //GIZMOs
