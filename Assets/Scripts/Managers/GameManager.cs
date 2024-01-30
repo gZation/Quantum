@@ -44,8 +44,6 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        CopyAndSendPlayerInfo();
-
         int scene = SceneManager.GetActiveScene().buildIndex;
 
         if (currentScene != scene)
@@ -55,6 +53,8 @@ public class GameManager : MonoBehaviour
             LoadNextLevel();
             MakeShadows();
         }
+
+        CopyAndSendPlayerInfo();
     }
 
     private void GetPlayers()
