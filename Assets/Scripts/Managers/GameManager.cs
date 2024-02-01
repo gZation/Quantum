@@ -21,8 +21,6 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        GetPlayers();
-
         if (instance != null)
         {
             //Debug.LogError("Found more than one Game Manager in the scene.");
@@ -31,7 +29,11 @@ public class GameManager : MonoBehaviour
 
         instance = this;
 
-        MakeShadows();
+        if (!networkingOn)
+        {
+            SetPlayers();
+            MakeShadows();
+        }
 
         currentScene = SceneManager.GetActiveScene().buildIndex;
     }
@@ -63,7 +65,7 @@ public class GameManager : MonoBehaviour
         this.shadow2 = shadow2;
     }
 
-    private void GetPlayers()
+    private void SetPlayers()
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
 
@@ -80,13 +82,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void MakeShadows()
+    public void MakeShadows()
     {
         shadow1 = Instantiate(shadowPrefab);
         shadow2 = Instantiate(shadowPrefab);
     }
 
-    public void QuantumLockPlayer(GameObject listener) 
+    public void QuantumLockPlayer(GameObject listener)
     {
         //refactor later to be PlayerMovement once networking is in
         if (listener == player1)
@@ -120,7 +122,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        GetPlayers();
+        SetPlayers();
         CopyAndSendWorldInfo();
     }
 
@@ -175,6 +177,11 @@ public class GameManager : MonoBehaviour
 
     public void CopyAndSendPlayerInfo()
     {
+        if (player1 == null || player2 == null || shadow1 == null || shadow2 == null)
+        {
+            return;
+        }
+
         // rn the position is done by just making the shadow under the prefab
         if (player1 != null) {
             shadow1.transform.position = player1.transform.position + new Vector3(32, 0, 0);
@@ -185,6 +192,46 @@ public class GameManager : MonoBehaviour
             shadow2.transform.position = player2.transform.position + new Vector3(-32, 0, 0);
             SpriteRenderer two = shadow2.GetComponent<SpriteRenderer>();
             two.sprite = player2.GetComponent<SpriteRenderer>().sprite;
+        }
+    }
+
+    public GameObject GetPlayer(int num)
+    {
+        if (num == 1)
+        {
+            return player1;
+        } else if (num == 2)
+        {
+            return player2;
+        }
+
+        return null;
+    }
+
+    public GameObject GetShadow(int num)
+    {
+        if (num == 1)
+        {
+            return shadow1;
+        }
+        else if (num == 2)
+        {
+            return shadow2;
+        }
+
+        return null;
+    }
+
+    public void SetPlayerAndShadow(GameObject player, GameObject shadow, int num)
+    {
+        if (num == 1)
+        {
+            instance.player1 = player;
+            instance.shadow1 = shadow;
+        }
+        else if (num == 2) {
+            instance.player2 = player;
+            instance.shadow2 = shadow;
         }
     }
 
