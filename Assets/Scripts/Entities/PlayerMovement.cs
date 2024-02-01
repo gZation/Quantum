@@ -42,6 +42,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void Update()
     {
+        //print(rb.velocity);
+
         if (IsQLock())
         {
             QuantumLock();
@@ -95,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    protected void FixedUpdate()
     {
 
         AddMomentum();
@@ -242,13 +244,11 @@ public class PlayerMovement : MonoBehaviour
     public void QuantumLockAddMomentum(Vector2 momentum)
     {
         momentumToAdd.Add(momentum);
-        //rb.AddForce(momentum, ForceMode2D.Impulse);
     }
 
     public void WorldAddMomentum(Vector2 momentum)
     {
         momentumToAdd.Add(momentum);
-        //rb.AddForce(momentum, ForceMode2D.Impulse);
 
         if (sharingMomentum)
         {
@@ -265,6 +265,18 @@ public class PlayerMovement : MonoBehaviour
 
         momentumToAdd = new List<Vector2>();
     }
+
+/*    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        int ground = LayerMask.NameToLayer("ground");
+        if (collision.gameObject.layer != ground)
+        {
+            print(collision.gameObject.name);
+        } else
+        {
+            print("ground");
+        }
+    }*/
 
     //GIZMOs
     private void OnDrawGizmos()

@@ -5,11 +5,24 @@ using UnityEngine;
 
 public class MusicManager : MonoBehaviour {
 
+    public static MusicManager instance { get; private set; }
+
     private AudioSource edoTrackSource, cyberTrackSource;
     public bool cyberActive = false;
     public float masterVolume;
     private float edoVolume, cyberVolume;
     public float crossfadeSpeed = 1.0f;
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            //Debug.LogError("Found more than one Music Manager in the scene.");
+            Destroy(this.gameObject);
+        }
+
+        instance = this;
+    }
 
     // Start is called before the first frame update
     void Start() {
