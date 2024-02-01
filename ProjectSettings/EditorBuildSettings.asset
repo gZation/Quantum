@@ -5,16 +5,25 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Chase/NetMovement.unity
     guid: ffd979c2cc7f66f40b6b37658f43ffc9
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Chase/Netcode/Netcode.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Grace/ExampleScene.unity
     guid: 2bcdb5baa9eaeb04883b731f78c3851a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Grace/SecondScene.unity
     guid: 587c64dc6f5fa4e418f764fe3ba0b00d
+  - enabled: 0
+    path: Assets/Scenes/SecondScene.unity
+    guid: 1bb192056d1cbcb42b759f1ab6d37b9b
+  - enabled: 0
+    path: Assets/Scenes/ExampleScene.unity
+    guid: b95452b197546f146bfee12424df4e35
+  - enabled: 1
+    path: Assets/Scenes/NetworkingEX.unity
+    guid: b3e936d867bd7644bb8991297d0cf4bc
   m_configObjects: {}

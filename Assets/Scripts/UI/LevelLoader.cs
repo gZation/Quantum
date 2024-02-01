@@ -25,6 +25,11 @@ public class LevelLoader : MonoBehaviour
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
+    public void LoadLevelByName(string name)
+    {
+        StartCoroutine(LoadLevel(name));
+    }
+
     public void LoadLoseScreen()
     {
         StartCoroutine(LoadLevel("Lose Screen"));
@@ -42,7 +47,6 @@ public class LevelLoader : MonoBehaviour
         // if T is string, convert levelIndex from T type to string
         if (typeof(T) == typeof(string))
         {
-            Debug.Log("String");
             SceneManager.LoadScene((string)(object)levelIndex);
         }
         else
