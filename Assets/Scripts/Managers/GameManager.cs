@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
     private GameObject shadow1;
     private GameObject shadow2;
 
-
     private int currentScene;
 
     private void Awake()
@@ -122,7 +121,10 @@ public class GameManager : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        SetPlayers();
+        if (!networkingOn)
+        {
+            SetPlayers();
+        }
         CopyAndSendWorldInfo();
     }
 
@@ -226,12 +228,13 @@ public class GameManager : MonoBehaviour
     {
         if (num == 1)
         {
-            instance.player1 = player;
-            instance.shadow1 = shadow;
+            player1 = player;
+            shadow1 = shadow;
         }
         else if (num == 2) {
-            instance.player2 = player;
-            instance.shadow2 = shadow;
+            print("owo");
+            player2 = player;
+            shadow2 = shadow;
         }
     }
 

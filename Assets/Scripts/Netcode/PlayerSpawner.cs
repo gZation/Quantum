@@ -33,9 +33,11 @@ public class PlayerSpawner : NetworkBehaviour {
             {
                 player2Location = p.transform.position;
             }
+
+            Destroy(p);
         }
 
-        if (clientId == 1) { // If the player is 1
+        if (clientId == 0) { // If the player is 1
             newPlayer = Instantiate(playerPrefab1, player1Location, Quaternion.identity);
             newShadow = Instantiate(playerShadowPrefab, player1Location - new Vector3(32, 0, 0), Quaternion.identity);
             spawnPlayerAndShadow(newPlayer, newShadow, clientId);
@@ -49,8 +51,10 @@ public class PlayerSpawner : NetworkBehaviour {
 
 
         if (GameManager.instance.GetPlayer(1) && GameManager.instance.GetPlayer(2))
-            ClientConnectedClientRPC(GameManager.instance.GetPlayer(1), GameManager.instance.GetPlayer(2), 
+        {
+            ClientConnectedClientRPC(GameManager.instance.GetPlayer(1), GameManager.instance.GetPlayer(2),
                 GameManager.instance.GetShadow(1), GameManager.instance.GetShadow(2));
+        }
     }
 
     // black magic 30% chase doesn't understand
@@ -81,9 +85,9 @@ public class PlayerSpawner : NetworkBehaviour {
     // TODO: chase fix this tut, only remake players and shadows if new room
     public override void OnNetworkSpawn() {
         if (IsHost)
-            SpawnPlayerServerRpc(1);
+            SpawnPlayerServerRpc(0);
         else {
-            SpawnPlayerServerRpc(2);
+            SpawnPlayerServerRpc(1);
         }
     }
 }
