@@ -30,15 +30,23 @@ public class PlayerMovement : MonoBehaviour
     protected Animator animator;
     public bool sharingMomentum { get; set; }
 
+    private List<Vector2> momentumToAdd;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         sharingMomentum = false;
+        momentumToAdd = new List<Vector2>();
     }
 
     public void Update()
     {
+        if (IsQLock())
+        {
+            QuantumLock();
+        }
+
         //if falling
         if (rb.velocity.y < 0)
         {
@@ -47,10 +55,6 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector2 m = Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
             rb.velocity += m;
-            if (sharingMomentum)
-            {
-                GameManager.instance.SendMomentum(m, this.gameObject);
-            }
         }
 
         Vector2 movementDirection = GetMovementDirection();
@@ -89,11 +93,22 @@ public class PlayerMovement : MonoBehaviour
         {
             Dash(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         }
+    }
 
-        if (IsQLock())
-        {
-            QuantumLock();
-        }
+    private void FixedUpdate()
+    {
+
+        AddMomentum();
+    }
+
+    public void DisableMovement()
+    {
+        canMove = false;
+    }
+
+    public void EnableMovement()
+    {
+        canMove = true;
     }
 
     protected virtual Vector2 GetMovementDirection()
@@ -179,7 +194,7 @@ public class PlayerMovement : MonoBehaviour
         if (sharingMomentum)
         {
             GameManager.instance.SendMomentum(direction.normalized * jumpForce, this.gameObject);
-            print("jumping");
+            DisableLocking(.2f);
         }
     }
 
@@ -212,6 +227,13 @@ public class PlayerMovement : MonoBehaviour
         canMove = true;
     }
 
+    IEnumerable DisableLocking(float time)
+    {
+        sharingMomentum = false;
+        yield return new WaitForSeconds(time);
+        sharingMomentum = true;
+    }
+
     protected void QuantumLock()
     {
         GameManager.instance.QuantumLockPlayer(this.gameObject);
@@ -219,22 +241,29 @@ public class PlayerMovement : MonoBehaviour
 
     public void QuantumLockAddMomentum(Vector2 momentum)
     {
-        //print(momentum);
-        //doens't work when it is sent after the other was like moved??
-        rb.AddForce(momentum, ForceMode2D.Impulse);
-        /*rb.velocity += momentum;*/
-        /*StartCoroutine(DisableMovement(.2f));*/
+        momentumToAdd.Add(momentum);
+        //rb.AddForce(momentum, ForceMode2D.Impulse);
     }
 
     public void WorldAddMomentum(Vector2 momentum)
     {
-        rb.AddForce(momentum, ForceMode2D.Impulse);
+        momentumToAdd.Add(momentum);
+        //rb.AddForce(momentum, ForceMode2D.Impulse);
 
         if (sharingMomentum)
         {
             GameManager.instance.SendMomentum(momentum, this.gameObject);
         }
-       // StartCoroutine(DisableMovement(.2f));
+    }
+
+    protected void AddMomentum()
+    {
+        foreach (Vector2 momentum in momentumToAdd)
+        {
+            rb.AddForce(momentum, ForceMode2D.Impulse);
+        }
+
+        momentumToAdd = new List<Vector2>();
     }
 
     //GIZMOs
