@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public bool networkingOn = false;
+    private bool networkingOn = false;
+    public bool startFromScene = true;
     public static GameManager instance;
 
     [SerializeField] private GameObject player1;
@@ -28,7 +29,7 @@ public class GameManager : MonoBehaviour
 
         instance = this;
 
-        if (!networkingOn)
+        if (!networkingOn && startFromScene)
         {
             SetPlayers();
             MakeShadows();
@@ -39,7 +40,10 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        LoadNextLevel();
+        if (startFromScene)
+        {
+            LoadNextLevel();
+        }
     }
 
     void Update()
@@ -48,7 +52,6 @@ public class GameManager : MonoBehaviour
 
         if (currentScene != scene)
         {
-            print("new scene");
             currentScene = scene;
             LoadNextLevel();
             MakeShadows();
@@ -236,6 +239,11 @@ public class GameManager : MonoBehaviour
             player2 = player;
             shadow2 = shadow;
         }
+    }
+
+    public void SetNetworked(bool networked)
+    {
+        networkingOn = networked;
     }
 
 }
