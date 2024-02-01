@@ -235,7 +235,6 @@ public class GameManager : MonoBehaviour
             shadow1 = shadow;
         }
         else if (num == 2) {
-            print("owo");
             player2 = player;
             shadow2 = shadow;
         }
