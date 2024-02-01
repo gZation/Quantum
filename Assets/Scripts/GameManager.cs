@@ -4,7 +4,7 @@ using UnityEngine.Tilemaps;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] bool networkingOn = false;
+    public bool networkingOn = false;
     public static GameManager instance;
 
     public GameObject player1;
