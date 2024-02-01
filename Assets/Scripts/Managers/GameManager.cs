@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] bool networkingOn = false;
+    public bool networkingOn = false;
     public static GameManager instance;
 
     [SerializeField] private GameObject player1;
