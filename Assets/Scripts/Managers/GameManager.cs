@@ -5,16 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public bool networkingOn = false;
     public static GameManager instance;
+    public NetworkManager networkManager;
 
     [SerializeField] private GameObject player1;
     [SerializeField] private GameObject player2;
 
+    [SerializeField] private bool networkingOn = false;
+    public bool startFromScene = true;
+
     public GameObject shadowPrefab;
 
-    private GameObject shadow1;
-    private GameObject shadow2;
+    [SerializeField] private GameObject shadow1;
+    [SerializeField] private GameObject shadow2;
 
     private int currentScene;
 
@@ -22,13 +25,12 @@ public class GameManager : MonoBehaviour
     {
         if (instance != null)
         {
-            //Debug.LogError("Found more than one Game Manager in the scene.");
             Destroy(this.gameObject);
         }
 
         instance = this;
 
-        if (!networkingOn)
+        if (!networkingOn && startFromScene)
         {
             SetPlayers();
             MakeShadows();
@@ -39,7 +41,10 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        LoadNextLevel();
+        if (startFromScene)
+        {
+            LoadNextLevel();
+        }
     }
 
     void Update()
@@ -48,10 +53,8 @@ public class GameManager : MonoBehaviour
 
         if (currentScene != scene)
         {
-            print("new scene");
             currentScene = scene;
             LoadNextLevel();
-            MakeShadows();
         }
 
         CopyAndSendPlayerInfo();
@@ -124,8 +127,11 @@ public class GameManager : MonoBehaviour
         if (!networkingOn)
         {
             SetPlayers();
+            MakeShadows();
         }
+
         CopyAndSendWorldInfo();
+        SetCameras();
     }
 
     public void CopyAndSendWorldInfo()
@@ -230,12 +236,78 @@ public class GameManager : MonoBehaviour
         {
             player1 = player;
             shadow1 = shadow;
+            print("set player 1");
         }
         else if (num == 2) {
-            print("owo");
             player2 = player;
             shadow2 = shadow;
         }
     }
 
+    private void SetCameras()
+    {
+        // find the cameras
+        GameObject[] cameras = GameObject.FindGameObjectsWithTag("MainCamera");
+
+        Camera player1camera = null;
+        Camera player2camera = null;
+
+        foreach (GameObject c in cameras)
+        {
+            Camera camera = c.GetComponent<Camera>();
+            int world1layer = LayerMask.NameToLayer("World1");
+            int world2layer = LayerMask.NameToLayer("World2");
+
+            if (c.layer == world1layer)
+            {
+                player1camera = camera;
+            }
+            else if (c.layer == world2layer)
+            {
+                player2camera = camera;
+            }
+        }
+
+        if (networkingOn)
+        {
+            //change this to actually be the person they play
+            if (networkManager != null && networkManager.IsHost)
+            {
+                player1camera.enabled = true;
+                player2camera.enabled = false;
+
+                //edit camera locations on display
+                player1camera.rect = new Rect(0, 0, 1, 1);
+            }
+            else
+            {
+                player1camera.enabled = false;
+                player2camera.enabled = true;
+                player2camera.rect = new Rect(0, 0, 1, 1);
+            }
+
+        } else
+        {
+            player1camera.enabled = true;
+            player2camera.enabled = true;
+
+            //edit camera locations on display
+            player1camera.rect = new Rect(0, 0, 0.5f, 1);
+            player2camera.rect = new Rect(0.5f, 0, 0.5f, 1);
+        }
+    }
+
+    public void SetNetworked(bool networked)
+    {
+        networkingOn = networked;
+
+        if (networkingOn)
+        {
+            Screen.SetResolution(640, 480, false);
+
+        } else
+        {
+            Screen.SetResolution(1280, 480, false);
+        }
+    }
 }

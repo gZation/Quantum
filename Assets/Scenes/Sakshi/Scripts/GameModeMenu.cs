@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class GameModeMenu : MonoBehaviour
 {
-    // I'm not sure if I should be setting this var for Game Manager's instance
+    public string nextSplit;
+    public string nextNetworked;
+
+    public LevelLoader levelLoader;
     public void setSplitScreen()
     {
-        GameManager.instance.networkingOn = false;
+        GameManager.instance.SetNetworked(false);
+        levelLoader.LoadLevelByName(nextSplit);
     }
 
     public void setNetworked()
     {
-        GameManager.instance.networkingOn = true;
+        GameManager.instance.SetNetworked(true);
+        levelLoader.LoadLevelByName(nextNetworked);
     }
-
 }
