@@ -13,11 +13,10 @@ GameObject:
   - component: {fileID: 3249030834272545627}
   - component: {fileID: 6086890876289015783}
   - component: {fileID: 6758967473421834388}
-  - component: {fileID: 6617318846518586744}
-  - component: {fileID: 6896141567494045033}
   - component: {fileID: 3699370042523815042}
   - component: {fileID: 5639476350201221156}
   - component: {fileID: -1195275625699801801}
+  - component: {fileID: 5047399978486652316}
   m_Layer: 7
   m_Name: Player 2
   m_TagString: Player
@@ -176,66 +175,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.7650223, y: 1.0221157}
   m_EdgeRadius: 0
---- !u!114 &6617318846518586744
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7901648596648922838}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59e36e03f623ff9438757a4ba47af0fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fallMultiplier: 3
-  lowJumpMultiplier: 2
-  speed: 8
-  jumpForce: 8
-  slideSpeed: 5
-  dashSpeed: 20
-  bottomOffset: {x: 0, y: -0.5}
-  leftOffset: {x: -0.35, y: 0}
-  rightOffset: {x: 0.4, y: 0}
-  collisionRadius: 0.25
-  grounded: 0
-  onWall: 0
-  onRightWall: 0
-  canMove: 1
-  wallJumped: 0
-  dashing: 0
-  canDash: 1
-  world1: 0
---- !u!114 &6896141567494045033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7901648596648922838}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf9a02b77c67068469cf6a7e6bf5b901, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fallMultiplier: 3
-  lowJumpMultiplier: 2
-  speed: 8
-  jumpForce: 8
-  slideSpeed: 5
-  dashSpeed: 20
-  bottomOffset: {x: 0, y: -0.5}
-  leftOffset: {x: -0.35, y: 0}
-  rightOffset: {x: 0.4, y: 0}
-  collisionRadius: 0.25
-  grounded: 0
-  onWall: 0
-  onRightWall: 0
-  canMove: 1
-  wallJumped: 0
-  dashing: 0
-  canDash: 1
-  world1: 0
 --- !u!95 &3699370042523815042
 Animator:
   serializedVersion: 5
@@ -307,3 +246,17 @@ MonoBehaviour:
   InLocalSpace: 0
   Interpolate: 0
   SlerpPosition: 0
+--- !u!114 &5047399978486652316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7901648596648922838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1c76e7b4cc3f6a4e9b07b1cf6abd1a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  world1: 0
+  sceneStart: 0

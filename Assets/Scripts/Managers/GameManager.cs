@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
 
         foreach (GameObject p in players)
         {
-            PlayerMovement player = p.GetComponent<PlayerMovement>();
+            PlayerSettings player = p.GetComponent<PlayerSettings>();
             if (player.world1)
             {
                 player1 = p;
@@ -309,5 +309,9 @@ public class GameManager : MonoBehaviour
         {
             Screen.SetResolution(1280, 480, false);
         }
+    }
+
+    public bool IsNetworked() {
+        return networkingOn;
     }
 }
