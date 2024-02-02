@@ -11,13 +11,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject player1;
     [SerializeField] private GameObject player2;
 
-    private bool networkingOn = false;
+    [SerializeField] private bool networkingOn = false;
     public bool startFromScene = true;
 
     public GameObject shadowPrefab;
 
-    private GameObject shadow1;
-    private GameObject shadow2;
+    [SerializeField] private GameObject shadow1;
+    [SerializeField] private GameObject shadow2;
 
     private int currentScene;
 
@@ -236,6 +236,7 @@ public class GameManager : MonoBehaviour
         {
             player1 = player;
             shadow1 = shadow;
+            print("set player 1");
         }
         else if (num == 2) {
             player2 = player;
