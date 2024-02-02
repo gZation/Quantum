@@ -34,6 +34,10 @@ public class PlayerSettings : MonoBehaviour
     {
         // make the player have just base player movement
         // need to add this to check if it is the player that someone is playing
-        this.gameObject.AddComponent<PlayerMovement>();
+        
+        if (world1 == GameManager.instance.networkManager.IsHost)
+        {
+            this.gameObject.AddComponent<PlayerMovement>();
+        }
     }
 }
