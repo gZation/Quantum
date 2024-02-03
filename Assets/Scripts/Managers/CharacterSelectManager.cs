@@ -16,7 +16,7 @@ public class CharacterSelectManager : MonoBehaviour {
     GameObject p1, p2;
     RectTransform p1Rect, p2Rect;
     float p1Lerp, p2Lerp;
-    [SerializeField] float p1Target, p2Target;
+    float p1Target, p2Target;
     Vector3 boyPosition, girlPosition;
 
     // Start is called before the first frame update
@@ -41,7 +41,17 @@ public class CharacterSelectManager : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         
-        float i = Input.GetAxisRaw("Horizontal");
+        if (Input.GetButtonDown("Horizontal")) {
+
+            if (Input.GetAxisRaw("Horizontal") > 0) {
+                p1Target = Mathf.Clamp(p1Target + 0.5f, 0, 1);
+            
+            } else {
+                p1Target = Mathf.Clamp(p1Target - 0.5f, 0, 1);
+
+            } // if
+
+        } // if
 
         if (p1Lerp < p1Target) p1Lerp = (Mathf.RoundToInt(p1Lerp * 10) + 1) / 10.0f;
         if (p1Lerp > p1Target) p1Lerp = (Mathf.RoundToInt(p1Lerp * 10) - 1) / 10.0f;
