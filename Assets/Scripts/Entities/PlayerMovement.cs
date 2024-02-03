@@ -173,6 +173,15 @@ public class PlayerMovement : MonoBehaviour
         }
 
         canDash = false;
+        animator.SetFloat("speed", rb.velocity.x);
+
+        if (rb.velocity.y > 0)
+        {
+            animator.SetBool("updash", true);
+        } else
+        {
+            animator.SetBool("dashing", true);
+        }
     }
     IEnumerator DashWait()
     {
@@ -182,6 +191,9 @@ public class PlayerMovement : MonoBehaviour
         rb.gravityScale = 1;
         wallJumped = false;
         dashing = false;
+
+        animator.SetBool("updash", false);
+        animator.SetBool("dashing", false);
     }
 
     protected void Jump(Vector2 direction)
