@@ -7,9 +7,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] protected float fallMultiplier = 3f;
     [SerializeField] protected float lowJumpMultiplier = 2f;
     [SerializeField] protected float speed = 8;
-    [SerializeField] protected float jumpForce = 8;
+    [SerializeField] protected float jumpForce = 10;
     [SerializeField] protected float slideSpeed = 5;
-    [SerializeField] protected float dashSpeed = 15;
+    [SerializeField] protected float dashSpeed = 20;
 
     [SerializeField] protected Vector2 bottomOffset = new Vector2(0, -0.5f);
     [SerializeField] protected Vector2 leftOffset = new Vector2(-0.35f, 0);
