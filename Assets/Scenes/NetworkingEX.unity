@@ -7793,6 +7793,10 @@ PrefabInstance:
       propertyPath: networkingOn
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 440233175285807851, guid: ad57db9ed37630c489e34ad10cd95b70, type: 3}
+      propertyPath: networkManager
+      value: 
+      objectReference: {fileID: 156940018}
     - target: {fileID: 6623827589254650210, guid: ad57db9ed37630c489e34ad10cd95b70, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.3529825
@@ -16755,6 +16759,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5047399978486652316, guid: 30063eee9c085c24da5c556c890eb64a, type: 3}
+      propertyPath: sceneStart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5639476350201221156, guid: 30063eee9c085c24da5c556c890eb64a, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 349241956
+      objectReference: {fileID: 0}
     - target: {fileID: 7901648596648922838, guid: 30063eee9c085c24da5c556c890eb64a, type: 3}
       propertyPath: m_Name
       value: Player 2
@@ -16913,6 +16925,10 @@ PrefabInstance:
     - target: {fileID: 106941480838844296, guid: b2039085561329543995b3c5e313b3b0, type: 3}
       propertyPath: m_Name
       value: Player 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 375964731186814185, guid: b2039085561329543995b3c5e313b3b0, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1218546956
       objectReference: {fileID: 0}
     - target: {fileID: 1715274008313498054, guid: b2039085561329543995b3c5e313b3b0, type: 3}
       propertyPath: m_LocalPosition.x

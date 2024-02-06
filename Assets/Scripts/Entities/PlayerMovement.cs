@@ -9,11 +9,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] protected float speed = 8;
     [SerializeField] protected float jumpForce = 8;
     [SerializeField] protected float slideSpeed = 5;
-    [SerializeField] protected float dashSpeed = 20;
+    [SerializeField] protected float dashSpeed = 15;
 
-    [SerializeField] protected Vector2 bottomOffset = new Vector2(0, -0.65f);
-    [SerializeField] protected Vector2 leftOffset = new Vector2(-0.45f, 0);
-    [SerializeField] protected Vector2 rightOffset = new Vector2(0.45f, 0);
+    [SerializeField] protected Vector2 bottomOffset = new Vector2(0, -0.5f);
+    [SerializeField] protected Vector2 leftOffset = new Vector2(-0.35f, 0);
+    [SerializeField] protected Vector2 rightOffset = new Vector2(0.4f, 0);
     [SerializeField] protected float collisionRadius = 0.25f;
 
     public bool grounded = false;
@@ -23,8 +23,6 @@ public class PlayerMovement : MonoBehaviour
     public bool wallJumped = false;
     public bool dashing = false;
     public bool canDash = true;
-
-    public bool world1 = false;
 
     protected Rigidbody2D rb;
     protected Animator animator;
@@ -42,8 +40,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void Update()
     {
-        //print(rb.velocity);
-
         if (IsQLock())
         {
             QuantumLock();
@@ -177,6 +173,15 @@ public class PlayerMovement : MonoBehaviour
         }
 
         canDash = false;
+        animator.SetFloat("speed", rb.velocity.x);
+
+        if (rb.velocity.y > 0)
+        {
+            animator.SetBool("updash", true);
+        } else
+        {
+            animator.SetBool("dashing", true);
+        }
     }
     IEnumerator DashWait()
     {
@@ -186,6 +191,9 @@ public class PlayerMovement : MonoBehaviour
         rb.gravityScale = 1;
         wallJumped = false;
         dashing = false;
+
+        animator.SetBool("updash", false);
+        animator.SetBool("dashing", false);
     }
 
     protected void Jump(Vector2 direction)
@@ -265,18 +273,6 @@ public class PlayerMovement : MonoBehaviour
 
         momentumToAdd = new List<Vector2>();
     }
-
-/*    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        int ground = LayerMask.NameToLayer("ground");
-        if (collision.gameObject.layer != ground)
-        {
-            print(collision.gameObject.name);
-        } else
-        {
-            print("ground");
-        }
-    }*/
 
     //GIZMOs
     private void OnDrawGizmos()
