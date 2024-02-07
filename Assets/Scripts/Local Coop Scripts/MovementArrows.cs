@@ -28,28 +28,18 @@ public class MovementArrows : PlayerMovement
         return movementDirection.normalized;
     }
 
-    protected override bool IsJump()
+    public override bool IsJump()
     {
         return Input.GetKeyDown(KeyCode.RightControl);
     }
 
-    protected override bool IsDash()
+    public override bool IsDash()
     {
         return Input.GetKeyDown(KeyCode.Keypad0);
     }
 
-    protected override bool IsQLock()
+    public override bool IsQLock()
     {
         return Input.GetKeyDown(KeyCode.RightShift);
-    }
-
-    //GIZMOs
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-
-        Gizmos.DrawWireSphere((Vector2)transform.position + bottomOffset, collisionRadius);
-        Gizmos.DrawWireSphere((Vector2)transform.position + leftOffset, collisionRadius);
-        Gizmos.DrawWireSphere((Vector2)transform.position + rightOffset, collisionRadius);
     }
 }
