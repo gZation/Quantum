@@ -26,9 +26,14 @@ public class PlayerAnimation : MonoBehaviour
 /*        anim.SetBool("onRightWall", coll.onRightWall);*/
 /*        anim.SetBool("wallGrab", move.wallGrab);
         anim.SetBool("wallSlide", move.wallSlide);*/
-        anim.SetBool("canMove", move.canMove);
-        anim.SetBool("isDashing", move.isDashing);
-
+        if (move != null)
+        {
+            anim.SetBool("canMove", move.canMove);
+            anim.SetBool("isDashing", move.isDashing);
+        } else
+        {
+            SetMovementRef();
+        }
     }
 
     public void SetHorizontalMovement(float x, float y, float yVel)
