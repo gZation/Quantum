@@ -71,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
         float yRaw = Input.GetAxisRaw("Vertical");
 
         Walk(dir);
-        //anim.SetHorizontalMovement(x, y, rb.velocity.y);
+        anim.SetHorizontalMovement(x, y, rb.velocity.y);
 
 
         if (coll.onGround && !isDashing)
@@ -109,7 +109,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (IsJump())
         {
-            //anim.SetTrigger("jump");
+            anim.SetTrigger("jump");
 
             if (coll.onGround)
                 Jump(Vector2.up, false);
@@ -197,8 +197,6 @@ public class PlayerMovement : MonoBehaviour
 
         hasDashed = true;
 
-        //anim.SetTrigger("dash");
-
         rb.velocity = Vector2.zero;
         Vector2 dir = new Vector2(x, y);
 
@@ -207,6 +205,10 @@ public class PlayerMovement : MonoBehaviour
         if (dir.y > 0)
         {
             dashExtra.y = dashExtra.y / 2;
+            anim.SetTrigger("dashup");
+        } else
+        {
+            anim.SetTrigger("dash");
         }
 
         rb.velocity += dashExtra;
