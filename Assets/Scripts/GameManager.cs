@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+// Small Edit - Moses
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance { get; private set; }
