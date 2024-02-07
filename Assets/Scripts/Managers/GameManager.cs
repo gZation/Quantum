@@ -116,7 +116,6 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            //print("sending to player1");
             MovementWASD playerMovement = player1.gameObject.GetComponent<MovementWASD>();
             playerMovement.QuantumLockAddMomentum(momentum);
         }
@@ -193,13 +192,13 @@ public class GameManager : MonoBehaviour
         // rn the position is done by just making the shadow under the prefab
         if (player1 != null) {
             shadow1.transform.position = player1.transform.position + new Vector3(32, 0, 0);
-            SpriteRenderer one = shadow1.GetComponent<SpriteRenderer>();
-            one.sprite = player1.GetComponent<SpriteRenderer>().sprite;
+/*            SpriteRenderer one = shadow1.GetComponent<SpriteRenderer>();
+            one.sprite = player1.GetComponent<SpriteRenderer>().sprite;*/
         }
         if (player2 != null) {
             shadow2.transform.position = player2.transform.position + new Vector3(-32, 0, 0);
-            SpriteRenderer two = shadow2.GetComponent<SpriteRenderer>();
-            two.sprite = player2.GetComponent<SpriteRenderer>().sprite;
+/*            SpriteRenderer two = shadow2.GetComponent<SpriteRenderer>();
+            two.sprite = player2.GetComponent<SpriteRenderer>().sprite;*/
         }
     }
 

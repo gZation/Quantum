@@ -5,10 +5,17 @@ using UnityEngine;
 public class PlayerSettings : MonoBehaviour
 {
     public bool world1 = false;
-    public bool sceneStart = false;
+    //public bool sceneStart = false;
 
-    private void Start()
+    public PlayerJump jump;
+    public PlayerAnimation anim;
+
+
+    void Start()
     {
+        jump = GetComponent<PlayerJump>();
+        anim = GetComponentInChildren<PlayerAnimation>();
+
         if (GameManager.instance.IsNetworked())
         {
             SetPlayerNetworked();
@@ -28,6 +35,7 @@ public class PlayerSettings : MonoBehaviour
         {
             this.gameObject.AddComponent<MovementArrows>();
         }
+        UpdatePlayerMovementRef();
     }
 
     public void SetPlayerNetworked()
@@ -38,6 +46,13 @@ public class PlayerSettings : MonoBehaviour
         if (world1 == GameManager.instance.networkManager.IsHost)
         {
             this.gameObject.AddComponent<PlayerMovement>();
+            UpdatePlayerMovementRef();
         }
+    }
+
+    public void UpdatePlayerMovementRef()
+    {
+        jump.SetMovementRef();
+        anim.SetMovementRef();
     }
 }

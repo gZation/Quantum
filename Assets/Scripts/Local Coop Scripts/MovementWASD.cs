@@ -27,13 +27,4 @@ public class MovementWASD : PlayerMovement
         return movementDirection.normalized;
     }
 
-    //GIZMOs
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-
-        Gizmos.DrawWireSphere((Vector2)transform.position + bottomOffset, collisionRadius);
-        Gizmos.DrawWireSphere((Vector2)transform.position + leftOffset, collisionRadius);
-        Gizmos.DrawWireSphere((Vector2)transform.position + rightOffset, collisionRadius);
-    }
 }
