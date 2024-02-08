@@ -29,12 +29,12 @@ public class GameManager : MonoBehaviour
         }
 
         instance = this;
-
+/*
         if (!networkingOn && startFromScene)
         {
             SetPlayers();
             MakeShadows();
-        }
+        }*/
 
         currentScene = SceneManager.GetActiveScene().buildIndex;
     }
@@ -76,10 +76,10 @@ public class GameManager : MonoBehaviour
             PlayerSettings player = p.GetComponent<PlayerSettings>();
             if (player.world1)
             {
-                player1 = p;
+                instance.player1 = p;
             } else
             {
-                player2 = p;
+                instance.player2 = p;
             }
         }
     }
@@ -95,12 +95,12 @@ public class GameManager : MonoBehaviour
         //refactor later to be PlayerMovement once networking is in
         if (listener == player1)
         {
-            print("Toggling lock to player 2");
+/*            print("Toggling lock to player 2");*/
             MovementArrows playerMovement = player2.GetComponent<MovementArrows>();
             playerMovement.sharingMomentum = !playerMovement.sharingMomentum;
         } else
         {
-            print("Toggling lock to player 1");
+/*            print("Toggling lock to player 1");*/
             MovementWASD playerMovement = player1.GetComponent<MovementWASD>();
             playerMovement.sharingMomentum = !playerMovement.sharingMomentum;
         }
@@ -110,7 +110,6 @@ public class GameManager : MonoBehaviour
     {
         if (sender == player1)
         {
-            //print("sending to player2");
             MovementArrows playerMovement = player2.gameObject.GetComponent<MovementArrows>();
             playerMovement.QuantumLockAddMomentum(momentum);
         }
@@ -192,13 +191,13 @@ public class GameManager : MonoBehaviour
         // rn the position is done by just making the shadow under the prefab
         if (player1 != null) {
             shadow1.transform.position = player1.transform.position + new Vector3(32, 0, 0);
-/*            SpriteRenderer one = shadow1.GetComponent<SpriteRenderer>();
-            one.sprite = player1.GetComponent<SpriteRenderer>().sprite;*/
+            SpriteRenderer one = shadow1.GetComponentInChildren<SpriteRenderer>();
+            one.sprite = player1.GetComponentInChildren<SpriteRenderer>().sprite;
         }
         if (player2 != null) {
             shadow2.transform.position = player2.transform.position + new Vector3(-32, 0, 0);
-/*            SpriteRenderer two = shadow2.GetComponent<SpriteRenderer>();
-            two.sprite = player2.GetComponent<SpriteRenderer>().sprite;*/
+            SpriteRenderer two = shadow2.GetComponentInChildren<SpriteRenderer>();
+            two.sprite = player2.GetComponentInChildren<SpriteRenderer>().sprite;
         }
     }
 
@@ -235,7 +234,6 @@ public class GameManager : MonoBehaviour
         {
             player1 = player;
             shadow1 = shadow;
-            print("set player 1");
         }
         else if (num == 2) {
             player2 = player;
