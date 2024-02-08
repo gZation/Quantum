@@ -209,12 +209,10 @@ public class PlayerMovement : MonoBehaviour
         
         if (dir.y > 0 && dir.x == 0)
         {
-            print("set trigger");
             anim.SetTrigger("dashup");
         }
         else
         {
-            print("set trigger");
             anim.SetTrigger("dash");
         }
 
@@ -239,7 +237,7 @@ public class PlayerMovement : MonoBehaviour
         wallJumped = true;
         isDashing = true;
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.45f);
 
         //dashParticle.Stop();
         rb.gravityScale = 3;
