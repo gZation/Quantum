@@ -171,7 +171,7 @@ public class PlayerMovement : MonoBehaviour
 
     public virtual bool IsDash()
     {
-        return Input.GetKeyDown(KeyCode.LeftShift);
+        return Input.GetButtonDown("Fire1");
     }
 
     public virtual bool IsQLock()
@@ -205,8 +205,13 @@ public class PlayerMovement : MonoBehaviour
         if (dir.y > 0)
         {
             dashExtra.y = dashExtra.y / 2;
+        } 
+        
+        if (dir.y > 0 && dir.x == 0)
+        {
             anim.SetTrigger("dashup");
-        } else
+        }
+        else
         {
             anim.SetTrigger("dash");
         }
@@ -233,7 +238,7 @@ public class PlayerMovement : MonoBehaviour
         wallJumped = true;
         isDashing = true;
 
-        yield return new WaitForSeconds(.3f);
+        yield return new WaitForSeconds(.5f);
 
         //dashParticle.Stop();
         rb.gravityScale = 3;
@@ -262,7 +267,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 wallDir = coll.onRightWall ? Vector2.left : Vector2.right;
 
-        Jump((Vector2.up / 1.5f + wallDir / 1.5f), true);
+        Jump((Vector2.up / 1.5f + wallDir / 1.4f), true);
 
         wallJumped = true;
     }
