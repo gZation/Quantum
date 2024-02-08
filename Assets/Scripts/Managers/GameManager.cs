@@ -100,8 +100,8 @@ public class GameManager : MonoBehaviour
             playerMovement.sharingMomentum = !playerMovement.sharingMomentum;
         } else
         {
-            print("Toggling lock to player 1");/*
-*/            MovementWASD playerMovement = player1.GetComponent<MovementWASD>();
+/*            print("Toggling lock to player 1");*/
+            MovementWASD playerMovement = player1.GetComponent<MovementWASD>();
             playerMovement.sharingMomentum = !playerMovement.sharingMomentum;
         }
     }

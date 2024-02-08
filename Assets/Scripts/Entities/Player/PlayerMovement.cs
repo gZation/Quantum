@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 15;
     public float slideSpeed = 5;
     public float wallJumpLerp = 10;
-    public float dashSpeed = 20;
+    public float dashSpeed = 25;
 
     [Space]
     [Header("Booleans")]
@@ -204,15 +204,17 @@ public class PlayerMovement : MonoBehaviour
 
         if (dir.y > 0)
         {
-            dashExtra.y = dashExtra.y / 2;
+            dashExtra.y = dashExtra.y / 1.9f;
         } 
         
         if (dir.y > 0 && dir.x == 0)
         {
+            print("set trigger");
             anim.SetTrigger("dashup");
         }
         else
         {
+            print("set trigger");
             anim.SetTrigger("dash");
         }
 
@@ -220,7 +222,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (sharingMomentum)
         {
-            GameManager.instance.SendMomentum(dashExtra, this.gameObject);
+            GameManager.instance.SendMomentum(dashExtra * 1.5f, this.gameObject);
         }
 
         StartCoroutine(DashWait());
@@ -228,9 +230,8 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator DashWait()
     {
-/*        FindObjectOfType<GhostTrail>().ShowGhost();
+      //FindObjectOfType<GhostTrail>().ShowGhost();
         StartCoroutine(GroundDash());
-        DOVirtual.Float(14, 0, .8f, RigidbodyDrag);*/
 
         //dashParticle.Play();
         rb.gravityScale = 0;
@@ -238,7 +239,7 @@ public class PlayerMovement : MonoBehaviour
         wallJumped = true;
         isDashing = true;
 
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(2f);
 
         //dashParticle.Stop();
         rb.gravityScale = 3;
