@@ -76,10 +76,10 @@ public class GameManager : MonoBehaviour
             PlayerSettings player = p.GetComponent<PlayerSettings>();
             if (player.world1)
             {
-                player1 = p;
+                instance.player1 = p;
             } else
             {
-                player2 = p;
+                instance.player2 = p;
             }
         }
     }
@@ -234,7 +234,6 @@ public class GameManager : MonoBehaviour
         {
             player1 = player;
             shadow1 = shadow;
-            print("set player 1");
         }
         else if (num == 2) {
             player2 = player;

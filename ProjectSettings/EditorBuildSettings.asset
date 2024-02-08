@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SecondScene.unity
     guid: bddb52bdea9787b4796f4defd018358d
+  - enabled: 1
+    path: Assets/Scenes/Chase/NetMovement.unity
+    guid: ffd979c2cc7f66f40b6b37658f43ffc9
   m_configObjects: {}

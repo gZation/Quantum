@@ -15419,7 +15419,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5156991211787847073, guid: c4f844242d093284382abf4fee3f5752, type: 3}
       propertyPath: nextLevel
-      value: Tutorial3
+      value: Tutorial 3
       objectReference: {fileID: 0}
     - target: {fileID: 5156991211787847073, guid: c4f844242d093284382abf4fee3f5752, type: 3}
       propertyPath: levelLoader

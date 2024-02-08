@@ -30,16 +30,16 @@ public class MovementArrows : PlayerMovement
 
     public override bool IsJump()
     {
-        return Input.GetKeyDown(KeyCode.RightControl);
+        return Input.GetKeyDown(KeyCode.O);
     }
 
     public override bool IsDash()
     {
-        return Input.GetKeyDown(KeyCode.Keypad0);
+        return Input.GetKeyDown(KeyCode.P);
     }
 
     public override bool IsQLock()
     {
-        return Input.GetKeyDown(KeyCode.RightShift);
+        return Input.GetKeyDown(KeyCode.I);
     }
 }

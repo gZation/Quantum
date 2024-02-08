@@ -67,8 +67,9 @@ public class PlayerMovement : MonoBehaviour
         Vector2 dir = GetMovementDirection();
         float x = dir.x;
         float y = dir.y;
-        float xRaw = Input.GetAxisRaw("Horizontal");
-        float yRaw = Input.GetAxisRaw("Vertical");
+        Vector2 raw = GetRawInput();
+        float xRaw = raw.x;
+        float yRaw = raw.y;
 
         Walk(dir);
         anim.SetHorizontalMovement(x, y, rb.velocity.y);
@@ -162,6 +163,13 @@ public class PlayerMovement : MonoBehaviour
     protected virtual Vector2 GetMovementDirection()
     {
         return new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+    }
+
+    protected virtual Vector2 GetRawInput()
+    {
+        float xRaw = Input.GetAxisRaw("Horizontal");
+        float yRaw = Input.GetAxisRaw("Vertical");
+        return new Vector2(xRaw, yRaw);
     }
 
     public virtual bool IsJump()
