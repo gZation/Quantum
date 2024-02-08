@@ -213,7 +213,10 @@ public class PlayerMovement : MonoBehaviour
         if (dir.y > 0)
         {
             dashExtra.y = dashExtra.y / 1.9f;
-        } 
+        } else
+        {
+            dashExtra *= 1.4f;
+        }
         
         if (dir.y > 0 && dir.x == 0)
         {
@@ -228,8 +231,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (sharingMomentum)
         {
-            GameManager.instance.SendMomentum(dashExtra * 1.5f, this.gameObject);
-            DisableLocking(.2f);
+            dashExtra.x *= 4f;
+            GameManager.instance.SendMomentum(dashExtra, this.gameObject);
         }
 
         StartCoroutine(DashWait());
@@ -397,7 +400,8 @@ public class PlayerMovement : MonoBehaviour
     {
         foreach (Vector2 momentum in momentumToAdd)
         {
-            rb.AddForce(momentum, ForceMode2D.Impulse);
+            /*rb.AddForce(momentum, ForceMode2D.Impulse);*/
+            rb.velocity += momentum;
         }
 
         momentumToAdd = new List<Vector2>();
