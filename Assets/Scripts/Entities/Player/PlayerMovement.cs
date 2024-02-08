@@ -229,6 +229,7 @@ public class PlayerMovement : MonoBehaviour
         if (sharingMomentum)
         {
             GameManager.instance.SendMomentum(dashExtra * 1.5f, this.gameObject);
+            DisableLocking(.2f);
         }
 
         StartCoroutine(DashWait());
@@ -401,7 +402,4 @@ public class PlayerMovement : MonoBehaviour
 
         momentumToAdd = new List<Vector2>();
     }
-
-
-
 }
