@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 15;
     public float slideSpeed = 5;
     public float wallJumpLerp = 10;
-    public float dashSpeed = 20;
+    public float dashSpeed = 25;
 
     [Space]
     [Header("Booleans")]
@@ -67,8 +67,9 @@ public class PlayerMovement : MonoBehaviour
         Vector2 dir = GetMovementDirection();
         float x = dir.x;
         float y = dir.y;
-        float xRaw = Input.GetAxisRaw("Horizontal");
-        float yRaw = Input.GetAxisRaw("Vertical");
+        Vector2 raw = GetRawInput();
+        float xRaw = raw.x;
+        float yRaw = raw.y;
 
         Walk(dir);
         anim.SetHorizontalMovement(x, y, rb.velocity.y);
@@ -164,6 +165,13 @@ public class PlayerMovement : MonoBehaviour
         return new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
     }
 
+    protected virtual Vector2 GetRawInput()
+    {
+        float xRaw = Input.GetAxisRaw("Horizontal");
+        float yRaw = Input.GetAxisRaw("Vertical");
+        return new Vector2(xRaw, yRaw);
+    }
+
     public virtual bool IsJump()
     {
         return Input.GetButtonDown("Jump");
@@ -171,7 +179,7 @@ public class PlayerMovement : MonoBehaviour
 
     public virtual bool IsDash()
     {
-        return Input.GetKeyDown(KeyCode.LeftShift);
+        return Input.GetButtonDown("Fire1");
     }
 
     public virtual bool IsQLock()
@@ -204,9 +212,17 @@ public class PlayerMovement : MonoBehaviour
 
         if (dir.y > 0)
         {
-            dashExtra.y = dashExtra.y / 2;
-            anim.SetTrigger("dashup");
+            dashExtra.y = dashExtra.y / 1.9f;
         } else
+        {
+            dashExtra *= 1.4f;
+        }
+        
+        if (dir.y > 0 && dir.x == 0)
+        {
+            anim.SetTrigger("dashup");
+        }
+        else
         {
             anim.SetTrigger("dash");
         }
@@ -215,6 +231,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (sharingMomentum)
         {
+            dashExtra.x *= 4f;
             GameManager.instance.SendMomentum(dashExtra, this.gameObject);
         }
 
@@ -223,9 +240,8 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator DashWait()
     {
-/*        FindObjectOfType<GhostTrail>().ShowGhost();
+      //FindObjectOfType<GhostTrail>().ShowGhost();
         StartCoroutine(GroundDash());
-        DOVirtual.Float(14, 0, .8f, RigidbodyDrag);*/
 
         //dashParticle.Play();
         rb.gravityScale = 0;
@@ -233,7 +249,7 @@ public class PlayerMovement : MonoBehaviour
         wallJumped = true;
         isDashing = true;
 
-        yield return new WaitForSeconds(.3f);
+        yield return new WaitForSeconds(0.45f);
 
         //dashParticle.Stop();
         rb.gravityScale = 3;
@@ -262,7 +278,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 wallDir = coll.onRightWall ? Vector2.left : Vector2.right;
 
-        Jump((Vector2.up / 1.5f + wallDir / 1.5f), true);
+        Jump((Vector2.up / 1.5f + wallDir / 1.4f), true);
 
         wallJumped = true;
     }
@@ -384,12 +400,10 @@ public class PlayerMovement : MonoBehaviour
     {
         foreach (Vector2 momentum in momentumToAdd)
         {
-            rb.AddForce(momentum, ForceMode2D.Impulse);
+            /*rb.AddForce(momentum, ForceMode2D.Impulse);*/
+            rb.velocity += momentum;
         }
 
         momentumToAdd = new List<Vector2>();
     }
-
-
-
 }

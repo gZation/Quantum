@@ -6348,6 +6348,8 @@ GameObject:
   - component: {fileID: 1499731852}
   - component: {fileID: 1499731851}
   - component: {fileID: 1499731850}
+  - component: {fileID: 1499731854}
+  - component: {fileID: 1499731853}
   m_Layer: 3
   m_Name: Tilemap_level
   m_TagString: Untagged
@@ -6401,7 +6403,7 @@ TilemapCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
@@ -7497,6 +7499,102 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!66 &1499731853
+CompositeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499731848}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_GeometryType: 1
+  m_GenerationType: 0
+  m_EdgeRadius: 0
+  m_ColliderPaths:
+  - m_Collider: {fileID: 1499731850}
+    m_ColliderPaths:
+    - - X: 180000000
+        Y: 140000000
+      - X: 170000000
+        Y: 140000000
+      - X: 170000000
+        Y: -40000000
+      - X: -70000000
+        Y: -40000000
+      - X: -70000000
+        Y: 140000000
+      - X: -80000000
+        Y: 140000000
+      - X: -80000000
+        Y: -50000000
+      - X: 180000000
+        Y: -50000000
+  m_CompositePaths:
+    m_Paths:
+    - - {x: 17.999971, y: -5}
+      - {x: 17.999971, y: 14}
+      - {x: 17, y: 13.999971}
+      - {x: 16.999971, y: -4}
+      - {x: -7, y: -3.9999704}
+      - {x: -7.0000296, y: 14}
+      - {x: -8, y: 13.999971}
+      - {x: -7.9999704, y: -5}
+  m_VertexDistance: 0.0005
+  m_OffsetDistance: 0.00005
+  m_UseDelaunayMesh: 0
+  m_CompositeGameObject: {fileID: 1499731848}
+--- !u!50 &1499731854
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499731848}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1516935636
 GameObject:
   m_ObjectHideFlags: 0
@@ -8430,6 +8528,8 @@ GameObject:
   - component: {fileID: 1741952512}
   - component: {fileID: 1741952511}
   - component: {fileID: 1741952513}
+  - component: {fileID: 1741952514}
+  - component: {fileID: 1741952515}
   m_Layer: 3
   m_Name: Tilemap_level
   m_TagString: Untagged
@@ -9574,11 +9674,107 @@ TilemapCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!50 &1741952514
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741952508}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!66 &1741952515
+CompositeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741952508}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_GeometryType: 1
+  m_GenerationType: 0
+  m_EdgeRadius: 0
+  m_ColliderPaths:
+  - m_Collider: {fileID: 1741952513}
+    m_ColliderPaths:
+    - - X: 180000000
+        Y: 140000000
+      - X: 170000000
+        Y: 140000000
+      - X: 170000000
+        Y: -40000000
+      - X: -70000000
+        Y: -40000000
+      - X: -70000000
+        Y: 140000000
+      - X: -80000000
+        Y: 140000000
+      - X: -80000000
+        Y: -50000000
+      - X: 180000000
+        Y: -50000000
+  m_CompositePaths:
+    m_Paths:
+    - - {x: 17.999971, y: -5}
+      - {x: 17.999971, y: 14}
+      - {x: 17, y: 13.999971}
+      - {x: 16.999971, y: -4}
+      - {x: -7, y: -3.9999704}
+      - {x: -7.0000296, y: 14}
+      - {x: -8, y: 13.999971}
+      - {x: -7.9999704, y: -5}
+  m_VertexDistance: 0.0005
+  m_OffsetDistance: 0.00005
+  m_UseDelaunayMesh: 0
+  m_CompositeGameObject: {fileID: 1741952508}
 --- !u!1 &1751266125
 GameObject:
   m_ObjectHideFlags: 0
@@ -9657,19 +9853,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 649747222683364136, guid: d42848ee61d35d2459c2198cee9c74c2, type: 3}
       propertyPath: DialogText
-      value: If you move with the arrows young gal, you'll be parkouring in no time!
+      value: You can move with the arrow keys and use numpad 0 to dash
       objectReference: {fileID: 0}
     - target: {fileID: 1475211878432429469, guid: d42848ee61d35d2459c2198cee9c74c2, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 7537876277631931304, guid: 6d854b0012028894e9d83d9665558cc9, type: 3}
+    - target: {fileID: 1475211878432429469, guid: d42848ee61d35d2459c2198cee9c74c2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2969351945379682697, guid: d42848ee61d35d2459c2198cee9c74c2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2969351945379682697, guid: d42848ee61d35d2459c2198cee9c74c2, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: -1740833641543019530, guid: 6d854b0012028894e9d83d9665558cc9, type: 3}
     - target: {fileID: 6384741997998629762, guid: d42848ee61d35d2459c2198cee9c74c2, type: 3}
       propertyPath: m_Name
-      value: SteamPunk
+      value: Intro
       objectReference: {fileID: 0}
     - target: {fileID: 6907943440528165323, guid: d42848ee61d35d2459c2198cee9c74c2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14708,7 +14912,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5156991211787847073, guid: c4f844242d093284382abf4fee3f5752, type: 3}
       propertyPath: nextLevel
-      value: Tutorial2
+      value: Tutorial 2
       objectReference: {fileID: 0}
     - target: {fileID: 5156991211787847073, guid: c4f844242d093284382abf4fee3f5752, type: 3}
       propertyPath: levelLoader
@@ -14733,7 +14937,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 649747222683364136, guid: d42848ee61d35d2459c2198cee9c74c2, type: 3}
       propertyPath: DialogText
-      value: Young one, I believe you can get to where you want to be with WASD.
+      value: You can use WASD to move and shift to dash
+      objectReference: {fileID: 0}
+    - target: {fileID: 1475211878432429469, guid: d42848ee61d35d2459c2198cee9c74c2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2163095604302589031, guid: d42848ee61d35d2459c2198cee9c74c2, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
@@ -14747,21 +14955,25 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 1.425
       objectReference: {fileID: 0}
+    - target: {fileID: 2969351945379682697, guid: d42848ee61d35d2459c2198cee9c74c2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3595601178275925310, guid: d42848ee61d35d2459c2198cee9c74c2, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0.000025004148
       objectReference: {fileID: 0}
     - target: {fileID: 6384741997998629762, guid: d42848ee61d35d2459c2198cee9c74c2, type: 3}
       propertyPath: m_Name
-      value: Kimono
+      value: Intro
       objectReference: {fileID: 0}
     - target: {fileID: 6907943440528165323, guid: d42848ee61d35d2459c2198cee9c74c2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -17.57
+      value: -17.44
       objectReference: {fileID: 0}
     - target: {fileID: 6907943440528165323, guid: d42848ee61d35d2459c2198cee9c74c2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -10.732367
+      value: -10.27
       objectReference: {fileID: 0}
     - target: {fileID: 6907943440528165323, guid: d42848ee61d35d2459c2198cee9c74c2, type: 3}
       propertyPath: m_LocalPosition.z

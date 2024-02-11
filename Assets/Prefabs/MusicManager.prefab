@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cyberActive: 0
-  masterVolume: 1
+  masterVolume: 0.3
   crossfadeSpeed: 1
 --- !u!114 &1545517837682817558
 MonoBehaviour:

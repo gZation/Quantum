@@ -28,18 +28,24 @@ public class MovementArrows : PlayerMovement
         return movementDirection.normalized;
     }
 
+    protected override Vector2 GetRawInput()
+    {
+        float xRaw = Input.GetAxisRaw("HorizontalArrows");
+        float yRaw = Input.GetAxisRaw("VerticalArrows");
+        return new Vector2(xRaw, yRaw);
+    }
     public override bool IsJump()
     {
-        return Input.GetKeyDown(KeyCode.RightControl);
+        return Input.GetKeyDown(KeyCode.O);
     }
 
     public override bool IsDash()
     {
-        return Input.GetKeyDown(KeyCode.Keypad0);
+        return Input.GetKeyDown(KeyCode.P);
     }
 
     public override bool IsQLock()
     {
-        return Input.GetKeyDown(KeyCode.RightShift);
+        return Input.GetKeyDown(KeyCode.I);
     }
 }

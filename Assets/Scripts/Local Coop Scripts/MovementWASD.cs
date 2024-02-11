@@ -27,4 +27,10 @@ public class MovementWASD : PlayerMovement
         return movementDirection.normalized;
     }
 
+    protected override Vector2 GetRawInput()
+    {
+        float xRaw = Input.GetAxisRaw("HorizontalWASD");
+        float yRaw = Input.GetAxisRaw("VerticalWASD");
+        return new Vector2(xRaw, yRaw);
+    }
 }
