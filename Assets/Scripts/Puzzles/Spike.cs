@@ -27,7 +27,7 @@ public class Spike : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            PlayerSettings playerSettings = new PlayerSettings();
+            PlayerSettings playerSettings = collision.gameObject.GetComponent<PlayerSettings>();
             playerSettings.Die();
         }
     }
