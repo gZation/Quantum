@@ -6789,8 +6789,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 1520853944}
     m_Modifications:
     - target: {fileID: -997754221602619219, guid: 3fc29f92682ef5441bff6841e41cf9ce, type: 3}
-      propertyPath: direction.y
+      propertyPath: magnitude
       value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -997754221602619219, guid: 3fc29f92682ef5441bff6841e41cf9ce, type: 3}
+      propertyPath: direction.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -997754221602619219, guid: 3fc29f92682ef5441bff6841e41cf9ce, type: 3}
       propertyPath: oscillateDuration
