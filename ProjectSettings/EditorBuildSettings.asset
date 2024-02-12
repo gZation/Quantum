@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game Scenes/Tutorial 3.unity
     guid: cf85b4034bdd03443be61ceded34508c
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/ExampleScene.unity
     guid: b95452b197546f146bfee12424df4e35
   - enabled: 1
@@ -26,7 +26,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SecondScene.unity
     guid: bddb52bdea9787b4796f4defd018358d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Chase/NetMovement.unity
     guid: ffd979c2cc7f66f40b6b37658f43ffc9
   m_configObjects: {}

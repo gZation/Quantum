@@ -22,7 +22,7 @@ public class LevelLoader : MonoBehaviour
 
     public void ReloadLevel()
     {
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene()));
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
     }
 
     public void LoadNextLevel()

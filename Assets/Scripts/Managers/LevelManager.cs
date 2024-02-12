@@ -44,7 +44,6 @@ public class LevelManager : MonoBehaviour
     public void Reload()
     {
         levelLoader.ReloadLevel();
-        GameManager.instance.SetUpLevel();
     }
 
     void MoveOn()
