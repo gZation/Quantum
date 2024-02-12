@@ -41,8 +41,15 @@ public class LevelManager : MonoBehaviour
         playersSuccess--;
     }
 
+    public void Reload()
+    {
+        levelLoader.ReloadLevel();
+        GameManager.instance.SetUpLevel();
+    }
+
     void MoveOn()
     {
-        levelLoader.LoadLevelByName(nextLevel);
+       // levelLoader.LoadLevelByName(nextLevel);
+       levelLoader.LoadNextLevel();
     }
 }

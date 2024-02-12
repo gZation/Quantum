@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
     {
         if (startFromScene)
         {
-            LoadNextLevel();
+            SetUpLevel();
         }
     }
 
@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
         if (currentScene != scene)
         {
             currentScene = scene;
-            LoadNextLevel();
+            SetUpLevel();
         }
 
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -141,7 +141,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void LoadNextLevel()
+    public void SetUpLevel()
     {
         if (!networkingOn)
         {
