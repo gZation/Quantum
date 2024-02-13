@@ -179,6 +179,14 @@ PrefabInstance:
       value: Spike
       objectReference: {fileID: 0}
     - target: {fileID: 7769360117843257278, guid: f56fa0102e3d86643ad60d6e1723da88, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7769360117843257278, guid: f56fa0102e3d86643ad60d6e1723da88, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7769360117843257278, guid: f56fa0102e3d86643ad60d6e1723da88, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.79315853
       objectReference: {fileID: 0}
