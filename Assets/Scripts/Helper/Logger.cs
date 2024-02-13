@@ -20,7 +20,6 @@ public class Logger : Core.Singleton.Singleton<Logger>
             debugAreaText = GetComponent<TextMeshProUGUI>();
         }
         debugAreaText.text = string.Empty;
-        Debug.Log("Debugger awake");
     }
 
     void OnEnable() {

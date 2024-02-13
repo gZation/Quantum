@@ -7,18 +7,12 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public NetworkManager networkManager;
-
+    public GameObject shadowPrefab;
     
-
     [SerializeField] private bool networkingOn = false;
     public bool startFromScene = true;
 
-    public GameObject shadowPrefab;
-
-    
-
     private int currentScene;
-
     private List<SpriteRenderer> w1SpritesCopy = new List<SpriteRenderer>();
     private TilemapRenderer w1TilemapCopy;
     private List<SpriteRenderer> w2SpritesCopy = new List<SpriteRenderer>();
@@ -75,18 +69,14 @@ public class GameManager : MonoBehaviour
                 sr.enabled = !sr.enabled;
             }
         }
-
-        ;
+        //CopyAndSendPlayerInfo();
     }
 
 
     public void LoadNextLevel()
     {
-        if (!networkingOn)
-        {
-            PlayerManager.instance.SetPlayers();
-            PlayerManager.instance.MakeShadows();
-        }
+        PlayerManager.instance.SetPlayers();
+        PlayerManager.instance.MakeShadows();
 
         CopyAndSendWorldInfo();
         SetCameras();
@@ -152,7 +142,6 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
 
     private void SetCameras()
     {
@@ -225,11 +214,11 @@ public class GameManager : MonoBehaviour
         return networkingOn;
     }
 
-    // To deal with functions that still call Game Manager. Should be refactored to be removed but still may be necessary for older scenes. 
+    // To deal with external functions that still call Game Manager. Should be refactored to be removed but still may be necessary for older scenes. 
     public GameObject GetPlayer(int num) { return PlayerManager.instance.GetPlayer(num); }
     public GameObject GetShadow(int num) { return PlayerManager.instance.GetShadow(num); }
+    public void MakeShadows() { PlayerManager.instance.MakeShadows(); }
     public void SendMomentum(Vector2 momentum, GameObject sender) { PlayerManager.instance.SendMomentum(momentum, sender); }
 
     public void SetPlayerAndShadow(GameObject player, GameObject shadow, int num) { PlayerManager.instance.SetPlayerAndShadow(player, shadow, num); }
-    public void MakeShadows() { PlayerManager.instance.MakeShadows(); }
 }

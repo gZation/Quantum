@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
+using System;
 
 public class PlayerManager : NetworkBehaviour
 {
@@ -10,11 +11,18 @@ public class PlayerManager : NetworkBehaviour
     private GameObject player2;
     private GameObject shadow1;
     private GameObject shadow2;
+    private Vector3 player1Location;
+    private Vector3 player2Location;
+
+    private NetworkVariable<Vector3> player1Transform = new NetworkVariable<Vector3>();
+    private NetworkVariable<Vector3> player2Transform = new NetworkVariable<Vector3>();
 
     [SerializeField]
-    private GameObject shadowPrefab;
+    protected GameObject shadowPrefab;
 
-    private void Awake()
+
+    // Start is called before the first frame update
+    void Start()
     {
         if (instance != null)
         {
@@ -22,18 +30,6 @@ public class PlayerManager : NetworkBehaviour
             Destroy(this.gameObject);
         }
         instance = this;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        CopyAndSendPlayerInfo();
     }
 
     public void SetPlayers()
@@ -45,11 +41,11 @@ public class PlayerManager : NetworkBehaviour
             PlayerSettings player = p.GetComponent<PlayerSettings>();
             if (player.world1)
             {
-                instance.player1 = p;
+               player1 = p;
             }
             else
             {
-                instance.player2 = p;
+               player2 = p;
             }
         }
     }
@@ -58,6 +54,30 @@ public class PlayerManager : NetworkBehaviour
     {
         shadow1 = Instantiate(shadowPrefab);
         shadow2 = Instantiate(shadowPrefab);
+    }
+
+
+
+    //void networkedStart()
+    //{
+    //    GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+
+    //}
+
+    void localStart()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        CopyAndSendPlayerInfo();
+    }
+
+    public bool isPlayersInit()
+    {
+        return player1 != null && player2 != null;
     }
 
     public void QuantumLockPlayer(GameObject listener)

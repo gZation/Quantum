@@ -10,18 +10,21 @@ public class PlayerSettings : MonoBehaviour
     public PlayerJump jump;
     public PlayerAnimation anim;
 
-
-    void Start()
+    private void Awake()
     {
         jump = GetComponent<PlayerJump>();
         anim = GetComponentInChildren<PlayerAnimation>();
+    }
 
-        if (GameManager.instance.IsNetworked())
-        {
-            SetPlayerNetworked();
-        } else
+
+    void Start()
+    {
+        if (!GameManager.instance.IsNetworked())
         {
             SetPlayerSplit();
+        } else if (GameManager.instance.IsNetworked() && PlayerManager.instance.isPlayersInit())
+        {
+            SetPlayerNetworked();
         }
     }
 
@@ -42,7 +45,6 @@ public class PlayerSettings : MonoBehaviour
     {
         // make the player have just base player movement
         // need to add this to check if it is the player that someone is playing
-        
         if (world1 == GameManager.instance.networkManager.IsHost)
         {
             this.gameObject.AddComponent<PlayerMovement>();
