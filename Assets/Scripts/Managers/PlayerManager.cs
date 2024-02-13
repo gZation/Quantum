@@ -13,6 +13,9 @@ public class PlayerManager : NetworkBehaviour
     private GameObject shadow2;
     private Vector3 player1Location;
     private Vector3 player2Location;
+
+    // Currently the curr player object needs to be set for networking. In the future, we might need to change this to a int/string since the player might not be instantiated yet in the menu screen.
+    // Change would require update to SetPlayers
     public GameObject currPlayerObject;
 
     private NetworkVariable<Vector3> player1Transform = new NetworkVariable<Vector3>();
@@ -33,15 +36,13 @@ public class PlayerManager : NetworkBehaviour
         instance = this;
     }
 
-    public void SetPlayers()
+    // Update is called once per frame
+    void Update()
     {
-        if (GameManager.instance.IsNetworked()) 
-            { NetworkedSetPlayers(); }
-        else 
-            { LocalSetPlayers(); }
+        CopyAndSendPlayerInfo();
     }
 
-    private void LocalSetPlayers()
+    public void SetPlayers()
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         Debug.Log("Call to local set players");
@@ -58,20 +59,22 @@ public class PlayerManager : NetworkBehaviour
                 player2 = p;
             }
         }
-    }
 
-    private void NetworkedSetPlayers()
-    {
-        if (currPlayerObject != null)
+        if (GameManager.instance.IsNetworked())
         {
-            PlayerSettings playerSetting = currPlayerObject.GetComponent<PlayerSettings>();
-            playerSetting.isActivePlayer = true;
-            playerSetting.SetPlayerNetworked();
-        } else
-        {
-            Debug.Log("currPlayer doesn't exist yet");
+            if (currPlayerObject != null)
+            {
+                PlayerSettings playerSetting = currPlayerObject.GetComponent<PlayerSettings>();
+                playerSetting.isActivePlayer = true;
+                playerSetting.SetPlayerNetworked();
+            }
+            else
+            {
+                Debug.Log("currPlayer doesn't exist yet");
+            }
         }
     }
+
 
     public void MakeShadows()
     {
@@ -79,29 +82,10 @@ public class PlayerManager : NetworkBehaviour
         shadow2 = Instantiate(shadowPrefab);
     }
 
-
-
-    //void networkedStart()
-    //{
-    //    GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-
-    //}
-
-    void localStart()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        CopyAndSendPlayerInfo();
-    }
+    
 
     public bool isPlayersInit()
     {
-        Debug.Log(player1);
-        Debug.Log(player2);
         return player1 != null && player2 != null;
     }
 
