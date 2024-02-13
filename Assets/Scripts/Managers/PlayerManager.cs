@@ -13,6 +13,7 @@ public class PlayerManager : NetworkBehaviour
     private GameObject shadow2;
     private Vector3 player1Location;
     private Vector3 player2Location;
+    public GameObject currPlayerObject;
 
     private NetworkVariable<Vector3> player1Transform = new NetworkVariable<Vector3>();
     private NetworkVariable<Vector3> player2Transform = new NetworkVariable<Vector3>();
@@ -34,19 +35,41 @@ public class PlayerManager : NetworkBehaviour
 
     public void SetPlayers()
     {
+        if (GameManager.instance.IsNetworked()) 
+            { NetworkedSetPlayers(); }
+        else 
+            { LocalSetPlayers(); }
+    }
+
+    private void LocalSetPlayers()
+    {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        Debug.Log("Call to local set players");
 
         foreach (GameObject p in players)
         {
-            PlayerSettings player = p.GetComponent<PlayerSettings>();
-            if (player.world1)
+            PlayerSettings playerSetting = p.GetComponent<PlayerSettings>();
+            if (playerSetting.world1)
             {
-               player1 = p;
+                player1 = p;
             }
             else
             {
-               player2 = p;
+                player2 = p;
             }
+        }
+    }
+
+    private void NetworkedSetPlayers()
+    {
+        if (currPlayerObject != null)
+        {
+            PlayerSettings playerSetting = currPlayerObject.GetComponent<PlayerSettings>();
+            playerSetting.isActivePlayer = true;
+            playerSetting.SetPlayerNetworked();
+        } else
+        {
+            Debug.Log("currPlayer doesn't exist yet");
         }
     }
 
@@ -77,6 +100,8 @@ public class PlayerManager : NetworkBehaviour
 
     public bool isPlayersInit()
     {
+        Debug.Log(player1);
+        Debug.Log(player2);
         return player1 != null && player2 != null;
     }
 
