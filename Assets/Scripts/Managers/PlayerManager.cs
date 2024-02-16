@@ -15,8 +15,10 @@ public class PlayerManager : NetworkBehaviour
     private Vector3 player2Location;
 
     // Currently the curr player object needs to be set for networking. In the future, we might need to change this to a int/string since the player might not be instantiated yet in the menu screen.
-    // Change would require update to SetPlayers
+    // Right now, this object is set by the NetworkManagerUI
+    // Change would require update to SetNetworkedPlayers()
     public GameObject currPlayerObject;
+    public GameObject otherPlayerObject;
 
     private NetworkVariable<Vector3> player1Transform = new NetworkVariable<Vector3>();
     private NetworkVariable<Vector3> player2Transform = new NetworkVariable<Vector3>();
@@ -59,19 +61,40 @@ public class PlayerManager : NetworkBehaviour
                 player2 = p;
             }
         }
+        otherPlayerObject = currPlayerObject == player1 ? player2 : player1;
 
-        if (GameManager.instance.IsNetworked())
+        if (GameManager.instance.IsNetworked()) { setNetworkedPlayers(); }
+    }
+
+    private void setNetworkedPlayers()
+    {
+        if (currPlayerObject != null)
         {
-            if (currPlayerObject != null)
+            PlayerSettings playerSetting = currPlayerObject.GetComponent<PlayerSettings>();
+            playerSetting.isActivePlayer = true;
+            playerSetting.SetPlayerNetworked();
+
+            if (NetworkManager.Singleton.IsServer)
             {
-                PlayerSettings playerSetting = currPlayerObject.GetComponent<PlayerSettings>();
-                playerSetting.isActivePlayer = true;
-                playerSetting.SetPlayerNetworked();
+                NetworkManager.Singleton.OnClientConnectedCallback += AssignPlayerOwnership;
             }
-            else
-            {
-                Debug.Log("currPlayer doesn't exist yet");
-            }
+        }
+        else
+        {
+            Debug.Log("currPlayer doesn't exist yet");
+        }
+    }
+
+    private void AssignPlayerOwnership(ulong clientId)
+    {
+        otherPlayerObject.GetComponent<NetworkObject>().ChangeOwnership(clientId);
+    }
+
+    private void OnDestroy()
+    {
+        if (NetworkManager.Singleton && NetworkManager.Singleton.IsServer)
+        {
+            NetworkManager.Singleton.OnClientConnectedCallback -= AssignPlayerOwnership;
         }
     }
 
