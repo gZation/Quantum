@@ -28,7 +28,7 @@ public class PlayerManager : NetworkBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (instance != null)
         {
@@ -47,7 +47,6 @@ public class PlayerManager : NetworkBehaviour
     public void SetPlayers()
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        Debug.Log("Call to local set players");
 
         foreach (GameObject p in players)
         {
