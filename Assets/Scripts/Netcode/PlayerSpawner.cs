@@ -21,7 +21,7 @@ public class PlayerSpawner : NetworkBehaviour {
 
         foreach (GameObject p in players)
         {
-            PlayerMovement player = p.GetComponent<PlayerMovement>();
+            PlayerSettings player = p.GetComponent<PlayerSettings>();
             if (player.world1)
             {
                 player1Location = p.transform.position;
@@ -43,11 +43,13 @@ public class PlayerSpawner : NetworkBehaviour {
 
         if (clientId == 0) { // If the player is 1
             newPlayer = Instantiate(playerPrefab1, player1Location, Quaternion.identity);
+            newPlayer.GetComponent<PlayerSettings>().world1 = true;
             newShadow = Instantiate(playerShadowPrefab, player1Location + new Vector3(32, 0, 0), Quaternion.identity);
             spawnPlayerAndShadow(newPlayer, newShadow, clientId);
             GameManager.instance.SetPlayerAndShadow(newPlayer, newShadow, 1);
         } else { // if player is 2
             newPlayer = Instantiate(playerPrefab2, player2Location, Quaternion.identity);
+            newPlayer.GetComponent<PlayerSettings>().world1 = false;
             newShadow = Instantiate(playerShadowPrefab, player2Location + new Vector3(-32, 0, 0), Quaternion.identity);
             spawnPlayerAndShadow(newPlayer, newShadow, clientId);
             GameManager.instance.SetPlayerAndShadow(newPlayer, newShadow, 2);

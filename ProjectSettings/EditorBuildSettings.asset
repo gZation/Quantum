@@ -6,12 +6,30 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SelectMode.unity
+    path: Assets/Scenes/Game Scenes/SelectMode.unity
     guid: b60ceaa716cab3b4ebb26f0a95926460
+  - enabled: 1
+    path: Assets/Scenes/Joseph Britt/StartMenu.unity
+    guid: a7c91d1ae183ee24b98525706e529852
+  - enabled: 1
+    path: Assets/Scenes/Game Scenes/Tutorial 1.unity
+    guid: ce44e7b04bc512f4b9c77b20b00a02ac
+  - enabled: 1
+    path: Assets/Scenes/Game Scenes/Tutorial 2.unity
+    guid: 3a96685915480794bacc1f648bf1d3df
+  - enabled: 1
+    path: Assets/Scenes/Game Scenes/Tutorial 3.unity
+    guid: cf85b4034bdd03443be61ceded34508c
   - enabled: 1
     path: Assets/Scenes/ExampleScene.unity
     guid: b95452b197546f146bfee12424df4e35
   - enabled: 1
     path: Assets/Scenes/NetworkingEX.unity
     guid: b3e936d867bd7644bb8991297d0cf4bc
+  - enabled: 0
+    path: Assets/Scenes/SecondScene.unity
+    guid: bddb52bdea9787b4796f4defd018358d
+  - enabled: 0
+    path: Assets/Scenes/Chase/NetMovement.unity
+    guid: ffd979c2cc7f66f40b6b37658f43ffc9
   m_configObjects: {}
