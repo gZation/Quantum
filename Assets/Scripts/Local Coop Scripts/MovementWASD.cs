@@ -27,13 +27,10 @@ public class MovementWASD : PlayerMovement
         return movementDirection.normalized;
     }
 
-    //GIZMOs
-    private void OnDrawGizmos()
+    protected override Vector2 GetRawInput()
     {
-        Gizmos.color = Color.red;
-
-        Gizmos.DrawWireSphere((Vector2)transform.position + bottomOffset, collisionRadius);
-        Gizmos.DrawWireSphere((Vector2)transform.position + leftOffset, collisionRadius);
-        Gizmos.DrawWireSphere((Vector2)transform.position + rightOffset, collisionRadius);
+        float xRaw = Input.GetAxisRaw("HorizontalWASD");
+        float yRaw = Input.GetAxisRaw("VerticalWASD");
+        return new Vector2(xRaw, yRaw);
     }
 }

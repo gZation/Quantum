@@ -2,7 +2,7 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.SceneManagement;
-
+using System.Collections.Generic;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
@@ -19,7 +19,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject shadow1;
     [SerializeField] private GameObject shadow2;
 
-    private int currentScene;
+    private List<SpriteRenderer> w1SpritesCopy = new List<SpriteRenderer>();
+    private TilemapRenderer w1TilemapCopy;
+    private List<SpriteRenderer> w2SpritesCopy = new List<SpriteRenderer>();
+    private TilemapRenderer w2TilemapCopy;
+    private float overlayAlpha = 0.3f;
 
     private void Awake()
     {
@@ -29,32 +33,34 @@ public class GameManager : MonoBehaviour
         }
 
         instance = this;
-
-        if (!networkingOn && startFromScene)
-        {
-            SetPlayers();
-            MakeShadows();
-        }
-
-        currentScene = SceneManager.GetActiveScene().buildIndex;
+    }
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += SetUpLevel;
     }
 
-    void Start()
+    private void OnDisable()
     {
-        if (startFromScene)
-        {
-            LoadNextLevel();
-        }
+        SceneManager.sceneLoaded -= SetUpLevel;
     }
 
     void Update()
     {
         int scene = SceneManager.GetActiveScene().buildIndex;
 
-        if (currentScene != scene)
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
-            currentScene = scene;
-            LoadNextLevel();
+            w2TilemapCopy.enabled = !w2TilemapCopy.enabled;
+            foreach (SpriteRenderer sr in w2SpritesCopy) {
+                sr.enabled = !sr.enabled;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            w1TilemapCopy.enabled = !w1TilemapCopy.enabled;
+            foreach (SpriteRenderer sr in w1SpritesCopy) {
+                sr.enabled = !sr.enabled;
+            }
         }
 
         CopyAndSendPlayerInfo();
@@ -76,10 +82,10 @@ public class GameManager : MonoBehaviour
             PlayerSettings player = p.GetComponent<PlayerSettings>();
             if (player.world1)
             {
-                player1 = p;
+                instance.player1 = p;
             } else
             {
-                player2 = p;
+                instance.player2 = p;
             }
         }
     }
@@ -95,12 +101,12 @@ public class GameManager : MonoBehaviour
         //refactor later to be PlayerMovement once networking is in
         if (listener == player1)
         {
-            print("Toggling lock to player 2");
+/*            print("Toggling lock to player 2");*/
             MovementArrows playerMovement = player2.GetComponent<MovementArrows>();
             playerMovement.sharingMomentum = !playerMovement.sharingMomentum;
         } else
         {
-            print("Toggling lock to player 1");
+/*            print("Toggling lock to player 1");*/
             MovementWASD playerMovement = player1.GetComponent<MovementWASD>();
             playerMovement.sharingMomentum = !playerMovement.sharingMomentum;
         }
@@ -110,19 +116,17 @@ public class GameManager : MonoBehaviour
     {
         if (sender == player1)
         {
-            //print("sending to player2");
             MovementArrows playerMovement = player2.gameObject.GetComponent<MovementArrows>();
             playerMovement.QuantumLockAddMomentum(momentum);
         }
         else
         {
-            //print("sending to player1");
             MovementWASD playerMovement = player1.gameObject.GetComponent<MovementWASD>();
             playerMovement.QuantumLockAddMomentum(momentum);
         }
     }
 
-    public void LoadNextLevel()
+    public void SetUpLevel(Scene scene, LoadSceneMode mode)
     {
         if (!networkingOn)
         {
@@ -136,50 +140,62 @@ public class GameManager : MonoBehaviour
 
     public void CopyAndSendWorldInfo()
     {
-        GameObject[] world1Level = GameObject.FindGameObjectsWithTag("World1Level");
-        
-        foreach (GameObject go in world1Level)
+        GameObject level = GameObject.FindGameObjectWithTag("World1Level");
+        GameObject transferLevel = Instantiate(level);
+        transferLevel.layer = LayerMask.NameToLayer("World1");
+        transferLevel.transform.parent = level.transform.parent;
+        transferLevel.transform.position = level.transform.position + new Vector3(32, 0, 0);
+
+        Transform tilemapLevel = transferLevel.transform.Find("Tilemap_level");
+        Tilemap tm = tilemapLevel.GetComponent<Tilemap>();
+        tm.color = new Color(tm.color.r, tm.color.g, tm.color.b, overlayAlpha);
+        w1TilemapCopy = tilemapLevel.GetComponent<TilemapRenderer>();
+        for (int i = 0; i < transferLevel.transform.childCount; i++)
         {
-            GameObject transferVersion = Instantiate(go);
-            transferVersion.layer = LayerMask.NameToLayer("World1");
+            GameObject child = transferLevel.transform.GetChild(i).gameObject;
+            child.layer = LayerMask.NameToLayer("World1");
 
-            int children = transferVersion.transform.childCount;
-
-            for(int i = 0; i < children; i++)
+            Collider2D collider = child.GetComponent<Collider2D>();
+            if (collider)
             {
-                GameObject child = transferVersion.transform.GetChild(i).gameObject;
-                child.layer = LayerMask.NameToLayer("World1");
+                collider.enabled = false;
             }
 
-            transferVersion.transform.parent = go.transform.parent;
-            transferVersion.transform.position = go.transform.position + new Vector3(32, 0, 0);
-
-            Tilemap tilemap = transferVersion.GetComponentInChildren<Tilemap>();
-            Color color = new Color(tilemap.color.r, tilemap.color.g, tilemap.color.b, 0.5f);
-            tilemap.color = color;
+            SpriteRenderer sr = child.GetComponent<SpriteRenderer>();
+            if (sr)
+            {
+                sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, overlayAlpha);
+                w1SpritesCopy.Add(sr);
+            }
         }
 
-        GameObject[] world2Level = GameObject.FindGameObjectsWithTag("World2Level");
+        level = GameObject.FindGameObjectWithTag("World2Level");
+        transferLevel = Instantiate(level);
+        transferLevel.layer = LayerMask.NameToLayer("World2");
+        transferLevel.transform.parent = level.transform.parent;
+        transferLevel.transform.position = level.transform.position + new Vector3(-32, 0, 0);
 
-        foreach (GameObject go in world2Level)
+        tilemapLevel = transferLevel.transform.Find("Tilemap_level");
+        tm = tilemapLevel.GetComponent<Tilemap>();
+        tm.color = new Color(tm.color.r, tm.color.g, tm.color.b, overlayAlpha);
+        w2TilemapCopy = tilemapLevel.GetComponent<TilemapRenderer>();
+        for (int i = 0; i < transferLevel.transform.childCount; i++)
         {
-            GameObject transferVersion = Instantiate(go);
-            transferVersion.layer = LayerMask.NameToLayer("World2");
+            GameObject child = transferLevel.transform.GetChild(i).gameObject;
+            child.layer = LayerMask.NameToLayer("World1");
 
-            int children = transferVersion.transform.childCount;
-
-            for (int i = 0; i < children; i++)
+            Collider2D collider = child.GetComponent<Collider2D>();
+            if (collider)
             {
-                GameObject child = transferVersion.transform.GetChild(i).gameObject;
-                child.layer = LayerMask.NameToLayer("World2");
+                collider.enabled = false;
             }
 
-            transferVersion.transform.parent = go.transform.parent;
-            transferVersion.transform.position = go.transform.position + new Vector3(-32, 0, 0);
-
-            Tilemap tilemap = transferVersion.GetComponentInChildren<Tilemap>();
-            Color color = new Color(tilemap.color.r, tilemap.color.g, tilemap.color.b, 0.5f);
-            tilemap.color = color;
+            SpriteRenderer sr = child.GetComponent<SpriteRenderer>();
+            if (sr)
+            {
+                sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, overlayAlpha);
+                w2SpritesCopy.Add(sr);
+            }
         }
     }
 
@@ -193,13 +209,13 @@ public class GameManager : MonoBehaviour
         // rn the position is done by just making the shadow under the prefab
         if (player1 != null) {
             shadow1.transform.position = player1.transform.position + new Vector3(32, 0, 0);
-            SpriteRenderer one = shadow1.GetComponent<SpriteRenderer>();
-            one.sprite = player1.GetComponent<SpriteRenderer>().sprite;
+            SpriteRenderer one = shadow1.GetComponentInChildren<SpriteRenderer>();
+            one.sprite = player1.GetComponentInChildren<SpriteRenderer>().sprite;
         }
         if (player2 != null) {
             shadow2.transform.position = player2.transform.position + new Vector3(-32, 0, 0);
-            SpriteRenderer two = shadow2.GetComponent<SpriteRenderer>();
-            two.sprite = player2.GetComponent<SpriteRenderer>().sprite;
+            SpriteRenderer two = shadow2.GetComponentInChildren<SpriteRenderer>();
+            two.sprite = player2.GetComponentInChildren<SpriteRenderer>().sprite;
         }
     }
 
@@ -236,7 +252,6 @@ public class GameManager : MonoBehaviour
         {
             player1 = player;
             shadow1 = shadow;
-            print("set player 1");
         }
         else if (num == 2) {
             player2 = player;
