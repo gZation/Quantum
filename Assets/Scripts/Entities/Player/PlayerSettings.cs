@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Multiplayer.Samples.Utilities.ClientAuthority;
 using Unity.Netcode.Components;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerSettings : MonoBehaviour
 {
@@ -57,5 +58,11 @@ public class PlayerSettings : MonoBehaviour
     {
         jump.SetMovementRef();
         anim.SetMovementRef();
+    }
+
+    public void Die()
+    {
+        LevelManager lm = LevelManager.instance;
+        lm.Reload();
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class MovingPlatform : MonoBehaviour
 {
     public Vector3 direction;
+    public float magnitude;
     private float startTime;
     public bool oscillate = true;
     public float oscillateDuration = 2f;
@@ -12,6 +13,7 @@ public class MovingPlatform : MonoBehaviour
     void Start()
     {
         startTime = 0;
+        direction = direction.normalized * magnitude;
     }
 
     void FixedUpdate()

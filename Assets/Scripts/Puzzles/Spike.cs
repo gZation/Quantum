@@ -27,7 +27,8 @@ public class Spike : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            collision.transform.position = playerStart;
+            PlayerSettings playerSettings = collision.gameObject.GetComponent<PlayerSettings>();
+            playerSettings.Die();
         }
     }
 }
