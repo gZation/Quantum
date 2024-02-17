@@ -232,7 +232,7 @@ public class PlayerMovement : MonoBehaviour
         if (sharingMomentum)
         {
             dashExtra.x *= 4f;
-            GameManager.instance.SendMomentum(dashExtra, this.gameObject);
+            PlayerManager.instance.SendMomentum(dashExtra, this.gameObject);
         }
 
         StartCoroutine(DashWait());
@@ -329,7 +329,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (sharingMomentum)
         {
-            GameManager.instance.SendMomentum(dir * jumpForce, this.gameObject);
+            PlayerManager.instance.SendMomentum(dir * jumpForce, this.gameObject);
             DisableLocking(.2f);
         }
 
@@ -378,7 +378,7 @@ public class PlayerMovement : MonoBehaviour
 
     protected void QuantumLock()
     {
-        GameManager.instance.QuantumLockPlayer(this.gameObject);
+        PlayerManager.instance.QuantumLockPlayer(this.gameObject);
     }
 
     public void QuantumLockAddMomentum(Vector2 momentum)
@@ -392,7 +392,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (sharingMomentum)
         {
-            GameManager.instance.SendMomentum(momentum, this.gameObject);
+            PlayerManager.instance.SendMomentum(momentum, this.gameObject);
         }
     }
 
