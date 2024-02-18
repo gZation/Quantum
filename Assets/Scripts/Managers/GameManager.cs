@@ -110,6 +110,12 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < transferLevel.transform.childCount; i++)
         {
             GameObject child = transferLevel.transform.GetChild(i).gameObject;
+
+            if (child.GetComponent<ExistInBothWorlds>() != null)
+            {
+                Destroy(child.gameObject);
+            }
+
             ChangeLayerAndOpacity(child, layer);
 
             Collider2D collider = child.GetComponent<Collider2D>();
@@ -162,8 +168,7 @@ public class GameManager : MonoBehaviour
 
         if (networkingOn)
         {
-            //change this to actually be the person they play
-            if (networkManager != null && networkManager.IsHost)
+            if (PlayerManager.instance.currPlayer == 1)
             {
                 player1camera.enabled = true;
                 player2camera.enabled = false;

@@ -17,6 +17,7 @@ public class PlayerManager : NetworkBehaviour
     // Currently the curr player object needs to be set for networking. In the future, we might need to change this to a int/string since the player might not be instantiated yet in the menu screen.
     // Right now, this object is set by the NetworkManagerUI
     // Change would require update to SetNetworkedPlayers()
+    public int currPlayer;
     public GameObject currPlayerObject;
     public GameObject otherPlayerObject;
 
