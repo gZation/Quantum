@@ -7,13 +7,20 @@ public class ChangingPlatforms : MonoBehaviour
     public GameObject platformPosition1;
     public GameObject platformPosition2;
 
+    public bool resetOnStart;
+
     [SerializeField] private bool one;
 
     private void Start()
     {
-        platformPosition1.SetActive(true);
-        platformPosition2.SetActive(false);
-        one = true;
+        if (resetOnStart)
+        {
+            platformPosition1.SetActive(true);
+            platformPosition2.SetActive(false);
+            one = true;
+
+            resetOnStart = false;
+        }
     }
 
     public void ChangePlatforms()
@@ -21,5 +28,7 @@ public class ChangingPlatforms : MonoBehaviour
         one = !one;
         platformPosition1.SetActive(one);
         platformPosition2.SetActive(!one);
+
+        GameManager.instance.CopyAndSendWorldInfo();
     }
 }

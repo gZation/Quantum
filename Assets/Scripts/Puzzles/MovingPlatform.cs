@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class MovingPlatform : MonoBehaviour
 {
@@ -44,6 +45,15 @@ public class MovingPlatform : MonoBehaviour
         {
             collision.transform.parent = null;
         }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Vector3 p1 = transform.position;
+        Vector3 p2 = transform.position + (direction.normalized * magnitude * oscillateDuration * 100 / 2);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(p1, p2);
     }
 
 }
