@@ -1,28 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Multiplayer.Samples.Utilities.ClientAuthority;
+using Unity.Netcode.Components;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerSettings : MonoBehaviour
 {
     public bool world1 = false;
+    public bool isActivePlayer = false;
     //public bool sceneStart = false;
 
     public PlayerJump jump;
     public PlayerAnimation anim;
 
-
-    void Start()
+    private void Awake()
     {
         jump = GetComponent<PlayerJump>();
         anim = GetComponentInChildren<PlayerAnimation>();
+    }
 
-        if (GameManager.instance.IsNetworked())
-        {
-            SetPlayerNetworked();
-        } else
+
+    void Start()
+    {
+        if (!GameManager.instance.IsNetworked())
         {
             SetPlayerSplit();
+        } else if (GameManager.instance.IsNetworked())
+        {
+            SetPlayerNetworked();
         }
     }
 
@@ -41,10 +47,7 @@ public class PlayerSettings : MonoBehaviour
 
     public void SetPlayerNetworked()
     {
-        // make the player have just base player movement
-        // need to add this to check if it is the player that someone is playing
-        
-        if (world1 == GameManager.instance.networkManager.IsHost)
+        if (isActivePlayer)
         {
             this.gameObject.AddComponent<PlayerMovement>();
             UpdatePlayerMovementRef();

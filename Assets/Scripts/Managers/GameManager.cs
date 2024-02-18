@@ -7,14 +7,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public NetworkManager networkManager;
-
-    [SerializeField] private GameObject player1;
-    [SerializeField] private GameObject player2;
-
+    public GameObject shadowPrefab;
+    
     [SerializeField] private bool networkingOn = false;
     public bool startFromScene = true;
-
-    public GameObject shadowPrefab;
 
     [SerializeField] private GameObject shadow1;
     [SerializeField] private GameObject shadow2;
@@ -62,77 +58,14 @@ public class GameManager : MonoBehaviour
                 sr.enabled = !sr.enabled;
             }
         }
-
-        CopyAndSendPlayerInfo();
+        //CopyAndSendPlayerInfo();
     }
 
-    public void updateFromNetworkVariables(GameObject player1, GameObject player2, GameObject shadow1, GameObject shadow2) {
-        this.player1 = player1;
-        this.player2 = player2;
-        this.shadow1 = shadow1;
-        this.shadow2 = shadow2;
-    }
-
-    private void SetPlayers()
-    {
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-
-        foreach (GameObject p in players)
-        {
-            PlayerSettings player = p.GetComponent<PlayerSettings>();
-            if (player.world1)
-            {
-                instance.player1 = p;
-            } else
-            {
-                instance.player2 = p;
-            }
-        }
-    }
-
-    public void MakeShadows()
-    {
-        shadow1 = Instantiate(shadowPrefab);
-        shadow2 = Instantiate(shadowPrefab);
-    }
-
-    public void QuantumLockPlayer(GameObject listener)
-    {
-        //refactor later to be PlayerMovement once networking is in
-        if (listener == player1)
-        {
-/*            print("Toggling lock to player 2");*/
-            MovementArrows playerMovement = player2.GetComponent<MovementArrows>();
-            playerMovement.sharingMomentum = !playerMovement.sharingMomentum;
-        } else
-        {
-/*            print("Toggling lock to player 1");*/
-            MovementWASD playerMovement = player1.GetComponent<MovementWASD>();
-            playerMovement.sharingMomentum = !playerMovement.sharingMomentum;
-        }
-    }
-
-    public void SendMomentum(Vector2 momentum, GameObject sender)
-    {
-        if (sender == player1)
-        {
-            MovementArrows playerMovement = player2.gameObject.GetComponent<MovementArrows>();
-            playerMovement.QuantumLockAddMomentum(momentum);
-        }
-        else
-        {
-            MovementWASD playerMovement = player1.gameObject.GetComponent<MovementWASD>();
-            playerMovement.QuantumLockAddMomentum(momentum);
-        }
-    }
 
     public void SetUpLevel(Scene scene, LoadSceneMode mode)
     {
-        if (!networkingOn)
-        {
-            SetPlayers();
-            MakeShadows();
-        }
+        PlayerManager.instance.SetPlayers();
+        PlayerManager.instance.MakeShadows();
 
         CopyAndSendWorldInfo();
         SetCameras();
@@ -196,66 +129,6 @@ public class GameManager : MonoBehaviour
                 sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, overlayAlpha);
                 w2SpritesCopy.Add(sr);
             }
-        }
-    }
-
-    public void CopyAndSendPlayerInfo()
-    {
-        if (player1 == null || player2 == null || shadow1 == null || shadow2 == null)
-        {
-            return;
-        }
-
-        // rn the position is done by just making the shadow under the prefab
-        if (player1 != null) {
-            shadow1.transform.position = player1.transform.position + new Vector3(32, 0, 0);
-            SpriteRenderer one = shadow1.GetComponentInChildren<SpriteRenderer>();
-            one.sprite = player1.GetComponentInChildren<SpriteRenderer>().sprite;
-        }
-        if (player2 != null) {
-            shadow2.transform.position = player2.transform.position + new Vector3(-32, 0, 0);
-            SpriteRenderer two = shadow2.GetComponentInChildren<SpriteRenderer>();
-            two.sprite = player2.GetComponentInChildren<SpriteRenderer>().sprite;
-        }
-    }
-
-    public GameObject GetPlayer(int num)
-    {
-        if (num == 1)
-        {
-            return player1;
-        } else if (num == 2)
-        {
-            return player2;
-        }
-
-        return null;
-    }
-
-    public GameObject GetShadow(int num)
-    {
-        if (num == 1)
-        {
-            return shadow1;
-        }
-        else if (num == 2)
-        {
-            return shadow2;
-        }
-
-        return null;
-    }
-
-    public void SetPlayerAndShadow(GameObject player, GameObject shadow, int num)
-    {
-        if (num == 1)
-        {
-            player1 = player;
-            shadow1 = shadow;
-        }
-        else if (num == 2) {
-            player2 = player;
-            shadow2 = shadow;
         }
     }
 
@@ -329,4 +202,12 @@ public class GameManager : MonoBehaviour
     public bool IsNetworked() {
         return networkingOn;
     }
+
+    // To deal with external functions that still call Game Manager. Should be refactored to be removed but still may be necessary for older scenes. 
+    public GameObject GetPlayer(int num) { return PlayerManager.instance.GetPlayer(num); }
+    public GameObject GetShadow(int num) { return PlayerManager.instance.GetShadow(num); }
+    public void MakeShadows() { PlayerManager.instance.MakeShadows(); }
+    public void SendMomentum(Vector2 momentum, GameObject sender) { PlayerManager.instance.SendMomentum(momentum, sender); }
+
+    public void SetPlayerAndShadow(GameObject player, GameObject shadow, int num) { PlayerManager.instance.SetPlayerAndShadow(player, shadow, num); }
 }
