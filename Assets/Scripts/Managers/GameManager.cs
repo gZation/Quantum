@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
@@ -15,10 +16,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject shadow1;
     [SerializeField] private GameObject shadow2;
 
-    private List<SpriteRenderer> w1SpritesCopy = new List<SpriteRenderer>();
-    private TilemapRenderer w1TilemapCopy;
-    private List<SpriteRenderer> w2SpritesCopy = new List<SpriteRenderer>();
-    private TilemapRenderer w2TilemapCopy;
+    private GameObject w1Copy;
+    private GameObject w2Copy;
     private float overlayAlpha = 0.3f;
 
     private void Awake()
@@ -42,23 +41,14 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        int scene = SceneManager.GetActiveScene().buildIndex;
-
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            w2TilemapCopy.enabled = !w2TilemapCopy.enabled;
-            foreach (SpriteRenderer sr in w2SpritesCopy) {
-                sr.enabled = !sr.enabled;
-            }
+            w2Copy.gameObject.SetActive(!w2Copy.gameObject.activeSelf);
         }
         if (Input.GetKeyDown(KeyCode.Backspace))
         {
-            w1TilemapCopy.enabled = !w1TilemapCopy.enabled;
-            foreach (SpriteRenderer sr in w1SpritesCopy) {
-                sr.enabled = !sr.enabled;
-            }
+            w1Copy.gameObject.SetActive(!w1Copy.gameObject.activeSelf);
         }
-        //CopyAndSendPlayerInfo();
     }
 
 
@@ -73,63 +63,77 @@ public class GameManager : MonoBehaviour
 
     public void CopyAndSendWorldInfo()
     {
-        GameObject level = GameObject.FindGameObjectWithTag("World1Level");
+        bool w1Open = w1Copy == null ? true : w1Copy.activeSelf;
+        bool w2Open = w2Copy == null ? true : w2Copy.activeSelf;
+
+        if (w1Copy != null)
+        {
+            Destroy(w1Copy.gameObject);
+        }
+        
+        if (w2Copy != null)
+        {
+            Destroy(w2Copy.gameObject);
+        }
+
+        CopyHelper(1);
+        CopyHelper(2);
+
+        w1Copy.SetActive(w1Open);
+        w2Copy.SetActive(w2Open);
+    }
+
+    private void CopyHelper(int world)
+    {
+        GameObject level = GameObject.FindGameObjectWithTag("World"+world+"Level");
         GameObject transferLevel = Instantiate(level);
-        transferLevel.layer = LayerMask.NameToLayer("World1");
+        int layer = LayerMask.NameToLayer("World"+world);
+        transferLevel.layer = layer;
         transferLevel.transform.parent = level.transform.parent;
-        transferLevel.transform.position = level.transform.position + new Vector3(32, 0, 0);
+
+        int direction = world == 1 ? 1 : -1;
+        transferLevel.transform.position = level.transform.position + new Vector3(32 * direction, 0, 0);
 
         Transform tilemapLevel = transferLevel.transform.Find("Tilemap_level");
         Tilemap tm = tilemapLevel.GetComponent<Tilemap>();
         tm.color = new Color(tm.color.r, tm.color.g, tm.color.b, overlayAlpha);
-        w1TilemapCopy = tilemapLevel.GetComponent<TilemapRenderer>();
+        tm.GetComponent<TilemapRenderer>().sortingOrder = 1;
+
+        if (world == 1)
+        {
+            w1Copy = transferLevel;
+        } else if (world == 2)
+        {
+            w2Copy = transferLevel;
+        }
+
         for (int i = 0; i < transferLevel.transform.childCount; i++)
         {
             GameObject child = transferLevel.transform.GetChild(i).gameObject;
-            child.layer = LayerMask.NameToLayer("World1");
+            ChangeLayerAndOpacity(child, layer);
 
             Collider2D collider = child.GetComponent<Collider2D>();
             if (collider)
             {
                 collider.enabled = false;
             }
-
-            SpriteRenderer sr = child.GetComponent<SpriteRenderer>();
-            if (sr)
-            {
-                sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, overlayAlpha);
-                w1SpritesCopy.Add(sr);
-            }
         }
+    }
 
-        level = GameObject.FindGameObjectWithTag("World2Level");
-        transferLevel = Instantiate(level);
-        transferLevel.layer = LayerMask.NameToLayer("World2");
-        transferLevel.transform.parent = level.transform.parent;
-        transferLevel.transform.position = level.transform.position + new Vector3(-32, 0, 0);
-
-        tilemapLevel = transferLevel.transform.Find("Tilemap_level");
-        tm = tilemapLevel.GetComponent<Tilemap>();
-        tm.color = new Color(tm.color.r, tm.color.g, tm.color.b, overlayAlpha);
-        w2TilemapCopy = tilemapLevel.GetComponent<TilemapRenderer>();
-        for (int i = 0; i < transferLevel.transform.childCount; i++)
+    private void ChangeLayerAndOpacity(GameObject go, int layer)
+    {
+        for (int i = 0; i < go.transform.childCount; i++)
         {
-            GameObject child = transferLevel.transform.GetChild(i).gameObject;
-            child.layer = LayerMask.NameToLayer("World1");
-
-            Collider2D collider = child.GetComponent<Collider2D>();
-            if (collider)
-            {
-                collider.enabled = false;
-            }
-
-            SpriteRenderer sr = child.GetComponent<SpriteRenderer>();
-            if (sr)
-            {
-                sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, overlayAlpha);
-                w2SpritesCopy.Add(sr);
-            }
+            ChangeLayerAndOpacity(go.transform.GetChild(i).gameObject, layer);
         }
+
+        SpriteRenderer sr = go.GetComponent<SpriteRenderer>();
+        if (sr)
+        {
+            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, overlayAlpha);
+        }
+        go.layer = layer;
+        return;
     }
 
     private void SetCameras()

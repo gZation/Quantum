@@ -308,6 +308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   platformPosition1: {fileID: 4817281374811846558}
   platformPosition2: {fileID: 2959426222563362635}
+  resetOnStart: 1
   one: 0
 --- !u!1 &2959426222563362635
 GameObject:
