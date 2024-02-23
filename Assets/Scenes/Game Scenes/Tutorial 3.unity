@@ -4964,6 +4964,7 @@ GameObject:
   - component: {fileID: 396580596}
   - component: {fileID: 396580595}
   - component: {fileID: 396580594}
+  - component: {fileID: 396580597}
   m_Layer: 0
   m_Name: World1Canvas
   m_TagString: Untagged
@@ -5054,6 +5055,20 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &396580597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 396580592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c18648bd8b90ad4ba055ba8cfdad943, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  QuantumLockUIText: {fileID: 1564690491}
+  player: {fileID: 7846758374409730073}
 --- !u!1001 &753443355
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6212,7 +6227,6 @@ GameObject:
   - component: {fileID: 1059751826}
   - component: {fileID: 1059751825}
   - component: {fileID: 1059751824}
-  - component: {fileID: 1059751828}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -6304,20 +6318,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1059751828
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1059751823}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c18648bd8b90ad4ba055ba8cfdad943, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  QuantumLockUIText1: {fileID: 1564690491}
-  QuantumLockUIText2: {fileID: 1557759136}
 --- !u!114 &1079154672 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1568533569682720562, guid: 559fce262c9ffc445b3d0846e52af528, type: 3}
@@ -6561,6 +6561,7 @@ GameObject:
   - component: {fileID: 1479429661}
   - component: {fileID: 1479429660}
   - component: {fileID: 1479429659}
+  - component: {fileID: 1479429662}
   m_Layer: 0
   m_Name: World2Canvas
   m_TagString: Untagged
@@ -6651,6 +6652,20 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1479429662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1479429657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c18648bd8b90ad4ba055ba8cfdad943, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  QuantumLockUIText: {fileID: 1557759136}
+  player: {fileID: 1058626478130606276}
 --- !u!1 &1499731848
 GameObject:
   m_ObjectHideFlags: 0
@@ -15815,6 +15830,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30063eee9c085c24da5c556c890eb64a, type: 3}
+--- !u!1 &1058626478130606276 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7901648596648922838, guid: 30063eee9c085c24da5c556c890eb64a, type: 3}
+  m_PrefabInstance: {fileID: 1058626478130606275}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5080296423892241795
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15952,11 +15972,32 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4801965432083889846, guid: b2039085561329543995b3c5e313b3b0, type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801965432083889846, guid: b2039085561329543995b3c5e313b3b0, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801965432083889846, guid: b2039085561329543995b3c5e313b3b0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1227483758, guid: 9ed27c85dc876694c919e3033a244a9f, type: 3}
+    - target: {fileID: 4801965432083889846, guid: b2039085561329543995b3c5e313b3b0, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2039085561329543995b3c5e313b3b0, type: 3}
+--- !u!1 &7846758374409730073 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 106941480838844296, guid: b2039085561329543995b3c5e313b3b0, type: 3}
+  m_PrefabInstance: {fileID: 7846758374409730072}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
