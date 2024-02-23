@@ -5283,7 +5283,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8647718153628887406, guid: b7dceb57a59b0a843ba0928109e3ca6c, type: 3}
       propertyPath: currPlayer
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7312,7 +7312,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 440233175285807851, guid: ad57db9ed37630c489e34ad10cd95b70, type: 3}
       propertyPath: networkingOn
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6623827589254650210, guid: ad57db9ed37630c489e34ad10cd95b70, type: 3}
       propertyPath: m_LocalPosition.x
