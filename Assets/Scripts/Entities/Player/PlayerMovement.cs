@@ -231,11 +231,8 @@ public class PlayerMovement : MonoBehaviour
 
         rb.velocity += dashExtra;
 
-        if (sharingMomentum)
-        {
-            dashExtra.x *= 4f;
-            PlayerManager.instance.SendMomentum(dashExtra, this.gameObject);
-        }
+        dashExtra.x *= 4f;
+        PlayerManager.instance.SendMomentum(dashExtra, this.gameObject);
 
         StartCoroutine(DashWait());
     }

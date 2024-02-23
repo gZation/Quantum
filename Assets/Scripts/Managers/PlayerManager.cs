@@ -11,8 +11,6 @@ public class PlayerManager : NetworkBehaviour
     private GameObject player2;
     private GameObject shadow1;
     private GameObject shadow2;
-    private Vector3 player1Location;
-    private Vector3 player2Location;
 
     // Currently the curr player object needs to be set for networking. In the future, we might need to change this to a int/string since the player might not be instantiated yet in the menu screen.
     // Right now, this object is set by the NetworkManagerUI
@@ -20,9 +18,6 @@ public class PlayerManager : NetworkBehaviour
     public int currPlayer;
     public GameObject currPlayerObject;
     public GameObject otherPlayerObject;
-
-    private NetworkVariable<Vector3> player1Transform = new NetworkVariable<Vector3>();
-    private NetworkVariable<Vector3> player2Transform = new NetworkVariable<Vector3>();
 
     [SerializeField]
     protected GameObject shadowPrefab;
@@ -137,15 +132,17 @@ public class PlayerManager : NetworkBehaviour
 
     public void SendMomentum(Vector2 momentum, GameObject sender)
     {
-        if (sender == player1)
+        if (!GameManager.instance.IsNetworked())
         {
-            MovementArrows playerMovement = player2.gameObject.GetComponent<MovementArrows>();
-            playerMovement.QuantumLockAddMomentum(momentum);
-        }
-        else
-        {
-            MovementWASD playerMovement = player1.gameObject.GetComponent<MovementWASD>();
-            playerMovement.QuantumLockAddMomentum(momentum);
+            if (sender == player1 && player2.GetComponent<PlayerSettings>().qlocked)
+            {
+                player2.GetComponent<MovementArrows>().QuantumLockAddMomentum(momentum);
+            }
+            else if (sender == player2 && player1.GetComponent<PlayerSettings>().qlocked)
+            {
+                Debug.Log("I'm Here");
+                player1.gameObject.GetComponent<MovementWASD>().QuantumLockAddMomentum(momentum);
+            }
         }
     }
 
