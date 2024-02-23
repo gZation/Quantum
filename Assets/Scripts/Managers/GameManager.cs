@@ -12,8 +12,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool networkingOn = false;
     public bool startFromScene = true;
 
-    [SerializeField] private GameObject shadow1;
-    [SerializeField] private GameObject shadow2;
+    private GameObject shadow1;
+    private GameObject shadow2;
 
     private GameObject w1Copy;
     private GameObject w2Copy;

@@ -170,7 +170,6 @@ public class PlayerManager : NetworkBehaviour
 
     public void updateMomentum(Vector2 momentum)
     {
-        Debug.Log("Momentum changed");
         if (currPlayerObject.GetComponent<PlayerSettings>().qlocked)
         {
             currPlayerObject.GetComponent<PlayerMovement>().QuantumLockAddMomentum(momentum);
