@@ -380,7 +380,7 @@ public class PlayerMovement : MonoBehaviour
 
     protected void QuantumLock()
     {
-        settings.locked = !settings.locked;
+        settings.qlocked = !settings.qlocked;
         PlayerManager.instance.QuantumLockPlayer(this.gameObject);
     }
 

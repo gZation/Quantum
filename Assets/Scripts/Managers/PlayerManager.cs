@@ -114,19 +114,25 @@ public class PlayerManager : NetworkBehaviour
 
     public void QuantumLockPlayer(GameObject listener)
     {
-        //refactor later to be PlayerMovement once networking is in
-        if (listener == player1)
+        if (!GameManager.instance.IsNetworked())
         {
-            /*            print("Toggling lock to player 2");*/
-            MovementArrows playerMovement = player2.GetComponent<MovementArrows>();
-            playerMovement.sharingMomentum = !playerMovement.sharingMomentum;
-        }
-        else
+            if (listener == player1)
+            {
+                /*            print("Toggling lock to player 2");*/
+                MovementArrows playerMovement = player2.GetComponent<MovementArrows>();
+                playerMovement.sharingMomentum = !playerMovement.sharingMomentum;
+            }
+            else
+            {
+                /*            print("Toggling lock to player 1");*/
+                MovementWASD playerMovement = player1.GetComponent<MovementWASD>();
+                playerMovement.sharingMomentum = !playerMovement.sharingMomentum;
+            }
+        } else
         {
-            /*            print("Toggling lock to player 1");*/
-            MovementWASD playerMovement = player1.GetComponent<MovementWASD>();
-            playerMovement.sharingMomentum = !playerMovement.sharingMomentum;
+
         }
+
     }
 
     public void SendMomentum(Vector2 momentum, GameObject sender)

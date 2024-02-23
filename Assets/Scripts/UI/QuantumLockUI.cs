@@ -12,22 +12,16 @@ public class QuantumLockUI : MonoBehaviour
     void Start()
     {
         QuantumLockUIText.SetActive(false);
+        player.GetComponent<PlayerSettings>().OnVariableQLockChange += DisplayQuantumLockUI;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        DisplayQuantumLockUI();
+        DisplayQuantumLockUI(player.GetComponent<PlayerSettings>().qlocked);
     }
-    void DisplayQuantumLockUI()
+    void DisplayQuantumLockUI(bool newVal)
     {
-        if (player.GetComponent<PlayerSettings>().locked)
-        {
-            // display the quantum lock UI
-            QuantumLockUIText.SetActive(true);
-        } else {
-            // display the quantum lock UI
-            QuantumLockUIText.SetActive(false);
-        }
+        QuantumLockUIText.SetActive(newVal);
     }
 }

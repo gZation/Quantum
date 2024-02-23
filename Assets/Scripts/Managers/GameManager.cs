@@ -7,7 +7,6 @@ using Unity.VisualScripting;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public NetworkManager networkManager;
     public GameObject shadowPrefab;
     
     [SerializeField] private bool networkingOn = false;
@@ -31,6 +30,13 @@ public class GameManager : MonoBehaviour
     }
     void OnEnable()
     {
+        //if (networkingOn)
+        //{
+        //    NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += SetUpLevel;
+        //} else
+        //{
+        //    SceneManager.sceneLoaded += SetUpLevel;
+        //}
         SceneManager.sceneLoaded += SetUpLevel;
     }
 
@@ -59,6 +65,11 @@ public class GameManager : MonoBehaviour
 
         CopyAndSendWorldInfo();
         SetCameras();
+    }
+
+    public void SetUpLevel(string sceneName, LoadSceneMode loadSceneMode, List<ulong> clientsCompleted, List<ulong> clientsTimedOut)
+    {
+        SetUpLevel(SceneManager.GetSceneByName(sceneName), loadSceneMode);
     }
 
     public void CopyAndSendWorldInfo()
