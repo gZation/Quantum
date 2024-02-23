@@ -94,10 +94,7 @@ public class GameManager : MonoBehaviour
         int direction = world == 1 ? 1 : -1;
         transferLevel.transform.position = level.transform.position + new Vector3(32 * direction, 0, 0);
 
-        Transform tilemapLevel = transferLevel.transform.Find("Tilemap_level");
-        Tilemap tm = tilemapLevel.GetComponent<Tilemap>();
-        tm.color = new Color(tm.color.r, tm.color.g, tm.color.b, overlayAlpha);
-        tm.GetComponent<TilemapRenderer>().sortingOrder = 1;
+        ChangeLayerAndOpacity(transferLevel, layer);
 
         if (world == 1)
         {
@@ -105,24 +102,6 @@ public class GameManager : MonoBehaviour
         } else if (world == 2)
         {
             w2Copy = transferLevel;
-        }
-
-        for (int i = 0; i < transferLevel.transform.childCount; i++)
-        {
-            GameObject child = transferLevel.transform.GetChild(i).gameObject;
-
-            if (child.GetComponent<ExistInBothWorlds>() != null)
-            {
-                Destroy(child.gameObject);
-            }
-
-            ChangeLayerAndOpacity(child, layer);
-
-            Collider2D collider = child.GetComponent<Collider2D>();
-            if (collider)
-            {
-                collider.enabled = false;
-            }
         }
     }
 
@@ -134,9 +113,15 @@ public class GameManager : MonoBehaviour
         }
 
         SpriteRenderer sr = go.GetComponent<SpriteRenderer>();
+        Tilemap tm = go.GetComponent<Tilemap>();
         if (sr)
         {
             sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, overlayAlpha);
+            sr.sortingOrder = 1;
+        } else if (tm)
+        {
+            tm.color = new Color(tm.color.r, tm.color.g, tm.color.b, overlayAlpha);
+            tm.GetComponent<TilemapRenderer>().sortingOrder = 1;
         }
         go.layer = layer;
         return;
