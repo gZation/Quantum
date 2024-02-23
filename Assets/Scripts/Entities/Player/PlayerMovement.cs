@@ -249,7 +249,7 @@ public class PlayerMovement : MonoBehaviour
         wallJumped = true;
         isDashing = true;
 
-        yield return new WaitForSeconds(0.45f);
+        yield return new WaitForSeconds(0.1f);
 
         //dashParticle.Stop();
         rb.gravityScale = 3;
