@@ -9,7 +9,7 @@ public class PlayerSettings : MonoBehaviour
 {
     public bool world1 = false;
     public bool isActivePlayer = false;
-    //public bool sceneStart = false;
+    public bool locked = false;
 
     public PlayerJump jump;
     public PlayerAnimation anim;
