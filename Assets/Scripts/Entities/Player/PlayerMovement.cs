@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private PlayerCollision coll;
+    private PlayerSettings settings;
     [HideInInspector]
     public Rigidbody2D rb;
     private PlayerAnimation anim;
@@ -50,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        settings = GetComponent<PlayerSettings>();
         coll = GetComponent<PlayerCollision>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<PlayerAnimation>();
@@ -378,6 +380,7 @@ public class PlayerMovement : MonoBehaviour
 
     protected void QuantumLock()
     {
+        settings.locked = !settings.locked;
         PlayerManager.instance.QuantumLockPlayer(this.gameObject);
     }
 
@@ -400,7 +403,6 @@ public class PlayerMovement : MonoBehaviour
     {
         foreach (Vector2 momentum in momentumToAdd)
         {
-            /*rb.AddForce(momentum, ForceMode2D.Impulse);*/
             rb.velocity += momentum;
         }
 
