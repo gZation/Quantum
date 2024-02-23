@@ -19,6 +19,10 @@ public class PlayerManager : NetworkBehaviour
     public GameObject currPlayerObject;
     public GameObject otherPlayerObject;
 
+    private NetworkVariable<Vector2> hostSentMomentum = new NetworkVariable<Vector2>(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    private NetworkVariable<Vector2> clientSentMomentum = new NetworkVariable<Vector2>(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
+
     [SerializeField]
     protected GameObject shadowPrefab;
 
@@ -56,51 +60,54 @@ public class PlayerManager : NetworkBehaviour
                 player2 = p;
             }
         }
-        otherPlayerObject = currPlayerObject == player1 ? player2 : player1;
+        
 
         if (GameManager.instance.IsNetworked()) { setNetworkedPlayers(); }
     }
 
     private void setNetworkedPlayers()
     {
-        if (currPlayerObject != null)
-        {
-            PlayerSettings playerSetting = currPlayerObject.GetComponent<PlayerSettings>();
-            playerSetting.isActivePlayer = true;
-            playerSetting.SetPlayerNetworked();
-
-            if (NetworkManager.Singleton.IsServer)
-            {
-                NetworkManager.Singleton.OnClientConnectedCallback += AssignPlayerOwnership;
-            }
-        }
-        else
+        if (currPlayerObject == null)
         {
             Debug.Log("currPlayer doesn't exist yet");
+            return;
+        }
+
+        otherPlayerObject = currPlayerObject == player1 ? player2 : player1;
+        PlayerSettings playerSetting = currPlayerObject.GetComponent<PlayerSettings>();
+        playerSetting.isActivePlayer = true;
+        playerSetting.SetPlayerNetworked();
+
+        // If the current user is the host, setup host specific stuff like variables
+        if (NetworkManager.Singleton.IsServer)
+        {
+            NetworkManager.Singleton.OnClientConnectedCallback += AssignOwnership;
+        } else
+        // If the current user is the client, setup client specific stuff like variables
+        {
         }
     }
 
-    private void AssignPlayerOwnership(ulong clientId)
+    private void AssignOwnership(ulong clientId)
     {
         otherPlayerObject.GetComponent<NetworkObject>().ChangeOwnership(clientId);
+        this.GetComponent<NetworkObject>().ChangeOwnership(clientId);
     }
 
     private void OnDestroy()
     {
         if (NetworkManager.Singleton && NetworkManager.Singleton.IsServer)
         {
-            NetworkManager.Singleton.OnClientConnectedCallback -= AssignPlayerOwnership;
+            NetworkManager.Singleton.OnClientConnectedCallback -= AssignOwnership;
         }
     }
-
 
     public void MakeShadows()
     {
         shadow1 = Instantiate(shadowPrefab);
         shadow2 = Instantiate(shadowPrefab);
     }
-
-    
+ 
 
     public bool isPlayersInit()
     {
@@ -140,9 +147,33 @@ public class PlayerManager : NetworkBehaviour
             }
             else if (sender == player2 && player1.GetComponent<PlayerSettings>().qlocked)
             {
-                Debug.Log("I'm Here");
                 player1.gameObject.GetComponent<MovementWASD>().QuantumLockAddMomentum(momentum);
             }
+        } 
+        else
+        {
+            if (NetworkManager.Singleton.IsHost)
+            {
+                UpdateMomentumClientRpc(momentum);
+            } else
+            {
+                UpdateMomentumServerRpc(momentum);
+            }
+        }
+    }
+
+    [ClientRpc]
+    public void UpdateMomentumClientRpc(Vector2 momentum) { if (!NetworkManager.Singleton.IsHost) updateMomentum(momentum); }
+
+    [ServerRpc]
+    public void UpdateMomentumServerRpc(Vector2 momentum) { updateMomentum(momentum); }
+
+    public void updateMomentum(Vector2 momentum)
+    {
+        Debug.Log("Momentum changed");
+        if (currPlayerObject.GetComponent<PlayerSettings>().qlocked)
+        {
+            currPlayerObject.GetComponent<PlayerMovement>().QuantumLockAddMomentum(momentum);
         }
     }
 
