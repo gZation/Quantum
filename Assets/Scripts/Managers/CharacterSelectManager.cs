@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public enum CharacterSelection {
-    NEUTRAL,
-    BOY,
-    GIRL
+// public enum CharacterSelection {
+//     NEUTRAL,
+//     BOY,
+//     GIRL
 
-} // Character
+// } // Character
 
 public class CharacterSelectManager : MonoBehaviour {
     
