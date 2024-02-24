@@ -19,11 +19,15 @@ public class NetworkManagerUI : MonoBehaviour
 
         hostBtn.onClick.AddListener(() => {
             NetworkManager.Singleton.StartHost();
+            PlayerManager.instance.currPlayerObject = GameObject.Find("Player 1");
+            PlayerManager.instance.SetPlayers();
         });
 
         clientBtn.onClick.AddListener(() => {
             //Debug.Log("Connecting Client");
             NetworkManager.Singleton.StartClient();
+            PlayerManager.instance.currPlayerObject = GameObject.Find("Player 2");
+            PlayerManager.instance.SetPlayers();
         });
     }
 }
