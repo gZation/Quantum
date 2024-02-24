@@ -5,13 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Game Scenes/StartMenu.unity
     guid: 23f34ec9ba0bfc941afc63ab3af593a8
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Game Scenes/SelectMode.unity
     guid: b60ceaa716cab3b4ebb26f0a95926460
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Game Scenes/Tutorial 1.unity
     guid: ce44e7b04bc512f4b9c77b20b00a02ac
   - enabled: 0
@@ -32,4 +32,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Chase/UpdateNetworking.unity
     guid: b71855fa56027cc4480eac2a3fa2bf5b
+  - enabled: 0
+    path: Assets/Scenes/Chase/NetQLock.unity
+    guid: 4a6a293715487d5449582a7d1ba3c395
+  - enabled: 0
+    path: Assets/Scenes/Chase/UpdateNetworking 1.unity
+    guid: 54b39b5f97444bf49915ed4896fe5836
   m_configObjects: {}

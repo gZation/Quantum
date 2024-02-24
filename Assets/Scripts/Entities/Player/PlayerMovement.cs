@@ -231,11 +231,8 @@ public class PlayerMovement : MonoBehaviour
 
         rb.velocity += dashExtra;
 
-        if (sharingMomentum)
-        {
-            dashExtra.x *= 4f;
-            PlayerManager.instance.SendMomentum(dashExtra, this.gameObject);
-        }
+        dashExtra.x *= 4f;
+        PlayerManager.instance.SendMomentum(dashExtra, this.gameObject);
 
         StartCoroutine(DashWait());
     }
@@ -380,7 +377,7 @@ public class PlayerMovement : MonoBehaviour
 
     protected void QuantumLock()
     {
-        settings.locked = !settings.locked;
+        settings.qlocked = !settings.qlocked;
         PlayerManager.instance.QuantumLockPlayer(this.gameObject);
     }
 
