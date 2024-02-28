@@ -95,7 +95,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638447138926089184
+  platformSettingsDirtyTick: 638447153225600984
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -130,7 +130,7 @@ ScriptedImporter:
       y: 4
       width: 20
       height: 2
-    spriteID: c10698f2b3ef7924cb873c45a9a6cf0b
+    spriteID: 1144ed90c4788e5429010cd39a60598a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -150,7 +150,7 @@ ScriptedImporter:
       y: 14
       width: 20
       height: 2
-    spriteID: 464bbd6232832e14a9a899262c509f4a
+    spriteID: 5a0db5f406e125249a6a1ceadd040fa3
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -170,7 +170,7 @@ ScriptedImporter:
       y: 24
       width: 20
       height: 2
-    spriteID: 5a42ded78d4c7bb45a8ea9882c0f1b86
+    spriteID: 7ec794c22055fce438fb8890d3f7ca99
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -190,7 +190,7 @@ ScriptedImporter:
       y: 34
       width: 20
       height: 2
-    spriteID: f209b13b9afbefc46b61cddabe4fc611
+    spriteID: dd3e094d5b17c4649aba12a2121725ed
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -199,6 +199,46 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 34}
+  - name: conveyor_Frame_4
+    originalName: 
+    pivot: {x: 0.5, y: 5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 44
+      width: 20
+      height: 2
+    spriteID: 489a3055350be844298a4843d2d41cef
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 44}
+  - name: conveyor_Frame_5
+    originalName: 
+    pivot: {x: 0.5, y: 5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 54
+      width: 20
+      height: 2
+    spriteID: 2cf0fc3e7618a8a49b738942bcd721de
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 54}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -215,7 +255,7 @@ ScriptedImporter:
         y: 0
         width: 20
         height: 2
-      spriteId: c10698f2b3ef7924cb873c45a9a6cf0b
+      spriteId: 1144ed90c4788e5429010cd39a60598a
     - name: conveyor_Frame_1
       frameIndex: 1
       cellRect:
@@ -223,7 +263,7 @@ ScriptedImporter:
         y: 0
         width: 20
         height: 2
-      spriteId: 464bbd6232832e14a9a899262c509f4a
+      spriteId: 5a0db5f406e125249a6a1ceadd040fa3
     - name: conveyor_Frame_2
       frameIndex: 2
       cellRect:
@@ -231,7 +271,7 @@ ScriptedImporter:
         y: 0
         width: 20
         height: 2
-      spriteId: 5a42ded78d4c7bb45a8ea9882c0f1b86
+      spriteId: 7ec794c22055fce438fb8890d3f7ca99
     - name: conveyor_Frame_3
       frameIndex: 3
       cellRect:
@@ -239,7 +279,23 @@ ScriptedImporter:
         y: 0
         width: 20
         height: 2
-      spriteId: f209b13b9afbefc46b61cddabe4fc611
+      spriteId: dd3e094d5b17c4649aba12a2121725ed
+    - name: conveyor_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 0
+        y: 0
+        width: 20
+        height: 2
+      spriteId: 489a3055350be844298a4843d2d41cef
+    - name: conveyor_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 0
+        y: 0
+        width: 20
+        height: 2
+      spriteId: 2cf0fc3e7618a8a49b738942bcd721de
     linkedCells: []
     parentIndex: -1
   platformSettings:
