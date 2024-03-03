@@ -64,6 +64,11 @@ public class SelectScreenManager : MonoBehaviour {
 
         } // if
 
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            GoToGame();
+            
+        } // if
+
         xScaleTarget = Mathf.Clamp((((int) selection) / 2.0f) - 0.5f, -0.5f, 0.5f);
         imgScaleTarget = ((int)(xScaleTarget * 10) + 1) / 100.0f;
         lerpProgress = Mathf.Clamp(lerpProgress + lerpSpeed, 0, 100);
@@ -101,5 +106,24 @@ public class SelectScreenManager : MonoBehaviour {
         );
 
     } // Update
+
+    public void GoToGame() {
+
+        switch (selection) {
+
+            case CharacterSelection.BOY:
+                Debug.Log("Go to game (Host is BOY)");
+                break;
+
+            case CharacterSelection.GIRL:
+                Debug.Log("Go to game (Host is GIRL)");
+                break;
+
+            default:
+                break;
+
+        } // switch
+
+    } // StartGame
 
 } // BackgroundManager
