@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelLoader : MonoBehaviour
+public class LevelLoader : NetworkBehaviour
 {
     public Animator transition;
 
@@ -50,14 +51,14 @@ public class LevelLoader : MonoBehaviour
         yield return new WaitForSeconds(transitionTime);
 
         // if T is string, convert levelIndex from T type to string
-        if (typeof(T) == typeof(string))
+        string sceneName = (typeof(T) == typeof(string)) ? (string)(object)levelIndex : SceneManager.GetSceneByBuildIndex((int)(object)(levelIndex)).name;
+
+        // Use NetworkSceneManager if networked. Otherwise, revert to normal SceneManager
+        if (GameManager.instance.IsNetworked() && NetworkManager.Singleton.IsHost)
         {
-            SceneManager.LoadScene((string)(object)levelIndex);
+            Debug.Log("Change Scene Networked");
+            NetworkManager.Singleton.SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
         }
-        else
-        {
-            // otherwise, not string then it must be int
-            SceneManager.LoadScene((int)(object)levelIndex);
-        }
+        SceneManager.LoadScene(sceneName);
     }
 }

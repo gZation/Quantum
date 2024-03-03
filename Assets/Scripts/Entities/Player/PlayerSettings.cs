@@ -9,10 +9,23 @@ public class PlayerSettings : MonoBehaviour
 {
     public bool world1 = false;
     public bool isActivePlayer = false;
-    //public bool sceneStart = false;
 
     public PlayerJump jump;
     public PlayerAnimation anim;
+
+    public delegate void OnVariableChangeDelegate(bool newVal);
+    public event OnVariableChangeDelegate OnVariableQLockChange;
+    private bool m_qlocked = false;
+    public bool qlocked
+    {
+        get { return m_qlocked; }
+        set
+        {
+            if (m_qlocked == value) return;
+            m_qlocked = value;
+            if (OnVariableQLockChange != null) OnVariableQLockChange(m_qlocked);
+        }
+    }
 
     private void Awake()
     {
