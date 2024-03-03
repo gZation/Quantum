@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
+    public static GameManager instance { get; private set; }
     public GameObject shadowPrefab;
     
     [SerializeField] private bool networkingOn = false;
@@ -21,9 +21,10 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null)
+        if (instance != null && instance != this)
         {
             Destroy(this.gameObject);
+            return;
         }
 
         instance = this;
@@ -214,5 +215,5 @@ public class GameManager : MonoBehaviour
     public void MakeShadows() { PlayerManager.instance.MakeShadows(); }
     public void SendMomentum(Vector2 momentum, GameObject sender) { PlayerManager.instance.SendMomentum(momentum, sender); }
 
-    public void SetPlayerAndShadow(GameObject player, GameObject shadow, int num) { PlayerManager.instance.SetPlayerAndShadow(player, shadow, num); }
+    //public void SetPlayerAndShadow(GameObject player, GameObject shadow, int num) { PlayerManager.instance.SetPlayerAndShadow(player, shadow, num); }
 }
