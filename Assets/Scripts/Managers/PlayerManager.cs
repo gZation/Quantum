@@ -6,7 +6,7 @@ using System;
 
 public class PlayerManager : NetworkBehaviour
 {
-    public static PlayerManager instance;
+    public static PlayerManager instance { get; private set; }
     private GameObject player1;
     private GameObject player2;
     private GameObject shadow1;
@@ -30,10 +30,11 @@ public class PlayerManager : NetworkBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        if (instance != null)
+        if (instance != null && instance != this)
         {
             //Debug.LogError("Found more than one Player Manager in the scene.");
             Destroy(this.gameObject);
+            return;
         }
         instance = this;
     }
@@ -60,7 +61,6 @@ public class PlayerManager : NetworkBehaviour
                 player2 = p;
             }
         }
-        
 
         if (GameManager.instance.IsNetworked()) { setNetworkedPlayers(); }
     }
@@ -69,7 +69,6 @@ public class PlayerManager : NetworkBehaviour
     {
         if (currPlayerObject == null)
         {
-            Debug.Log("currPlayer doesn't exist yet");
             return;
         }
 
@@ -226,18 +225,18 @@ public class PlayerManager : NetworkBehaviour
         return null;
     }
 
-    public void SetPlayerAndShadow(GameObject player, GameObject shadow, int num)
-    {
-        if (num == 1)
-        {
-            player1 = player;
-            shadow1 = shadow;
-        }
-        else if (num == 2)
-        {
-            player2 = player;
-            shadow2 = shadow;
-        }
-    }
+    //public void SetPlayerAndShadow(GameObject player, GameObject shadow, int num)
+    //{
+    //    if (num == 1)
+    //    {
+    //        player1 = player;
+    //        shadow1 = shadow;
+    //    }
+    //    else if (num == 2)
+    //    {
+    //        player2 = player;
+    //        shadow2 = shadow;
+    //    }
+    //}
 
 }
