@@ -10,6 +10,13 @@ public class LevelAssetShadow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.transform.position = parent.transform.position + offset;
+        if (parent == null)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            this.transform.position = parent.transform.position + offset;
+        }
     }
 }

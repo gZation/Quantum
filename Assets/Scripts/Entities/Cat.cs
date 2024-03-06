@@ -15,7 +15,7 @@ public class Cat : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player") 
         {
-            animator.SetBool("out", true);
+            animator.SetTrigger("out");
         }
     }
 }
