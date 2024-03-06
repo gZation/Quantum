@@ -326,11 +326,12 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.velocity += dir * jumpForce;
 
-        if (sharingMomentum)
+        //too op nerfing it for now
+/*        if (sharingMomentum)
         {
             PlayerManager.instance.SendMomentum(dir * jumpForce, this.gameObject);
             DisableLocking(.2f);
-        }
+        }*/
 
         //particle.Play();
     }

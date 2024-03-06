@@ -14,8 +14,7 @@ public class SelectScreenManager : MonoBehaviour {
 
     private RectTransform edoMaskRect, cyberMaskRect;
     private RectTransform edoBGRect, cyberBGRect;
-    private RectTransform boyRect, girlRect;
-    private Image boyImage, girlImage;
+    private RawImage boyImage, girlImage;
 
     [SerializeField] private float xScaleTarget, imgScaleTarget;
     private int lerpProgress;
@@ -35,15 +34,13 @@ public class SelectScreenManager : MonoBehaviour {
         cyberMaskRect = transform.GetChild(1).gameObject.GetComponent<RectTransform>();
         cyberBGRect = transform.GetChild(1).GetChild(0).gameObject.GetComponent<RectTransform>();
 
-        boyRect = transform.GetChild(0).GetChild(1).gameObject.GetComponent<RectTransform>();
-        boyImage = transform.GetChild(0).GetChild(1).gameObject.GetComponent<Image>();
-        girlRect = transform.GetChild(1).GetChild(1).gameObject.GetComponent<RectTransform>();
-        girlImage = transform.GetChild(1).GetChild(1).gameObject.GetComponent<Image>();
-
+        boyImage = transform.GetChild(0).GetChild(0).gameObject.GetComponent<RawImage>();
+        girlImage = transform.GetChild(1).GetChild(0).gameObject.GetComponent<RawImage>();
+/*
         edoMaskRect.sizeDelta = new Vector2(Screen.width / 2, Screen.height);
         edoBGRect.localScale = new Vector3(1, 1, 0);
         cyberMaskRect.sizeDelta = new Vector2(Screen.width / 2, Screen.height);
-        cyberBGRect.localScale = new Vector3(1, 1, 0);
+        cyberBGRect.localScale = new Vector3(1, 1, 0);*/
 
     } // Start
 
@@ -70,39 +67,73 @@ public class SelectScreenManager : MonoBehaviour {
         } // if
 
         xScaleTarget = Mathf.Clamp((((int)selection) / 2.0f) - 0.5f, -0.5f, 0.5f);
-        imgScaleTarget = ((int)(xScaleTarget * 10) + 1) / 100.0f;
+        imgScaleTarget = ((int)(xScaleTarget * 30) + 1) / 100.0f;
         lerpProgress = Mathf.Clamp(lerpProgress + lerpSpeed, 0, 100);
 
-        edoMaskRect.sizeDelta = new Vector2(
-            Mathf.Lerp(edoMaskRect.sizeDelta.x, Screen.width * (1f - xScaleTarget) / 1.5f, lerpProgress / 100.0f),
-            Screen.height
-        );
+        switch (selection)
+        {
+            case CharacterSelection.GIRL:
+                cyberMaskRect.sizeDelta = new Vector2(
+                    Mathf.Lerp(cyberMaskRect.sizeDelta.x, Screen.width * (1f + xScaleTarget) / 2f, lerpProgress / 100.0f),
+                    Mathf.Lerp(cyberMaskRect.sizeDelta.y, Screen.height * (1f + xScaleTarget) / 2f, lerpProgress / 100.0f)
+                );
 
-        edoBGRect.localScale = new Vector3(
-            Mathf.Lerp(edoBGRect.localScale.x, 1f - imgScaleTarget, lerpProgress / 100.0f),
-           edoBGRect.localScale.y,
-            0
-        );
+                cyberBGRect.localScale = new Vector3(
+                    Mathf.Lerp(cyberBGRect.localScale.x, 1f + imgScaleTarget, lerpProgress / 100.0f),
+                    Mathf.Lerp(cyberBGRect.localScale.y, 1f + imgScaleTarget, lerpProgress / 100.0f),
+                    0
+                );
 
-        cyberMaskRect.sizeDelta = new Vector2(
-            Mathf.Lerp(cyberMaskRect.sizeDelta.x, Screen.width * (1f + xScaleTarget) / 1.5f, lerpProgress / 100.0f),
-            Screen.height
-        );
+                edoMaskRect.sizeDelta = new Vector2(
+                    Mathf.Lerp(edoMaskRect.sizeDelta.x, Screen.width, lerpProgress / 100.0f),
+                    Mathf.Lerp(edoMaskRect.sizeDelta.y, Screen.height, lerpProgress / 100.0f)
+                );
 
-        cyberBGRect.localScale = new Vector3(
-            Mathf.Lerp(cyberBGRect.localScale.x, 1f + imgScaleTarget, lerpProgress / 100.0f), 
-            cyberBGRect.localScale.y,
-            0
-        );
+                edoBGRect.localScale = new Vector3(
+                    Mathf.Lerp(edoBGRect.localScale.x, 1, lerpProgress / 100.0f),
+                    Mathf.Lerp(edoBGRect.localScale.y, 1, lerpProgress / 100.0f),
+                    0
+                );
+
+                break;
+
+            case CharacterSelection.BOY:
+                edoMaskRect.sizeDelta = new Vector2(
+                    Mathf.Lerp(edoMaskRect.sizeDelta.x, Screen.width * (1f - xScaleTarget + 0.02f) / 2f, lerpProgress / 100.0f),
+                    Mathf.Lerp(edoMaskRect.sizeDelta.y, Screen.height * (1f - xScaleTarget + 0.02f) / 2f, lerpProgress / 100.0f)
+                );
+
+                edoBGRect.localScale = new Vector3(
+                    Mathf.Lerp(edoBGRect.localScale.x, 1f - imgScaleTarget, lerpProgress / 100.0f),
+                    Mathf.Lerp(edoBGRect.localScale.y, 1f - imgScaleTarget, lerpProgress / 100.0f),
+                    0
+                );
+
+                cyberMaskRect.sizeDelta = new Vector2(
+                    Mathf.Lerp(cyberMaskRect.sizeDelta.x, Screen.width, lerpProgress / 100.0f),
+                    Mathf.Lerp(cyberMaskRect.sizeDelta.y, Screen.height, lerpProgress / 100.0f)
+                );
+
+                cyberBGRect.localScale = new Vector3(
+                    Mathf.Lerp(cyberBGRect.localScale.x, 1, lerpProgress / 100.0f),
+                    Mathf.Lerp(cyberBGRect.localScale.y, 1, lerpProgress / 100.0f),
+                    0
+                );
+                break;
+
+            case CharacterSelection.NEUTRAL:
+                break;
+        }
+
         // Lower opacity if 0 <= xScaleTarget <= 0.5
         boyImage.color = new Color(
             boyImage.color.r, boyImage.color.g, boyImage.color.b, 
-            (selection == CharacterSelection.GIRL) ? Mathf.Lerp(0.4f, 0.1f, lerpProgress / 100.0f) : Mathf.Lerp(0.1f, 0.4f, lerpProgress / 100.0f)
+            (selection == CharacterSelection.GIRL) ? Mathf.Lerp(1f, 0.5f, lerpProgress / 100.0f) : Mathf.Lerp(0.5f, 1, lerpProgress / 100.0f)
         );
         // Lower opacity if -0.5 <= xScaleTarget <= 0
         girlImage.color = new Color(
             girlImage.color.r, girlImage.color.g, girlImage.color.b, 
-            (selection == CharacterSelection.BOY) ? Mathf.Lerp(0.4f, 0.1f, lerpProgress / 100.0f) : Mathf.Lerp(0.1f, 0.4f, lerpProgress / 100.0f)
+            (selection == CharacterSelection.BOY) ? Mathf.Lerp(1f, 0.5f, lerpProgress / 100.0f) : Mathf.Lerp(0.5f, 1, lerpProgress / 100.0f)
         );
 
     } // Update
