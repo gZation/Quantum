@@ -7,12 +7,20 @@ using System.Text;
 using AddressFamily = System.Net.Sockets.AddressFamily;
 using TMPro;
 using UnityEngine.SceneManagement;
+using Unity.Netcode;
+using Unity.Netcode.Transports.UTP;
 
 public class ShowIPAddress : MonoBehaviour
 {
     public TextMeshProUGUI ipAddressTextbox;
+    public TextMeshProUGUI useDefaultTextbox;
     private void Start()
     {
+        string defaultIP = NetworkManager.Singleton.GetComponent<UnityTransport>().ConnectionData.Address.ToString();
+        Debug.Log(defaultIP);
+        ipAddressTextbox.text = defaultIP;
+        useDefaultTextbox.text += "\n" + defaultIP;
+
         IPHostEntry hostEntry = Dns.GetHostEntry(Dns.GetHostName());
         Debug.Log(hostEntry);
         foreach (var ip in hostEntry.AddressList)
@@ -23,7 +31,7 @@ public class ShowIPAddress : MonoBehaviour
                 return;
             }
         }
-        ipAddressTextbox.text = "localhost";
+
     }
 
     public void GoBack()
@@ -31,7 +39,12 @@ public class ShowIPAddress : MonoBehaviour
         SceneManager.LoadScene("HostOrClient");
     }
 
-    public void ContinueAsHost()
+    public void ContinueWithInputIp()
+    {
+
+    }
+
+    public void ContinueWithDefaultIP()
     {
 
     }
