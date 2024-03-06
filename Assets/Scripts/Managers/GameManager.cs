@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance { get; private set; }
     public GameObject shadowPrefab;
+    public GameObject copyGrid;
     
     [SerializeField] private bool networkingOn = false;
     public bool startFromScene = true;
@@ -48,6 +49,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        // TODO: rework these for networking
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             w2Copy.gameObject.SetActive(!w2Copy.gameObject.activeSelf);
@@ -98,45 +100,77 @@ public class GameManager : MonoBehaviour
     private void CopyHelper(int world)
     {
         GameObject level = GameObject.FindGameObjectWithTag("World"+world+"Level");
-        GameObject transferLevel = Instantiate(level);
+        GameObject transferLevel = Instantiate(copyGrid);
         int layer = LayerMask.NameToLayer("World"+world);
         transferLevel.layer = layer;
-        transferLevel.transform.parent = level.transform.parent;
 
         int direction = world == 1 ? 1 : -1;
         transferLevel.transform.position = level.transform.position + new Vector3(32 * direction, 0, 0);
+        transferLevel.transform.parent = level.transform.parent;
 
-        ChangeLayerAndOpacity(transferLevel, layer);
+        GameObject shadow = ChangeLayerAndOpacity(transferLevel, level, layer, world);
 
         if (world == 1)
         {
-            w1Copy = transferLevel;
+            w1Copy = shadow;
         } else if (world == 2)
         {
-            w2Copy = transferLevel;
+            w2Copy = shadow;
         }
     }
 
-    private void ChangeLayerAndOpacity(GameObject go, int layer)
+    private GameObject ChangeLayerAndOpacity(GameObject transferLevelGo, GameObject levelGo, int layer, int world)
     {
-        for (int i = 0; i < go.transform.childCount; i++)
+        if (!levelGo.activeSelf)
         {
-            ChangeLayerAndOpacity(go.transform.GetChild(i).gameObject, layer);
+            return null;
         }
 
-        SpriteRenderer sr = go.GetComponent<SpriteRenderer>();
-        Tilemap tm = go.GetComponent<Tilemap>();
-        if (sr)
+        SpriteRenderer levelSR = levelGo.GetComponent<SpriteRenderer>();
+        Tilemap levelTM = levelGo.GetComponent<Tilemap>();
+        Grid grid = levelGo.GetComponent<Grid>();
+        GameObject levelshadow = transferLevelGo;
+        int direction = world == 1 ? 1 : -1;
+
+
+        if (levelTM)
         {
-            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, overlayAlpha);
-            sr.sortingOrder = 1;
-        } else if (tm)
-        {
-            tm.color = new Color(tm.color.r, tm.color.g, tm.color.b, overlayAlpha);
-            tm.GetComponent<TilemapRenderer>().sortingOrder = 1;
+            levelshadow = Instantiate(levelGo);
+            Tilemap transferTM = levelshadow.GetComponent<Tilemap>();
+            transferTM.color = new Color(levelTM.color.r, levelTM.color.g, levelTM.color.b, overlayAlpha);
+            transferTM.GetComponent<TilemapRenderer>().sortingOrder = 1;
+            levelshadow.transform.parent = transferLevelGo.transform;
         }
-        go.layer = layer;
-        return;
+        else if (!grid)
+        {
+            levelshadow = new GameObject("LevelAssetShadow");
+            levelshadow.transform.parent = transferLevelGo.transform;
+            levelshadow.transform.localScale = levelGo.transform.localScale;
+            levelshadow.transform.position = levelGo.transform.position + new Vector3(32 * direction, 0, 0);
+            levelshadow.transform.rotation = levelGo.transform.rotation;
+
+            if (levelSR)
+            {
+                SpriteRenderer transferSR = levelshadow.AddComponent<SpriteRenderer>();
+                transferSR.sprite = levelSR.sprite;
+                transferSR.color = new Color(transferSR.color.r, transferSR.color.g, transferSR.color.b, overlayAlpha);
+                transferSR.sortingLayerName = "entities";
+                transferSR.sortingOrder = 1;
+            }
+        }
+
+        LevelAssetShadow shadow = levelshadow.AddComponent<LevelAssetShadow>();
+        shadow.parent = levelGo;
+        shadow.offset = world == 1 ? new Vector3(32, 0, 0) : new Vector3(-32, 0, 0); 
+
+        levelshadow.layer = layer;
+
+        for (int i = 0; i < levelGo.transform.childCount; i++)
+        {
+            ChangeLayerAndOpacity(levelshadow, levelGo.transform.GetChild(i).gameObject, layer, world);
+        }
+
+        return levelshadow;
     }
 
     private void SetCameras()
