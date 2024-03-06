@@ -103,10 +103,10 @@ public class GameManager : MonoBehaviour
         GameObject transferLevel = Instantiate(copyGrid);
         int layer = LayerMask.NameToLayer("World"+world);
         transferLevel.layer = layer;
-        transferLevel.transform.parent = level.transform.parent;
 
         int direction = world == 1 ? 1 : -1;
         transferLevel.transform.position = level.transform.position + new Vector3(32 * direction, 0, 0);
+        transferLevel.transform.parent = level.transform.parent;
 
         GameObject shadow = ChangeLayerAndOpacity(transferLevel, level, layer, world);
 
@@ -121,28 +121,43 @@ public class GameManager : MonoBehaviour
 
     private GameObject ChangeLayerAndOpacity(GameObject transferLevelGo, GameObject levelGo, int layer, int world)
     {
+        if (!levelGo.activeSelf)
+        {
+            return null;
+        }
+
         SpriteRenderer levelSR = levelGo.GetComponent<SpriteRenderer>();
         Tilemap levelTM = levelGo.GetComponent<Tilemap>();
+        Grid grid = levelGo.GetComponent<Grid>();
         GameObject levelshadow = transferLevelGo;
+        int direction = world == 1 ? 1 : -1;
 
-        if (levelSR)
-        {
-            levelshadow = new GameObject("LevelAssetShadow");
-            levelshadow.transform.localScale = levelGo.transform.localScale;
-            SpriteRenderer transferSR = levelshadow.AddComponent<SpriteRenderer>();
-            transferSR.sprite = levelSR.sprite;
-            transferSR.color = new Color(transferSR.color.r, transferSR.color.g, transferSR.color.b, overlayAlpha);
-            transferSR.sortingLayerName = "entities";
-            transferSR.sortingOrder = 1;
-            levelshadow.transform.parent = transferLevelGo.transform;
-        } else if (levelTM)
+
+        if (levelTM)
         {
             levelshadow = Instantiate(levelGo);
             Tilemap transferTM = levelshadow.GetComponent<Tilemap>();
             transferTM.color = new Color(levelTM.color.r, levelTM.color.g, levelTM.color.b, overlayAlpha);
             transferTM.GetComponent<TilemapRenderer>().sortingOrder = 1;
             levelshadow.transform.parent = transferLevelGo.transform;
-        } 
+        }
+        else if (!grid)
+        {
+            levelshadow = new GameObject("LevelAssetShadow");
+            levelshadow.transform.parent = transferLevelGo.transform;
+            levelshadow.transform.localScale = levelGo.transform.localScale;
+            levelshadow.transform.position = levelGo.transform.position + new Vector3(32 * direction, 0, 0);
+            levelshadow.transform.rotation = levelGo.transform.rotation;
+
+            if (levelSR)
+            {
+                SpriteRenderer transferSR = levelshadow.AddComponent<SpriteRenderer>();
+                transferSR.sprite = levelSR.sprite;
+                transferSR.color = new Color(transferSR.color.r, transferSR.color.g, transferSR.color.b, overlayAlpha);
+                transferSR.sortingLayerName = "entities";
+                transferSR.sortingOrder = 1;
+            }
+        }
 
         LevelAssetShadow shadow = levelshadow.AddComponent<LevelAssetShadow>();
         shadow.parent = levelGo;
