@@ -22,12 +22,12 @@ public class PlayerAnimation : MonoBehaviour
     void Update()
     {
         anim.SetBool("onGround", coll.onGround);
-/*        anim.SetBool("onWall", coll.onWall);*/
-/*        anim.SetBool("onRightWall", coll.onRightWall);*/
-/*        anim.SetBool("wallGrab", move.wallGrab);
-        anim.SetBool("wallSlide", move.wallSlide);*/
+        anim.SetBool("onWall", coll.onWall);
+        anim.SetBool("onWallRight", coll.onRightWall);
+/*        anim.SetBool("wallGrab", move.wallGrab);*/
         if (move != null)
         {
+            anim.SetBool("wallSlide", move.wallSlide);
             anim.SetBool("canMove", move.canMove);
             anim.SetBool("isDashing", move.isDashing);
         } else

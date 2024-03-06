@@ -3,6 +3,12 @@ using UnityEngine;
 public class BreakableCeiling : MonoBehaviour
 {
     [SerializeField] private float jumpThresholdSpeed = 5f; // Minimum speed to break the ceiling
+    Animator animator;
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -11,8 +17,13 @@ public class BreakableCeiling : MonoBehaviour
             if (collision.relativeVelocity.y > jumpThresholdSpeed)
             {
                 // Allow passing through ceiling
-                Destroy(gameObject);
+                animator.SetTrigger("explode");
             }
         }
+    }
+
+    public void DestroyCeiling()
+    {
+        Destroy(gameObject);
     }
 }

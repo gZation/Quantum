@@ -1,0 +1,800 @@
+fileFormatVersion: 2
+guid: 508bfdb60294d8649b394a227429ada5
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
+    isReadable: 0
+    streamingMipmaps: 0
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMipmapLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 0
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 20
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  previousAsepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 0
+    customPivotPosition: {x: 0.5, y: 0.5}
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  asepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 0
+    customPivotPosition: {x: 0.5, y: 0.5}
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 638453440052413285
+  textureAssetName: 
+  singleSpriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  animatedSpriteImportData:
+  - name: BlackCatBoxAnimation 1_Frame_0
+    originalName: 
+    pivot: {x: 0.5, y: 0.73333335}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 60
+      y: 54
+      width: 18
+      height: 15
+    spriteID: cfec41b946590224cacfb8ca4f560ac4
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 60, y: 54}
+  - name: BlackCatBoxAnimation 1_Frame_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.64705884}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 60
+      y: 4
+      width: 18
+      height: 17
+    spriteID: 325ff0f2605a03141943a38b37eab8a7
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 60, y: 4}
+  - name: BlackCatBoxAnimation 1_Frame_2
+    originalName: 
+    pivot: {x: 0.5, y: 0.55}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 32
+      y: 60
+      width: 18
+      height: 20
+    spriteID: 34498975177989e40bdc31d221374271
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 32, y: 60}
+  - name: BlackCatBoxAnimation 1_Frame_3
+    originalName: 
+    pivot: {x: 0.5, y: 0.55}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 32
+      y: 88
+      width: 18
+      height: 20
+    spriteID: 29f3a39119669fd4d936bd7010c76861
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 32, y: 88}
+  - name: BlackCatBoxAnimation 1_Frame_4
+    originalName: 
+    pivot: {x: 0.5, y: 0.55}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 32
+      y: 116
+      width: 18
+      height: 20
+    spriteID: abeec0ea86f8a68449ae50808f323b8f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 32, y: 116}
+  - name: BlackCatBoxAnimation 1_Frame_5
+    originalName: 
+    pivot: {x: 0.5, y: 0.64705884}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 60
+      y: 29
+      width: 18
+      height: 17
+    spriteID: 31f3388df03e12348a514798384314a6
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 60, y: 29}
+  - name: BlackCatBoxAnimation 1_Frame_6
+    originalName: 
+    pivot: {x: 0.5, y: 0.61111116}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 32
+      y: 200
+      width: 18
+      height: 18
+    spriteID: 8af8f52261877c140bad99b5d0a7c497
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 32, y: 200}
+  - name: BlackCatBoxAnimation 1_Frame_7
+    originalName: 
+    pivot: {x: 0.5, y: 0.55}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 32
+      y: 144
+      width: 18
+      height: 20
+    spriteID: 230f1a6699f758647b2ad1cf8998694d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 32, y: 144}
+  - name: BlackCatBoxAnimation 1_Frame_8
+    originalName: 
+    pivot: {x: 0.5, y: 0.55}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 20
+      height: 20
+    spriteID: 9aaab34f6dc09584faf6944f37407a93
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+  - name: BlackCatBoxAnimation 1_Frame_9
+    originalName: 
+    pivot: {x: 0.5, y: 0.55}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 32
+      width: 20
+      height: 20
+    spriteID: dee62d635c7d9264381fa90ac0afa205
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 32}
+  - name: BlackCatBoxAnimation 1_Frame_10
+    originalName: 
+    pivot: {x: 0.5, y: 0.55}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 60
+      width: 20
+      height: 20
+    spriteID: 91d8616c8e5e2844db908abf05b8fccb
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 60}
+  - name: BlackCatBoxAnimation 1_Frame_11
+    originalName: 
+    pivot: {x: 0.5, y: 0.55}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 88
+      width: 20
+      height: 20
+    spriteID: 278ef6f0ab30b6f4e81a97fff1068eb1
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 88}
+  - name: BlackCatBoxAnimation 1_Frame_12
+    originalName: 
+    pivot: {x: 0.5, y: 0.55}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 116
+      width: 20
+      height: 20
+    spriteID: 49ef7ad5b8469ce43860a867743e8f44
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 116}
+  - name: BlackCatBoxAnimation 1_Frame_13
+    originalName: 
+    pivot: {x: 0.5, y: 0.55}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 144
+      width: 20
+      height: 20
+    spriteID: 56ab38a66f6463e45b0e1f2c0ddc2f6c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 144}
+  - name: BlackCatBoxAnimation 1_Frame_14
+    originalName: 
+    pivot: {x: 0.5, y: 0.55}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 172
+      width: 20
+      height: 20
+    spriteID: 999df3c82081a6243b6e5f738b5c64f5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 172}
+  - name: BlackCatBoxAnimation 1_Frame_15
+    originalName: 
+    pivot: {x: 0.5, y: 0.55}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 200
+      width: 20
+      height: 20
+    spriteID: 135a1e57ed532a24b95175dc4fe0b354
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 200}
+  - name: BlackCatBoxAnimation 1_Frame_16
+    originalName: 
+    pivot: {x: 0.5, y: 0.55}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 228
+      width: 20
+      height: 20
+    spriteID: 479a2034f2822e5418a1796512f22793
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 228}
+  - name: BlackCatBoxAnimation 1_Frame_17
+    originalName: 
+    pivot: {x: 0.5, y: 0.55}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 32
+      y: 4
+      width: 20
+      height: 20
+    spriteID: e848726cac26b8b49962f4d924e69fc9
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 32, y: 4}
+  - name: BlackCatBoxAnimation 1_Frame_18
+    originalName: 
+    pivot: {x: 0.5, y: 0.55}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 32
+      y: 32
+      width: 20
+      height: 20
+    spriteID: 6125882613483ef458c16d246e25a18d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 32, y: 32}
+  - name: BlackCatBoxAnimation 1_Frame_19
+    originalName: 
+    pivot: {x: 0.5, y: 0.55}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 32
+      y: 172
+      width: 18
+      height: 20
+    spriteID: 2b8e7fca174de844b88eff3f1e488699
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 32, y: 172}
+  - name: BlackCatBoxAnimation 1_Frame_20
+    originalName: 
+    pivot: {x: 0.5, y: 0.61111116}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 32
+      y: 226
+      width: 18
+      height: 18
+    spriteID: 3dc0bd63a1ed97c459860aa888c38ede
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 32, y: 226}
+  - name: BlackCatBoxAnimation 1_Frame_21
+    originalName: 
+    pivot: {x: 0.5, y: 0.73333335}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 60
+      y: 77
+      width: 18
+      height: 15
+    spriteID: 7d7329894550d5c4d959b5e347d24806
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 60, y: 77}
+  spriteSheetImportData: []
+  asepriteLayers:
+  - layerIndex: 0
+    guid: 551248451
+    name: BlackCatBoxAnimation 1
+    layerFlags: 0
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: BlackCatBoxAnimation 1_Frame_0
+      frameIndex: 0
+      cellRect:
+        x: 1
+        y: -1
+        width: 18
+        height: 15
+      spriteId: cfec41b946590224cacfb8ca4f560ac4
+    - name: BlackCatBoxAnimation 1_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 1
+        y: -1
+        width: 18
+        height: 17
+      spriteId: 325ff0f2605a03141943a38b37eab8a7
+    - name: BlackCatBoxAnimation 1_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 1
+        y: -1
+        width: 18
+        height: 20
+      spriteId: 34498975177989e40bdc31d221374271
+    - name: BlackCatBoxAnimation 1_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 1
+        y: -1
+        width: 18
+        height: 20
+      spriteId: 29f3a39119669fd4d936bd7010c76861
+    - name: BlackCatBoxAnimation 1_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 1
+        y: -1
+        width: 18
+        height: 20
+      spriteId: abeec0ea86f8a68449ae50808f323b8f
+    - name: BlackCatBoxAnimation 1_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 1
+        y: -1
+        width: 18
+        height: 17
+      spriteId: 31f3388df03e12348a514798384314a6
+    - name: BlackCatBoxAnimation 1_Frame_6
+      frameIndex: 6
+      cellRect:
+        x: 1
+        y: -1
+        width: 18
+        height: 18
+      spriteId: 8af8f52261877c140bad99b5d0a7c497
+    - name: BlackCatBoxAnimation 1_Frame_7
+      frameIndex: 7
+      cellRect:
+        x: 1
+        y: -1
+        width: 18
+        height: 20
+      spriteId: 230f1a6699f758647b2ad1cf8998694d
+    - name: BlackCatBoxAnimation 1_Frame_8
+      frameIndex: 8
+      cellRect:
+        x: 0
+        y: -1
+        width: 20
+        height: 20
+      spriteId: 9aaab34f6dc09584faf6944f37407a93
+    - name: BlackCatBoxAnimation 1_Frame_9
+      frameIndex: 9
+      cellRect:
+        x: 0
+        y: -1
+        width: 20
+        height: 20
+      spriteId: dee62d635c7d9264381fa90ac0afa205
+    - name: BlackCatBoxAnimation 1_Frame_10
+      frameIndex: 10
+      cellRect:
+        x: 0
+        y: -1
+        width: 20
+        height: 20
+      spriteId: 91d8616c8e5e2844db908abf05b8fccb
+    - name: BlackCatBoxAnimation 1_Frame_11
+      frameIndex: 11
+      cellRect:
+        x: 0
+        y: -1
+        width: 20
+        height: 20
+      spriteId: 278ef6f0ab30b6f4e81a97fff1068eb1
+    - name: BlackCatBoxAnimation 1_Frame_12
+      frameIndex: 12
+      cellRect:
+        x: 0
+        y: -1
+        width: 20
+        height: 20
+      spriteId: 49ef7ad5b8469ce43860a867743e8f44
+    - name: BlackCatBoxAnimation 1_Frame_13
+      frameIndex: 13
+      cellRect:
+        x: 0
+        y: -1
+        width: 20
+        height: 20
+      spriteId: 56ab38a66f6463e45b0e1f2c0ddc2f6c
+    - name: BlackCatBoxAnimation 1_Frame_14
+      frameIndex: 14
+      cellRect:
+        x: 0
+        y: -1
+        width: 20
+        height: 20
+      spriteId: 999df3c82081a6243b6e5f738b5c64f5
+    - name: BlackCatBoxAnimation 1_Frame_15
+      frameIndex: 15
+      cellRect:
+        x: 0
+        y: -1
+        width: 20
+        height: 20
+      spriteId: 135a1e57ed532a24b95175dc4fe0b354
+    - name: BlackCatBoxAnimation 1_Frame_16
+      frameIndex: 16
+      cellRect:
+        x: 0
+        y: -1
+        width: 20
+        height: 20
+      spriteId: 479a2034f2822e5418a1796512f22793
+    - name: BlackCatBoxAnimation 1_Frame_17
+      frameIndex: 17
+      cellRect:
+        x: 0
+        y: -1
+        width: 20
+        height: 20
+      spriteId: e848726cac26b8b49962f4d924e69fc9
+    - name: BlackCatBoxAnimation 1_Frame_18
+      frameIndex: 18
+      cellRect:
+        x: 0
+        y: -1
+        width: 20
+        height: 20
+      spriteId: 6125882613483ef458c16d246e25a18d
+    - name: BlackCatBoxAnimation 1_Frame_19
+      frameIndex: 19
+      cellRect:
+        x: 1
+        y: -1
+        width: 18
+        height: 20
+      spriteId: 2b8e7fca174de844b88eff3f1e488699
+    - name: BlackCatBoxAnimation 1_Frame_20
+      frameIndex: 20
+      cellRect:
+        x: 1
+        y: -1
+        width: 18
+        height: 18
+      spriteId: 3dc0bd63a1ed97c459860aa888c38ede
+    - name: BlackCatBoxAnimation 1_Frame_21
+      frameIndex: 21
+      cellRect:
+        x: 1
+        y: -1
+        width: 18
+        height: 15
+      spriteId: 7d7329894550d5c4d959b5e347d24806
+    linkedCells: []
+    parentIndex: -1
+  platformSettings:
+  - name: DefaultTexturePlatform
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Standalone
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Server
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: WebGL
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  secondarySpriteTextures: []
+  spritePackingTag: 
+  canvasSize: {x: 20, y: 20}
