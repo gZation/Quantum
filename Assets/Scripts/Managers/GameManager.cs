@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour
 
     public void SetUpLevel(Scene scene, LoadSceneMode mode)
     {
+        if (PlayerManager.instance == null) return;
         PlayerManager.instance.SetPlayers();
         PlayerManager.instance.MakeShadows();
 
