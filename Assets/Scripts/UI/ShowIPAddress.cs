@@ -8,10 +8,9 @@ using AddressFamily = System.Net.Sockets.AddressFamily;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public class IPAddress : MonoBehaviour
+public class ShowIPAddress : MonoBehaviour
 {
     public TextMeshProUGUI ipAddressTextbox;
-    private string publicIPAddress;
     private void Start()
     {
         IPHostEntry hostEntry = Dns.GetHostEntry(Dns.GetHostName());
