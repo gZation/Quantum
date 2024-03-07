@@ -155,6 +155,10 @@ public class GameManager : MonoBehaviour
                 SpriteRenderer transferSR = levelshadow.AddComponent<SpriteRenderer>();
                 transferSR.sprite = levelSR.sprite;
                 transferSR.color = new Color(transferSR.color.r, transferSR.color.g, transferSR.color.b, overlayAlpha);
+                transferSR.adaptiveModeThreshold = levelSR.adaptiveModeThreshold;
+                transferSR.drawMode = levelSR.drawMode;
+                transferSR.size = levelSR.size;
+                transferSR.tileMode = levelSR.tileMode;
                 transferSR.sortingLayerName = "entities";
                 transferSR.sortingOrder = 1;
             }
