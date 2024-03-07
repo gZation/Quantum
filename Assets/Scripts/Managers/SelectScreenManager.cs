@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public enum CharacterSelection {
@@ -138,10 +139,14 @@ public class SelectScreenManager : MonoBehaviour {
 
     } // Update
 
+
+
     public void GoToGame() {
+        if (selection == CharacterSelection.NEUTRAL) return;
 
+        //TODO Handle Character Selection
+        CharacterSelectionHandler();
         switch (selection) {
-
             case CharacterSelection.BOY:
                 Debug.Log("Go to game (Host is BOY)");
                 break;
@@ -155,6 +160,13 @@ public class SelectScreenManager : MonoBehaviour {
 
         } // switch
 
+        SceneManager.LoadScene("Show Public IP");
     } // StartGame
+
+    private void CharacterSelectionHandler()
+    {
+        return;
+    }
+
 
 } // BackgroundManager

@@ -14,15 +14,14 @@ public class ShowIPAddress : MonoBehaviour
 {
     public TextMeshProUGUI ipAddressTextbox;
     public TextMeshProUGUI useDefaultTextbox;
+    private string defaultIP;
     private void Start()
     {
-        string defaultIP = NetworkManager.Singleton.GetComponent<UnityTransport>().ConnectionData.Address.ToString();
-        Debug.Log(defaultIP);
+        defaultIP = NetworkManager.Singleton.GetComponent<UnityTransport>().ConnectionData.Address.ToString();
         ipAddressTextbox.text = defaultIP;
         useDefaultTextbox.text += "\n" + defaultIP;
 
         IPHostEntry hostEntry = Dns.GetHostEntry(Dns.GetHostName());
-        Debug.Log(hostEntry);
         foreach (var ip in hostEntry.AddressList)
         {
             if (ip.AddressFamily == AddressFamily.InterNetwork)
@@ -41,11 +40,19 @@ public class ShowIPAddress : MonoBehaviour
 
     public void ContinueWithInputIp()
     {
-
+        ConnectToServer(ipAddressTextbox.text);
     }
 
     public void ContinueWithDefaultIP()
     {
+        ConnectToServer(defaultIP);
+    }
 
+    private void ConnectToServer(string hostIP)
+    {
+        NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData(hostIP, (ushort)7777);
+        Debug.Log($"Setting up host with IP: {hostIP}");
+        NetworkManager.Singleton.StartHost();
+        NetworkManager.Singleton.SceneManager.LoadScene("Tutorial 1", LoadSceneMode.Single);
     }
 }

@@ -6,7 +6,7 @@ public class HostAndClient : MonoBehaviour
 {
     public void ShowIPScreen()
     {
-        SceneManager.LoadScene("Show Public IP");
+        SceneManager.LoadScene("CharacterSelect");
     }
 
     public void EnterHostIPScreen()
