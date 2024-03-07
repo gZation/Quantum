@@ -215,11 +215,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2477344592800760621, guid: 472ac69210104db428d200aae439ca34, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5294730327605774049, guid: 472ac69210104db428d200aae439ca34, type: 3}
       propertyPath: m_Name
       value: World1Pause
+      objectReference: {fileID: 0}
+    - target: {fileID: 5979584512231650437, guid: 472ac69210104db428d200aae439ca34, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6541365385136162598, guid: 472ac69210104db428d200aae439ca34, type: 3}
       propertyPath: m_Pivot.x
@@ -307,7 +311,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7182181653896557307, guid: 472ac69210104db428d200aae439ca34, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -42,7 +42,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 96afef8083417cb4896dac79c5f02364, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 772ca16d1b3a675458d3c438257f3b99, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -177,6 +177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cyberActive: 0
   masterVolume: 0.3
+  sfxVolume: 0
   crossfadeSpeed: 1
 --- !u!114 &1545517837682817558
 MonoBehaviour:
@@ -232,7 +233,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 47cbed979bc422b44b5cd9b1b43837e1, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 421e2e4f9a7b36948a5d27e10c5ac787, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
