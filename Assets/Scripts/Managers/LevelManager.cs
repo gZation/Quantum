@@ -48,7 +48,7 @@ public class LevelManager : MonoBehaviour
 
     void MoveOn()
     {
-       // levelLoader.LoadLevelByName(nextLevel);
-       levelLoader.LoadNextLevel();
+       levelLoader.LoadLevelByName(nextLevel);
+       //levelLoader.LoadNextLevel();
     }
 }
