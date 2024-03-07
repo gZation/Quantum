@@ -15,13 +15,11 @@ public class PlayerManager : NetworkBehaviour
     // Currently the curr player object needs to be set for networking. In the future, we might need to change this to a int/string since the player might not be instantiated yet in the menu screen.
     // Right now, this object is set by the NetworkManagerUI
     // Change would require update to SetNetworkedPlayers()
+
+    // currPlayer = 1 if player1, 2 if player2
     public int currPlayer;
     public GameObject currPlayerObject;
     public GameObject otherPlayerObject;
-
-    private NetworkVariable<Vector2> hostSentMomentum = new NetworkVariable<Vector2>(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
-    private NetworkVariable<Vector2> clientSentMomentum = new NetworkVariable<Vector2>(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-
 
     [SerializeField]
     protected GameObject shadowPrefab;
@@ -45,9 +43,12 @@ public class PlayerManager : NetworkBehaviour
         CopyAndSendPlayerInfo();
     }
 
-    public void SetPlayers()
+    //Set up the players. If the players don't exist yet, then return false. Otherwise, return true
+    public bool SetPlayers()
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        Debug.Log(players.Length);
+        if (players.Length == 0) return false;
 
         foreach (GameObject p in players)
         {
@@ -62,15 +63,15 @@ public class PlayerManager : NetworkBehaviour
             }
         }
 
-        if (GameManager.instance.IsNetworked()) { setNetworkedPlayers(); }
+        if (GameManager.instance.IsNetworked()) { return setNetworkedPlayers(); }
+        else return false;
     }
 
-    private void setNetworkedPlayers()
+    private bool setNetworkedPlayers()
     {
-        if (currPlayerObject == null)
-        {
-            return;
-        }
+        if (currPlayer == 0 || currPlayer == 1) currPlayerObject = player1;
+        else currPlayerObject = player2;
+
 
         otherPlayerObject = currPlayerObject == player1 ? player2 : player1;
         PlayerSettings playerSetting = currPlayerObject.GetComponent<PlayerSettings>();
@@ -78,13 +79,14 @@ public class PlayerManager : NetworkBehaviour
         playerSetting.SetPlayerNetworked();
 
         // If the current user is the host, setup host specific stuff like variables
-        if (NetworkManager.Singleton.IsServer)
+        if (NetworkManager.Singleton.IsHost)
         {
             NetworkManager.Singleton.OnClientConnectedCallback += AssignOwnership;
         } else
         // If the current user is the client, setup client specific stuff like variables
         {
         }
+        return true;
     }
 
     private void AssignOwnership(ulong clientId)
@@ -119,13 +121,11 @@ public class PlayerManager : NetworkBehaviour
         {
             if (listener == player1)
             {
-                /*            print("Toggling lock to player 2");*/
                 MovementArrows playerMovement = player2.GetComponent<MovementArrows>();
                 playerMovement.sharingMomentum = !playerMovement.sharingMomentum;
             }
             else
             {
-                /*            print("Toggling lock to player 1");*/
                 MovementWASD playerMovement = player1.GetComponent<MovementWASD>();
                 playerMovement.sharingMomentum = !playerMovement.sharingMomentum;
             }

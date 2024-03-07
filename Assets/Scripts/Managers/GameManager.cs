@@ -63,8 +63,16 @@ public class GameManager : MonoBehaviour
 
     public void SetUpLevel(Scene scene, LoadSceneMode mode)
     {
+        // Don't set up the level if PlayerManager doesn't exist
         if (PlayerManager.instance == null) return;
-        PlayerManager.instance.SetPlayers();
+
+        //Don't set up the level if the players don't exist
+        if (!PlayerManager.instance.SetPlayers())
+        {
+            Debug.Log("Players did not set up");
+            return;
+        };
+        Debug.Log("Players successfully set up");
         PlayerManager.instance.MakeShadows();
 
         CopyAndSendWorldInfo();

@@ -11,6 +11,7 @@ public enum CharacterSelection {
 
 } // CharacterSelection
 
+
 public class SelectScreenManager : MonoBehaviour {
 
     private RectTransform edoMaskRect, cyberMaskRect;
@@ -145,28 +146,22 @@ public class SelectScreenManager : MonoBehaviour {
         if (selection == CharacterSelection.NEUTRAL) return;
 
         //TODO Handle Character Selection
-        CharacterSelectionHandler();
         switch (selection) {
             case CharacterSelection.BOY:
-                Debug.Log("Go to game (Host is BOY)");
+                Debug.Log("(Host is BOY)");
+                PlayerManager.instance.currPlayer = 1;
                 break;
 
             case CharacterSelection.GIRL:
-                Debug.Log("Go to game (Host is GIRL)");
+                Debug.Log("(Host is GIRL)");
+                PlayerManager.instance.currPlayer = 2;
                 break;
 
             default:
                 break;
 
         } // switch
-
         SceneManager.LoadScene("Show Public IP");
     } // StartGame
-
-    private void CharacterSelectionHandler()
-    {
-        return;
-    }
-
 
 } // BackgroundManager
