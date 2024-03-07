@@ -10,6 +10,7 @@ public class MusicManager : MonoBehaviour {
     private AudioSource edoTrackSource, cyberTrackSource;
     public bool cyberActive = false;
     public float masterVolume;
+    public float sfxVolume;
     private float edoVolume, cyberVolume;
     public float crossfadeSpeed = 1.0f;
 
@@ -65,5 +66,15 @@ public class MusicManager : MonoBehaviour {
         cyberTrackSource.UnPause();
 
     } // UnPause
+
+    public static void UpdateMasterVolume(float value)
+    {
+        instance.masterVolume = value;
+    }
+
+    public static void UpdateSFXVolume(float  value)
+    {
+        instance.sfxVolume = value;
+    }
 
 } // MusicManager
