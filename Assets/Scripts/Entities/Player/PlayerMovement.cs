@@ -177,7 +177,6 @@ public class PlayerMovement : MonoBehaviour
 
     public virtual bool IsJump()
     {
-        Debug.Log(gameObject.GetComponent<NetworkObject>().OwnerClientId);
         return Input.GetButtonDown("Jump");
     }
 

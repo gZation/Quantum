@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour
         else NetworkManager.Singleton.SceneManager.OnLoadComplete += SetUpLevel;
     }
 
+
+
     public void SetNetworkedScreen(bool networked)
     {
         networkingOn = networked;
@@ -66,9 +68,15 @@ public class GameManager : MonoBehaviour
 
         //if (!networkingOn) SceneManager.sceneLoaded += SetUpLevel;
         NetworkManager.Singleton.SceneManager.OnLoadComplete += SetUpLevel;
+        NetworkManager.Singleton.SceneManager.OnLoadComplete += onLoadCompleteAction;
     }
 
-    private void OnDisable()
+    private void onLoadCompleteAction (ulong clientId, string sceneName, LoadSceneMode loadSceneMode)
+        {
+            Debug.Log($"On Load Complete Called for scene: {sceneName} wth client {clientId}");
+        }
+
+private void OnDisable()
     {
         SceneManager.sceneLoaded -= SetUpLevel;
     }
@@ -88,18 +96,14 @@ public class GameManager : MonoBehaviour
 
     public void SetUpLevel()
     {
-        Debug.Log(networkingOn);
-        Debug.Log("Attempting level setup");
         // Don't set up the level if PlayerManager doesn't exist
         if (PlayerManager.instance == null) return;
 
         //Don't set up the level if the players don't exist
         if (!PlayerManager.instance.SetPlayersAndShadows())
         {
-            Debug.Log("Players did not set up");
             return;
         };
-        Debug.Log("Players successfully set up");
 
 
         CopyAndSendWorldInfo();
@@ -107,14 +111,12 @@ public class GameManager : MonoBehaviour
     }
 
     public void SetUpLevel(Scene scene, LoadSceneMode mode) {
-        Debug.Log("Normal level setup");
         SetUpLevel(); }
 
     public void SetUpLevel(ulong clientId, string sceneName, LoadSceneMode loadSceneMode)
     {
-        Debug.Log("This client synched");
-        Debug.Log(clientId);
-        SetUpLevel(); }
+        if (clientId == NetworkManager.Singleton.LocalClientId) SetUpLevel(); 
+    }
 
 
     public void CopyAndSendWorldInfo()

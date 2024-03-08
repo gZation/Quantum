@@ -50,14 +50,12 @@ public class PlayerManager : NetworkBehaviour
             return;
         }
         CopyAndSendPlayerInfo();
-        Debug.Log(otherPlayerObject.GetComponent<NetworkObject>().IsSpawned);
     }
 
     //Set up the players. If the players don't exist yet, then return false. Otherwise, return true
     public bool SetPlayersAndShadows()
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        Debug.Log(players.Length);
         if (players.Length == 0) return false;
 
         foreach (GameObject p in players)
@@ -81,14 +79,12 @@ public class PlayerManager : NetworkBehaviour
     {
         if (!IsHost)
         {
-            Debug.Log(hostPlayer.Value);
             if (hostPlayer.Value == 0) return false;
             currPlayer = hostPlayer.Value == 1 ? 2 : 1;
         }
         else
         {
             hostPlayer.Value = currPlayer;
-            Debug.Log(hostPlayer.Value);
         }
         currPlayerObject = (currPlayer == 1)  ? player1 : player2;
 
@@ -110,9 +106,7 @@ public class PlayerManager : NetworkBehaviour
 
     private void AssignOwnership()
     {
-        Debug.Log(otherPlayerObject.GetComponent<NetworkObject>().IsSpawned);
         otherPlayerObject.GetComponent<NetworkObject>().ChangeOwnership(1);
-        Debug.Log("Ownership of other player assigned");
         //Debug.Log("Owndership assigned");
         //Debug.Log(otherPlayerObject.GetComponent<NetworkObject>().OwnerClientId);
         //this.GetComponent<NetworkObject>().ChangeOwnership(clientId);

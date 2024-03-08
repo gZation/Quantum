@@ -60,7 +60,6 @@ public class PlayerSettings : MonoBehaviour
 
     public void SetPlayerNetworked()
     {
-        Debug.Log("Set Player Networked Called");
         if (isActivePlayer)
         {
             this.gameObject.AddComponent<PlayerMovement>();
