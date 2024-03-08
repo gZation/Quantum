@@ -184,8 +184,8 @@ MonoBehaviour:
   wallSide: 0
   collisionRadius: 0.25
   bottomOffset: {x: 0, y: -0.5}
-  rightOffset: {x: 0.35, y: 0}
-  leftOffset: {x: -0.3, y: 0}
+  rightOffset: {x: 0.25, y: 0}
+  leftOffset: {x: -0.25, y: 0}
 --- !u!114 &-5146849112117003517
 MonoBehaviour:
   m_ObjectHideFlags: 0
