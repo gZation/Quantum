@@ -8,7 +8,7 @@ public class QuantumLockUI : MonoBehaviour
     [SerializeField] private GameObject player;
 
 
-    // Start is called before the first frame update
+    // Start is called before the first frame updatde
     void Start()
     {
         QuantumLockUIText.SetActive(false);

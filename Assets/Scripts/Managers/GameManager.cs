@@ -39,7 +39,33 @@ public class GameManager : MonoBehaviour
         //{
         //    SceneManager.sceneLoaded += SetUpLevel;
         //}
-        SceneManager.sceneLoaded += SetUpLevel;
+        if (!networkingOn) SceneManager.sceneLoaded += SetUpLevel;
+        else NetworkManager.Singleton.SceneManager.OnLoadComplete += SetUpLevel;
+    }
+
+    public void SetNetworkedScreen(bool networked)
+    {
+        networkingOn = networked;
+        SceneManager.sceneLoaded -= SetUpLevel;
+
+        if (networkingOn)
+        {
+            Screen.SetResolution(640, 480, false);
+        }
+        else
+        {
+            Screen.SetResolution(1280, 480, false);
+        }
+    }
+
+    public void SetSceneLoad()
+    {
+        //Debug.Log("Set Scene Loaded Called");
+        //SceneManager.sceneLoaded -= SetUpLevel;
+        //NetworkManager.Singleton.SceneManager.OnSynchronizeComplete -= SetUpLevel;
+
+        //if (!networkingOn) SceneManager.sceneLoaded += SetUpLevel;
+        NetworkManager.Singleton.SceneManager.OnLoadComplete += SetUpLevel;
     }
 
     private void OnDisable()
@@ -60,29 +86,36 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
-    public void SetUpLevel(Scene scene, LoadSceneMode mode)
+    public void SetUpLevel()
     {
+        Debug.Log(networkingOn);
+        Debug.Log("Attempting level setup");
         // Don't set up the level if PlayerManager doesn't exist
         if (PlayerManager.instance == null) return;
 
         //Don't set up the level if the players don't exist
-        if (!PlayerManager.instance.SetPlayers())
+        if (!PlayerManager.instance.SetPlayersAndShadows())
         {
             Debug.Log("Players did not set up");
             return;
         };
         Debug.Log("Players successfully set up");
-        PlayerManager.instance.MakeShadows();
+
 
         CopyAndSendWorldInfo();
         SetCameras();
     }
 
-    public void SetUpLevel(string sceneName, LoadSceneMode loadSceneMode, List<ulong> clientsCompleted, List<ulong> clientsTimedOut)
+    public void SetUpLevel(Scene scene, LoadSceneMode mode) {
+        Debug.Log("Normal level setup");
+        SetUpLevel(); }
+
+    public void SetUpLevel(ulong clientId, string sceneName, LoadSceneMode loadSceneMode)
     {
-        SetUpLevel(SceneManager.GetSceneByName(sceneName), loadSceneMode);
-    }
+        Debug.Log("This client synched");
+        Debug.Log(clientId);
+        SetUpLevel(); }
+
 
     public void CopyAndSendWorldInfo()
     {
@@ -237,21 +270,6 @@ public class GameManager : MonoBehaviour
             player2camera.rect = new Rect(0.5f, 0, 0.5f, 1);
         }
     }
-
-    public void SetNetworked(bool networked)
-    {
-        networkingOn = networked;
-
-        if (networkingOn)
-        {
-            Screen.SetResolution(640, 480, false);
-
-        } else
-        {
-            Screen.SetResolution(1280, 480, false);
-        }
-    }
-
     public bool IsNetworked() {
         return networkingOn;
     }

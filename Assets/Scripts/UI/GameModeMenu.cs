@@ -10,14 +10,14 @@ public class GameModeMenu : MonoBehaviour
 
     public void setSplitScreen()
     {
-        GameManager.instance.SetNetworked(false);
+        GameManager.instance.SetNetworkedScreen(false);
         Screen.SetResolution(1280, 480, false);
         SceneManager.LoadScene("Tutorial 1");
     }
 
     public void setNetworked()
     {
-        GameManager.instance.SetNetworked(true);
+        GameManager.instance.SetNetworkedScreen(true);
         Screen.SetResolution(640, 480, false);
         SceneManager.LoadScene("HostOrClient");
     }

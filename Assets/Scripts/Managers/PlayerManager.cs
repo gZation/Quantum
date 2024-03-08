@@ -11,13 +11,16 @@ public class PlayerManager : NetworkBehaviour
     private GameObject player2;
     private GameObject shadow1;
     private GameObject shadow2;
+    public bool isHost;
 
     // Currently the curr player object needs to be set for networking. In the future, we might need to change this to a int/string since the player might not be instantiated yet in the menu screen.
     // Right now, this object is set by the NetworkManagerUI
     // Change would require update to SetNetworkedPlayers()
 
     // currPlayer = 1 if player1, 2 if player2
+    public NetworkVariable<int> hostPlayer = new NetworkVariable<int>();
     public int currPlayer;
+
     public GameObject currPlayerObject;
     public GameObject otherPlayerObject;
 
@@ -35,16 +38,23 @@ public class PlayerManager : NetworkBehaviour
             return;
         }
         instance = this;
+
     }
+
 
     // Update is called once per frame
     void Update()
     {
+        if (player1 == null || player2 == null || shadow1 == null || shadow2 == null)
+        {
+            return;
+        }
         CopyAndSendPlayerInfo();
+        Debug.Log(otherPlayerObject.GetComponent<NetworkObject>().IsSpawned);
     }
 
     //Set up the players. If the players don't exist yet, then return false. Otherwise, return true
-    public bool SetPlayers()
+    public bool SetPlayersAndShadows()
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         Debug.Log(players.Length);
@@ -62,26 +72,35 @@ public class PlayerManager : NetworkBehaviour
                 player2 = p;
             }
         }
-
+        MakeShadows();
         if (GameManager.instance.IsNetworked()) { return setNetworkedPlayers(); }
         else return false;
     }
 
     private bool setNetworkedPlayers()
     {
-        if (currPlayer == 0 || currPlayer == 1) currPlayerObject = player1;
-        else currPlayerObject = player2;
+        if (!IsHost)
+        {
+            Debug.Log(hostPlayer.Value);
+            if (hostPlayer.Value == 0) return false;
+            currPlayer = hostPlayer.Value == 1 ? 2 : 1;
+        }
+        else
+        {
+            hostPlayer.Value = currPlayer;
+            Debug.Log(hostPlayer.Value);
+        }
+        currPlayerObject = (currPlayer == 1)  ? player1 : player2;
 
 
         otherPlayerObject = currPlayerObject == player1 ? player2 : player1;
         PlayerSettings playerSetting = currPlayerObject.GetComponent<PlayerSettings>();
         playerSetting.isActivePlayer = true;
-        playerSetting.SetPlayerNetworked();
 
         // If the current user is the host, setup host specific stuff like variables
-        if (NetworkManager.Singleton.IsHost)
+        if (IsHost)
         {
-            NetworkManager.Singleton.OnClientConnectedCallback += AssignOwnership;
+            AssignOwnership();
         } else
         // If the current user is the client, setup client specific stuff like variables
         {
@@ -89,17 +108,20 @@ public class PlayerManager : NetworkBehaviour
         return true;
     }
 
-    private void AssignOwnership(ulong clientId)
+    private void AssignOwnership()
     {
-        otherPlayerObject.GetComponent<NetworkObject>().ChangeOwnership(clientId);
-        this.GetComponent<NetworkObject>().ChangeOwnership(clientId);
+        Debug.Log(otherPlayerObject.GetComponent<NetworkObject>().IsSpawned);
+        otherPlayerObject.GetComponent<NetworkObject>().ChangeOwnership(1);
+        Debug.Log("Ownership of other player assigned");
+        //Debug.Log("Owndership assigned");
+        //Debug.Log(otherPlayerObject.GetComponent<NetworkObject>().OwnerClientId);
+        //this.GetComponent<NetworkObject>().ChangeOwnership(clientId);
     }
 
     private void OnDestroy()
     {
         if (NetworkManager.Singleton && NetworkManager.Singleton.IsServer)
         {
-            NetworkManager.Singleton.OnClientConnectedCallback -= AssignOwnership;
         }
     }
 
@@ -177,11 +199,6 @@ public class PlayerManager : NetworkBehaviour
 
     public void CopyAndSendPlayerInfo()
     {
-        if (player1 == null || player2 == null || shadow1 == null || shadow2 == null)
-        {
-            return;
-        }
-
         // rn the position is done by just making the shadow under the prefab
         if (player1 != null)
         {

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -176,6 +177,7 @@ public class PlayerMovement : MonoBehaviour
 
     public virtual bool IsJump()
     {
+        Debug.Log(gameObject.GetComponent<NetworkObject>().OwnerClientId);
         return Input.GetButtonDown("Jump");
     }
 

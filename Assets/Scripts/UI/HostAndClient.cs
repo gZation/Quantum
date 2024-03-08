@@ -6,11 +6,13 @@ public class HostAndClient : MonoBehaviour
 {
     public void ShowIPScreen()
     {
+        PlayerManager.instance.isHost = true;
         SceneManager.LoadScene("CharacterSelect");
     }
 
     public void EnterHostIPScreen()
     {
+        PlayerManager.instance.isHost = false;
         SceneManager.LoadScene("IP Input");
     }
 
