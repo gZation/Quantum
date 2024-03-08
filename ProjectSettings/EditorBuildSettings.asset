@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Game Scenes/SelectMode.unity
     guid: b60ceaa716cab3b4ebb26f0a95926460
   - enabled: 1
+    path: Assets/Scenes/Game Scenes/CharacterSelection.unity
+    guid: 6c2bedef335198d4dbf67ea0d330bb00
+  - enabled: 1
     path: Assets/Scenes/Game Scenes/Tutorial 1.unity
     guid: ce44e7b04bc512f4b9c77b20b00a02ac
   - enabled: 1
@@ -20,4 +23,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game Scenes/Tutorial 3.unity
     guid: cf85b4034bdd03443be61ceded34508c
+  - enabled: 1
+    path: Assets/Scenes/Game Scenes/Sakshi1.unity
+    guid: 3e06a0bca07ac2b4e8b38dc976bcff29
+  - enabled: 1
+    path: Assets/Scenes/Game Scenes/Allison1.unity
+    guid: 9a234d8c6a5730d4e83538faf4a430c7
+  - enabled: 1
+    path: Assets/Scenes/Game Scenes/Sakshi2.unity
+    guid: 982a7ab163611174d81252cf80748e1d
+  - enabled: 1
+    path: Assets/Scenes/Game Scenes/CatScene.unity
+    guid: cf517ff4f0856a642b08e4bbe84073ea
   m_configObjects: {}
