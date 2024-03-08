@@ -110,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
         if (!coll.onWall || coll.onGround)
             wallSlide = false;
 
-        if (IsJump())
+        if (IsJump() && canMove)
         {
             anim.SetTrigger("jump");
 
@@ -120,7 +120,7 @@ public class PlayerMovement : MonoBehaviour
                 WallJump();
         }
 
-        if (IsDash() && !hasDashed)
+        if (IsDash() && !hasDashed && canMove)
         {
             if (xRaw != 0 || yRaw != 0)
                 Dash(xRaw, yRaw);
@@ -152,8 +152,6 @@ public class PlayerMovement : MonoBehaviour
             side = -1;
             anim.Flip(side);
         }*/
-
-
     }
 
     protected void FixedUpdate()
