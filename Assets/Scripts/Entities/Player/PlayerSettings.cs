@@ -78,6 +78,12 @@ public class PlayerSettings : MonoBehaviour
     public void Die()
     {
         LevelManager lm = LevelManager.instance;
+        PlayerMovement pm = GetComponent<PlayerMovement>();
+
+        pm.canMove = false;
+
+        anim.SetTrigger("death");
+
         lm.Reload();
     }
 }
