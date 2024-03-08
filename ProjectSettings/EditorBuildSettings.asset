@@ -35,7 +35,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game Scenes/CatScene.unity
     guid: cf517ff4f0856a642b08e4bbe84073ea
-  - enabled: 1
-    path: Assets/Scenes/Andrew/Death.unity
-    guid: ac3b1b8b74dc118459d01260d7b82eb2
   m_configObjects: {}
