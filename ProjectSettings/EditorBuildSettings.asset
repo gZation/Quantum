@@ -23,4 +23,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game Scenes/Tutorial 3.unity
     guid: cf85b4034bdd03443be61ceded34508c
+  - enabled: 1
+    path: Assets/Scenes/Game Scenes/Sakshi1.unity
+    guid: 3e06a0bca07ac2b4e8b38dc976bcff29
+  - enabled: 1
+    path: Assets/Scenes/Game Scenes/Allison1.unity
+    guid: 9a234d8c6a5730d4e83538faf4a430c7
+  - enabled: 1
+    path: Assets/Scenes/Game Scenes/Sakshi2.unity
+    guid: 982a7ab163611174d81252cf80748e1d
+  - enabled: 1
+    path: Assets/Scenes/Game Scenes/CatScene.unity
+    guid: cf517ff4f0856a642b08e4bbe84073ea
   m_configObjects: {}

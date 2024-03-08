@@ -47,8 +47,10 @@ public class PlayerSettings : MonoBehaviour
 
     public void SetPlayerSplit()
     {
+        int world = this.world1 ? 1 : 2;
+
         // make the player have either WASD or arrow controls
-        if (world1)
+        if (PlayerManager.instance.playerOnLeft == world)
         {
             this.gameObject.AddComponent<MovementWASD>();
         } else

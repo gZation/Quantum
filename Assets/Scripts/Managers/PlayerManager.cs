@@ -26,6 +26,9 @@ public class PlayerManager : NetworkBehaviour
     [SerializeField]
     protected GameObject shadowPrefab;
 
+    //Split screen
+    public int playerOnLeft;
+
 
     // Start is called before the first frame update
     void Awake()
