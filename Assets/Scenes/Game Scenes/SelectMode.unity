@@ -468,8 +468,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cabbe952012747a4e98bf2fb89b8fa7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSplit: Tutorial 1
-  nextNetworked: Tutorial 1
+  nextSplit: CharacterSelection
+  nextNetworked: CharacterSelection
+  levelLoader: {fileID: 133981225}
 --- !u!1 &433736246
 GameObject:
   m_ObjectHideFlags: 0

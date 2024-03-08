@@ -105,7 +105,6 @@ private void OnDisable()
             return;
         };
 
-
         CopyAndSendWorldInfo();
         SetCameras();
     }
@@ -137,13 +136,22 @@ private void OnDisable()
         CopyHelper(1);
         CopyHelper(2);
 
-        w1Copy.SetActive(w1Open);
-        w2Copy.SetActive(w2Open);
+        if (w1Copy != null && w2Copy != null)
+        {
+            w1Copy.SetActive(w1Open);
+            w2Copy.SetActive(w2Open);
+        }
     }
 
     private void CopyHelper(int world)
     {
         GameObject level = GameObject.FindGameObjectWithTag("World"+world+"Level");
+
+        if (level == null)
+        {
+            return;
+        }
+
         GameObject transferLevel = Instantiate(copyGrid);
         int layer = LayerMask.NameToLayer("World"+world);
         transferLevel.layer = layer;
@@ -245,6 +253,11 @@ private void OnDisable()
             }
         }
 
+        if (player1camera == null)
+        {
+            return;
+        }
+
         if (networkingOn)
         {
             if (PlayerManager.instance.currPlayer == 1)
@@ -267,9 +280,16 @@ private void OnDisable()
             player1camera.enabled = true;
             player2camera.enabled = true;
 
-            //edit camera locations on display
-            player1camera.rect = new Rect(0, 0, 0.5f, 1);
-            player2camera.rect = new Rect(0.5f, 0, 0.5f, 1);
+            if (PlayerManager.instance.playerOnLeft == 2)
+            {
+                player1camera.rect = new Rect(0.5f, 0, 0.5f, 1);
+                player2camera.rect = new Rect(0, 0, 0.5f, 1);
+            }
+            else
+            {
+                player1camera.rect = new Rect(0, 0, 0.5f, 1);
+                player2camera.rect = new Rect(0.5f, 0, 0.5f, 1);
+            }
         }
     }
     public bool IsNetworked() {

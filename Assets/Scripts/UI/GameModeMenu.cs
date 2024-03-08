@@ -12,7 +12,7 @@ public class GameModeMenu : MonoBehaviour
     {
         GameManager.instance.SetNetworkedScreen(false);
         Screen.SetResolution(1280, 480, false);
-        SceneManager.LoadScene("Tutorial 1");
+        SceneManager.LoadScene("CharacterSelection");
     }
 
     public void setNetworked()

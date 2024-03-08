@@ -38,11 +38,6 @@ public class SelectScreenManager : MonoBehaviour {
 
         boyImage = transform.GetChild(0).GetChild(0).gameObject.GetComponent<RawImage>();
         girlImage = transform.GetChild(1).GetChild(0).gameObject.GetComponent<RawImage>();
-/*
-        edoMaskRect.sizeDelta = new Vector2(Screen.width / 2, Screen.height);
-        edoBGRect.localScale = new Vector3(1, 1, 0);
-        cyberMaskRect.sizeDelta = new Vector2(Screen.width / 2, Screen.height);
-        cyberBGRect.localScale = new Vector3(1, 1, 0);*/
 
     } // Start
 
@@ -148,11 +143,24 @@ public class SelectScreenManager : MonoBehaviour {
         //TODO Handle Character Selection
         switch (selection) {
             case CharacterSelection.BOY:
+                if (!GameManager.instance.IsNetworked())
+                {
+                    Debug.Log("Go to game (P1 is BOY)");
+                    PlayerManager.instance.playerOnLeft = 1;
+                    SceneManager.LoadScene("Tutorial 1");
+                }
                 Debug.Log("(Host is BOY)");
                 PlayerManager.instance.currPlayer = 1;
                 break;
 
             case CharacterSelection.GIRL:
+                
+                if (!GameManager.instance.IsNetworked())
+                {
+                    Debug.Log("Go to game (P2 is GIRL)");
+                    PlayerManager.instance.playerOnLeft = 2;
+                    SceneManager.LoadScene("Tutorial 1");
+                }
                 Debug.Log("(Host is GIRL)");
                 PlayerManager.instance.currPlayer = 2;
                 break;
