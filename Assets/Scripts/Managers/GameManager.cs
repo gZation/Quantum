@@ -66,6 +66,15 @@ public class GameManager : MonoBehaviour
         PlayerManager.instance.SetPlayers();
         PlayerManager.instance.MakeShadows();
 
+        if (networkingOn)
+        {
+            Screen.SetResolution(640, 480, false);
+        }
+        else
+        {
+            Screen.SetResolution(1280, 480, false);
+        }
+
         CopyAndSendWorldInfo();
         SetCameras();
     }
@@ -253,15 +262,6 @@ public class GameManager : MonoBehaviour
     public void SetNetworked(bool networked)
     {
         networkingOn = networked;
-
-        if (networkingOn)
-        {
-            Screen.SetResolution(640, 480, false);
-
-        } else
-        {
-            Screen.SetResolution(1280, 480, false);
-        }
     }
 
     public bool IsNetworked() {
