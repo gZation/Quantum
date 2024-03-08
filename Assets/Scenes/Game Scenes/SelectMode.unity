@@ -452,7 +452,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextSplit: Tutorial 1
-  nextNetworked: Tutorial 1
+  nextNetworked: CharacterSelection
   levelLoader: {fileID: 133981225}
 --- !u!1 &433736246
 GameObject:

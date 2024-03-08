@@ -20,6 +20,7 @@ public class MusicManager : MonoBehaviour {
         {
             //Debug.LogError("Found more than one Music Manager in the scene.");
             Destroy(this.gameObject);
+            return;
         }
 
         instance = this;
@@ -28,12 +29,11 @@ public class MusicManager : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
 
-        edoTrackSource = this.transform.GetChild(0).GetComponent<AudioSource>();
-        cyberTrackSource = this.transform.GetChild(1).GetComponent<AudioSource>();
+        instance.edoTrackSource = transform.GetChild(0).GetComponent<AudioSource>();
+        instance.cyberTrackSource = transform.GetChild(1).GetComponent<AudioSource>();
 
-        masterVolume = 1.0f;
-        edoVolume = !cyberActive ? 1.0f : 0.0f;
-        cyberVolume = cyberActive ? 1.0f : 0.0f;
+        instance.edoVolume = !cyberActive ? 1.0f : 0.0f;
+        instance.cyberVolume = cyberActive ? 1.0f : 0.0f;
 
     } // Start
 
@@ -41,29 +41,29 @@ public class MusicManager : MonoBehaviour {
     void Update() {
         
         if (cyberActive && cyberVolume < 1.0f) {
-            cyberVolume = Mathf.Clamp(cyberVolume + crossfadeSpeed * Time.deltaTime, 0.0f, 1.0f);
-            edoVolume = Mathf.Clamp(edoVolume - crossfadeSpeed * Time.deltaTime, 0.0f, 1.0f);
+            instance.cyberVolume = Mathf.Clamp(cyberVolume + crossfadeSpeed * Time.deltaTime, 0.0f, 1.0f);
+            instance.edoVolume = Mathf.Clamp(edoVolume - crossfadeSpeed * Time.deltaTime, 0.0f, 1.0f);
 
         } else if (!cyberActive && edoVolume < 1.0f) {
-            edoVolume = Mathf.Clamp(edoVolume + crossfadeSpeed * Time.deltaTime, 0.0f, 1.0f);
-            cyberVolume = Mathf.Clamp(cyberVolume - crossfadeSpeed * Time.deltaTime, 0.0f, 1.0f);
+            instance.edoVolume = Mathf.Clamp(edoVolume + crossfadeSpeed * Time.deltaTime, 0.0f, 1.0f);
+            instance.cyberVolume = Mathf.Clamp(cyberVolume - crossfadeSpeed * Time.deltaTime, 0.0f, 1.0f);
 
         } // if
 
-        edoTrackSource.volume = masterVolume * edoVolume;
-        cyberTrackSource.volume = masterVolume * cyberVolume;
+        instance.edoTrackSource.volume = masterVolume * edoVolume;
+        instance.cyberTrackSource.volume = masterVolume * cyberVolume;
 
     } // Update
 
     public void Pause() {
-        edoTrackSource.Pause();
-        cyberTrackSource.Pause();
+        instance.edoTrackSource.Pause();
+        instance.cyberTrackSource.Pause();
 
     } // Pause
 
     public void UnPause() {
-        edoTrackSource.UnPause();
-        cyberTrackSource.UnPause();
+        instance.edoTrackSource.UnPause();
+        instance.cyberTrackSource.UnPause();
 
     } // UnPause
 
