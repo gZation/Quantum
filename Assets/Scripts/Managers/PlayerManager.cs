@@ -27,7 +27,7 @@ public class PlayerManager : NetworkBehaviour
     protected GameObject shadowPrefab;
 
     //Split screen
-    public int playerOnLeft;
+    public int playerOnLeft = 1;
 
 
     // Start is called before the first frame update

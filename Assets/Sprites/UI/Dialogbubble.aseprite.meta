@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a723f2a34c2e1674bb017f73c198c1de
+guid: 27ce1213d0436294294fde6049b288a1
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -95,7 +95,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638454139399478738
+  platformSettingsDirtyTick: 638454603592269416
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -119,18 +119,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: girlJUMP_Frame_0
+  - name: Dialogbubble
     originalName: 
-    pivot: {x: 0.5555556, y: 0.5263158}
+    pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 18
-      height: 19
-    spriteID: 99a146151e39e5d499bdedc8fae54709
+      width: 180
+      height: 20
+    spriteID: 1e278349531c0f94dbfb422b36dd58e2
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -139,163 +139,23 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: girlJUMP_Frame_1
-    originalName: 
-    pivot: {x: 0.5294118, y: 0.5}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 30
-      y: 4
-      width: 17
-      height: 18
-    spriteID: 5deaab16f6938524bac677dad340bbf4
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 30, y: 4}
-  - name: girlJUMP_Frame_2
-    originalName: 
-    pivot: {x: 0.5555556, y: 0.5263158}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 31
-      width: 18
-      height: 19
-    spriteID: 2b9e48a2ef9fcb74d96c989d0735f6da
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 31}
-  - name: girlJUMP_Frame_3
-    originalName: 
-    pivot: {x: 0.44444448, y: 0.5263158}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 58
-      width: 18
-      height: 19
-    spriteID: 2401821ca59da8f4591070f9bb70eaf2
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 58}
-  - name: girlJUMP_Frame_4
-    originalName: 
-    pivot: {x: 0.47058827, y: 0.5}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 30
-      y: 30
-      width: 17
-      height: 18
-    spriteID: 13de70d610f9c94468729a9fb331c799
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 30, y: 30}
-  - name: girlJUMP_Frame_5
-    originalName: 
-    pivot: {x: 0.44444448, y: 0.47368422}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 85
-      width: 18
-      height: 19
-    spriteID: a6381c7e685e1a543ac29860423f0cbb
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 85}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 1451327664
-    name: girlJUMP
+    guid: 1258803100
+    name: Dialogbubble
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: girlJUMP_Frame_0
+    - name: Dialogbubble
       frameIndex: 0
       cellRect:
         x: 0
         y: 0
-        width: 18
-        height: 19
-      spriteId: 99a146151e39e5d499bdedc8fae54709
-    - name: girlJUMP_Frame_1
-      frameIndex: 1
-      cellRect:
-        x: 1
-        y: 1
-        width: 17
-        height: 18
-      spriteId: 5deaab16f6938524bac677dad340bbf4
-    - name: girlJUMP_Frame_2
-      frameIndex: 2
-      cellRect:
-        x: 0
-        y: 0
-        width: 18
-        height: 19
-      spriteId: 2b9e48a2ef9fcb74d96c989d0735f6da
-    - name: girlJUMP_Frame_3
-      frameIndex: 3
-      cellRect:
-        x: 2
-        y: 0
-        width: 18
-        height: 19
-      spriteId: 2401821ca59da8f4591070f9bb70eaf2
-    - name: girlJUMP_Frame_4
-      frameIndex: 4
-      cellRect:
-        x: 2
-        y: 1
-        width: 17
-        height: 18
-      spriteId: 13de70d610f9c94468729a9fb331c799
-    - name: girlJUMP_Frame_5
-      frameIndex: 5
-      cellRect:
-        x: 2
-        y: 1
-        width: 18
-        height: 19
-      spriteId: a6381c7e685e1a543ac29860423f0cbb
+        width: 180
+        height: 20
+      spriteId: 1e278349531c0f94dbfb422b36dd58e2
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -349,4 +209,4 @@ ScriptedImporter:
     androidETC2FallbackOverride: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 20, y: 20}
+  canvasSize: {x: 180, y: 20}

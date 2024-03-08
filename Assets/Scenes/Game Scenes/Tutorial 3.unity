@@ -5150,7 +5150,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 649747222683364136, guid: d42848ee61d35d2459c2198cee9c74c2, type: 3}
       propertyPath: DialogText
-      value: Press Q to quantum lock and share momentum!
+      value: Press I to quantum lock and share momentum!
       objectReference: {fileID: 0}
     - target: {fileID: 1475211878432429469, guid: d42848ee61d35d2459c2198cee9c74c2, type: 3}
       propertyPath: m_Enabled
@@ -6471,6 +6471,10 @@ PrefabInstance:
     - target: {fileID: 3641129102115278543, guid: b7dceb57a59b0a843ba0928109e3ca6c, type: 3}
       propertyPath: m_Name
       value: PlayerManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8647718153628887406, guid: b7dceb57a59b0a843ba0928109e3ca6c, type: 3}
+      propertyPath: playerOnLeft
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
