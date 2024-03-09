@@ -24,8 +24,8 @@ public class PlayerManager : NetworkBehaviour
     public GameObject currPlayerObject;
     public GameObject otherPlayerObject;
 
-    [SerializeField]
-    protected GameObject shadowPrefab;
+
+    [SerializeField] protected GameObject shadowPrefab;
 
     //Split screen
     public int playerOnLeft = 1;
@@ -44,11 +44,22 @@ public class PlayerManager : NetworkBehaviour
 
     }
 
+    public void GameEnable()
+    {
+        //if (networkingOn)
+        //{
+        //    NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += SetUpLevel;
+        //} else
+        //{
+        //    SceneManager.sceneLoaded += SetUpLevel;
+        //}
+    }
+
 
     // Update is called once per frame
     void Update()
     {
-        if (player1 == null || player2 == null || shadow1 == null || shadow2 == null)
+        if (!GameManager.instance.isGameEnabled)
         {
             return;
         }

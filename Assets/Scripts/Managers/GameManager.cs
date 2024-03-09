@@ -7,9 +7,12 @@ using Unity.VisualScripting;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance { get; private set; }
+    
     public GameObject shadowPrefab;
     public GameObject copyGrid;
-    
+
+    // Should only be set to true when the main gameplay loop is running
+    [SerializeField] public bool isGameEnabled = true;
     [SerializeField] private bool networkingOn = false;
     public bool startFromScene = true;
 
@@ -27,10 +30,16 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
             return;
         }
-
+        Debug.Log("Game Manager instance created");
         instance = this;
     }
-    void OnEnable()
+
+    private void Start()
+    {
+        // If GameManager is manually set to gameEnabled, we need to initialize the Game Manager and Player Manager. 
+        if (isGameEnabled) GameEnable();
+    }
+    public void GameEnable()
     {
         //if (networkingOn)
         //{
@@ -39,17 +48,17 @@ public class GameManager : MonoBehaviour
         //{
         //    SceneManager.sceneLoaded += SetUpLevel;
         //}
+        isGameEnabled = true;
         if (!networkingOn) SceneManager.sceneLoaded += SetUpLevel;
         else NetworkManager.Singleton.SceneManager.OnLoadComplete += SetUpLevel;
+        PlayerManager.instance.GameEnable();
     }
-
 
 
     public void SetNetworkedScreen(bool networked)
     {
         networkingOn = networked;
-        SceneManager.sceneLoaded -= SetUpLevel;
-
+        
         if (networkingOn)
         {
             Screen.SetResolution(640, 480, false);
@@ -83,6 +92,7 @@ private void OnDisable()
 
     void Update()
     {
+
         // TODO: rework these for networking
         if (Input.GetKeyDown(KeyCode.Tab))
         {
@@ -119,11 +129,16 @@ private void OnDisable()
     }
 
     public void SetUpLevel(Scene scene, LoadSceneMode mode) {
+        Debug.Log("Splitscreen Level Set");
         SetUpLevel(); }
 
     public void SetUpLevel(ulong clientId, string sceneName, LoadSceneMode loadSceneMode)
     {
-        if (clientId == NetworkManager.Singleton.LocalClientId) SetUpLevel(); 
+        if (clientId == NetworkManager.Singleton.LocalClientId)
+        {
+            Debug.Log($"Networked level select on client {clientId} with level {sceneName}");
+            SetUpLevel();
+        }
     }
 
 
