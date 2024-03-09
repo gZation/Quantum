@@ -30,7 +30,6 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
             return;
         }
-        Debug.Log("Game Manager instance created");
         instance = this;
     }
 
@@ -70,19 +69,9 @@ public class GameManager : MonoBehaviour
 
     public void SetSceneLoad()
     {
-        //Debug.Log("Set Scene Loaded Called");
-        //SceneManager.sceneLoaded -= SetUpLevel;
-        //NetworkManager.Singleton.SceneManager.OnSynchronizeComplete -= SetUpLevel;
-
-        //if (!networkingOn) SceneManager.sceneLoaded += SetUpLevel;
         NetworkManager.Singleton.SceneManager.OnLoadComplete += SetUpLevel;
-        NetworkManager.Singleton.SceneManager.OnLoadComplete += onLoadCompleteAction;
     }
 
-    private void onLoadCompleteAction (ulong clientId, string sceneName, LoadSceneMode loadSceneMode)
-        {
-            Debug.Log($"On Load Complete Called for scene: {sceneName} wth client {clientId}");
-        }
 
 private void OnDisable()
     {
@@ -128,14 +117,12 @@ private void OnDisable()
     }
 
     public void SetUpLevel(Scene scene, LoadSceneMode mode) {
-        Debug.Log("Splitscreen Level Set");
         SetUpLevel(); }
 
     public void SetUpLevel(ulong clientId, string sceneName, LoadSceneMode loadSceneMode)
     {
         if (clientId == NetworkManager.Singleton.LocalClientId)
         {
-            Debug.Log($"Networked level select on client {clientId} with level {sceneName}");
             SetUpLevel();
         }
     }

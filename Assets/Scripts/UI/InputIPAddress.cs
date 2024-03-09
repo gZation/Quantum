@@ -23,7 +23,6 @@ public class InputIPAddress : MonoBehaviour
         string hostIP = ipInput.text == "" ? defaultIP : ipInput.text;
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData(hostIP, (ushort)7777);
         //Debug.Log($"Connecting to host with IP: {hostIP}");
-        //NetworkManager.Singleton.StartClient();
         PlayerManager.instance.isHost = false;
         SceneManager.LoadScene("WaitingForPlayers");
     }

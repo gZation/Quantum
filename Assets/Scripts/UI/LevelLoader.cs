@@ -57,7 +57,6 @@ public class LevelLoader : NetworkBehaviour
         // Use NetworkSceneManager if networked. Otherwise, revert to normal SceneManager
         if (GameManager.instance.IsNetworked())
         {
-            Debug.Log("Change Scene Networked");
             NetworkManager.Singleton.SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
         }
         else

@@ -10,8 +10,6 @@ public class PlayerConnectManager : NetworkBehaviour
     public float clientRetryDelay = (float) 0.5;
     void Start()
     {
-        
-        Debug.Log(PlayerManager.instance.isHost);
         if (!PlayerManager.instance.isHost)
         {
             Debug.Log("Client starting");
@@ -30,7 +28,6 @@ public class PlayerConnectManager : NetworkBehaviour
 
     private void LoadNextLevel(ulong clientId)
     {
-        Debug.Log($"Load next Level for client {clientId}");
         NetworkManager.Singleton.OnClientConnectedCallback -= LoadNextLevel;
         GameManager.instance.GameEnable();
         NetworkManager.Singleton.SceneManager.LoadScene("Tutorial 1", LoadSceneMode.Single);

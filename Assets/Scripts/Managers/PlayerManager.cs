@@ -121,9 +121,6 @@ public class PlayerManager : NetworkBehaviour
     private void AssignOwnership()
     {
         otherPlayerObject.GetComponent<NetworkObject>().ChangeOwnership(1);
-        //Debug.Log("Owndership assigned");
-        //Debug.Log(otherPlayerObject.GetComponent<NetworkObject>().OwnerClientId);
-        //this.GetComponent<NetworkObject>().ChangeOwnership(clientId);
     }
 
     private void OnDestroy()

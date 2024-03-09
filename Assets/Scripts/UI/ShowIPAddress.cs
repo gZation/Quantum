@@ -51,7 +51,6 @@ public class ShowIPAddress : MonoBehaviour
     private void ConnectToServer(string hostIP)
     {
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData(hostIP, (ushort)7777);
-        //Debug.Log($"Setting up host with IP: {hostIP}");
         //NetworkManager.Singleton.StartHost();
         //NetworkManager.Singleton.SceneManager.LoadScene("Tutorial 1", LoadSceneMode.Single);
         PlayerManager.instance.isHost = true;
