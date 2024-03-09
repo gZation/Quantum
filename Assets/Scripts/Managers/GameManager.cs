@@ -51,7 +51,6 @@ public class GameManager : MonoBehaviour
         isGameEnabled = true;
         if (!networkingOn) SceneManager.sceneLoaded += SetUpLevel;
         else NetworkManager.Singleton.SceneManager.OnLoadComplete += SetUpLevel;
-        PlayerManager.instance.GameEnable();
     }
 
 

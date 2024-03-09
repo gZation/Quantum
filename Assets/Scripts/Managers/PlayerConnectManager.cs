@@ -10,6 +10,7 @@ public class PlayerConnectManager : NetworkBehaviour
     public float clientRetryDelay = (float) 0.5;
     void Start()
     {
+        
         Debug.Log(PlayerManager.instance.isHost);
         if (!PlayerManager.instance.isHost)
         {
@@ -22,12 +23,16 @@ public class PlayerConnectManager : NetworkBehaviour
             Debug.Log("Host starting");
             NetworkManager.Singleton.StartHost();
             GameManager.instance.SetSceneLoad();
-            NetworkManager.Singleton.OnClientConnectedCallback += LoadNextLevel;
         }
+        //This has to occur after StartHost() and StartClient()
+        NetworkManager.Singleton.OnClientConnectedCallback += LoadNextLevel;
     }
 
     private void LoadNextLevel(ulong clientId)
     {
+        Debug.Log($"Load next Level for client {clientId}");
+        NetworkManager.Singleton.OnClientConnectedCallback -= LoadNextLevel;
+        GameManager.instance.GameEnable();
         NetworkManager.Singleton.SceneManager.LoadScene("Tutorial 1", LoadSceneMode.Single);
     }
 }
