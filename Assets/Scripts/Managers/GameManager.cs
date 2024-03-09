@@ -105,6 +105,15 @@ private void OnDisable()
             return;
         };
 
+        if (networkingOn)
+        {
+            Screen.SetResolution(640, 480, false);
+        }
+        else
+        {
+            Screen.SetResolution(1280, 480, false);
+        }
+
         CopyAndSendWorldInfo();
         SetCameras();
     }
