@@ -5,6 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/Chase/NetQLock.unity
+    guid: 4a6a293715487d5449582a7d1ba3c395
   - enabled: 1
     path: Assets/Scenes/Game Scenes/StartMenu.unity
     guid: 23f34ec9ba0bfc941afc63ab3af593a8
@@ -14,6 +17,21 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game Scenes/CharacterSelection.unity
     guid: 6c2bedef335198d4dbf67ea0d330bb00
+  - enabled: 1
+    path: Assets/Scenes/Game Scenes/HostOrClient.unity
+    guid: 52ea5047daaf4a34ba037d4c82e3d13a
+  - enabled: 1
+    path: Assets/Scenes/Game Scenes/IP Input.unity
+    guid: 770e66712acc0d14b84b9dbe8a5f7f1c
+  - enabled: 0
+    path: Assets/Scenes/Game Scenes/CharacterSelect.unity
+    guid: 63bcff94d51d2b34c90e86901b94eeb6
+  - enabled: 1
+    path: Assets/Scenes/Game Scenes/Show Public IP.unity
+    guid: 94635323af56e6740a256e4c24248700
+  - enabled: 1
+    path: Assets/Scenes/Game Scenes/WaitingForPlayers.unity
+    guid: b12c13cf1badf4f4482cdeb527290b99
   - enabled: 1
     path: Assets/Scenes/Game Scenes/Tutorial 1.unity
     guid: ce44e7b04bc512f4b9c77b20b00a02ac

@@ -11,6 +11,7 @@ public enum CharacterSelection {
 
 } // CharacterSelection
 
+
 public class SelectScreenManager : MonoBehaviour {
 
     private RectTransform edoMaskRect, cyberMaskRect;
@@ -134,33 +135,53 @@ public class SelectScreenManager : MonoBehaviour {
 
     } // Update
 
+
+
     public void GoToGame() {
+        if (selection == CharacterSelection.NEUTRAL) return;
 
-        switch (selection) {
-
-            case CharacterSelection.BOY:
-                Debug.Log("Go to game (P1 is BOY)");
-                if (!GameManager.instance.IsNetworked())
-                {
+        //Handle character selection if not networked
+        if (!GameManager.instance.IsNetworked())
+        {
+            switch (selection)
+            {
+                case CharacterSelection.BOY:
+                    Debug.Log("Go to game (P1 is BOY)");
                     PlayerManager.instance.playerOnLeft = 1;
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-                }
-                break;
+                    SceneManager.LoadScene("Tutorial 1");
+                    break;
 
-            case CharacterSelection.GIRL:
-                Debug.Log("Go to game (P2 is GIRL)");
-                if (!GameManager.instance.IsNetworked())
-                {
+                case CharacterSelection.GIRL:
+                    Debug.Log("Go to game (P2 is GIRL)");
                     PlayerManager.instance.playerOnLeft = 2;
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-                }
-                break;
+                    SceneManager.LoadScene("Tutorial 1");
+                    break;
 
-            default:
-                break;
+                default:
+                    break;
+            }
+            GameManager.instance.GameEnable();
+            SceneManager.LoadScene("Tutorial 1");
+        }
+        else
+        // Handle character selection if indeed networked
+        {
+            switch (selection)
+            {
+                case CharacterSelection.BOY:
+                    PlayerManager.instance.currPlayer = 1;
+                    break;
 
-        } // switch
+                case CharacterSelection.GIRL:
+                    PlayerManager.instance.currPlayer = 2;
+                    break;
 
+                default:
+                    break;
+            }
+            SceneManager.LoadScene("Show Public IP");
+        }
+        
     } // StartGame
 
 } // BackgroundManager

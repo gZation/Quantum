@@ -7,9 +7,12 @@ using Unity.VisualScripting;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance { get; private set; }
+    
     public GameObject shadowPrefab;
     public GameObject copyGrid;
-    
+
+    // Should only be set to true when the main gameplay loop is running
+    [SerializeField] public bool isGameEnabled = true;
     [SerializeField] private bool networkingOn = false;
     public bool startFromScene = true;
 
@@ -27,10 +30,15 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
             return;
         }
-
         instance = this;
     }
-    void OnEnable()
+
+    private void Start()
+    {
+        // If GameManager is manually set to gameEnabled, we need to initialize the Game Manager and Player Manager. 
+        if (isGameEnabled) GameEnable();
+    }
+    public void GameEnable()
     {
         //if (networkingOn)
         //{
@@ -39,16 +47,40 @@ public class GameManager : MonoBehaviour
         //{
         //    SceneManager.sceneLoaded += SetUpLevel;
         //}
-        SceneManager.sceneLoaded += SetUpLevel;
+        isGameEnabled = true;
+        if (!networkingOn) SceneManager.sceneLoaded += SetUpLevel;
+        else NetworkManager.Singleton.SceneManager.OnLoadComplete += SetUpLevel;
     }
 
-    private void OnDisable()
+
+    public void SetNetworkedScreen(bool networked)
+    {
+        networkingOn = networked;
+        
+        if (networkingOn)
+        {
+            Screen.SetResolution(640, 480, false);
+        }
+        else
+        {
+            Screen.SetResolution(1280, 480, false);
+        }
+    }
+
+    public void SetSceneLoad()
+    {
+        NetworkManager.Singleton.SceneManager.OnLoadComplete += SetUpLevel;
+    }
+
+
+private void OnDisable()
     {
         SceneManager.sceneLoaded -= SetUpLevel;
     }
 
     void Update()
     {
+
         // TODO: rework these for networking
         if (Input.GetKeyDown(KeyCode.Tab))
         {
@@ -60,11 +92,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
-    public void SetUpLevel(Scene scene, LoadSceneMode mode)
+    public void SetUpLevel()
     {
-        PlayerManager.instance.SetPlayers();
-        PlayerManager.instance.MakeShadows();
+        // Don't set up the level if PlayerManager doesn't exist
+        if (PlayerManager.instance == null) return;
+
+        //Don't set up the level if the players don't exist
+        if (!PlayerManager.instance.SetPlayersAndShadows())
+        {
+            return;
+        };
 
         if (networkingOn)
         {
@@ -79,10 +116,17 @@ public class GameManager : MonoBehaviour
         SetCameras();
     }
 
-    public void SetUpLevel(string sceneName, LoadSceneMode loadSceneMode, List<ulong> clientsCompleted, List<ulong> clientsTimedOut)
+    public void SetUpLevel(Scene scene, LoadSceneMode mode) {
+        SetUpLevel(); }
+
+    public void SetUpLevel(ulong clientId, string sceneName, LoadSceneMode loadSceneMode)
     {
-        SetUpLevel(SceneManager.GetSceneByName(sceneName), loadSceneMode);
+        if (clientId == NetworkManager.Singleton.LocalClientId)
+        {
+            SetUpLevel();
+        }
     }
+
 
     public void CopyAndSendWorldInfo()
     {
@@ -258,12 +302,6 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
-    public void SetNetworked(bool networked)
-    {
-        networkingOn = networked;
-    }
-
     public bool IsNetworked() {
         return networkingOn;
     }

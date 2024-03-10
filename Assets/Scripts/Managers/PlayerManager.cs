@@ -11,20 +11,21 @@ public class PlayerManager : NetworkBehaviour
     private GameObject player2;
     private GameObject shadow1;
     private GameObject shadow2;
+    public bool isHost;
 
     // Currently the curr player object needs to be set for networking. In the future, we might need to change this to a int/string since the player might not be instantiated yet in the menu screen.
     // Right now, this object is set by the NetworkManagerUI
     // Change would require update to SetNetworkedPlayers()
+
+    // currPlayer = 1 if player1, 2 if player2
+    public NetworkVariable<int> hostPlayer = new NetworkVariable<int>();
     public int currPlayer;
+
     public GameObject currPlayerObject;
     public GameObject otherPlayerObject;
 
-    private NetworkVariable<Vector2> hostSentMomentum = new NetworkVariable<Vector2>(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
-    private NetworkVariable<Vector2> clientSentMomentum = new NetworkVariable<Vector2>(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
-
-    [SerializeField]
-    protected GameObject shadowPrefab;
+    [SerializeField] protected GameObject shadowPrefab;
 
     //Split screen
     public int playerOnLeft = 1;
@@ -40,17 +41,36 @@ public class PlayerManager : NetworkBehaviour
             return;
         }
         instance = this;
+
     }
+
+    public void GameEnable()
+    {
+        //if (networkingOn)
+        //{
+        //    NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += SetUpLevel;
+        //} else
+        //{
+        //    SceneManager.sceneLoaded += SetUpLevel;
+        //}
+    }
+
 
     // Update is called once per frame
     void Update()
     {
+        if (!GameManager.instance.isGameEnabled)
+        {
+            return;
+        }
         CopyAndSendPlayerInfo();
     }
 
-    public void SetPlayers()
+    //Set up the players. If the players don't exist yet, then return false. Otherwise, return true
+    public bool SetPlayersAndShadows()
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        if (players.Length == 0) return false;
 
         foreach (GameObject p in players)
         {
@@ -64,43 +84,49 @@ public class PlayerManager : NetworkBehaviour
                 player2 = p;
             }
         }
-
-        if (GameManager.instance.IsNetworked()) { setNetworkedPlayers(); }
+        MakeShadows();
+        if (GameManager.instance.IsNetworked()) { return setNetworkedPlayers(); }
+        else return false;
     }
 
-    private void setNetworkedPlayers()
+    private bool setNetworkedPlayers()
     {
-        if (currPlayerObject == null)
+        if (!IsHost)
         {
-            return;
+            if (hostPlayer.Value == 0) return false;
+            currPlayer = hostPlayer.Value == 1 ? 2 : 1;
         }
+        else
+        {
+            hostPlayer.Value = currPlayer;
+        }
+        currPlayerObject = (currPlayer == 1)  ? player1 : player2;
+
 
         otherPlayerObject = currPlayerObject == player1 ? player2 : player1;
         PlayerSettings playerSetting = currPlayerObject.GetComponent<PlayerSettings>();
         playerSetting.isActivePlayer = true;
-        playerSetting.SetPlayerNetworked();
 
         // If the current user is the host, setup host specific stuff like variables
-        if (NetworkManager.Singleton.IsServer)
+        if (IsHost)
         {
-            NetworkManager.Singleton.OnClientConnectedCallback += AssignOwnership;
+            AssignOwnership();
         } else
         // If the current user is the client, setup client specific stuff like variables
         {
         }
+        return true;
     }
 
-    private void AssignOwnership(ulong clientId)
+    private void AssignOwnership()
     {
-        otherPlayerObject.GetComponent<NetworkObject>().ChangeOwnership(clientId);
-        this.GetComponent<NetworkObject>().ChangeOwnership(clientId);
+        otherPlayerObject.GetComponent<NetworkObject>().ChangeOwnership(1);
     }
 
     private void OnDestroy()
     {
         if (NetworkManager.Singleton && NetworkManager.Singleton.IsServer)
         {
-            NetworkManager.Singleton.OnClientConnectedCallback -= AssignOwnership;
         }
     }
 
@@ -122,13 +148,11 @@ public class PlayerManager : NetworkBehaviour
         {
             if (listener == player1)
             {
-                /*            print("Toggling lock to player 2");*/
                 MovementArrows playerMovement = player2.GetComponent<MovementArrows>();
                 playerMovement.sharingMomentum = !playerMovement.sharingMomentum;
             }
             else
             {
-                /*            print("Toggling lock to player 1");*/
                 MovementWASD playerMovement = player1.GetComponent<MovementWASD>();
                 playerMovement.sharingMomentum = !playerMovement.sharingMomentum;
             }
@@ -167,7 +191,7 @@ public class PlayerManager : NetworkBehaviour
     [ClientRpc]
     public void UpdateMomentumClientRpc(Vector2 momentum) { if (!NetworkManager.Singleton.IsHost) updateMomentum(momentum); }
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     public void UpdateMomentumServerRpc(Vector2 momentum) { updateMomentum(momentum); }
 
     public void updateMomentum(Vector2 momentum)
@@ -180,11 +204,6 @@ public class PlayerManager : NetworkBehaviour
 
     public void CopyAndSendPlayerInfo()
     {
-        if (player1 == null || player2 == null || shadow1 == null || shadow2 == null)
-        {
-            return;
-        }
-
         // rn the position is done by just making the shadow under the prefab
         if (player1 != null)
         {
