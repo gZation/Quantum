@@ -24,11 +24,11 @@ public class InputIPAddress : MonoBehaviour
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData(hostIP, (ushort)7777);
         //Debug.Log($"Connecting to host with IP: {hostIP}");
         PlayerManager.instance.isHost = false;
-        SceneManager.LoadScene("WaitingForPlayers");
+        LevelLoader.instance.LoadLevelByName("WaitingForPlayers", false);
     }
 
     public void GoBack()
     {
-        SceneManager.LoadScene("HostOrClient");
+        LevelLoader.instance.LoadLevelByName("HostOrClient", false);
     }
 }

@@ -178,7 +178,7 @@ public class SelectScreenManager : MonoBehaviour {
                 default:
                     break;
             }
-            LevelLoader.instance.LoadLevelByName("Show Public IP");
+            LevelLoader.instance.LoadLevelByName("Show Public IP", false);
             //SceneManager.LoadScene("Show Public IP");
         }
         

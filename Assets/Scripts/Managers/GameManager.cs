@@ -40,13 +40,6 @@ public class GameManager : MonoBehaviour
     }
     public void GameEnable()
     {
-        //if (networkingOn)
-        //{
-        //    NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += SetUpLevel;
-        //} else
-        //{
-        //    SceneManager.sceneLoaded += SetUpLevel;
-        //}
         isGameEnabled = true;
         if (!networkingOn) SceneManager.sceneLoaded += SetUpLevel;
         else NetworkManager.Singleton.SceneManager.OnLoadComplete += SetUpLevel;
@@ -94,6 +87,7 @@ private void OnDisable()
 
     public void SetUpLevel()
     {
+        print("setting up level");
         // Don't set up the level if PlayerManager doesn't exist
         if (PlayerManager.instance == null) return;
 
@@ -117,7 +111,8 @@ private void OnDisable()
     }
 
     public void SetUpLevel(Scene scene, LoadSceneMode mode) {
-        SetUpLevel(); }
+        SetUpLevel(); 
+    }
 
     public void SetUpLevel(ulong clientId, string sceneName, LoadSceneMode loadSceneMode)
     {
@@ -241,6 +236,7 @@ private void OnDisable()
 
     private void SetCameras()
     {
+        print("setting up cameras");
         // find the cameras
         GameObject[] cameras = GameObject.FindGameObjectsWithTag("MainCamera");
 
