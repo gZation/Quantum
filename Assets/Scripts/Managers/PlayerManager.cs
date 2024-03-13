@@ -86,7 +86,7 @@ public class PlayerManager : NetworkBehaviour
         }
         MakeShadows();
         if (GameManager.instance.IsNetworked()) { return setNetworkedPlayers(); }
-        else return false;
+        else return true;
     }
 
     private bool setNetworkedPlayers()
