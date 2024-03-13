@@ -10,15 +10,17 @@ public class LevelLoader : NetworkBehaviour
 
     public float transitionTime = 1f;
 
+    public static LevelLoader instance;
+
 
     void Start()
     {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        instance = this;
     }
 
     public void ReloadLevel()
@@ -55,7 +57,7 @@ public class LevelLoader : NetworkBehaviour
         string sceneName = (typeof(T) == typeof(string)) ? (string)(object)levelIndex : SceneManager.GetSceneByBuildIndex((int)(object)(levelIndex)).name;
 
         // Use NetworkSceneManager if networked. Otherwise, revert to normal SceneManager
-        if (GameManager.instance.IsNetworked())
+        if (GameManager.instance != null && GameManager.instance.IsNetworked())
         {
             NetworkManager.Singleton.SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
         }
