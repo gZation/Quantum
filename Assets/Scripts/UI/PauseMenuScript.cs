@@ -50,6 +50,7 @@ public class PauseMenuScript : MonoBehaviour
     public void ToMainMenu()
     {
         LevelLoader.instance.LoadLevelByName("StartMenu");
+        //SceneManager.LoadScene("StartMenu");
     }
 
     public void Quit()

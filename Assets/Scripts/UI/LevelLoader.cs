@@ -50,8 +50,8 @@ public class LevelLoader : NetworkBehaviour
         // Play animation
         transition.SetTrigger("Start");
         // Wait
+        Time.timeScale = 1f;
         yield return new WaitForSeconds(transitionTime);
-
         // if T is string, convert levelIndex from T type to string
         // sometimes will return build index -1 if the scene hasn't been loaded before so :<
         string sceneName = (typeof(T) == typeof(string)) ? (string)(object)levelIndex : SceneManager.GetSceneByBuildIndex((int)(object)(levelIndex)).name;
