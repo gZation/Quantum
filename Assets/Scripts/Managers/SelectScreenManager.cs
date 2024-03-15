@@ -146,12 +146,12 @@ public class SelectScreenManager : MonoBehaviour {
             switch (selection)
             {
                 case CharacterSelection.BOY:
-                    Debug.Log("Go to game (P1 is BOY)");
+/*                    Debug.Log("Go to game (P1 is BOY)");*/
                     PlayerManager.instance.playerOnLeft = 1;
                     break;
 
                 case CharacterSelection.GIRL:
-                    Debug.Log("Go to game (P2 is GIRL)");
+/*                    Debug.Log("Go to game (P2 is GIRL)");*/
                     PlayerManager.instance.playerOnLeft = 2;
                     break;
 
