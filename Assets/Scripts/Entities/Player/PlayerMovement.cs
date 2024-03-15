@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [Space]
     [Header("Stats")]
     public float speed = 8;
+    public float maxSpeed = 50;
     public float jumpForce = 15;
     public float slideSpeed = 5;
     public float wallJumpLerp = 10;
@@ -153,12 +154,22 @@ public class PlayerMovement : MonoBehaviour
             side = -1;
             anim.Flip(side);
         }*/
+
+        // check max speed
+        if (rb.velocity.magnitude > maxSpeed)
+        {
+            rb.velocity = rb.velocity.normalized * maxSpeed;
+        }
     }
 
     protected void FixedUpdate()
     {
-
         AddMomentum();
+
+        if (rb.velocity.magnitude > maxSpeed * 4)
+        {
+            rb.velocity = rb.velocity.normalized * maxSpeed;
+        }
     }
 
     protected virtual Vector2 GetMovementDirection()
@@ -213,7 +224,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (dir.y > 0)
         {
-            dashExtra.y = dashExtra.y / 1.9f;
+            dashExtra.y = dashExtra.y / 1.8f;
         } else
         {
             dashExtra *= 1.4f;
@@ -230,7 +241,7 @@ public class PlayerMovement : MonoBehaviour
 
         rb.velocity += dashExtra;
 
-        dashExtra.x *= 4f;
+        dashExtra.x *= 3.2f;
         PlayerManager.instance.SendMomentum(dashExtra, this.gameObject);
 
         StartCoroutine(DashWait());
@@ -247,7 +258,7 @@ public class PlayerMovement : MonoBehaviour
         wallJumped = true;
         isDashing = true;
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.2f);
 
         //dashParticle.Stop();
         rb.gravityScale = 3;
@@ -402,6 +413,20 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity += momentum;
         }
 
+        if (momentumToAdd.Count > 0)
+        {
+            StartCoroutine(QuantumWait());
+        }
+
         momentumToAdd = new List<Vector2>();
+    }
+
+    IEnumerator QuantumWait()
+    {
+        rb.gravityScale = 0;
+        wallJumped = true;
+        yield return new WaitForSeconds(0.5f);
+        rb.gravityScale = 3;
+        wallJumped = false;
     }
 }
