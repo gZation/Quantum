@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 using System;
+using static PlayerSettings;
 
 public class PlayerManager : NetworkBehaviour
 {
     public static PlayerManager instance { get; private set; }
-    private GameObject player1;
-    private GameObject player2;
+    [SerializeField] private GameObject player1;
+    [SerializeField] private GameObject player2;
     private GameObject shadow1;
     private GameObject shadow2;
     public bool isHost;
@@ -27,6 +28,20 @@ public class PlayerManager : NetworkBehaviour
 
     [SerializeField] protected GameObject shadowPrefab;
 
+    public delegate void OnVariableChangeDelegate(bool newVal);
+    public event OnVariableChangeDelegate OnVariableQLockChange;
+    private bool m_qlocked = false;
+    public bool qlocked
+    {
+        get { return m_qlocked; }
+        set
+        {
+            if (m_qlocked == value) return;
+            m_qlocked = value;
+            if (OnVariableQLockChange != null) OnVariableQLockChange(m_qlocked);
+        }
+    }
+
     //Split screen
     public int playerOnLeft = 1;
 
@@ -41,7 +56,6 @@ public class PlayerManager : NetworkBehaviour
             return;
         }
         instance = this;
-
     }
 
     public void GameEnable()
@@ -142,38 +156,40 @@ public class PlayerManager : NetworkBehaviour
         return player1 != null && player2 != null;
     }
 
-    public void QuantumLockPlayer(GameObject listener)
+/*    public void QuantumLockPlayer(GameObject listener)
     {
         if (!GameManager.instance.IsNetworked())
         {
             if (listener == player1)
             {
                 MovementArrows playerMovement = player2.GetComponent<MovementArrows>();
-                playerMovement.sharingMomentum = !playerMovement.sharingMomentum;
+                playerMovement.QuantumLock();
             }
             else
             {
                 MovementWASD playerMovement = player1.GetComponent<MovementWASD>();
-                playerMovement.sharingMomentum = !playerMovement.sharingMomentum;
+                playerMovement.QuantumLock();
             }
         } else
         {
 
         }
 
-    }
+    }*/
 
     public void SendMomentum(Vector2 momentum, GameObject sender)
     {
         if (!GameManager.instance.IsNetworked())
         {
-            if (sender == player1 && player2.GetComponent<PlayerSettings>().qlocked)
-            {
-                player2.GetComponent<MovementArrows>().QuantumLockAddMomentum(momentum);
-            }
-            else if (sender == player2 && player1.GetComponent<PlayerSettings>().qlocked)
-            {
-                player1.gameObject.GetComponent<MovementWASD>().QuantumLockAddMomentum(momentum);
+            if (instance.qlocked) {
+                if (sender == player1)
+                {
+                    player2.GetComponent<PlayerMovement>().QuantumLockAddMomentum(momentum);
+                }
+                else if (sender == player2 )
+                {
+                    player1.gameObject.GetComponent<PlayerMovement>().QuantumLockAddMomentum(momentum);
+                }
             }
         } 
         else
@@ -196,7 +212,7 @@ public class PlayerManager : NetworkBehaviour
 
     public void updateMomentum(Vector2 momentum)
     {
-        if (currPlayerObject.GetComponent<PlayerSettings>().qlocked)
+        if (instance.qlocked)
         {
             currPlayerObject.GetComponent<PlayerMovement>().QuantumLockAddMomentum(momentum);
         }
