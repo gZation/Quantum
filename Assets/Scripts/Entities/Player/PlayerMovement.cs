@@ -32,7 +32,6 @@ public class PlayerMovement : MonoBehaviour
     [Space]
     [Header("Quantum Locking")]
     private List<Vector2> momentumToAdd;
-    public bool sharingMomentum;
 
     [Space]
 
@@ -65,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
         if (IsQLock())
         {
             QuantumLock();
+            // PlayerManager.instance.QuantumLockPlayer(this.gameObject);
         }
 
         Vector2 dir = GetMovementDirection();
@@ -342,12 +342,12 @@ public class PlayerMovement : MonoBehaviour
         canMove = true;
     }
 
-    IEnumerable DisableLocking(float time)
+/*    IEnumerable DisableLocking(float time)
     {
         sharingMomentum = false;
         yield return new WaitForSeconds(time);
         sharingMomentum = true;
-    }
+    }*/
 
     void RigidbodyDrag(float x)
     {
@@ -375,10 +375,9 @@ public class PlayerMovement : MonoBehaviour
         return particleSide;
     }
 
-    protected void QuantumLock()
+    public void QuantumLock()
     {
-        settings.qlocked = !settings.qlocked;
-        PlayerManager.instance.QuantumLockPlayer(this.gameObject);
+        PlayerManager.instance.qlocked = !PlayerManager.instance.qlocked;
     }
 
     public void QuantumLockAddMomentum(Vector2 momentum)
@@ -390,7 +389,7 @@ public class PlayerMovement : MonoBehaviour
     {
         momentumToAdd.Add(momentum);
 
-        if (sharingMomentum)
+        if (PlayerManager.instance.qlocked)
         {
             PlayerManager.instance.SendMomentum(momentum, this.gameObject);
         }

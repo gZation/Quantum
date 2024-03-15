@@ -36,7 +36,14 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         // If GameManager is manually set to gameEnabled, we need to initialize the Game Manager and Player Manager. 
+        if (startFromScene)
+        {
+            GameEnable();
+            SetUpLevel();
+        }
+
         if (isGameEnabled) GameEnable();
+
     }
     public void GameEnable()
     {
@@ -87,7 +94,6 @@ private void OnDisable()
 
     public void SetUpLevel()
     {
-        print("setting up level");
         // Don't set up the level if PlayerManager doesn't exist
         if (PlayerManager.instance == null) return;
 
@@ -236,7 +242,6 @@ private void OnDisable()
 
     private void SetCameras()
     {
-        print("setting up cameras");
         // find the cameras
         GameObject[] cameras = GameObject.FindGameObjectsWithTag("MainCamera");
 
