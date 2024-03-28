@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Stats")]
     public float speed = 8;
     public float maxSpeed = 50;
-    public float jumpForce = 15;
+    public float jumpForce = 12;
     public float slideSpeed = 5;
     public float wallJumpLerp = 10;
     public float dashSpeed = 25;
@@ -57,6 +57,8 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<PlayerAnimation>();
         momentumToAdd = new List<Vector2>();
+
+        slideParticle.Play();
     }
 
     // Update is called once per frame
@@ -144,7 +146,7 @@ public class PlayerMovement : MonoBehaviour
         if (wallGrab || wallSlide || !canMove)
             return;
 
-/*        if (x > 0)
+        if (x > 0)
         {
             side = 1;
             anim.Flip(side);
@@ -153,7 +155,7 @@ public class PlayerMovement : MonoBehaviour
         {
             side = -1;
             anim.Flip(side);
-        }*/
+        }
 
         // check max speed
         if (rb.velocity.magnitude > maxSpeed)
@@ -204,7 +206,7 @@ public class PlayerMovement : MonoBehaviour
         hasDashed = false;
         isDashing = false;
 
-        //side = anim.sr.flipX ? -1 : 1;
+        side = anim.sr.flipX ? -1 : 1;
 
         jumpParticle.Play();
     }
@@ -276,11 +278,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void WallJump()
     {
-/*        if ((side == 1 && coll.onRightWall) || side == -1 && !coll.onRightWall)
+        if ((side == 1 && coll.onRightWall) || side == -1 && !coll.onRightWall)
         {
             side *= -1;
             anim.Flip(side);
-        }*/
+        }
 
         StopCoroutine(DisableMovement(0));
         StartCoroutine(DisableMovement(.1f));
@@ -294,8 +296,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void WallSlide()
     {
-/*        if (coll.wallSide != side)
-            anim.Flip(side * -1);*/
+        if (coll.wallSide != side)
+            anim.Flip(side * -1);
 
         if (!canMove)
             return;

@@ -51,7 +51,7 @@ public class PlayerAnimation : MonoBehaviour
     public void Flip(int side)
     {
 
-        if (move.wallGrab || move.wallSlide)
+        if (move!= null && move.wallSlide)
         {
             if (side == -1 && sr.flipX)
                 return;
