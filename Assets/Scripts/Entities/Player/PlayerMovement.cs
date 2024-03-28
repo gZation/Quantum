@@ -139,7 +139,7 @@ public class PlayerMovement : MonoBehaviour
             groundTouch = false;
         }
 
-/*        WallParticle(y);*/
+        WallParticle(y);
 
         if (wallGrab || wallSlide || !canMove)
             return;
@@ -206,7 +206,7 @@ public class PlayerMovement : MonoBehaviour
 
         //side = anim.sr.flipX ? -1 : 1;
 
-        // jumpParticle.Play();
+        jumpParticle.Play();
     }
 
     private void Dash(float x, float y)
@@ -330,8 +330,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump(Vector2 dir, bool wall)
     {
-        //slideParticle.transform.parent.localScale = new Vector3(ParticleSide(), 1, 1);
-        //ParticleSystem particle = wall ? wallJumpParticle : jumpParticle;
+        slideParticle.transform.parent.localScale = new Vector3(ParticleSide(), 1, 1);
+        ParticleSystem particle = wall ? wallJumpParticle : jumpParticle;
 
         rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.velocity += dir * jumpForce;
@@ -343,7 +343,7 @@ public class PlayerMovement : MonoBehaviour
             DisableLocking(.2f);
         }*/
 
-        //particle.Play();
+        particle.Play();
     }
 
     IEnumerator DisableMovement(float time)
@@ -365,11 +365,11 @@ public class PlayerMovement : MonoBehaviour
         rb.drag = x;
     }
 
- /*   void WallParticle(float vertical)
+    void WallParticle(float vertical)
     {
         var main = slideParticle.main;
 
-        if (wallSlide || (wallGrab && vertical < 0))
+        if (wallSlide)
         {
             slideParticle.transform.parent.localScale = new Vector3(ParticleSide(), 1, 1);
             main.startColor = Color.white;
@@ -378,7 +378,7 @@ public class PlayerMovement : MonoBehaviour
         {
             main.startColor = Color.clear;
         }
-    }*/
+    }
 
     int ParticleSide()
     {
