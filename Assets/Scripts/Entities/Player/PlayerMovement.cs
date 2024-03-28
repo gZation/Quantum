@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Stats")]
     public float speed = 8;
     public float maxSpeed = 50;
-    public float jumpForce = 15;
+    public float jumpForce = 12;
     public float slideSpeed = 5;
     public float wallJumpLerp = 10;
     public float dashSpeed = 25;
@@ -47,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
     public ParticleSystem jumpParticle;
     public ParticleSystem wallJumpParticle;
     public ParticleSystem slideParticle;
+    ParticleSystem.MinMaxGradient slideColor;
 
 
     // Start is called before the first frame update
@@ -57,6 +58,9 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<PlayerAnimation>();
         momentumToAdd = new List<Vector2>();
+
+        slideParticle.Play();
+        slideColor = slideParticle.main.startColor;
     }
 
     // Update is called once per frame
@@ -139,12 +143,12 @@ public class PlayerMovement : MonoBehaviour
             groundTouch = false;
         }
 
-/*        WallParticle(y);*/
+        WallParticle(y);
 
         if (wallGrab || wallSlide || !canMove)
             return;
 
-/*        if (x > 0)
+        if (x > 0)
         {
             side = 1;
             anim.Flip(side);
@@ -153,7 +157,7 @@ public class PlayerMovement : MonoBehaviour
         {
             side = -1;
             anim.Flip(side);
-        }*/
+        }
 
         // check max speed
         if (rb.velocity.magnitude > maxSpeed)
@@ -204,9 +208,9 @@ public class PlayerMovement : MonoBehaviour
         hasDashed = false;
         isDashing = false;
 
-        //side = anim.sr.flipX ? -1 : 1;
+        side = anim.sr.flipX ? -1 : 1;
 
-        // jumpParticle.Play();
+        jumpParticle.Play();
     }
 
     private void Dash(float x, float y)
@@ -276,11 +280,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void WallJump()
     {
-/*        if ((side == 1 && coll.onRightWall) || side == -1 && !coll.onRightWall)
+        if ((side == 1 && coll.onRightWall) || side == -1 && !coll.onRightWall)
         {
             side *= -1;
             anim.Flip(side);
-        }*/
+        }
 
         StopCoroutine(DisableMovement(0));
         StartCoroutine(DisableMovement(.1f));
@@ -294,8 +298,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void WallSlide()
     {
-/*        if (coll.wallSide != side)
-            anim.Flip(side * -1);*/
+        if (coll.wallSide != side)
+            anim.Flip(side * -1);
 
         if (!canMove)
             return;
@@ -330,8 +334,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump(Vector2 dir, bool wall)
     {
-        //slideParticle.transform.parent.localScale = new Vector3(ParticleSide(), 1, 1);
-        //ParticleSystem particle = wall ? wallJumpParticle : jumpParticle;
+        slideParticle.transform.parent.localScale = new Vector3(ParticleSide(), 1, 1);
+        ParticleSystem particle = wall ? wallJumpParticle : jumpParticle;
 
         rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.velocity += dir * jumpForce;
@@ -343,7 +347,7 @@ public class PlayerMovement : MonoBehaviour
             DisableLocking(.2f);
         }*/
 
-        //particle.Play();
+        particle.Play();
     }
 
     IEnumerator DisableMovement(float time)
@@ -365,20 +369,20 @@ public class PlayerMovement : MonoBehaviour
         rb.drag = x;
     }
 
- /*   void WallParticle(float vertical)
+    void WallParticle(float vertical)
     {
         var main = slideParticle.main;
 
-        if (wallSlide || (wallGrab && vertical < 0))
+        if (wallSlide)
         {
             slideParticle.transform.parent.localScale = new Vector3(ParticleSide(), 1, 1);
-            main.startColor = Color.white;
+            main.startColor = slideColor;
         }
         else
         {
             main.startColor = Color.clear;
         }
-    }*/
+    }
 
     int ParticleSide()
     {

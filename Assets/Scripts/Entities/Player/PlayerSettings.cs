@@ -52,10 +52,12 @@ public class PlayerSettings : MonoBehaviour
         // make the player have either WASD or arrow controls
         if (PlayerManager.instance.playerOnLeft == world)
         {
-            this.gameObject.AddComponent<MovementWASD>();
+            Destroy(this.gameObject.GetComponent<PlayerMovement>());
+            Destroy(this.gameObject.GetComponent<MovementArrows>());
         } else
         {
-            this.gameObject.AddComponent<MovementArrows>();
+            Destroy(this.gameObject.GetComponent<PlayerMovement>());
+            Destroy(this.gameObject.GetComponent<MovementWASD>());
         }
         UpdatePlayerMovementRef();
     }
@@ -64,7 +66,8 @@ public class PlayerSettings : MonoBehaviour
     {
         if (isActivePlayer)
         {
-            this.gameObject.AddComponent<PlayerMovement>();
+            Destroy(this.gameObject.GetComponent<MovementWASD>());
+            Destroy(this.gameObject.GetComponent<MovementArrows>());
             UpdatePlayerMovementRef();
         }
     }
