@@ -47,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
     public ParticleSystem jumpParticle;
     public ParticleSystem wallJumpParticle;
     public ParticleSystem slideParticle;
+    ParticleSystem.MinMaxGradient slideColor;
 
 
     // Start is called before the first frame update
@@ -59,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
         momentumToAdd = new List<Vector2>();
 
         slideParticle.Play();
+        slideColor = slideParticle.main.startColor;
     }
 
     // Update is called once per frame
@@ -374,7 +376,7 @@ public class PlayerMovement : MonoBehaviour
         if (wallSlide)
         {
             slideParticle.transform.parent.localScale = new Vector3(ParticleSide(), 1, 1);
-            main.startColor = Color.white;
+            main.startColor = slideColor;
         }
         else
         {
