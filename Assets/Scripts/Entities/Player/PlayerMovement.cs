@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Space]
     [Header("Stats")]
-    public float speed = 8;
+    public float speed = 7;
     public float maxSpeed = 50;
     public float jumpForce = 12;
     public float slideSpeed = 3;
@@ -275,7 +275,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 wallDir = coll.onRightWall ? Vector2.left : Vector2.right;
 
-        Jump((Vector2.up / 1.5f + wallDir / 1.4f), true);
+        Jump((Vector2.up / 1.3f + wallDir / 1.4f), true);
 
         wallJumped = true;
     }

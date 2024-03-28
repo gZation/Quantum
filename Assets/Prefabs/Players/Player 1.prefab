@@ -246,20 +246,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  speed: 8
+  speed: 7
   maxSpeed: 50
-  jumpForce: 15
-  slideSpeed: 5
-  wallJumpLerp: 10
+  jumpForce: 12
+  slideSpeed: 3
+  wallJumpLerp: 5
   dashSpeed: 25
   canMove: 1
-  wallGrab: 0
   wallJumped: 0
   wallSlide: 0
   isDashing: 0
   side: 1
   dashParticle: {fileID: 0}
-  jumpParticle: {fileID: 5077882394773441726}
+  jumpParticle: {fileID: 4644653537552863890, guid: 3a341a07f7dcd6a469738ec68b5972da, type: 3}
   wallJumpParticle: {fileID: 3451269928744493914}
   slideParticle: {fileID: 7192988849610433625}
 --- !u!114 &8505345009839983069
@@ -275,20 +274,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  speed: 8
+  speed: 7
   maxSpeed: 50
-  jumpForce: 15
-  slideSpeed: 5
-  wallJumpLerp: 10
+  jumpForce: 12
+  slideSpeed: 3
+  wallJumpLerp: 5
   dashSpeed: 25
   canMove: 1
-  wallGrab: 0
   wallJumped: 0
   wallSlide: 0
   isDashing: 0
   side: 1
   dashParticle: {fileID: 0}
-  jumpParticle: {fileID: 5077882394773441726}
+  jumpParticle: {fileID: 4644653537552863890, guid: 3a341a07f7dcd6a469738ec68b5972da, type: 3}
   wallJumpParticle: {fileID: 3451269928744493914}
   slideParticle: {fileID: 7192988849610433625}
 --- !u!114 &5490390521861608361
@@ -304,20 +302,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  speed: 8
+  speed: 7
   maxSpeed: 50
-  jumpForce: 15
-  slideSpeed: 5
-  wallJumpLerp: 10
+  jumpForce: 12
+  slideSpeed: 3
+  wallJumpLerp: 5
   dashSpeed: 25
   canMove: 1
-  wallGrab: 0
   wallJumped: 0
   wallSlide: 0
   isDashing: 0
   side: 1
   dashParticle: {fileID: 0}
-  jumpParticle: {fileID: 5077882394773441726}
+  jumpParticle: {fileID: 4644653537552863890, guid: 3a341a07f7dcd6a469738ec68b5972da, type: 3}
   wallJumpParticle: {fileID: 3451269928744493914}
   slideParticle: {fileID: 7192988849610433625}
 --- !u!1 &1940521423388946917
@@ -418,6 +415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df730977d871c34dbd7f6fb8fad8909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  move: {fileID: 0}
   sr: {fileID: 0}
 --- !u!95 &2974825326241336654
 Animator:
@@ -530,11 +528,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a341a07f7dcd6a469738ec68b5972da, type: 3}
---- !u!198 &5077882394773441726 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 4644653537552863890, guid: 3a341a07f7dcd6a469738ec68b5972da, type: 3}
-  m_PrefabInstance: {fileID: 436106902996770348}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8133014790365387693 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8562215038722360705, guid: 3a341a07f7dcd6a469738ec68b5972da, type: 3}
