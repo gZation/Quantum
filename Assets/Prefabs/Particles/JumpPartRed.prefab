@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4644653537552863890}
   - component: {fileID: 6660040303555334303}
   m_Layer: 0
-  m_Name: JumpParticles
+  m_Name: JumpPartRed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -221,8 +221,8 @@ ParticleSystem:
         m_RotationOrder: 4
     startColor:
       serializedVersion: 2
-      minMaxState: 0
-      minColor: {r: 1, g: 1, b: 1, a: 1}
+      minMaxState: 2
+      minColor: {r: 0.40392157, g: 0.13725491, b: 0.16862746, a: 1}
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
