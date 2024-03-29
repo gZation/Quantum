@@ -30,6 +30,6 @@ public class PlayerConnectManager : NetworkBehaviour
     {
         NetworkManager.Singleton.OnClientConnectedCallback -= LoadNextLevel;
         GameManager.instance.GameEnable();
-        NetworkManager.Singleton.SceneManager.LoadScene("Tutorial 1", LoadSceneMode.Single);
+        LevelLoader.instance.LoadLevelByName("Tutorial 1");
     }
 }

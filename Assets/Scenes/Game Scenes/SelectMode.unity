@@ -250,6 +250,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelLoaderTransition
       objectReference: {fileID: 0}
+    - target: {fileID: 8001046867677948227, guid: 559fce262c9ffc445b3d0846e52af528, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -258,6 +262,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 133981227}
   m_SourcePrefab: {fileID: 100100000, guid: 559fce262c9ffc445b3d0846e52af528, type: 3}
+--- !u!114 &133981225 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1568533569682720562, guid: 559fce262c9ffc445b3d0846e52af528, type: 3}
+  m_PrefabInstance: {fileID: 133981224}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133981226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b286411b5cccc3f4aaf7bb93b6142702, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &133981226 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8001046867677948227, guid: 559fce262c9ffc445b3d0846e52af528, type: 3}
@@ -468,8 +483,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cabbe952012747a4e98bf2fb89b8fa7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ll: {fileID: 133981225}
   nextSplit: CharacterSelection
-  nextNetworked: CharacterSelection
+  nextNetworked: HostOrClient
 --- !u!1 &433736246
 GameObject:
   m_ObjectHideFlags: 0

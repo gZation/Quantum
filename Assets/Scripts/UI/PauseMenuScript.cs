@@ -8,7 +8,6 @@ public class PauseMenuScript : MonoBehaviour
 {
     public static bool gamePaused = false;
     public GameObject pauseUI;
-    public int mainMenuIndex;
     public GameObject mainPause;
     public GameObject optionsMenu;
     public GameObject quitCheck;
@@ -50,7 +49,8 @@ public class PauseMenuScript : MonoBehaviour
 
     public void ToMainMenu()
     {
-        SceneManager.LoadScene(mainMenuIndex);
+        LevelLoader.instance.LoadLevelByName("StartMenu");
+        //SceneManager.LoadScene("StartMenu");
     }
 
     public void Quit()

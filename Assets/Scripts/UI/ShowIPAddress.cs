@@ -35,7 +35,7 @@ public class ShowIPAddress : MonoBehaviour
 
     public void GoBack()
     {
-        SceneManager.LoadScene("HostOrClient");
+        LevelLoader.instance.LoadLevelByName("HostOrClient", false);
     }
 
     public void ContinueWithInputIp()
@@ -52,8 +52,8 @@ public class ShowIPAddress : MonoBehaviour
     {
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData(hostIP, (ushort)7777);
         //NetworkManager.Singleton.StartHost();
-        //NetworkManager.Singleton.SceneManager.LoadScene("Tutorial 1", LoadSceneMode.Single);
+        //NetworkManager.Singleton.LevelLoader.instance.LoadLevelByName("Tutorial 1", LoadSceneMode.Single);
         PlayerManager.instance.isHost = true;
-        SceneManager.LoadScene("WaitingForPlayers");
+        LevelLoader.instance.LoadLevelByName("WaitingForPlayers", false);
     }
 }

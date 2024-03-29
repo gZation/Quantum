@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class StartMenu : MonoBehaviour {
+
     public void StartGame() {
-        SceneManager.LoadScene("SelectMode");
+        LevelLoader.instance.LoadLevelByName("SelectMode");
     }
 
     public void ExitGame() {

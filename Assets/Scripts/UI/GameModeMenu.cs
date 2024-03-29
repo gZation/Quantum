@@ -12,13 +12,15 @@ public class GameModeMenu : MonoBehaviour
     {
         GameManager.instance.SetNetworkedScreen(false);
         Screen.SetResolution(1280, 480, false);
-        SceneManager.LoadScene("CharacterSelection");
+        LevelLoader.instance.LoadLevelByName(nextSplit);
+        //SceneManager.LoadScene(nextSplit);
     }
 
     public void setNetworked()
     {
         GameManager.instance.SetNetworkedScreen(true);
         Screen.SetResolution(640, 480, false);
-        SceneManager.LoadScene("HostOrClient");
+        LevelLoader.instance.LoadLevelByName(nextNetworked, false);
+        //SceneManager.LoadScene(nextNetworked);
     }
 }

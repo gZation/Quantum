@@ -7,17 +7,17 @@ public class HostAndClient : MonoBehaviour
     public void ShowIPScreen()
     {
         PlayerManager.instance.isHost = true;
-        SceneManager.LoadScene("CharacterSelection");
+        LevelLoader.instance.LoadLevelByName("CharacterSelection", false);
     }
 
     public void EnterHostIPScreen()
     {
         PlayerManager.instance.isHost = false;
-        SceneManager.LoadScene("IP Input");
+        LevelLoader.instance.LoadLevelByName("IP Input", false);
     }
 
     public void GoBack()
     {
-        SceneManager.LoadScene("SelectMode");
+        LevelLoader.instance.LoadLevelByName("SelectMode", false);
     }
 }

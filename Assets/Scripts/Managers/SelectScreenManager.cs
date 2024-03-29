@@ -146,22 +146,21 @@ public class SelectScreenManager : MonoBehaviour {
             switch (selection)
             {
                 case CharacterSelection.BOY:
-                    Debug.Log("Go to game (P1 is BOY)");
+/*                    Debug.Log("Go to game (P1 is BOY)");*/
                     PlayerManager.instance.playerOnLeft = 1;
-                    SceneManager.LoadScene("Tutorial 1");
                     break;
 
                 case CharacterSelection.GIRL:
-                    Debug.Log("Go to game (P2 is GIRL)");
+/*                    Debug.Log("Go to game (P2 is GIRL)");*/
                     PlayerManager.instance.playerOnLeft = 2;
-                    SceneManager.LoadScene("Tutorial 1");
                     break;
 
                 default:
                     break;
             }
             GameManager.instance.GameEnable();
-            SceneManager.LoadScene("Tutorial 1");
+            LevelLoader.instance.LoadLevelByName("Tutorial 1");
+            // SceneManager.LoadScene("Tutorial 1");
         }
         else
         // Handle character selection if indeed networked
@@ -179,7 +178,8 @@ public class SelectScreenManager : MonoBehaviour {
                 default:
                     break;
             }
-            SceneManager.LoadScene("Show Public IP");
+            LevelLoader.instance.LoadLevelByName("Show Public IP", false);
+            //SceneManager.LoadScene("Show Public IP");
         }
         
     } // StartGame

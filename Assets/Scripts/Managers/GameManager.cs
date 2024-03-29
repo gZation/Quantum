@@ -36,17 +36,17 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         // If GameManager is manually set to gameEnabled, we need to initialize the Game Manager and Player Manager. 
+        if (startFromScene)
+        {
+            GameEnable();
+            SetUpLevel();
+        }
+
         if (isGameEnabled) GameEnable();
+
     }
     public void GameEnable()
     {
-        //if (networkingOn)
-        //{
-        //    NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += SetUpLevel;
-        //} else
-        //{
-        //    SceneManager.sceneLoaded += SetUpLevel;
-        //}
         isGameEnabled = true;
         if (!networkingOn) SceneManager.sceneLoaded += SetUpLevel;
         else NetworkManager.Singleton.SceneManager.OnLoadComplete += SetUpLevel;
@@ -117,7 +117,8 @@ private void OnDisable()
     }
 
     public void SetUpLevel(Scene scene, LoadSceneMode mode) {
-        SetUpLevel(); }
+        SetUpLevel(); 
+    }
 
     public void SetUpLevel(ulong clientId, string sceneName, LoadSceneMode loadSceneMode)
     {
