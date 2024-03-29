@@ -14,17 +14,16 @@ public class PlayerMovement : MonoBehaviour
 
     [Space]
     [Header("Stats")]
-    public float speed = 8;
+    public float speed = 7;
     public float maxSpeed = 50;
     public float jumpForce = 12;
-    public float slideSpeed = 5;
-    public float wallJumpLerp = 10;
+    public float slideSpeed = 3;
+    public float wallJumpLerp = 5;
     public float dashSpeed = 25;
 
     [Space]
     [Header("Booleans")]
     public bool canMove = true;
-    public bool wallGrab;
     public bool wallJumped;
     public bool wallSlide;
     public bool isDashing;
@@ -69,7 +68,6 @@ public class PlayerMovement : MonoBehaviour
         if (IsQLock())
         {
             QuantumLock();
-            // PlayerManager.instance.QuantumLockPlayer(this.gameObject);
         }
 
         Vector2 dir = GetMovementDirection();
@@ -89,28 +87,12 @@ public class PlayerMovement : MonoBehaviour
             GetComponent<PlayerJump>().enabled = true;
         }
 
-        if (wallGrab && !isDashing)
-        {
-            rb.gravityScale = 0;
-            if (x > .2f || x < -.2f)
-                rb.velocity = new Vector2(rb.velocity.x, 0);
-
-            float speedModifier = y > 0 ? .5f : 1;
-
-            rb.velocity = new Vector2(rb.velocity.x, y * (speed * speedModifier));
-        }
-        else
-        {
-            rb.gravityScale = 3;
-        }
+        rb.gravityScale = 3;
 
         if (coll.onWall && !coll.onGround)
         {
-            if (x != 0 && !wallGrab)
-            {
-                wallSlide = true;
-                WallSlide();
-            }
+            wallSlide = true;
+            WallSlide();
         }
 
         if (!coll.onWall || coll.onGround)
@@ -145,8 +127,16 @@ public class PlayerMovement : MonoBehaviour
 
         WallParticle(y);
 
-        if (wallGrab || wallSlide || !canMove)
+        // check max speed
+        if (rb.velocity.magnitude > maxSpeed)
+        {
+            rb.velocity = rb.velocity.normalized * maxSpeed;
+        }
+
+        if (wallSlide || !canMove)
+        {
             return;
+        }
 
         if (x > 0)
         {
@@ -157,12 +147,6 @@ public class PlayerMovement : MonoBehaviour
         {
             side = -1;
             anim.Flip(side);
-        }
-
-        // check max speed
-        if (rb.velocity.magnitude > maxSpeed)
-        {
-            rb.velocity = rb.velocity.normalized * maxSpeed;
         }
     }
 
@@ -291,7 +275,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 wallDir = coll.onRightWall ? Vector2.left : Vector2.right;
 
-        Jump((Vector2.up / 1.5f + wallDir / 1.4f), true);
+        Jump((Vector2.up / 1.3f + wallDir / 1.4f), true);
 
         wallJumped = true;
     }
@@ -299,7 +283,9 @@ public class PlayerMovement : MonoBehaviour
     private void WallSlide()
     {
         if (coll.wallSide != side)
+        {
             anim.Flip(side * -1);
+        }
 
         if (!canMove)
             return;
@@ -317,9 +303,6 @@ public class PlayerMovement : MonoBehaviour
     private void Walk(Vector2 dir)
     {
         if (!canMove)
-            return;
-
-        if (wallGrab)
             return;
 
         if (!wallJumped)
