@@ -190,8 +190,9 @@ MonoBehaviour:
   onRightWall: 0
   onLeftWall: 0
   wallSide: 0
-  collisionRadius: 0.25
-  bottomOffset: {x: 0, y: -0.5}
+  boxSize: {x: 0.25, y: 0.8}
+  bottomBoxSize: {x: 0.1, y: 0.1}
+  bottomOffset: {x: 0.025, y: -0.5}
   rightOffset: {x: 0.25, y: 0}
   leftOffset: {x: -0.25, y: 0}
 --- !u!114 &5530886064592142010
