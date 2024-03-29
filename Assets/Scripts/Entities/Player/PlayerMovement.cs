@@ -11,12 +11,13 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector]
     public Rigidbody2D rb;
     private PlayerAnimation anim;
+    private Vector2 lastWallJumpDirection = Vector2.zero;
 
     [Space]
     [Header("Stats")]
     public float speed = 8;
     public float jumpForce = 15;
-    public float slideSpeed = 5;
+    public float slideSpeed = 2.0f;
     public float wallJumpLerp = 10;
     public float dashSpeed = 25;
 
@@ -119,6 +120,9 @@ public class PlayerMovement : MonoBehaviour
                 Jump(Vector2.up, false);
             if (coll.onWall && !coll.onGround)
                 WallJump();
+
+            if (coll.onGround)
+                lastWallJumpDirection = Vector2.zero;
         }
 
         if (IsDash() && !hasDashed && canMove)
@@ -143,16 +147,15 @@ public class PlayerMovement : MonoBehaviour
         if (wallGrab || wallSlide || !canMove)
             return;
 
-/*        if (x > 0)
+       
+        if (x > 0)
         {
             side = 1;
-            anim.Flip(side);
         }
         if (x < 0)
         {
             side = -1;
-            anim.Flip(side);
-        }*/
+        }
     }
 
     protected void FixedUpdate()
@@ -170,7 +173,7 @@ public class PlayerMovement : MonoBehaviour
     {
         float xRaw = Input.GetAxisRaw("Horizontal");
         float yRaw = Input.GetAxisRaw("Vertical");
-        return new Vector2(xRaw, yRaw);
+        return new Vector2(xRaw, yRaw);  
     }
 
     public virtual bool IsJump()
@@ -265,20 +268,31 @@ public class PlayerMovement : MonoBehaviour
 
     private void WallJump()
     {
-/*        if ((side == 1 && coll.onRightWall) || side == -1 && !coll.onRightWall)
+        /*        if ((side == 1 && coll.onRightWall) || side == -1 && !coll.onRightWall)
+                {
+                    side *= -1;
+                    anim.Flip(side);
+                }*/
+
+        // Check if the player is attempting to jump from the same wall they are currently on
+
+        if ((side == 1 && coll.onRightWall && lastWallJumpDirection == Vector2.right) ||
+            (side == -1 && coll.onLeftWall && lastWallJumpDirection == Vector2.left))
         {
-            side *= -1;
-            anim.Flip(side);
-        }*/
+            // Player is trying to jump on the same wall, exit without performing the jump
+            return;
+        }
 
         StopCoroutine(DisableMovement(0));
         StartCoroutine(DisableMovement(.1f));
 
-        Vector2 wallDir = coll.onRightWall ? Vector2.left : Vector2.right;
+        Vector2 wallDir = side == 1 ? Vector2.left : Vector2.right;
 
         Jump((Vector2.up / 1.5f + wallDir / 1.4f), true);
 
         wallJumped = true;
+
+        lastWallJumpDirection = wallDir; // Update the last wall jump direction
     }
 
     private void WallSlide()
