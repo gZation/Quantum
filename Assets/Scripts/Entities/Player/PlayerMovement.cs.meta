@@ -3,7 +3,12 @@ guid: cf9a02b77c67068469cf6a7e6bf5b901
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - rb: {instanceID: 0}
+  - dashParticle: {instanceID: 0}
+  - jumpParticle: {fileID: 4644653537552863890, guid: 3a341a07f7dcd6a469738ec68b5972da, type: 3}
+  - wallJumpParticle: {fileID: 4644653537552863890, guid: 3a341a07f7dcd6a469738ec68b5972da, type: 3}
+  - slideParticle: {fileID: 4644653537552863890, guid: 3a341a07f7dcd6a469738ec68b5972da, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
