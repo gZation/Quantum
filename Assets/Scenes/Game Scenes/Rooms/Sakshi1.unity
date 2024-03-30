@@ -11609,8 +11609,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 839304528931508227, guid: ca12ff33344d8f9448ac7429a5280f01, type: 3}
-      propertyPath: strength
+      propertyPath: active
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 839304528931508227, guid: ca12ff33344d8f9448ac7429a5280f01, type: 3}
+      propertyPath: strength
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 839304528931508227, guid: ca12ff33344d8f9448ac7429a5280f01, type: 3}
       propertyPath: direction.x
