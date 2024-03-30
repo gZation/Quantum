@@ -274,27 +274,18 @@ public class PlayerMovement : MonoBehaviour
             anim.Flip(side);
         }
 
-        if ((coll.onRightWall && lastWallJumpDirection == Vector2.right) ||
-            (coll.onLeftWall && lastWallJumpDirection == Vector2.left))
-        {
-            // Player is trying to jump on the same wall, exit without performing the jump
-            return;
-        }
-
         StopCoroutine(DisableMovement(0));
         StartCoroutine(DisableMovement(.1f));
 
         Vector2 wallDir = coll.onRightWall ? Vector2.left : Vector2.right;
 
 
-        Jump((Vector2.up / 1.5f + wallDir / 1.4f), true);
+        Jump((Vector2.up / 1.4f + wallDir / 1.2f), true);
 
 
         wallJumped = true;
 
-    }
-  
-    
+    }  
         
    
     private void WallSlide()
