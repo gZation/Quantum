@@ -13,9 +13,10 @@ public class PlayerSettings : MonoBehaviour
     public PlayerJump jump;
     public PlayerAnimation anim;
 
-/*    public delegate void OnVariableChangeDelegate(bool newVal);
+  public delegate void OnVariableChangeDelegate(bool newVal);
     public event OnVariableChangeDelegate OnVariableQLockChange;
     private bool m_qlocked = false;
+
     public bool qlocked
     {
         get { return m_qlocked; }
@@ -25,7 +26,7 @@ public class PlayerSettings : MonoBehaviour
             m_qlocked = value;
             if (OnVariableQLockChange != null) OnVariableQLockChange(m_qlocked);
         }
-    }*/
+    }
 
     private void Awake()
     {

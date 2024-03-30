@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Netcode;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -11,27 +10,32 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector]
     public Rigidbody2D rb;
     private PlayerAnimation anim;
+    private Vector2 lastWallJumpDirection = Vector2.zero;
 
     [Space]
     [Header("Stats")]
     public float speed = 7;
-    public float maxSpeed = 50;
     public float jumpForce = 12;
-    public float slideSpeed = 3;
+    public float maxSlideSpeed = 6;
+    public float minSlideSpeed = 1.5f;
+    public float accelerationFactor = 2f;
     public float wallJumpLerp = 5;
     public float dashSpeed = 25;
 
     [Space]
     [Header("Booleans")]
     public bool canMove = true;
+    public bool wallGrab;
     public bool wallJumped;
     public bool wallSlide;
+
     public bool isDashing;
 
 
     [Space]
     [Header("Quantum Locking")]
     private List<Vector2> momentumToAdd;
+    public bool sharingMomentum;
 
     [Space]
 
@@ -48,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
     public ParticleSystem slideParticle;
     ParticleSystem.MinMaxGradient slideColor;
 
+    public float currentSlide;
 
     // Start is called before the first frame update
     void Start()
@@ -60,6 +65,8 @@ public class PlayerMovement : MonoBehaviour
 
         slideParticle.Play();
         slideColor = slideParticle.main.startColor;
+
+        currentSlide = minSlideSpeed;
     }
 
     // Update is called once per frame
@@ -77,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
         float xRaw = raw.x;
         float yRaw = raw.y;
 
-        Walk(dir);
+        Walk(dir); 
         anim.SetHorizontalMovement(x, y, rb.velocity.y);
 
 
@@ -96,7 +103,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (!coll.onWall || coll.onGround)
+        {
+            currentSlide = minSlideSpeed;
             wallSlide = false;
+        }
 
         if (IsJump() && canMove)
         {
@@ -105,6 +115,7 @@ public class PlayerMovement : MonoBehaviour
             if (coll.onGround)
                 Jump(Vector2.up, false);
             if (coll.onWall && !coll.onGround)
+
                 WallJump();
         }
 
@@ -127,16 +138,8 @@ public class PlayerMovement : MonoBehaviour
 
         WallParticle(y);
 
-        // check max speed
-        if (rb.velocity.magnitude > maxSpeed)
-        {
-            rb.velocity = rb.velocity.normalized * maxSpeed;
-        }
-
-        if (wallSlide || !canMove)
-        {
+        if (wallGrab || wallSlide || !canMove)
             return;
-        }
 
         if (x > 0)
         {
@@ -152,12 +155,8 @@ public class PlayerMovement : MonoBehaviour
 
     protected void FixedUpdate()
     {
-        AddMomentum();
 
-        if (rb.velocity.magnitude > maxSpeed * 4)
-        {
-            rb.velocity = rb.velocity.normalized * maxSpeed;
-        }
+        AddMomentum();
     }
 
     protected virtual Vector2 GetMovementDirection()
@@ -212,12 +211,13 @@ public class PlayerMovement : MonoBehaviour
 
         if (dir.y > 0)
         {
-            dashExtra.y = dashExtra.y / 1.8f;
-        } else
+            dashExtra.y = dashExtra.y / 1.9f;
+        }
+        else
         {
             dashExtra *= 1.4f;
         }
-        
+
         if (dir.y > 0 && dir.x == 0)
         {
             anim.SetTrigger("dashup");
@@ -229,7 +229,7 @@ public class PlayerMovement : MonoBehaviour
 
         rb.velocity += dashExtra;
 
-        dashExtra.x *= 3.2f;
+        dashExtra.x *= 4f;
         PlayerManager.instance.SendMomentum(dashExtra, this.gameObject);
 
         StartCoroutine(DashWait());
@@ -237,7 +237,7 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator DashWait()
     {
-      //FindObjectOfType<GhostTrail>().ShowGhost();
+        //FindObjectOfType<GhostTrail>().ShowGhost();
         StartCoroutine(GroundDash());
 
         //dashParticle.Play();
@@ -246,7 +246,7 @@ public class PlayerMovement : MonoBehaviour
         wallJumped = true;
         isDashing = true;
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.1f);
 
         //dashParticle.Stop();
         rb.gravityScale = 3;
@@ -262,12 +262,23 @@ public class PlayerMovement : MonoBehaviour
             hasDashed = false;
     }
 
-    private void WallJump()
-    {
+   
+ 
+     private void WallJump()
+     {
+
+
         if ((side == 1 && coll.onRightWall) || side == -1 && !coll.onRightWall)
         {
             side *= -1;
             anim.Flip(side);
+        }
+
+        if ((coll.onRightWall && lastWallJumpDirection == Vector2.right) ||
+            (coll.onLeftWall && lastWallJumpDirection == Vector2.left))
+        {
+            // Player is trying to jump on the same wall, exit without performing the jump
+            return;
         }
 
         StopCoroutine(DisableMovement(0));
@@ -275,34 +286,47 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 wallDir = coll.onRightWall ? Vector2.left : Vector2.right;
 
-        Jump((Vector2.up / 1.3f + wallDir / 1.2f), true);
+
+        Jump((Vector2.up / 1.5f + wallDir / 1.4f), true);
+
 
         wallJumped = true;
-    }
 
+    }
+  
+    
+        
+   
     private void WallSlide()
     {
         if (coll.wallSide != side)
-        {
             anim.Flip(side * -1);
-        }
 
         if (!canMove)
             return;
-
+        
         bool pushingWall = false;
+
         if ((rb.velocity.x > 0 && coll.onRightWall) || (rb.velocity.x < 0 && coll.onLeftWall))
         {
             pushingWall = true;
         }
+
         float push = pushingWall ? 0 : rb.velocity.x;
 
-        rb.velocity = new Vector2(push, -slideSpeed);
+        currentSlide = Math.Min(currentSlide + accelerationFactor * Time.deltaTime, maxSlideSpeed);
+        float slideVelocity = -currentSlide;
+
+        rb.velocity = new Vector2(push, slideVelocity);
+
     }
 
     private void Walk(Vector2 dir)
     {
         if (!canMove)
+            return;
+
+        if (wallGrab)
             return;
 
         if (!wallJumped)
@@ -324,11 +348,11 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity += dir * jumpForce;
 
         //too op nerfing it for now
-/*        if (sharingMomentum)
-        {
-            PlayerManager.instance.SendMomentum(dir * jumpForce, this.gameObject);
-            DisableLocking(.2f);
-        }*/
+        /*        if (sharingMomentum)
+                {
+                    PlayerManager.instance.SendMomentum(dir * jumpForce, this.gameObject);
+                    DisableLocking(.2f);
+                }*/
 
         particle.Play();
     }
@@ -340,12 +364,12 @@ public class PlayerMovement : MonoBehaviour
         canMove = true;
     }
 
-/*    IEnumerable DisableLocking(float time)
+    IEnumerable DisableLocking(float time)
     {
         sharingMomentum = false;
         yield return new WaitForSeconds(time);
         sharingMomentum = true;
-    }*/
+    }
 
     void RigidbodyDrag(float x)
     {
@@ -375,7 +399,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void QuantumLock()
     {
-        PlayerManager.instance.qlocked = !PlayerManager.instance.qlocked;
+        settings.qlocked = !settings.qlocked;
+        PlayerManager.instance.QuantumLockPlayer(this.gameObject);
     }
 
     public void QuantumLockAddMomentum(Vector2 momentum)
@@ -387,7 +412,7 @@ public class PlayerMovement : MonoBehaviour
     {
         momentumToAdd.Add(momentum);
 
-        if (PlayerManager.instance.qlocked)
+        if (sharingMomentum)
         {
             PlayerManager.instance.SendMomentum(momentum, this.gameObject);
         }
@@ -400,20 +425,6 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity += momentum;
         }
 
-        if (momentumToAdd.Count > 0)
-        {
-            StartCoroutine(QuantumWait());
-        }
-
         momentumToAdd = new List<Vector2>();
-    }
-
-    IEnumerator QuantumWait()
-    {
-        rb.gravityScale = 0;
-        wallJumped = true;
-        yield return new WaitForSeconds(0.5f);
-        rb.gravityScale = 3;
-        wallJumped = false;
     }
 }

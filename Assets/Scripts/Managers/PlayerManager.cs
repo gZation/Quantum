@@ -156,7 +156,7 @@ public class PlayerManager : NetworkBehaviour
         return player1 != null && player2 != null;
     }
 
-/*    public void QuantumLockPlayer(GameObject listener)
+    public void QuantumLockPlayer(GameObject listener)
     {
         if (!GameManager.instance.IsNetworked())
         {
@@ -175,7 +175,7 @@ public class PlayerManager : NetworkBehaviour
 
         }
 
-    }*/
+    }
 
     public void SendMomentum(Vector2 momentum, GameObject sender)
     {

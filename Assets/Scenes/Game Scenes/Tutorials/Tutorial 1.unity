@@ -19331,6 +19331,18 @@ PrefabInstance:
       propertyPath: GlobalObjectIdHash
       value: 3331910783
       objectReference: {fileID: 0}
+    - target: {fileID: 1646257215304899982, guid: b2039085561329543995b3c5e313b3b0, type: 3}
+      propertyPath: wallJumpLerp
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1646257215304899982, guid: b2039085561329543995b3c5e313b3b0, type: 3}
+      propertyPath: maxSlideSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1646257215304899982, guid: b2039085561329543995b3c5e313b3b0, type: 3}
+      propertyPath: accelerationFactor
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1715274008313498054, guid: b2039085561329543995b3c5e313b3b0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -19.25
@@ -19387,6 +19399,14 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5490390521861608361, guid: b2039085561329543995b3c5e313b3b0, type: 3}
+      propertyPath: maxSlideSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5490390521861608361, guid: b2039085561329543995b3c5e313b3b0, type: 3}
+      propertyPath: accelerationFactor
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7192988849610433625, guid: b2039085561329543995b3c5e313b3b0, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
       value: 1
@@ -19410,6 +19430,14 @@ PrefabInstance:
     - target: {fileID: 7192988849610433625, guid: b2039085561329543995b3c5e313b3b0, type: 3}
       propertyPath: InitialModule.startColor.minMaxState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8505345009839983069, guid: b2039085561329543995b3c5e313b3b0, type: 3}
+      propertyPath: maxSlideSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8505345009839983069, guid: b2039085561329543995b3c5e313b3b0, type: 3}
+      propertyPath: accelerationFactor
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
