@@ -390,8 +390,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void QuantumLock()
     {
-        settings.qlocked = !settings.qlocked;
-        PlayerManager.instance.QuantumLockPlayer(this.gameObject);
+        PlayerManager.instance.ToggleQuantumLock();
     }
 
     public void QuantumLockAddMomentum(Vector2 momentum)
@@ -403,10 +402,7 @@ public class PlayerMovement : MonoBehaviour
     {
         momentumToAdd.Add(momentum);
 
-        if (sharingMomentum)
-        {
-            PlayerManager.instance.SendMomentum(momentum, this.gameObject);
-        }
+        PlayerManager.instance.SendMomentum(momentum, this.gameObject);
     }
 
     protected void AddMomentum()

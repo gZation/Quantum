@@ -389,7 +389,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 7aa42472d351813499b8ccb10b9cdd65, type: 3}
+  m_Texture: {fileID: 2800000, guid: 598ddec68ce56d9488d08702bc2a63e7, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -519,17 +519,6 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &699475915 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1568533569682720562, guid: 559fce262c9ffc445b3d0846e52af528, type: 3}
-  m_PrefabInstance: {fileID: 699475912}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 699475913}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b286411b5cccc3f4aaf7bb93b6142702, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &714929071
 GameObject:
   m_ObjectHideFlags: 0
@@ -1052,7 +1041,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bea657ebd5620dd4991deb8783bdddf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ll: {fileID: 699475915}
   xScaleTarget: 0
   imgScaleTarget: 0
   lerpSpeed: 2
@@ -1320,7 +1308,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 1bc9ef15295d00240ab10ead6f31f0d8, type: 3}
+  m_Texture: {fileID: 2800000, guid: 4f32c94d4a4b0b2419b9f22bf3eab38f, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
