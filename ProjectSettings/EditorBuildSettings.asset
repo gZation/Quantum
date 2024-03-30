@@ -53,4 +53,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game Scenes/CatScene.unity
     guid: cf517ff4f0856a642b08e4bbe84073ea
+  - enabled: 1
+    path: Assets/Scenes/Chase/NetMovingPlatforms.unity
+    guid: 29a243e958699f44bb5f7db2c92c508d
   m_configObjects: {}
