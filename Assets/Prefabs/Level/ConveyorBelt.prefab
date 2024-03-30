@@ -100,7 +100,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 1, y: 0}
-  strength: 100
+  strength: 10
+  active: 1
 --- !u!61 &8636562007075053782
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -156,7 +157,7 @@ Animator:
   m_GameObject: {fileID: 5920403373723903517}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9010223766599894807, guid: 94a398db804ff27438dfc38b285ef66b, type: 3}
+  m_Controller: {fileID: 9100000, guid: 3558c82350691a44180814437133ceb1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

@@ -10,13 +10,16 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector]
     public Rigidbody2D rb;
     private PlayerAnimation anim;
+    private Vector2 lastWallJumpDirection = Vector2.zero;
 
     [Space]
     [Header("Stats")]
-    public float speed = 8;
-    public float jumpForce = 15;
-    public float slideSpeed = 5;
-    public float wallJumpLerp = 10;
+    public float speed = 7;
+    public float jumpForce = 12;
+    public float maxSlideSpeed = 6;
+    public float minSlideSpeed = 1.5f;
+    public float accelerationFactor = 2f;
+    public float wallJumpLerp = 5;
     public float dashSpeed = 25;
 
     [Space]
@@ -25,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     public bool wallGrab;
     public bool wallJumped;
     public bool wallSlide;
+
     public bool isDashing;
 
 
@@ -46,7 +50,9 @@ public class PlayerMovement : MonoBehaviour
     public ParticleSystem jumpParticle;
     public ParticleSystem wallJumpParticle;
     public ParticleSystem slideParticle;
+    ParticleSystem.MinMaxGradient slideColor;
 
+    public float currentSlide;
 
     // Start is called before the first frame update
     void Start()
@@ -56,6 +62,11 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<PlayerAnimation>();
         momentumToAdd = new List<Vector2>();
+
+        slideParticle.Play();
+        slideColor = slideParticle.main.startColor;
+
+        currentSlide = minSlideSpeed;
     }
 
     // Update is called once per frame
@@ -73,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
         float xRaw = raw.x;
         float yRaw = raw.y;
 
-        Walk(dir);
+        Walk(dir); 
         anim.SetHorizontalMovement(x, y, rb.velocity.y);
 
 
@@ -83,32 +94,19 @@ public class PlayerMovement : MonoBehaviour
             GetComponent<PlayerJump>().enabled = true;
         }
 
-        if (wallGrab && !isDashing)
-        {
-            rb.gravityScale = 0;
-            if (x > .2f || x < -.2f)
-                rb.velocity = new Vector2(rb.velocity.x, 0);
-
-            float speedModifier = y > 0 ? .5f : 1;
-
-            rb.velocity = new Vector2(rb.velocity.x, y * (speed * speedModifier));
-        }
-        else
-        {
-            rb.gravityScale = 3;
-        }
+        rb.gravityScale = 3;
 
         if (coll.onWall && !coll.onGround)
         {
-            if (x != 0 && !wallGrab)
-            {
-                wallSlide = true;
-                WallSlide();
-            }
+            wallSlide = true;
+            WallSlide();
         }
 
         if (!coll.onWall || coll.onGround)
+        {
+            currentSlide = minSlideSpeed;
             wallSlide = false;
+        }
 
         if (IsJump() && canMove)
         {
@@ -117,6 +115,7 @@ public class PlayerMovement : MonoBehaviour
             if (coll.onGround)
                 Jump(Vector2.up, false);
             if (coll.onWall && !coll.onGround)
+
                 WallJump();
         }
 
@@ -137,12 +136,12 @@ public class PlayerMovement : MonoBehaviour
             groundTouch = false;
         }
 
-/*        WallParticle(y);*/
+        WallParticle(y);
 
         if (wallGrab || wallSlide || !canMove)
             return;
 
-/*        if (x > 0)
+        if (x > 0)
         {
             side = 1;
             anim.Flip(side);
@@ -151,7 +150,7 @@ public class PlayerMovement : MonoBehaviour
         {
             side = -1;
             anim.Flip(side);
-        }*/
+        }
     }
 
     protected void FixedUpdate()
@@ -192,9 +191,9 @@ public class PlayerMovement : MonoBehaviour
         hasDashed = false;
         isDashing = false;
 
-        //side = anim.sr.flipX ? -1 : 1;
+        side = anim.sr.flipX ? -1 : 1;
 
-        // jumpParticle.Play();
+        jumpParticle.Play();
     }
 
     private void Dash(float x, float y)
@@ -213,11 +212,12 @@ public class PlayerMovement : MonoBehaviour
         if (dir.y > 0)
         {
             dashExtra.y = dashExtra.y / 1.9f;
-        } else
+        }
+        else
         {
             dashExtra *= 1.4f;
         }
-        
+
         if (dir.y > 0 && dir.x == 0)
         {
             anim.SetTrigger("dashup");
@@ -237,7 +237,7 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator DashWait()
     {
-      //FindObjectOfType<GhostTrail>().ShowGhost();
+        //FindObjectOfType<GhostTrail>().ShowGhost();
         StartCoroutine(GroundDash());
 
         //dashParticle.Play();
@@ -262,40 +262,54 @@ public class PlayerMovement : MonoBehaviour
             hasDashed = false;
     }
 
-    private void WallJump()
-    {
-/*        if ((side == 1 && coll.onRightWall) || side == -1 && !coll.onRightWall)
+   
+ 
+     private void WallJump()
+     {
+
+
+        if ((side == 1 && coll.onRightWall) || side == -1 && !coll.onRightWall)
         {
             side *= -1;
             anim.Flip(side);
-        }*/
+        }
 
         StopCoroutine(DisableMovement(0));
         StartCoroutine(DisableMovement(.1f));
 
         Vector2 wallDir = coll.onRightWall ? Vector2.left : Vector2.right;
 
-        Jump((Vector2.up / 1.5f + wallDir / 1.4f), true);
+
+        Jump((Vector2.up / 1.4f + wallDir / 1.2f), true);
+
 
         wallJumped = true;
-    }
 
+    }  
+        
+   
     private void WallSlide()
     {
-/*        if (coll.wallSide != side)
-            anim.Flip(side * -1);*/
+        if (coll.wallSide != side)
+            anim.Flip(side * -1);
 
         if (!canMove)
             return;
-
+        
         bool pushingWall = false;
+
         if ((rb.velocity.x > 0 && coll.onRightWall) || (rb.velocity.x < 0 && coll.onLeftWall))
         {
             pushingWall = true;
         }
+
         float push = pushingWall ? 0 : rb.velocity.x;
 
-        rb.velocity = new Vector2(push, -slideSpeed);
+        currentSlide = Math.Min(currentSlide + accelerationFactor * Time.deltaTime, maxSlideSpeed);
+        float slideVelocity = -currentSlide;
+
+        rb.velocity = new Vector2(push, slideVelocity);
+
     }
 
     private void Walk(Vector2 dir)
@@ -318,20 +332,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump(Vector2 dir, bool wall)
     {
-        //slideParticle.transform.parent.localScale = new Vector3(ParticleSide(), 1, 1);
-        //ParticleSystem particle = wall ? wallJumpParticle : jumpParticle;
+        slideParticle.transform.parent.localScale = new Vector3(ParticleSide(), 1, 1);
+        ParticleSystem particle = wall ? wallJumpParticle : jumpParticle;
 
         rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.velocity += dir * jumpForce;
 
         //too op nerfing it for now
-/*        if (sharingMomentum)
-        {
-            PlayerManager.instance.SendMomentum(dir * jumpForce, this.gameObject);
-            DisableLocking(.2f);
-        }*/
+        /*        if (sharingMomentum)
+                {
+                    PlayerManager.instance.SendMomentum(dir * jumpForce, this.gameObject);
+                    DisableLocking(.2f);
+                }*/
 
-        //particle.Play();
+        particle.Play();
     }
 
     IEnumerator DisableMovement(float time)
@@ -353,20 +367,20 @@ public class PlayerMovement : MonoBehaviour
         rb.drag = x;
     }
 
- /*   void WallParticle(float vertical)
+    void WallParticle(float vertical)
     {
         var main = slideParticle.main;
 
-        if (wallSlide || (wallGrab && vertical < 0))
+        if (wallSlide)
         {
             slideParticle.transform.parent.localScale = new Vector3(ParticleSide(), 1, 1);
-            main.startColor = Color.white;
+            main.startColor = slideColor;
         }
         else
         {
             main.startColor = Color.clear;
         }
-    }*/
+    }
 
     int ParticleSide()
     {
@@ -374,7 +388,7 @@ public class PlayerMovement : MonoBehaviour
         return particleSide;
     }
 
-    protected void QuantumLock()
+    public void QuantumLock()
     {
         settings.qlocked = !settings.qlocked;
         PlayerManager.instance.QuantumLockPlayer(this.gameObject);

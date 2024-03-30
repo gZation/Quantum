@@ -1,22 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameModeMenu : MonoBehaviour
 {
     public string nextSplit;
     public string nextNetworked;
 
-    public LevelLoader levelLoader;
     public void setSplitScreen()
     {
-        GameManager.instance.SetNetworked(false);
-        levelLoader.LoadLevelByName(nextSplit);
+        GameManager.instance.SetNetworkedScreen(false);
+        Screen.SetResolution(1280, 480, false);
+        LevelLoader.instance.LoadLevelByName(nextSplit);
+        //SceneManager.LoadScene(nextSplit);
     }
 
     public void setNetworked()
     {
-        GameManager.instance.SetNetworked(true);
-        levelLoader.LoadLevelByName(nextNetworked);
+        GameManager.instance.SetNetworkedScreen(true);
+        Screen.SetResolution(640, 480, false);
+        LevelLoader.instance.LoadLevelByName(nextNetworked, false);
+        //SceneManager.LoadScene(nextNetworked);
     }
 }

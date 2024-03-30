@@ -10,15 +10,17 @@ public class LevelLoader : NetworkBehaviour
 
     public float transitionTime = 1f;
 
+    public static LevelLoader instance;
+
 
     void Start()
     {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        instance = this;
     }
 
     public void ReloadLevel()
@@ -36,6 +38,17 @@ public class LevelLoader : NetworkBehaviour
         StartCoroutine(LoadLevel(name));
     }
 
+    public void LoadLevelByName(string name, bool check)
+    {
+        if (check)
+        {
+            StartCoroutine(LoadLevel(name));
+        } else
+        {
+            StartCoroutine(LoadLevelNoCheckNetworked(name));
+        }
+    }
+
     public void LoadLoseScreen()
     {
         StartCoroutine(LoadLevel("Lose Screen"));
@@ -48,18 +61,36 @@ public class LevelLoader : NetworkBehaviour
         // Play animation
         transition.SetTrigger("Start");
         // Wait
+        Time.timeScale = 1f;
         yield return new WaitForSeconds(transitionTime);
-
         // if T is string, convert levelIndex from T type to string
         // sometimes will return build index -1 if the scene hasn't been loaded before so :<
         string sceneName = (typeof(T) == typeof(string)) ? (string)(object)levelIndex : SceneManager.GetSceneByBuildIndex((int)(object)(levelIndex)).name;
 
         // Use NetworkSceneManager if networked. Otherwise, revert to normal SceneManager
-        if (GameManager.instance.IsNetworked() && NetworkManager.Singleton.IsHost)
+        if (GameManager.instance != null && GameManager.instance.IsNetworked())
         {
-            Debug.Log("Change Scene Networked");
             NetworkManager.Singleton.SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
         }
+        else
+        {
+            SceneManager.LoadScene(sceneName);
+        }
+        
+    }
+
+    IEnumerator LoadLevelNoCheckNetworked<T>(T levelIndex)
+    {
+        T newIndex = levelIndex;
+        // Play animation
+        transition.SetTrigger("Start");
+        // Wait
+        Time.timeScale = 1f;
+        yield return new WaitForSeconds(transitionTime);
+        // if T is string, convert levelIndex from T type to string
+        // sometimes will return build index -1 if the scene hasn't been loaded before so :<
+        string sceneName = (typeof(T) == typeof(string)) ? (string)(object)levelIndex : SceneManager.GetSceneByBuildIndex((int)(object)(levelIndex)).name;
+
         SceneManager.LoadScene(sceneName);
     }
 }
