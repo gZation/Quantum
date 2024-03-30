@@ -6613,6 +6613,7 @@ GameObject:
   - component: {fileID: 1384545913}
   - component: {fileID: 1384545915}
   - component: {fileID: 1384545916}
+  - component: {fileID: 1384545917}
   m_Layer: 3
   m_Name: Bouncy
   m_TagString: Untagged
@@ -6722,8 +6723,8 @@ BoxCollider2D:
   m_Offset: {x: 0, y: -0.10512602}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 1}
+    pivot: {x: 0.5, y: 0.6666667}
+    oldSize: {x: 2, y: 0.75}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -6745,6 +6746,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   magnitude: 20
+--- !u!95 &1384545917
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1384545912}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3cb8801db04abe847ac84057806b1d14, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1458907830
 PrefabInstance:
   m_ObjectHideFlags: 0

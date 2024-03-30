@@ -5,6 +5,12 @@ using UnityEngine;
 public class Bouncy : MonoBehaviour
 {
     [SerializeField] float magnitude;
+    Animator animator;
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -12,6 +18,7 @@ public class Bouncy : MonoBehaviour
         {
             PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
             player.WorldAddMomentum(Vector2.up * magnitude);
+            animator.SetTrigger("bounce");
         }
     }
 }
