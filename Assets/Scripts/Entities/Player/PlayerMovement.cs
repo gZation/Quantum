@@ -16,7 +16,9 @@ public class PlayerMovement : MonoBehaviour
     [Header("Stats")]
     public float speed = 8;
     public float jumpForce =500; // Just Testing JumpForce was 15
+    public float maxSlideSpeed = 10;
     public float slideSpeed = 5;
+    public float accelerationFactor = 1.5f;
     public float wallJumpLerp = 10;
     public float dashSpeed = 25;
 
@@ -26,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     public bool wallGrab;
     public bool wallJumped;
     public bool wallSlide;
+
     public bool isDashing;
 
 
@@ -47,6 +50,8 @@ public class PlayerMovement : MonoBehaviour
     public ParticleSystem jumpParticle;
     public ParticleSystem wallJumpParticle;
     public ParticleSystem slideParticle;
+    ParticleSystem.MinMaxGradient slideColor;
+
 
 
     // Start is called before the first frame update
@@ -139,21 +144,21 @@ public class PlayerMovement : MonoBehaviour
             groundTouch = false;
         }
 
-        /*        WallParticle(y);*/
+        WallParticle(y);
 
         if (wallGrab || wallSlide || !canMove)
             return;
 
-        /*        if (x > 0)
-                {
-                    side = 1;
-                    anim.Flip(side);
-                }
-                if (x < 0)
-                {
-                    side = -1;
-                    anim.Flip(side);
-                }*/
+        if (x > 0)
+        {
+            side = 1;
+            anim.Flip(side);
+        }
+        if (x < 0)
+        {
+            side = -1;
+            anim.Flip(side);
+        }
     }
 
     protected void FixedUpdate()
@@ -194,9 +199,9 @@ public class PlayerMovement : MonoBehaviour
         hasDashed = false;
         isDashing = false;
 
-        //side = anim.sr.flipX ? -1 : 1;
+        side = anim.sr.flipX ? -1 : 1;
 
-        // jumpParticle.Play();
+        jumpParticle.Play();
     }
 
     private void Dash(float x, float y)
@@ -268,14 +273,14 @@ public class PlayerMovement : MonoBehaviour
    
  
      private void WallJump()
+     {
+
+
+        if ((side == 1 && coll.onRightWall) || side == -1 && !coll.onRightWall)
         {
-
-
-        /*       if ((side == 1 && coll.onRightWall) || side == -1 && !coll.onRightWall)
-                {
-                    side *= -1;
-                    anim.Flip(side);
-                }*/
+            side *= -1;
+            anim.Flip(side);
+        }
 
         if ((coll.onRightWall && lastWallJumpDirection == Vector2.right) ||
             (coll.onLeftWall && lastWallJumpDirection == Vector2.left))
@@ -290,39 +295,10 @@ public class PlayerMovement : MonoBehaviour
         Vector2 wallDir = coll.onRightWall ? Vector2.left : Vector2.right;
 
 
-Jump((Vector2.up / 1.5f + wallDir / 1.4f), true);
-
-        Jump((Vector2.up / 1.3f + wallDir / 1.2f), true);
-
-
-        wallJumped = true;
-        //lastWallJumpDirection = wallDir; // Update the last wall jump direction
-
-    
-
-        /*
-        Vector2 currentWallDir = coll.onRightWall ? Vector2.right : Vector2.left;
-
-        // Check if the player is attempting to jump on the same wall they last jumped from
-        if (currentWallDir == lastWallJumpDirection)
-        {
-            // Exit without performing the jump
-            return;
-        }
-
-        StopCoroutine(DisableMovement(0));
-        StartCoroutine(DisableMovement(.1f));
-
-        // Calculate the direction of the wall the player is jumping towards
-        Vector2 wallDir = coll.onRightWall ? Vector2.left : Vector2.right;
-
-        // Perform the jump
         Jump((Vector2.up / 1.5f + wallDir / 1.4f), true);
 
-        // Update variables
+
         wallJumped = true;
-        lastWallJumpDirection = wallDir; // Update the last wall jump direction
-        */
 
     }
   
@@ -331,8 +307,9 @@ Jump((Vector2.up / 1.5f + wallDir / 1.4f), true);
    
     private void WallSlide()
     {
-        /*        if (coll.wallSide != side)
-                    anim.Flip(side * -1);*/
+        if (coll.wallSide != side)
+            anim.Flip(side * -1);
+
         if (!canMove)
             return;
         
@@ -345,13 +322,9 @@ Jump((Vector2.up / 1.5f + wallDir / 1.4f), true);
 
         float push = pushingWall ? 0 : rb.velocity.x;
 
-        float accelerationFactor = 2f; // Adjust this value as needed
-        float exponentialFactor = 2f; // Adjust this value as needed
+        float slideVelocity = -slideSpeed * (1 - Mathf.Exp(-accelerationFactor * Time.deltaTime));
 
-        float slideVelocity = -slideSpeed * Mathf.Pow(exponentialFactor, Time.time);
-        float slideVelocity2 = -slideSpeed * (1 - Mathf.Exp(-accelerationFactor * Time.deltaTime));
-
-        rb.velocity = new Vector2(push, slideVelocity2);
+        rb.velocity = new Vector2(push, slideVelocity);
 
     }
 
@@ -375,8 +348,8 @@ Jump((Vector2.up / 1.5f + wallDir / 1.4f), true);
 
     private void Jump(Vector2 dir, bool wall)
     {
-        //slideParticle.transform.parent.localScale = new Vector3(ParticleSide(), 1, 1);
-        //ParticleSystem particle = wall ? wallJumpParticle : jumpParticle;
+        slideParticle.transform.parent.localScale = new Vector3(ParticleSide(), 1, 1);
+        ParticleSystem particle = wall ? wallJumpParticle : jumpParticle;
 
         rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.velocity += dir * jumpForce;
@@ -388,7 +361,7 @@ Jump((Vector2.up / 1.5f + wallDir / 1.4f), true);
                     DisableLocking(.2f);
                 }*/
 
-        //particle.Play();
+        particle.Play();
     }
 
     IEnumerator DisableMovement(float time)
@@ -410,20 +383,20 @@ Jump((Vector2.up / 1.5f + wallDir / 1.4f), true);
         rb.drag = x;
     }
 
-    /*   void WallParticle(float vertical)
-       {
-           var main = slideParticle.main;
+    void WallParticle(float vertical)
+    {
+        var main = slideParticle.main;
 
-           if (wallSlide || (wallGrab && vertical < 0))
-           {
-               slideParticle.transform.parent.localScale = new Vector3(ParticleSide(), 1, 1);
-               main.startColor = Color.white;
-           }
-           else
-           {
-               main.startColor = Color.clear;
-           }
-       }*/
+        if (wallSlide)
+        {
+            slideParticle.transform.parent.localScale = new Vector3(ParticleSide(), 1, 1);
+            main.startColor = slideColor;
+        }
+        else
+        {
+            main.startColor = Color.clear;
+        }
+    }
 
     int ParticleSide()
     {
