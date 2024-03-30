@@ -16,9 +16,9 @@ public class PlayerMovement : MonoBehaviour
     [Header("Stats")]
     public float speed = 7;
     public float jumpForce = 12;
-    public float maxSlideSpeed = 10;
-    public float slideSpeed = 5;
-    public float accelerationFactor = 1.5f;
+    public float maxSlideSpeed = 6;
+    public float minSlideSpeed = 1.5f;
+    public float accelerationFactor = 2f;
     public float wallJumpLerp = 5;
     public float dashSpeed = 25;
 
@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
     public ParticleSystem slideParticle;
     ParticleSystem.MinMaxGradient slideColor;
 
-
+    public float currentSlide;
 
     // Start is called before the first frame update
     void Start()
@@ -62,6 +62,11 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<PlayerAnimation>();
         momentumToAdd = new List<Vector2>();
+
+        slideParticle.Play();
+        slideColor = slideParticle.main.startColor;
+
+        currentSlide = minSlideSpeed;
     }
 
     // Update is called once per frame
@@ -98,7 +103,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (!coll.onWall || coll.onGround)
+        {
+            currentSlide = minSlideSpeed;
             wallSlide = false;
+        }
 
         if (IsJump() && canMove)
         {
@@ -306,7 +314,8 @@ public class PlayerMovement : MonoBehaviour
 
         float push = pushingWall ? 0 : rb.velocity.x;
 
-        float slideVelocity = -slideSpeed * (1 - Mathf.Exp(-accelerationFactor * Time.deltaTime));
+        currentSlide = Math.Min(currentSlide + accelerationFactor * Time.deltaTime, maxSlideSpeed);
+        float slideVelocity = -currentSlide;
 
         rb.velocity = new Vector2(push, slideVelocity);
 

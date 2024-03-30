@@ -281,20 +281,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   speed: 7
-  maxSpeed: 50
   jumpForce: 12
-  slideSpeed: 3
+  maxSlideSpeed: 6
+  minSlideSpeed: 1.5
+  accelerationFactor: 6
   wallJumpLerp: 5
   dashSpeed: 25
   canMove: 1
+  wallGrab: 0
   wallJumped: 0
   wallSlide: 0
   isDashing: 0
+  sharingMomentum: 0
   side: 1
   dashParticle: {fileID: 0}
   jumpParticle: {fileID: 2634847382010418216}
   wallJumpParticle: {fileID: 8122526695765193081}
   slideParticle: {fileID: 6075663719978407109}
+  currentSlide: 0
 --- !u!114 &3205094810703353517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,20 +313,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   speed: 7
-  maxSpeed: 50
   jumpForce: 12
-  slideSpeed: 3
+  maxSlideSpeed: 6
+  minSlideSpeed: 1.5
+  accelerationFactor: 6
   wallJumpLerp: 5
   dashSpeed: 25
   canMove: 1
+  wallGrab: 0
   wallJumped: 0
   wallSlide: 0
   isDashing: 0
+  sharingMomentum: 0
   side: 1
   dashParticle: {fileID: 0}
   jumpParticle: {fileID: 2634847382010418216}
   wallJumpParticle: {fileID: 8122526695765193081}
   slideParticle: {fileID: 6075663719978407109}
+  currentSlide: 0
 --- !u!114 &148218394243981072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,20 +345,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   speed: 7
-  maxSpeed: 50
   jumpForce: 12
-  slideSpeed: 3
+  maxSlideSpeed: 6
+  minSlideSpeed: 1.5
+  accelerationFactor: 6
   wallJumpLerp: 5
   dashSpeed: 25
   canMove: 1
+  wallGrab: 0
   wallJumped: 0
   wallSlide: 0
   isDashing: 0
+  sharingMomentum: 0
   side: 1
   dashParticle: {fileID: 0}
   jumpParticle: {fileID: 2634847382010418216}
   wallJumpParticle: {fileID: 8122526695765193081}
   slideParticle: {fileID: 6075663719978407109}
+  currentSlide: 0
 --- !u!1 &8586785491372393179
 GameObject:
   m_ObjectHideFlags: 0
