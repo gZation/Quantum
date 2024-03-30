@@ -712,7 +712,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clientRetryDelay: 0.5
-  NextLevel: Sakshi1
+  NextLevel: Tutorial 1
 --- !u!4 &1975720200
 Transform:
   m_ObjectHideFlags: 0

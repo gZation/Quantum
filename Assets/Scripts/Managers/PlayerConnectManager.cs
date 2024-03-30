@@ -8,7 +8,7 @@ public class PlayerConnectManager : NetworkBehaviour
 {
     // Start is called before the first frame update
     public float clientRetryDelay = (float) 0.5;
-    public string NextLevel;
+    public string NextLevel = "Tutorial 1";
     void Start()
     {
         if (!PlayerManager.instance.isHost)
