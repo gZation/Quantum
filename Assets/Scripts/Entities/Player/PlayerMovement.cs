@@ -14,12 +14,12 @@ public class PlayerMovement : MonoBehaviour
 
     [Space]
     [Header("Stats")]
-    public float speed = 8;
-    public float jumpForce =500; // Just Testing JumpForce was 15
+    public float speed = 7;
+    public float jumpForce = 12;
     public float maxSlideSpeed = 10;
     public float slideSpeed = 5;
     public float accelerationFactor = 1.5f;
-    public float wallJumpLerp = 10;
+    public float wallJumpLerp = 5;
     public float dashSpeed = 25;
 
     [Space]
@@ -89,28 +89,12 @@ public class PlayerMovement : MonoBehaviour
             GetComponent<PlayerJump>().enabled = true;
         }
 
-        if (wallGrab && !isDashing)
-        {
-            rb.gravityScale = 0;
-            if (x > .2f || x < -.2f)
-                rb.velocity = new Vector2(rb.velocity.x, 0);
-
-            float speedModifier = y > 0 ? .5f : 1;
-
-            rb.velocity = new Vector2(rb.velocity.x, y * (speed * speedModifier));
-        }
-        else
-        {
-            rb.gravityScale = 3;
-        }
+        rb.gravityScale = 3;
 
         if (coll.onWall && !coll.onGround)
         {
-            if (x != 0 && !wallGrab)
-            {
-                wallSlide = true;
-                WallSlide();
-            }
+            wallSlide = true;
+            WallSlide();
         }
 
         if (!coll.onWall || coll.onGround)
