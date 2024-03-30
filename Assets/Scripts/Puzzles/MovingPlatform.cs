@@ -10,6 +10,8 @@ public class MovingPlatform : MonoBehaviour
     private float startTime;
     public bool oscillate = true;
     public float oscillateDuration = 2f;
+    public Vector3 newD = new Vector3(0.0f, 0.0f, 0.0f);
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,16 +21,36 @@ public class MovingPlatform : MonoBehaviour
 
     void FixedUpdate()
     {
+        float bufferDuration = oscillateDuration * 0.25f;
+        Vector3 acc = new Vector3(0.0f, 0.0f, 0.0f);
         if (oscillate)
         {
             startTime += Time.deltaTime;
+
             if (startTime >= oscillateDuration)
             {
                 startTime = 0;
                 direction = -direction;
             }
+            if (oscillateDuration - startTime < bufferDuration || startTime < bufferDuration)
+            {
+                acc = direction / bufferDuration;
+
+                if (oscillateDuration - startTime < bufferDuration)
+                {
+                    newD = direction - acc * (bufferDuration - oscillateDuration + startTime);
+                }
+                else
+                {
+                    newD = acc * startTime;
+                }
+            }
+            else
+            {
+                newD = direction;
+            }
         }
-        transform.position += direction;
+        transform.position += newD;
     }
 
     void OnCollisionEnter2D(Collision2D collision)

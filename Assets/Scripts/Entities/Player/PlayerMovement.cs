@@ -289,7 +289,11 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 wallDir = coll.onRightWall ? Vector2.left : Vector2.right;
 
+
 Jump((Vector2.up / 1.5f + wallDir / 1.4f), true);
+
+        Jump((Vector2.up / 1.3f + wallDir / 1.2f), true);
+
 
         wallJumped = true;
         //lastWallJumpDirection = wallDir; // Update the last wall jump direction

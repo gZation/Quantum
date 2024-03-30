@@ -104,7 +104,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.023996353, y: -0.029544353}
+  m_Offset: {x: 0.022132874, y: -0.027798653}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -115,7 +115,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.19045639, y: 0.586051}
+  m_Size: {x: 0.14260101, y: 0.5825596}
   m_EdgeRadius: 0.18
 --- !u!114 &375964731186814185
 MonoBehaviour:
@@ -187,8 +187,9 @@ MonoBehaviour:
   onRightWall: 0
   onLeftWall: 0
   wallSide: 0
-  collisionRadius: 0.25
-  bottomOffset: {x: 0, y: -0.5}
+  boxSize: {x: 0.25, y: 0.7}
+  bottomBoxSize: {x: 0.1, y: 0.1}
+  bottomOffset: {x: 0.023, y: -0.5}
   rightOffset: {x: 0.25, y: 0}
   leftOffset: {x: -0.25, y: 0}
 --- !u!114 &-5146849112117003517
@@ -258,7 +259,7 @@ MonoBehaviour:
   isDashing: 0
   side: 1
   dashParticle: {fileID: 0}
-  jumpParticle: {fileID: 4644653537552863890, guid: 3a341a07f7dcd6a469738ec68b5972da, type: 3}
+  jumpParticle: {fileID: 5077882394773441726}
   wallJumpParticle: {fileID: 3451269928744493914}
   slideParticle: {fileID: 7192988849610433625}
 --- !u!114 &8505345009839983069
@@ -286,7 +287,7 @@ MonoBehaviour:
   isDashing: 0
   side: 1
   dashParticle: {fileID: 0}
-  jumpParticle: {fileID: 4644653537552863890, guid: 3a341a07f7dcd6a469738ec68b5972da, type: 3}
+  jumpParticle: {fileID: 5077882394773441726}
   wallJumpParticle: {fileID: 3451269928744493914}
   slideParticle: {fileID: 7192988849610433625}
 --- !u!114 &5490390521861608361
@@ -314,7 +315,7 @@ MonoBehaviour:
   isDashing: 0
   side: 1
   dashParticle: {fileID: 0}
-  jumpParticle: {fileID: 4644653537552863890, guid: 3a341a07f7dcd6a469738ec68b5972da, type: 3}
+  jumpParticle: {fileID: 5077882394773441726}
   wallJumpParticle: {fileID: 3451269928744493914}
   slideParticle: {fileID: 7192988849610433625}
 --- !u!1 &1940521423388946917
@@ -528,6 +529,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a341a07f7dcd6a469738ec68b5972da, type: 3}
+--- !u!198 &5077882394773441726 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4644653537552863890, guid: 3a341a07f7dcd6a469738ec68b5972da, type: 3}
+  m_PrefabInstance: {fileID: 436106902996770348}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8133014790365387693 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8562215038722360705, guid: 3a341a07f7dcd6a469738ec68b5972da, type: 3}

@@ -190,8 +190,9 @@ MonoBehaviour:
   onRightWall: 0
   onLeftWall: 0
   wallSide: 0
-  collisionRadius: 0.25
-  bottomOffset: {x: 0, y: -0.5}
+  boxSize: {x: 0.25, y: 0.8}
+  bottomBoxSize: {x: 0.1, y: 0.1}
+  bottomOffset: {x: 0.025, y: -0.5}
   rightOffset: {x: 0.25, y: 0}
   leftOffset: {x: -0.25, y: 0}
 --- !u!114 &5530886064592142010
@@ -291,7 +292,7 @@ MonoBehaviour:
   isDashing: 0
   side: 1
   dashParticle: {fileID: 0}
-  jumpParticle: {fileID: 4644653537552863890, guid: 3a341a07f7dcd6a469738ec68b5972da, type: 3}
+  jumpParticle: {fileID: 2634847382010418216}
   wallJumpParticle: {fileID: 8122526695765193081}
   slideParticle: {fileID: 6075663719978407109}
 --- !u!114 &3205094810703353517
@@ -319,7 +320,7 @@ MonoBehaviour:
   isDashing: 0
   side: 1
   dashParticle: {fileID: 0}
-  jumpParticle: {fileID: 4644653537552863890, guid: 3a341a07f7dcd6a469738ec68b5972da, type: 3}
+  jumpParticle: {fileID: 2634847382010418216}
   wallJumpParticle: {fileID: 8122526695765193081}
   slideParticle: {fileID: 6075663719978407109}
 --- !u!114 &148218394243981072
@@ -347,7 +348,7 @@ MonoBehaviour:
   isDashing: 0
   side: 1
   dashParticle: {fileID: 0}
-  jumpParticle: {fileID: 4644653537552863890, guid: 3a341a07f7dcd6a469738ec68b5972da, type: 3}
+  jumpParticle: {fileID: 2634847382010418216}
   wallJumpParticle: {fileID: 8122526695765193081}
   slideParticle: {fileID: 6075663719978407109}
 --- !u!1 &8586785491372393179
@@ -669,5 +670,10 @@ PrefabInstance:
 --- !u!4 &1312479633086415675 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8562215038722360705, guid: 62f5902abfe341b44bb677fbf41be6f3, type: 3}
+  m_PrefabInstance: {fileID: 7270433173010433722}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &2634847382010418216 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4644653537552863890, guid: 62f5902abfe341b44bb677fbf41be6f3, type: 3}
   m_PrefabInstance: {fileID: 7270433173010433722}
   m_PrefabAsset: {fileID: 0}
