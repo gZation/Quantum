@@ -14,7 +14,10 @@ public class DirectionalMomentumAddition : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        animator.SetBool("active", active);
+        if (animator != null)
+        {
+            animator.SetBool("active", active);
+        }
     }
 
     // Update is called once per frame
@@ -25,7 +28,10 @@ public class DirectionalMomentumAddition : MonoBehaviour
     public void toggleActive()
     {
         active = !active;
-        animator.SetBool("active", active);
+        if (animator != null)
+        {
+            animator.SetBool("active", active);
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
