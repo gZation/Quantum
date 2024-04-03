@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class DirectionalMomentumAddition : MonoBehaviour
 {
-
+    public VisualEffect VFX;
     [SerializeField] Vector2 direction;
     [SerializeField] float strength;
     [SerializeField] bool active;
@@ -17,6 +18,10 @@ public class DirectionalMomentumAddition : MonoBehaviour
         if (animator != null)
         {
             animator.SetBool("active", active);
+        }
+        if (VFX != null)
+        {
+            VFX.enabled = active;
         }
     }
 
@@ -31,6 +36,10 @@ public class DirectionalMomentumAddition : MonoBehaviour
         if (animator != null)
         {
             animator.SetBool("active", active);
+        }
+        if (VFX != null)
+        {
+            VFX.enabled = active;
         }
     }
 

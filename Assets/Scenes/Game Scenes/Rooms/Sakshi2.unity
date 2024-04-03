@@ -179,6 +179,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 2009113373}
     m_Modifications:
     - target: {fileID: 1846742061813172268, guid: b52ef01c097c69c4cb03949b18bfa7de, type: 3}
+      propertyPath: active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1846742061813172268, guid: b52ef01c097c69c4cb03949b18bfa7de, type: 3}
       propertyPath: strength
       value: 50
       objectReference: {fileID: 0}
@@ -196,11 +200,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4216942761901704969, guid: b52ef01c097c69c4cb03949b18bfa7de, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.9895
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4216942761901704969, guid: b52ef01c097c69c4cb03949b18bfa7de, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.4022
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 4216942761901704969, guid: b52ef01c097c69c4cb03949b18bfa7de, type: 3}
       propertyPath: m_LocalPosition.z
@@ -233,6 +237,38 @@ PrefabInstance:
     - target: {fileID: 4216942761901704969, guid: b52ef01c097c69c4cb03949b18bfa7de, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024713025269148363, guid: b52ef01c097c69c4cb03949b18bfa7de, type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[0].m_Value.x
+      value: 1.8186733
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024713025269148363, guid: b52ef01c097c69c4cb03949b18bfa7de, type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[0].m_Value.y
+      value: -0.046816826
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024713025269148363, guid: b52ef01c097c69c4cb03949b18bfa7de, type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[1].m_Value.x
+      value: 4.989883
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024713025269148363, guid: b52ef01c097c69c4cb03949b18bfa7de, type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[1].m_Value.y
+      value: 4.900708
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024713025269148363, guid: b52ef01c097c69c4cb03949b18bfa7de, type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[2].m_Value.x
+      value: 0.33566463
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024713025269148363, guid: b52ef01c097c69c4cb03949b18bfa7de, type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[2].m_Value.y
+      value: 5.0316944
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024713025269148363, guid: b52ef01c097c69c4cb03949b18bfa7de, type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[3].m_Value.x
+      value: -0.5074107
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024713025269148363, guid: b52ef01c097c69c4cb03949b18bfa7de, type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[3].m_Value.y
+      value: 0.02152288
       objectReference: {fileID: 0}
     - target: {fileID: 7124596983748243956, guid: b52ef01c097c69c4cb03949b18bfa7de, type: 3}
       propertyPath: m_Name
@@ -10906,6 +10942,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1520853944}
     m_Modifications:
     - target: {fileID: 1846742061813172268, guid: b52ef01c097c69c4cb03949b18bfa7de, type: 3}
+      propertyPath: active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1846742061813172268, guid: b52ef01c097c69c4cb03949b18bfa7de, type: 3}
       propertyPath: strength
       value: 1
       objectReference: {fileID: 0}
@@ -10956,6 +10996,46 @@ PrefabInstance:
     - target: {fileID: 4216942761901704969, guid: b52ef01c097c69c4cb03949b18bfa7de, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024713025269148363, guid: b52ef01c097c69c4cb03949b18bfa7de, type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[0].m_Value.x
+      value: 1.8099952
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024713025269148363, guid: b52ef01c097c69c4cb03949b18bfa7de, type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[0].m_Value.y
+      value: -0.08594287
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024713025269148363, guid: b52ef01c097c69c4cb03949b18bfa7de, type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[0].m_Value.z
+      value: 5.8173133e-10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024713025269148363, guid: b52ef01c097c69c4cb03949b18bfa7de, type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[1].m_Value.x
+      value: 4.94083
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024713025269148363, guid: b52ef01c097c69c4cb03949b18bfa7de, type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[1].m_Value.y
+      value: 5.2509346
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024713025269148363, guid: b52ef01c097c69c4cb03949b18bfa7de, type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[2].m_Value.x
+      value: 0.34353924
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024713025269148363, guid: b52ef01c097c69c4cb03949b18bfa7de, type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[2].m_Value.y
+      value: 4.9835567
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024713025269148363, guid: b52ef01c097c69c4cb03949b18bfa7de, type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[3].m_Value.x
+      value: -0.51134807
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024713025269148363, guid: b52ef01c097c69c4cb03949b18bfa7de, type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[3].m_Value.y
+      value: -0.018440716
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024713025269148363, guid: b52ef01c097c69c4cb03949b18bfa7de, type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[3].m_Value.z
+      value: 5.8173133e-10
       objectReference: {fileID: 0}
     - target: {fileID: 7124596983748243956, guid: b52ef01c097c69c4cb03949b18bfa7de, type: 3}
       propertyPath: m_Name
