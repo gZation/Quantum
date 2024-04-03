@@ -80,15 +80,35 @@ private void OnDisable()
 
     void Update()
     {
+        if (IsNetworked())
+        {
+            if (Input.GetButtonDown("Toggle"))
+            {
+                int currPlayer = PlayerManager.instance.currPlayer;
 
-        // TODO: rework these for networking
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            w2Copy.gameObject.SetActive(!w2Copy.gameObject.activeSelf);
+                if (currPlayer == 1)
+                {
+                    w2Copy.gameObject.SetActive(!w2Copy.gameObject.activeSelf);
+                } else if (currPlayer == 2)
+                {
+                    w1Copy.gameObject.SetActive(!w1Copy.gameObject.activeSelf);
+                }
+            }
         }
-        if (Input.GetKeyDown(KeyCode.Backspace))
+        else
         {
-            w1Copy.gameObject.SetActive(!w1Copy.gameObject.activeSelf);
+            if (Input.GetButtonDown("ToggleLeft"))
+            {
+                w2Copy.gameObject.SetActive(!w2Copy.gameObject.activeSelf);
+            }
+            if (Input.GetButtonDown("ToggleRight"))
+            {
+                w1Copy.gameObject.SetActive(!w1Copy.gameObject.activeSelf);
+            }
+        }
+        if (Input.GetButton("Restart"))
+        {
+            LevelLoader.instance.ReloadLevel();
         }
     }
 
