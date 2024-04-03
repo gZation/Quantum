@@ -6822,6 +6822,14 @@ PrefabInstance:
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[3].m_Value.y
       value: -0.022004366
       objectReference: {fileID: 0}
+    - target: {fileID: 5278566331805104836, guid: b52ef01c097c69c4cb03949b18bfa7de, type: 3}
+      propertyPath: m_Size.x
+      value: 1.0022932
+      objectReference: {fileID: 0}
+    - target: {fileID: 5278566331805104836, guid: b52ef01c097c69c4cb03949b18bfa7de, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.0011466742
+      objectReference: {fileID: 0}
     - target: {fileID: 7124596983748243956, guid: b52ef01c097c69c4cb03949b18bfa7de, type: 3}
       propertyPath: m_Name
       value: WindTunnelLeft
