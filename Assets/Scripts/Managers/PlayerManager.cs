@@ -156,24 +156,9 @@ public class PlayerManager : NetworkBehaviour
         return player1 != null && player2 != null;
     }
 
-    public void QuantumLockPlayer(GameObject listener)
+    public void ToggleQuantumLock()
     {
-        if (!GameManager.instance.IsNetworked())
-        {
-            if (listener == player1)
-            {
-                MovementArrows playerMovement = player2.GetComponent<MovementArrows>();
-                playerMovement.QuantumLock();
-            }
-            else
-            {
-                MovementWASD playerMovement = player1.GetComponent<MovementWASD>();
-                playerMovement.QuantumLock();
-            }
-        } else
-        {
-
-        }
+        instance.qlocked = !instance.qlocked;
 
     }
 

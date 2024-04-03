@@ -68,6 +68,11 @@ public class PauseMenuScript : MonoBehaviour
         gamePaused = false;
     }
 
+    public void Restart()
+    {
+        LevelLoader.instance.ReloadLevel();
+    }
+
     void Pause()
     {
         pauseUI.SetActive(true);
