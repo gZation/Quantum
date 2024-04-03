@@ -72,6 +72,9 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // make sure the player rb doesnt go to sleep
+        rb.AddForce(Vector2.zero);
+
         if (IsQLock())
         {
             QuantumLock();
