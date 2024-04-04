@@ -18,7 +18,6 @@ public class MusicManager : MonoBehaviour {
     {
         if (instance != null)
         {
-            //Debug.LogError("Found more than one Music Manager in the scene.");
             Destroy(this.gameObject);
             return;
         }

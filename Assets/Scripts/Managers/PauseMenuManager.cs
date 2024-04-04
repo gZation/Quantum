@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class PauseMenuManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public delegate void OnVariableChangeDelegate(bool newVal);
+    public event OnVariableChangeDelegate OnVariablePauseChange;
+    private bool m_paused = false;
+    public bool paused
     {
-        
+        get { return m_paused; }
+        set
+        {
+            if (m_paused == value) return;
+            m_paused = value;
+            if (OnVariablePauseChange != null) OnVariablePauseChange(m_paused);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

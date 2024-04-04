@@ -26,6 +26,12 @@ public class PauseMenuScript : MonoBehaviour
         {
             bg.sizeDelta = new Vector2(1280, 480);
         }
+
+        // update the volume controls to match the music manager
+        GameObject options = pauseUI.transform.GetChild(1).gameObject;
+        Slider[] sliders = options.GetComponentsInChildren<Slider>();
+        sliders[0].value = MusicManager.instance.masterVolume;
+        sliders[1].value = MusicManager.instance.sfxVolume;
     }
 
     private void Update()
