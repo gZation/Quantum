@@ -70,6 +70,12 @@ public class PlayerSettings : MonoBehaviour
             Destroy(this.gameObject.GetComponent<MovementWASD>());
             Destroy(this.gameObject.GetComponent<MovementArrows>());
             UpdatePlayerMovementRef();
+        } else
+        {
+            Destroy(this.gameObject.GetComponent<MovementWASD>());
+            Destroy(this.gameObject.GetComponent<MovementArrows>());
+            Destroy(this.gameObject.GetComponent<PlayerMovement>());
+            UpdatePlayerMovementRef();
         }
     }
 

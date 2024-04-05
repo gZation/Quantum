@@ -33,7 +33,7 @@ public class PauseMenuManager : NetworkBehaviour
     }
 
     [ClientRpc]
-    public void TogglePauseClientRpc() { if (!NetworkManager.Singleton.IsHost) TogglePause(); }
+    public void TogglePauseClientRpc() { TogglePause(); }
 
     [ServerRpc(RequireOwnership = false)]
     public void TogglePauseServerRpc() { TogglePauseClientRpc(); }
