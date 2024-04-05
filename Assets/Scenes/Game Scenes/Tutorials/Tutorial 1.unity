@@ -18896,19 +18896,67 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2245124938820392366, guid: d84d7814d656ff946a44e740fec8ae48, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023536490273864351, guid: d84d7814d656ff946a44e740fec8ae48, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 640
       objectReference: {fileID: 0}
     - target: {fileID: 4096509554248455450, guid: d84d7814d656ff946a44e740fec8ae48, type: 3}
       propertyPath: m_Name
       value: Pause Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 4395189142189069326, guid: d84d7814d656ff946a44e740fec8ae48, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4395189142189069326, guid: d84d7814d656ff946a44e740fec8ae48, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4395189142189069326, guid: d84d7814d656ff946a44e740fec8ae48, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4395189142189069326, guid: d84d7814d656ff946a44e740fec8ae48, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4395189142189069326, guid: d84d7814d656ff946a44e740fec8ae48, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 540
+      objectReference: {fileID: 0}
+    - target: {fileID: 4395189142189069326, guid: d84d7814d656ff946a44e740fec8ae48, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 380
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826247635060047279, guid: d84d7814d656ff946a44e740fec8ae48, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4826247635060047279, guid: d84d7814d656ff946a44e740fec8ae48, type: 3}
       propertyPath: m_UiScaleMode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4826247635060047279, guid: d84d7814d656ff946a44e740fec8ae48, type: 3}
+      propertyPath: m_ScreenMatchMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826247635060047279, guid: d84d7814d656ff946a44e740fec8ae48, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826247635060047279, guid: d84d7814d656ff946a44e740fec8ae48, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 640
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826247635060047279, guid: d84d7814d656ff946a44e740fec8ae48, type: 3}
+      propertyPath: m_ReferencePixelsPerUnit
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 6852806678739029208, guid: d84d7814d656ff946a44e740fec8ae48, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7717578894165375228, guid: d84d7814d656ff946a44e740fec8ae48, type: 3}
       propertyPath: GlobalObjectIdHash
