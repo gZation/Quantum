@@ -9,31 +9,63 @@ public class PauseMenu: MonoBehaviour
     public static PauseMenu instance { get; private set; }
 
     public static bool gamePaused = false;
-    public GameObject pauseUI;
-    public GameObject mainPause;
-    public GameObject optionsMenu;
-    public GameObject quitCheck;
-    public int world;
-    
+    public GameObject pauseUI1;
+    public GameObject mainPause1;
+    public GameObject optionsMenu1;
+    public GameObject quitCheck1;
+
+    public GameObject pauseUI2;
+    public GameObject mainPause2;
+    public GameObject optionsMenu2;
+    public GameObject quitCheck2;
+    /*    public int world;*/
+
+    void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            //Debug.LogError("Found more than one Player Manager in the scene.");
+            Destroy(this.gameObject);
+            return;
+        }
+        instance = this;
+    }
 
     private void Start()
     {
         Resume();
 
-        RectTransform bg = pauseUI.GetComponentInChildren<RectTransform>();
+        // Start both pause menus
+        RectTransform bg1 = pauseUI1.GetComponentInChildren<RectTransform>();
         if (GameManager.instance.IsNetworked())
         {
-            bg.sizeDelta = new Vector2(640, 480);
+            bg1.sizeDelta = new Vector2(640, 480);
         } else
         {
-            bg.sizeDelta = new Vector2(1280, 480);
+            bg1.sizeDelta = new Vector2(1280, 480);
         }
 
         // update the volume controls to match the music manager
-        GameObject options = pauseUI.transform.GetChild(1).gameObject;
+        GameObject options = pauseUI1.transform.GetChild(1).gameObject;
         Slider[] sliders = options.GetComponentsInChildren<Slider>();
         sliders[0].value = MusicManager.instance.masterVolume;
         sliders[1].value = MusicManager.instance.sfxVolume;
+
+        RectTransform bg2 = pauseUI2.GetComponentInChildren<RectTransform>();
+        if (GameManager.instance.IsNetworked())
+        {
+            bg2.sizeDelta = new Vector2(640, 480);
+        }
+        else
+        {
+            bg2.sizeDelta = new Vector2(1280, 480);
+        }
+
+        // update the volume controls to match the music manager
+        GameObject options2 = pauseUI2.transform.GetChild(1).gameObject;
+        Slider[] sliders2 = options2.GetComponentsInChildren<Slider>();
+        sliders2[0].value = MusicManager.instance.masterVolume;
+        sliders2[1].value = MusicManager.instance.sfxVolume;
     }
 
     private void Update()
@@ -47,7 +79,6 @@ public class PauseMenu: MonoBehaviour
     public void ToMainMenu()
     {
         LevelLoader.instance.LoadLevelByName("StartMenu");
-        //SceneManager.LoadScene("StartMenu");
     }
 
     public void Quit()
@@ -57,12 +88,34 @@ public class PauseMenu: MonoBehaviour
 
     public void Resume()
     {
-        pauseUI.SetActive(false);
-        Time.timeScale = 1f;
-        mainPause.SetActive(true);
-        optionsMenu.SetActive(false);
-        quitCheck.SetActive(false);
-        gamePaused = false;
+        if (GameManager.instance.IsNetworked())
+        {
+            if (PlayerManager.instance.currPlayer == 1)
+            {
+                pauseUI1.SetActive(false);
+                Time.timeScale = 1f;
+                mainPause1.SetActive(true);
+                optionsMenu1.SetActive(false);
+                quitCheck1.SetActive(false);
+                gamePaused = false;
+            } else
+            {
+                pauseUI2.SetActive(false);
+                Time.timeScale = 1f;
+                mainPause2.SetActive(true);
+                optionsMenu2.SetActive(false);
+                quitCheck2.SetActive(false);
+                gamePaused = false;
+            }
+        } else
+        {
+            pauseUI2.SetActive(false);
+            Time.timeScale = 1f;
+            mainPause2.SetActive(true);
+            optionsMenu2.SetActive(false);
+            quitCheck2.SetActive(false);
+            gamePaused = false;
+        }
     }
 
     public void Restart()
@@ -74,7 +127,7 @@ public class PauseMenu: MonoBehaviour
     {
         if (GameManager.instance.IsNetworked())
         {
-            PauseMenuManager.instance.TogglePauseClientRpc();
+            PauseMenuManager.instance.TogglePauseServerRpc();
         } else
         {
             PauseMenuManager.instance.TogglePause();
@@ -83,25 +136,34 @@ public class PauseMenu: MonoBehaviour
 
     public void TogglePause(bool paused)
     {
-        // If to show the correct pause menu
-
-        if ((!GameManager.instance.IsNetworked() && world == 2)
-        || (GameManager.instance.IsNetworked() && world == PlayerManager.instance.currPlayer))
+        if (paused != true)
         {
-            if (paused != true)
-            {
-                Resume();
-            }
-            else
-            {
-                Pause();
-            }
+            Resume();
+        }
+        else
+        {
+            Pause();
         }
     }
 
     public void Pause()
     {
-        pauseUI.SetActive(true);
+
+        if (GameManager.instance.IsNetworked())
+        {
+            if (PlayerManager.instance.currPlayer == 1)
+            {
+                pauseUI1.SetActive(true);
+            }
+            else
+            {
+                pauseUI2.SetActive(true);
+            }
+        }
+        else
+        {
+            pauseUI2.SetActive(true);
+        }
         Time.timeScale = 0f;
         gamePaused = true;
     }

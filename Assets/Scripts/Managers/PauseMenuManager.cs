@@ -4,7 +4,7 @@ using Unity.Collections.LowLevel.Unsafe;
 using Unity.Netcode;
 using UnityEngine;
 
-public class PauseMenuManager : MonoBehaviour
+public class PauseMenuManager : NetworkBehaviour
 {
     public static PauseMenuManager instance { get; private set; }
 
@@ -36,7 +36,7 @@ public class PauseMenuManager : MonoBehaviour
     public void TogglePauseClientRpc() { if (!NetworkManager.Singleton.IsHost) TogglePause(); }
 
     [ServerRpc(RequireOwnership = false)]
-    public void TogglePauseServerRpc() { TogglePause(); }
+    public void TogglePauseServerRpc() { TogglePauseClientRpc(); }
 
     // Does the pause variable automatically update between the two? like is that wat is happening?
     public void TogglePause()
