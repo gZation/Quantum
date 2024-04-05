@@ -5,9 +5,6 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Chase/NetQLock.unity
-    guid: 4a6a293715487d5449582a7d1ba3c395
   - enabled: 1
     path: Assets/Scenes/Game Scenes/StartMenu.unity
     guid: 23f34ec9ba0bfc941afc63ab3af593a8
@@ -23,9 +20,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game Scenes/Networking/IP Input.unity
     guid: 770e66712acc0d14b84b9dbe8a5f7f1c
-  - enabled: 0
-    path: Assets/Scenes/Game Scenes/CharacterSelect.unity
-    guid: 63bcff94d51d2b34c90e86901b94eeb6
   - enabled: 1
     path: Assets/Scenes/Game Scenes/Networking/Show Public IP.unity
     guid: 94635323af56e6740a256e4c24248700
@@ -39,21 +33,33 @@ EditorBuildSettings:
     path: Assets/Scenes/Game Scenes/Tutorials/Tutorial 2.unity
     guid: 3a96685915480794bacc1f648bf1d3df
   - enabled: 1
-    path: Assets/Scenes/Game Scenes/Tutorials/Tutorial 3.unity
+    path: Assets/Scenes/Game Scenes/Tutorials/QLockSandBox.unity
+    guid: 2d89cb2ac8f57724c813bebb25ff2bed
+  - enabled: 1
+    path: Assets/Scenes/Game Scenes/Tutorials/QLockSimple.unity
     guid: cf85b4034bdd03443be61ceded34508c
+  - enabled: 1
+    path: Assets/Scenes/Game Scenes/Rooms/TheLargeJump.unity
+    guid: 71bd22cc5b9f1db409e028ef86ff66f1
+  - enabled: 1
+    path: Assets/Scenes/Game Scenes/Rooms/HeadBonkSpikes.unity
+    guid: 777fa87f9a092594fb264d9995f4c963
+  - enabled: 1
+    path: Assets/Scenes/Game Scenes/Rooms/Allison1.unity
+    guid: 9a234d8c6a5730d4e83538faf4a430c7
+  - enabled: 1
+    path: Assets/Scenes/Game Scenes/Rooms/Laddering.unity
+    guid: e46d222c2f1906b41b2f1262a1f82ac3
   - enabled: 1
     path: Assets/Scenes/Game Scenes/Rooms/Sakshi1.unity
     guid: 3e06a0bca07ac2b4e8b38dc976bcff29
   - enabled: 1
-    path: Assets/Scenes/Game Scenes/Rooms/Allison1.unity
-    guid: 9a234d8c6a5730d4e83538faf4a430c7
+    path: Assets/Scenes/Game Scenes/Rooms/FanTiming.unity
+    guid: 047be99d72e976040bedd866b2b07244
   - enabled: 1
     path: Assets/Scenes/Game Scenes/Rooms/Sakshi2.unity
     guid: 982a7ab163611174d81252cf80748e1d
   - enabled: 1
     path: Assets/Scenes/Game Scenes/CatScene.unity
     guid: cf517ff4f0856a642b08e4bbe84073ea
-  - enabled: 1
-    path: Assets/Scenes/Chase/NetMovingPlatforms.unity
-    guid: 29a243e958699f44bb5f7db2c92c508d
   m_configObjects: {}
