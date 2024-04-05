@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class PauseMenuScript : MonoBehaviour
+public class PauseMenu: MonoBehaviour
 {
+    public static PauseMenu instance { get; private set; }
+
     public static bool gamePaused = false;
     public GameObject pauseUI;
     public GameObject mainPause;
@@ -36,20 +38,9 @@ public class PauseMenuScript : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(Input.GetButtonDown("Pause"))
         {
-            if ((!GameManager.instance.IsNetworked() && world == 2)
-                || (GameManager.instance.IsNetworked() && world == PlayerManager.instance.currPlayer))
-            {
-                if (gamePaused == true)
-                {
-                    Resume();
-                }
-                else
-                {
-                    Pause();
-                }
-            } 
+            TriggerPause();
         }
     }
 
@@ -79,10 +70,40 @@ public class PauseMenuScript : MonoBehaviour
         LevelLoader.instance.ReloadLevel();
     }
 
-    void Pause()
+    public void TriggerPause()
+    {
+        if (GameManager.instance.IsNetworked())
+        {
+            PauseMenuManager.instance.TogglePauseClientRpc();
+        } else
+        {
+            PauseMenuManager.instance.TogglePause();
+        }
+    }
+
+    public void TogglePause(bool paused)
+    {
+        // If to show the correct pause menu
+
+        if ((!GameManager.instance.IsNetworked() && world == 2)
+        || (GameManager.instance.IsNetworked() && world == PlayerManager.instance.currPlayer))
+        {
+            if (paused != true)
+            {
+                Resume();
+            }
+            else
+            {
+                Pause();
+            }
+        }
+    }
+
+    public void Pause()
     {
         pauseUI.SetActive(true);
         Time.timeScale = 0f;
         gamePaused = true;
     }
+
 }
