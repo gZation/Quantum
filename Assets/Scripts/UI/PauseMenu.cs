@@ -58,7 +58,7 @@ public class PauseMenu: MonoBehaviour
         }
         else
         {
-            bg2.sizeDelta = new Vector2(640, 480);
+            bg2.sizeDelta = new Vector2(1280, 480);
         }
 
         // update the volume controls to match the music manager
