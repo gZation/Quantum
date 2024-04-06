@@ -46,4 +46,45 @@ public class PauseMenuManager : NetworkBehaviour
         PauseMenu.instance.TogglePause(instance.paused);
     }
 
+    [ClientRpc]
+    public void RestartClientRpc() { Restart(); }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void RestartServerRpc() { RestartClientRpc(); }
+
+    // Does the pause variable automatically update between the two? like is that wat is happening?
+    public void Restart()
+    {
+        PauseMenu.instance.Restart();
+    }
+
+    [ClientRpc]
+    public void ToMainMenuClientRPC() { ToMainMenu(); }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void ToMainMenuServerRPC() { ToMainMenuClientRPC(); }
+
+    // Does the pause variable automatically update between the two? like is that wat is happening?
+    public void ToMainMenu()
+    {
+        PauseMenu.instance.ToMainMenu();
+    }
+
+    [ClientRpc]
+    public void QuitClientRPC() { Quit(); }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void QuitServerRPC() { QuitClientRPC(); }
+
+    // Does the pause variable automatically update between the two? like is that wat is happening?
+    public void Quit()
+    {
+        if (PauseMenu.instance.quit)
+        {
+            PauseMenu.instance.Quit();
+        } else
+        {
+            PauseMenu.instance.ToMainMenu();
+        }
+    }
 }
