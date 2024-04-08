@@ -90,6 +90,7 @@ public class PauseMenu: MonoBehaviour
 
     public void ToMainMenu()
     {
+        print("going to main menu");
         LevelLoader.instance.LoadLevelByName("StartMenu");
     }
 

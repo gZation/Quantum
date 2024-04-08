@@ -287,6 +287,7 @@ MonoBehaviour:
   accelerationFactor: 6
   wallJumpLerp: 5
   dashSpeed: 25
+  world: 2
   canMove: 1
   wallGrab: 0
   wallJumped: 0
@@ -294,6 +295,7 @@ MonoBehaviour:
   isDashing: 0
   sharingMomentum: 0
   side: 1
+  camera: {fileID: 0}
   dashParticle: {fileID: 0}
   jumpParticle: {fileID: 2634847382010418216}
   wallJumpParticle: {fileID: 8122526695765193081}
@@ -319,6 +321,7 @@ MonoBehaviour:
   accelerationFactor: 6
   wallJumpLerp: 5
   dashSpeed: 25
+  world: 2
   canMove: 1
   wallGrab: 0
   wallJumped: 0
@@ -326,6 +329,7 @@ MonoBehaviour:
   isDashing: 0
   sharingMomentum: 0
   side: 1
+  camera: {fileID: 0}
   dashParticle: {fileID: 0}
   jumpParticle: {fileID: 2634847382010418216}
   wallJumpParticle: {fileID: 8122526695765193081}
@@ -351,6 +355,7 @@ MonoBehaviour:
   accelerationFactor: 6
   wallJumpLerp: 5
   dashSpeed: 25
+  world: 2
   canMove: 1
   wallGrab: 0
   wallJumped: 0
@@ -358,6 +363,7 @@ MonoBehaviour:
   isDashing: 0
   sharingMomentum: 0
   side: 1
+  camera: {fileID: 0}
   dashParticle: {fileID: 0}
   jumpParticle: {fileID: 2634847382010418216}
   wallJumpParticle: {fileID: 8122526695765193081}
