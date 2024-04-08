@@ -14,7 +14,7 @@ public class DirectionalMomentumAddition : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         if (animator != null)
         {
             animator.SetBool("active", active);
