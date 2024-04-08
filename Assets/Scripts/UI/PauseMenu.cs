@@ -18,7 +18,7 @@ public class PauseMenu: MonoBehaviour
     public GameObject mainPause2;
     public GameObject optionsMenu2;
     public GameObject quitCheck2;
-    /*    public int world;*/
+    public bool quit = false;
 
     void Awake()
     {
@@ -76,9 +76,35 @@ public class PauseMenu: MonoBehaviour
         }
     }
 
+    public void TriggerToMainMenu()
+    {
+        if (GameManager.instance.IsNetworked())
+        {
+            PauseMenuManager.instance.ToMainMenuServerRPC();
+        }
+        else
+        {
+            ToMainMenu();
+        }
+    }
+
     public void ToMainMenu()
     {
+        print("going to main menu");
         LevelLoader.instance.LoadLevelByName("StartMenu");
+    }
+
+    public void TriggerQuit()
+    {
+        quit = true;
+        if (GameManager.instance.IsNetworked())
+        {
+            PauseMenuManager.instance.QuitServerRPC();
+        }
+        else
+        {
+            Quit();
+        }
     }
 
     public void Quit()
@@ -115,6 +141,18 @@ public class PauseMenu: MonoBehaviour
             optionsMenu2.SetActive(false);
             quitCheck2.SetActive(false);
             gamePaused = false;
+        }
+    }
+
+    public void TriggerRestart()
+    {
+        if (GameManager.instance.IsNetworked())
+        {
+            PauseMenuManager.instance.RestartServerRpc();
+        }
+        else
+        {
+            Restart();
         }
     }
 

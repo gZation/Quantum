@@ -10,7 +10,6 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector]
     public Rigidbody2D rb;
     private PlayerAnimation anim;
-    private Vector2 lastWallJumpDirection = Vector2.zero;
 
     [Space]
     [Header("Stats")]
@@ -21,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     public float accelerationFactor = 2f;
     public float wallJumpLerp = 5;
     public float dashSpeed = 25;
+    public int world;
 
     [Space]
     [Header("Booleans")]
@@ -46,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Space]
     [Header("Polish")]
+    public Camera camera;
     public ParticleSystem dashParticle;
     public ParticleSystem jumpParticle;
     public ParticleSystem wallJumpParticle;
@@ -67,6 +68,19 @@ public class PlayerMovement : MonoBehaviour
         slideColor = slideParticle.main.startColor;
 
         currentSlide = minSlideSpeed;
+
+        GameObject[] cameras = GameObject.FindGameObjectsWithTag("MainCamera");
+
+        foreach (GameObject c in cameras)
+        {
+            Camera p_camera = c.GetComponent<Camera>();
+            int worldlayer = LayerMask.NameToLayer("World" + world);
+
+            if (c.layer == worldlayer)
+            {
+                camera = p_camera;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -201,9 +215,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Dash(float x, float y)
     {
-        /*Camera.main.transform.DOComplete();
-        Camera.main.transform.DOShakePosition(.2f, .5f, 14, 90, false, true);
-        FindObjectOfType<RippleEffect>().Emit(Camera.main.WorldToViewportPoint(transform.position));*/
+        StartCoroutine(camera.GetComponent<CameraShake>().Shake(0.1f, 0.4f));
 
         hasDashed = true;
 

@@ -124,6 +124,7 @@ MonoBehaviour:
   mainPause2: {fileID: 2310581123161480230}
   optionsMenu2: {fileID: 69846906668348641}
   quitCheck2: {fileID: 2433370842937652845}
+  quit: 0
 --- !u!1001 &228902988083801607
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -132,13 +133,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4563905507429103657}
     m_Modifications:
+    - target: {fileID: 741523182533041100, guid: 472ac69210104db428d200aae439ca34, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4430507164763802167}
+    - target: {fileID: 741523182533041100, guid: 472ac69210104db428d200aae439ca34, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TriggerQuit
+      objectReference: {fileID: 0}
+    - target: {fileID: 741523182533041100, guid: 472ac69210104db428d200aae439ca34, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PauseMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 888344725155732572, guid: 472ac69210104db428d200aae439ca34, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 4430507164763802167}
     - target: {fileID: 888344725155732572, guid: 472ac69210104db428d200aae439ca34, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Restart
+      value: TriggerRestart
       objectReference: {fileID: 0}
     - target: {fileID: 888344725155732572, guid: 472ac69210104db428d200aae439ca34, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -162,7 +175,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6042626649647771462, guid: 472ac69210104db428d200aae439ca34, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6541365385136162598, guid: 472ac69210104db428d200aae439ca34, type: 3}
       propertyPath: m_Pivot.x
@@ -300,9 +313,21 @@ PrefabInstance:
       objectReference: {fileID: 4430507164763802167}
     - target: {fileID: 31250886418829789, guid: 0da1e4215627dac45a7f3f1c9f94c6ea, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Restart
+      value: TriggerRestart
       objectReference: {fileID: 0}
     - target: {fileID: 31250886418829789, guid: 0da1e4215627dac45a7f3f1c9f94c6ea, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PauseMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 741523182533041100, guid: 0da1e4215627dac45a7f3f1c9f94c6ea, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4430507164763802167}
+    - target: {fileID: 741523182533041100, guid: 0da1e4215627dac45a7f3f1c9f94c6ea, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TriggerQuit
+      objectReference: {fileID: 0}
+    - target: {fileID: 741523182533041100, guid: 0da1e4215627dac45a7f3f1c9f94c6ea, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: PauseMenu, Assembly-CSharp
       objectReference: {fileID: 0}
@@ -324,7 +349,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6042626649647771462, guid: 0da1e4215627dac45a7f3f1c9f94c6ea, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6541365385136162598, guid: 0da1e4215627dac45a7f3f1c9f94c6ea, type: 3}
       propertyPath: m_Pivot.x
