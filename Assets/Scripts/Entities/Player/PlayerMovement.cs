@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Space]
     [Header("Polish")]
-    public Camera camera;
+    private Camera camera;
     public ParticleSystem dashParticle;
     public ParticleSystem jumpParticle;
     public ParticleSystem wallJumpParticle;
@@ -252,10 +252,9 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator DashWait()
     {
-        //FindObjectOfType<GhostTrail>().ShowGhost();
         StartCoroutine(GroundDash());
 
-        //dashParticle.Play();
+        dashParticle.Play();
         rb.gravityScale = 0;
         GetComponent<PlayerJump>().enabled = false;
         wallJumped = true;
@@ -263,7 +262,7 @@ public class PlayerMovement : MonoBehaviour
 
         yield return new WaitForSeconds(0.1f);
 
-        //dashParticle.Stop();
+        dashParticle.Stop();
         rb.gravityScale = 3;
         GetComponent<PlayerJump>().enabled = true;
         wallJumped = false;
