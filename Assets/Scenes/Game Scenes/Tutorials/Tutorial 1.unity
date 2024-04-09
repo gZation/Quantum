@@ -6202,6 +6202,10 @@ PrefabInstance:
       propertyPath: networkingOn
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 440233175285807851, guid: ad57db9ed37630c489e34ad10cd95b70, type: 3}
+      propertyPath: startFromScene
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6623827589254650210, guid: ad57db9ed37630c489e34ad10cd95b70, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.3529825
