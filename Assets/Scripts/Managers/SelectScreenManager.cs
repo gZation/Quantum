@@ -16,6 +16,7 @@ public enum CharacterSelection {
 public class SelectScreenManager : MonoBehaviour {
 
     public TextMeshProUGUI info;
+    public Button cont;
     private RectTransform edoMaskRect, cyberMaskRect;
     private RectTransform edoBGRect, cyberBGRect;
     private RawImage boyImage, girlImage;
@@ -28,7 +29,8 @@ public class SelectScreenManager : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        
+        cont.gameObject.SetActive(false);
+
         selection = CharacterSelection.NEUTRAL;
         xScaleTarget = 0.5f;
         lerpProgress = 100;
@@ -48,23 +50,23 @@ public class SelectScreenManager : MonoBehaviour {
         
         if (Input.GetButtonDown("Horizontal")) {
 
-            if (Input.GetAxisRaw("Horizontal") > 0) {
+            if (Input.GetAxisRaw("Horizontal") > 0 && selection != CharacterSelection.GIRL) {
                 selection = CharacterSelection.GIRL;
                 lerpProgress = 0;
             
-            } else {
+            } else if (Input.GetAxisRaw("Horizontal") < 0 && selection != CharacterSelection.BOY) {
                 selection = CharacterSelection.BOY;
                 lerpProgress = 0;
 
-            } // if
+            }
 
             info.text = "";
-        } // if
+            cont.gameObject.SetActive(true);
+        } 
 
         if (Input.GetKeyDown(KeyCode.Space)) {
             GoToGame();
-            
-        } // if
+        } 
 
         xScaleTarget = Mathf.Clamp((((int)selection) / 2.0f) - 0.5f, -0.5f, 0.5f);
         imgScaleTarget = ((int)(xScaleTarget * 30) + 1) / 100.0f;
