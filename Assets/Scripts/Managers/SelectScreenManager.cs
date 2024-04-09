@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -14,6 +15,7 @@ public enum CharacterSelection {
 
 public class SelectScreenManager : MonoBehaviour {
 
+    public TextMeshProUGUI info;
     private RectTransform edoMaskRect, cyberMaskRect;
     private RectTransform edoBGRect, cyberBGRect;
     private RawImage boyImage, girlImage;
@@ -56,6 +58,7 @@ public class SelectScreenManager : MonoBehaviour {
 
             } // if
 
+            info.text = "";
         } // if
 
         if (Input.GetKeyDown(KeyCode.Space)) {
