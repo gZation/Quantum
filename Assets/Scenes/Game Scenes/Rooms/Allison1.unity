@@ -1176,6 +1176,10 @@ PrefabInstance:
       propertyPath: direction.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3167389640076111420, guid: ca12ff33344d8f9448ac7429a5280f01, type: 3}
+      propertyPath: m_Size.x
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 5920403373723903517, guid: ca12ff33344d8f9448ac7429a5280f01, type: 3}
       propertyPath: m_Name
       value: ConveyorBelt

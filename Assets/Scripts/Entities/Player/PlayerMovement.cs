@@ -113,7 +113,7 @@ public class PlayerMovement : MonoBehaviour
 
         rb.gravityScale = 3;
 
-        if (coll.onWall && !coll.onGround)
+        if (coll.onWall && !coll.onGround && x != 0)
         {
             wallSlide = true;
             WallSlide();
@@ -131,8 +131,8 @@ public class PlayerMovement : MonoBehaviour
 
             if (coll.onGround)
                 Jump(Vector2.up, false);
-            if (coll.onWall && !coll.onGround)
 
+            if (coll.onWall && !coll.onGround)
                 WallJump();
         }
 
@@ -171,7 +171,7 @@ public class PlayerMovement : MonoBehaviour
 
         //check speed and cap at max speed
         Vector2 vel = rb.velocity;
-        if (vel.magnitude > speed * 4)
+        if (vel.magnitude > speed * 3)
         {
             vel = vel.normalized;
             vel = vel * speed * 4;
@@ -184,7 +184,7 @@ public class PlayerMovement : MonoBehaviour
         AddMomentum();
 
         Vector2 vel = rb.velocity;
-        if (vel.magnitude > speed * 7)
+        if (vel.magnitude > speed * 5)
         {
             vel = vel.normalized;
             vel = vel * speed * 7;
@@ -231,7 +231,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Dash(float x, float y)
     {
-        StartCoroutine(camera.GetComponent<CameraShake>().Shake(0.1f, 0.4f));
+        StartCoroutine(camera.GetComponent<CameraShake>().Shake(0.1f, 0.1f));
 
         hasDashed = true;
 
@@ -260,7 +260,7 @@ public class PlayerMovement : MonoBehaviour
 
         rb.velocity += dashExtra;
 
-        dashExtra.x *= 4f;
+        dashExtra.x *= 6f;
         PlayerManager.instance.SendMomentum(dashExtra, this.gameObject);
 
         StartCoroutine(DashWait());
@@ -293,7 +293,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
    
- 
      private void WallJump()
      {
 
@@ -368,13 +367,6 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.velocity += dir * jumpForce;
 
-        //too op nerfing it for now
-        /*        if (sharingMomentum)
-                {
-                    PlayerManager.instance.SendMomentum(dir * jumpForce, this.gameObject);
-                    DisableLocking(.2f);
-                }*/
-
         particle.Play();
     }
 
@@ -437,11 +429,32 @@ public class PlayerMovement : MonoBehaviour
 
     protected void AddMomentum()
     {
+        if (momentumToAdd.Count > 0)
+        {
+            rb.velocity = Vector2.zero;
+        }
+
         foreach (Vector2 momentum in momentumToAdd)
         {
+         
             rb.velocity += momentum;
+        }
+        if (momentumToAdd.Count > 0)
+        {
+            StartCoroutine(AddMomentumWait());
         }
 
         momentumToAdd = new List<Vector2>();
+    }
+
+    IEnumerator AddMomentumWait()
+    {
+        StartCoroutine(GroundDash());
+
+        rb.gravityScale = 0;
+
+        yield return new WaitForSeconds(0.1f);
+
+        rb.gravityScale = 3;
     }
 }

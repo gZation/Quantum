@@ -45,6 +45,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Game Scenes/Rooms/HeadBonkSpikes.unity
     guid: 777fa87f9a092594fb264d9995f4c963
   - enabled: 1
+    path: Assets/Scenes/Game Scenes/Tutorials/QLockWorldIntro.unity
+    guid: 277a41eae25f06b4ba2c22d6173074aa
+  - enabled: 1
     path: Assets/Scenes/Game Scenes/Rooms/Allison1.unity
     guid: 9a234d8c6a5730d4e83538faf4a430c7
   - enabled: 1

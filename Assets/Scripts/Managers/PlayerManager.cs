@@ -209,14 +209,18 @@ public class PlayerManager : NetworkBehaviour
         if (player1 != null)
         {
             shadow1.transform.position = player1.transform.position + new Vector3(32, 0, 0);
-            SpriteRenderer one = shadow1.GetComponentInChildren<SpriteRenderer>();
-            one.sprite = player1.GetComponentInChildren<SpriteRenderer>().sprite;
+            SpriteRenderer player = player1.GetComponentInChildren<SpriteRenderer>();
+            SpriteRenderer shadow = shadow1.GetComponentInChildren<SpriteRenderer>();
+            shadow.sprite = player.sprite;
+            shadow.flipX = player.flipX;
         }
         if (player2 != null)
         {
             shadow2.transform.position = player2.transform.position + new Vector3(-32, 0, 0);
-            SpriteRenderer two = shadow2.GetComponentInChildren<SpriteRenderer>();
-            two.sprite = player2.GetComponentInChildren<SpriteRenderer>().sprite;
+            SpriteRenderer player = player2.GetComponentInChildren<SpriteRenderer>();
+            SpriteRenderer shadow = shadow2.GetComponentInChildren<SpriteRenderer>();
+            shadow.sprite = player.sprite;
+            shadow.flipX = player.flipX;
         }
     }
 
