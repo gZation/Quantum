@@ -168,12 +168,28 @@ public class PlayerMovement : MonoBehaviour
             side = -1;
             anim.Flip(side);
         }
+
+        //check speed and cap at max speed
+        Vector2 vel = rb.velocity;
+        if (vel.magnitude > speed * 4)
+        {
+            vel = vel.normalized;
+            vel = vel * speed * 4;
+            rb.velocity = vel;
+        }
     }
 
     protected void FixedUpdate()
     {
-
         AddMomentum();
+
+        Vector2 vel = rb.velocity;
+        if (vel.magnitude > speed * 7)
+        {
+            vel = vel.normalized;
+            vel = vel * speed * 7;
+            rb.velocity = vel;
+        }
     }
 
     protected virtual Vector2 GetMovementDirection()
