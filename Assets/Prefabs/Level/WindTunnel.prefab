@@ -302,6 +302,12 @@ VisualEffect:
       - m_Value: 0.7
         m_Name: lifetimeMax
         m_Overridden: 1
+      - m_Value: 5
+        m_Name: velocityMin
+        m_Overridden: 1
+      - m_Value: 10
+        m_Name: velocityMax
+        m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:
@@ -317,6 +323,12 @@ VisualEffect:
         m_Overridden: 1
       - m_Value: {x: -0.5342771, y: 0.10397577, z: -2.9086566e-10}
         m_Name: SpawnBounds_center
+        m_Overridden: 1
+      - m_Value: {x: 5, y: 0, z: 0}
+        m_Name: velocityMin
+        m_Overridden: 1
+      - m_Value: {x: 10, y: 0, z: 0}
+        m_Name: velocityMax
         m_Overridden: 1
     m_Vector4f:
       m_Array: []

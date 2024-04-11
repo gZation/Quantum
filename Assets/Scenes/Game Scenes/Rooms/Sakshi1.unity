@@ -178,6 +178,14 @@ PrefabInstance:
       propertyPath: DialogText
       value: What is happening?
       objectReference: {fileID: 0}
+    - target: {fileID: 1475211878432429469, guid: d42848ee61d35d2459c2198cee9c74c2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -5332042706863824159, guid: df5cf4a8cb481ca46ba6204361610e82, type: 3}
+    - target: {fileID: 1475211878432429469, guid: d42848ee61d35d2459c2198cee9c74c2, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 6384741997998629762, guid: d42848ee61d35d2459c2198cee9c74c2, type: 3}
       propertyPath: m_Name
       value: NPC

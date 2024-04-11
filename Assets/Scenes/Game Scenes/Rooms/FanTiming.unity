@@ -239,11 +239,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6567901022380863639, guid: 74c87b0920de50445b1c81a16990b4ae, type: 3}
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: toggleActive
+      value: Off
       objectReference: {fileID: 0}
     - target: {fileID: 6567901022380863639, guid: 74c87b0920de50445b1c81a16990b4ae, type: 3}
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: toggleActive
+      value: Off
       objectReference: {fileID: 0}
     - target: {fileID: 6567901022380863639, guid: 74c87b0920de50445b1c81a16990b4ae, type: 3}
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -838,11 +838,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6567901022380863639, guid: 74c87b0920de50445b1c81a16990b4ae, type: 3}
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: toggleActive
+      value: On
       objectReference: {fileID: 0}
     - target: {fileID: 6567901022380863639, guid: 74c87b0920de50445b1c81a16990b4ae, type: 3}
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: toggleActive
+      value: On
       objectReference: {fileID: 0}
     - target: {fileID: 6567901022380863639, guid: 74c87b0920de50445b1c81a16990b4ae, type: 3}
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

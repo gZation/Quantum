@@ -6171,6 +6171,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fog
       objectReference: {fileID: 0}
+    - target: {fileID: 7180759635783509831, guid: bd8c93f0bb5819c41aa2c32b8bafe418, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8712903533088111966, guid: bd8c93f0bb5819c41aa2c32b8bafe418, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

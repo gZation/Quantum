@@ -400,11 +400,6 @@ public class PlayerMovement : MonoBehaviour
         sharingMomentum = true;
     }
 
-    void RigidbodyDrag(float x)
-    {
-        rb.drag = x;
-    }
-
     void WallParticle(float vertical)
     {
         var main = slideParticle.main;
