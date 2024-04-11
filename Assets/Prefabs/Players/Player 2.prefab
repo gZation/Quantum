@@ -294,6 +294,7 @@ MonoBehaviour:
   wallJumped: 0
   wallSlide: 0
   isDashing: 0
+  coyoteTimeStart: 0.1
   sharingMomentum: 0
   side: 1
   dashParticle: {fileID: 2180116537646740682}
@@ -327,6 +328,7 @@ MonoBehaviour:
   wallJumped: 0
   wallSlide: 0
   isDashing: 0
+  coyoteTimeStart: 0.1
   sharingMomentum: 0
   side: 1
   dashParticle: {fileID: 2180116537646740682}
@@ -360,6 +362,7 @@ MonoBehaviour:
   wallJumped: 0
   wallSlide: 0
   isDashing: 0
+  coyoteTimeStart: 0.1
   sharingMomentum: 0
   side: 1
   dashParticle: {fileID: 2180116537646740682}

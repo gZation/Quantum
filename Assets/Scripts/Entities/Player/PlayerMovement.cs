@@ -28,8 +28,9 @@ public class PlayerMovement : MonoBehaviour
     public bool wallGrab;
     public bool wallJumped;
     public bool wallSlide;
-
     public bool isDashing;
+    private float coyoteTime;
+    public float coyoteTimeStart = 0.05f;
 
 
     [Space]
@@ -81,6 +82,8 @@ public class PlayerMovement : MonoBehaviour
                 camera = p_camera;
             }
         }
+
+        coyoteTime = coyoteTimeStart;
     }
 
     // Update is called once per frame
@@ -125,15 +128,28 @@ public class PlayerMovement : MonoBehaviour
             wallSlide = false;
         }
 
+        if (coll.onGround)
+        {
+            coyoteTime = coyoteTimeStart;
+        } else
+        {
+            coyoteTime -= Time.deltaTime;
+        }
+
         if (IsJump() && canMove)
         {
             anim.SetTrigger("jump");
 
-            if (coll.onGround)
+            if (coyoteTime > 0)
+            {
                 Jump(Vector2.up, false);
+                coyoteTime = 0;
+            }
 
             if (coll.onWall && !coll.onGround)
+            {
                 WallJump();
+            }
         }
 
         if (IsDash() && !hasDashed && canMove)
