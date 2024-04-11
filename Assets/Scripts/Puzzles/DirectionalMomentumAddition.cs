@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class DirectionalMomentumAddition : MonoBehaviour
 {
-
+    public VisualEffect VFX;
     [SerializeField] Vector2 direction;
     [SerializeField] float strength;
     [SerializeField] bool active;
@@ -13,8 +14,15 @@ public class DirectionalMomentumAddition : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponent<Animator>();
-        animator.SetBool("active", active);
+        animator = GetComponentInChildren<Animator>();
+        if (animator != null)
+        {
+            animator.SetBool("active", active);
+        }
+        if (VFX != null)
+        {
+            VFX.enabled = active;
+        }
     }
 
     // Update is called once per frame
@@ -25,7 +33,40 @@ public class DirectionalMomentumAddition : MonoBehaviour
     public void toggleActive()
     {
         active = !active;
-        animator.SetBool("active", active);
+        if (animator != null)
+        {
+            animator.SetBool("active", active);
+        }
+        if (VFX != null)
+        {
+            VFX.enabled = active;
+        }
+    }
+
+    public void Off()
+    {
+        active = false;
+        if (animator != null)
+        {
+            animator.SetBool("active", active);
+        }
+        if (VFX != null)
+        {
+            VFX.enabled = active;
+        }
+    }
+
+    public void On()
+    {
+        active = true;
+        if (animator != null)
+        {
+            animator.SetBool("active", active);
+        }
+        if (VFX != null)
+        {
+            VFX.enabled = active;
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)

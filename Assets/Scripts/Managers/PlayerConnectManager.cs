@@ -8,6 +8,7 @@ public class PlayerConnectManager : NetworkBehaviour
 {
     // Start is called before the first frame update
     public float clientRetryDelay = (float) 0.5;
+    public string NextLevel = "Tutorial 1";
     void Start()
     {
         if (!PlayerManager.instance.isHost)
@@ -30,6 +31,6 @@ public class PlayerConnectManager : NetworkBehaviour
     {
         NetworkManager.Singleton.OnClientConnectedCallback -= LoadNextLevel;
         GameManager.instance.GameEnable();
-        LevelLoader.instance.LoadLevelByName("Tutorial 1");
+        LevelLoader.instance.LoadLevelByName(NextLevel);
     }
 }
