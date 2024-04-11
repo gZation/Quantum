@@ -28,8 +28,9 @@ public class PlayerMovement : MonoBehaviour
     public bool wallGrab;
     public bool wallJumped;
     public bool wallSlide;
-
     public bool isDashing;
+    private float coyoteTime;
+    public float coyoteTimeStart = 0.05f;
 
 
     [Space]
@@ -81,6 +82,8 @@ public class PlayerMovement : MonoBehaviour
                 camera = p_camera;
             }
         }
+
+        coyoteTime = coyoteTimeStart;
     }
 
     // Update is called once per frame
@@ -113,7 +116,7 @@ public class PlayerMovement : MonoBehaviour
 
         rb.gravityScale = 3;
 
-        if (coll.onWall && !coll.onGround)
+        if (coll.onWall && !coll.onGround && x != 0)
         {
             wallSlide = true;
             WallSlide();
@@ -125,15 +128,28 @@ public class PlayerMovement : MonoBehaviour
             wallSlide = false;
         }
 
+        if (coll.onGround)
+        {
+            coyoteTime = coyoteTimeStart;
+        } else
+        {
+            coyoteTime -= Time.deltaTime;
+        }
+
         if (IsJump() && canMove)
         {
             anim.SetTrigger("jump");
 
-            if (coll.onGround)
+            if (coyoteTime > 0)
+            {
                 Jump(Vector2.up, false);
-            if (coll.onWall && !coll.onGround)
+                coyoteTime = 0;
+            }
 
+            if (coll.onWall && !coll.onGround)
+            {
                 WallJump();
+            }
         }
 
         if (IsDash() && !hasDashed && canMove)
@@ -168,12 +184,28 @@ public class PlayerMovement : MonoBehaviour
             side = -1;
             anim.Flip(side);
         }
+
+        //check speed and cap at max speed
+        Vector2 vel = rb.velocity;
+        if (vel.magnitude > speed * 3)
+        {
+            vel = vel.normalized;
+            vel = vel * speed * 4;
+            rb.velocity = vel;
+        }
     }
 
     protected void FixedUpdate()
     {
-
         AddMomentum();
+
+        Vector2 vel = rb.velocity;
+        if (vel.magnitude > speed * 5)
+        {
+            vel = vel.normalized;
+            vel = vel * speed * 7;
+            rb.velocity = vel;
+        }
     }
 
     protected virtual Vector2 GetMovementDirection()
@@ -215,7 +247,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Dash(float x, float y)
     {
-        StartCoroutine(camera.GetComponent<CameraShake>().Shake(0.1f, 0.4f));
+        StartCoroutine(camera.GetComponent<CameraShake>().Shake(0.1f, 0.1f));
 
         hasDashed = true;
 
@@ -244,7 +276,7 @@ public class PlayerMovement : MonoBehaviour
 
         rb.velocity += dashExtra;
 
-        dashExtra.x *= 4f;
+        dashExtra.x *= 6f;
         PlayerManager.instance.SendMomentum(dashExtra, this.gameObject);
 
         StartCoroutine(DashWait());
@@ -277,7 +309,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
    
- 
      private void WallJump()
      {
 
@@ -352,13 +383,6 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.velocity += dir * jumpForce;
 
-        //too op nerfing it for now
-        /*        if (sharingMomentum)
-                {
-                    PlayerManager.instance.SendMomentum(dir * jumpForce, this.gameObject);
-                    DisableLocking(.2f);
-                }*/
-
         particle.Play();
     }
 
@@ -374,11 +398,6 @@ public class PlayerMovement : MonoBehaviour
         sharingMomentum = false;
         yield return new WaitForSeconds(time);
         sharingMomentum = true;
-    }
-
-    void RigidbodyDrag(float x)
-    {
-        rb.drag = x;
     }
 
     void WallParticle(float vertical)
@@ -421,11 +440,32 @@ public class PlayerMovement : MonoBehaviour
 
     protected void AddMomentum()
     {
+        if (momentumToAdd.Count > 0)
+        {
+            rb.velocity = Vector2.zero;
+        }
+
         foreach (Vector2 momentum in momentumToAdd)
         {
+         
             rb.velocity += momentum;
+        }
+        if (momentumToAdd.Count > 0)
+        {
+            StartCoroutine(AddMomentumWait());
         }
 
         momentumToAdd = new List<Vector2>();
+    }
+
+    IEnumerator AddMomentumWait()
+    {
+        StartCoroutine(GroundDash());
+
+        rb.gravityScale = 0;
+
+        yield return new WaitForSeconds(0.1f);
+
+        rb.gravityScale = 3;
     }
 }

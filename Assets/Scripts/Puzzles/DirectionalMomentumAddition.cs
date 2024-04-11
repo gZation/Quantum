@@ -43,6 +43,32 @@ public class DirectionalMomentumAddition : MonoBehaviour
         }
     }
 
+    public void Off()
+    {
+        active = false;
+        if (animator != null)
+        {
+            animator.SetBool("active", active);
+        }
+        if (VFX != null)
+        {
+            VFX.enabled = active;
+        }
+    }
+
+    public void On()
+    {
+        active = true;
+        if (animator != null)
+        {
+            animator.SetBool("active", active);
+        }
+        if (VFX != null)
+        {
+            VFX.enabled = active;
+        }
+    }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (active && collision.gameObject.tag == "Player")
