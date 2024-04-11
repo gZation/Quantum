@@ -1184,6 +1184,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConveyorBelt
       objectReference: {fileID: 0}
+    - target: {fileID: 5920403373723903517, guid: ca12ff33344d8f9448ac7429a5280f01, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8538800668162682805, guid: ca12ff33344d8f9448ac7429a5280f01, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.5

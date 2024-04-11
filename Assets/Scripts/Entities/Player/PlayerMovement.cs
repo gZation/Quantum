@@ -31,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isDashing;
     private float coyoteTime;
     public float coyoteTimeStart = 0.05f;
+    private bool qlockRecieved;
 
 
     [Space]
@@ -84,6 +85,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         coyoteTime = coyoteTimeStart;
+        qlockRecieved = false;
     }
 
     // Update is called once per frame
@@ -429,6 +431,7 @@ public class PlayerMovement : MonoBehaviour
     public void QuantumLockAddMomentum(Vector2 momentum)
     {
         momentumToAdd.Add(momentum);
+        qlockRecieved = true;
     }
 
     public void WorldAddMomentum(Vector2 momentum)
@@ -440,9 +443,10 @@ public class PlayerMovement : MonoBehaviour
 
     protected void AddMomentum()
     {
-        if (momentumToAdd.Count > 0)
+        if (qlockRecieved)
         {
             rb.velocity = Vector2.zero;
+            qlockRecieved = false;
         }
 
         foreach (Vector2 momentum in momentumToAdd)
