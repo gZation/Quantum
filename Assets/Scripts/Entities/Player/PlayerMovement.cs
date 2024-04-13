@@ -53,6 +53,8 @@ public class PlayerMovement : MonoBehaviour
     public ParticleSystem jumpParticle;
     public ParticleSystem wallJumpParticle;
     public ParticleSystem slideParticle;
+    public ParticleSystem momentumOutParticle;
+    public ParticleSystem momentumInParticle;
     ParticleSystem.MinMaxGradient slideColor;
 
     public float currentSlide;
@@ -281,6 +283,11 @@ public class PlayerMovement : MonoBehaviour
         dashExtra.x *= 6f;
         PlayerManager.instance.SendMomentum(dashExtra, this.gameObject);
 
+        if (PlayerManager.instance.qlocked)
+        {
+            momentumOutParticle.Play();
+        }
+
         StartCoroutine(DashWait());
     }
 
@@ -430,6 +437,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void QuantumLockAddMomentum(Vector2 momentum)
     {
+        momentumInParticle.Play();
         momentumToAdd.Add(momentum);
         qlockRecieved = true;
     }
@@ -439,6 +447,11 @@ public class PlayerMovement : MonoBehaviour
         momentumToAdd.Add(momentum);
 
         PlayerManager.instance.SendMomentum(momentum, this.gameObject);
+
+        if (PlayerManager.instance.qlocked)
+        {
+            momentumOutParticle.Play();
+        }
     }
 
     protected void AddMomentum()
