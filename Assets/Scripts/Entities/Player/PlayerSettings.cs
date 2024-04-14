@@ -87,13 +87,22 @@ public class PlayerSettings : MonoBehaviour
 
     public void Die()
     {
-        LevelManager lm = LevelManager.instance;
+        // LevelManager lm = LevelManager.instance;
+        LevelLoader ll = LevelLoader.instance;
+        GameManager gm = GameManager.instance;
         PlayerMovement pm = GetComponent<PlayerMovement>();
 
         pm.canMove = false;
 
-        anim.SetTrigger("death");
+        if (gm.IsNetworked()) {
+            ll.ReloadLevelServerRpc();
+        } else {
+            anim.SetTrigger("death");
+            ll.ReloadLevel();
+        }
 
-        lm.Reload();
+        
+
+        
     }
 }
