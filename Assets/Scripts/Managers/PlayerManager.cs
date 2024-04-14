@@ -202,6 +202,7 @@ public class PlayerManager : NetworkBehaviour
                 {
                     player1.gameObject.GetComponent<PlayerMovement>().QuantumLockAddMomentum(momentum);
                 }
+
             }
         } 
         else
@@ -217,7 +218,7 @@ public class PlayerManager : NetworkBehaviour
     }
 
     [ClientRpc]
-    public void UpdateMomentumClientRpc(Vector2 momentum) { if (!NetworkManager.Singleton.IsHost) updateMomentum(momentum); }
+    public void UpdateMomentumClientRpc(Vector2 momentum) { updateMomentum(momentum); }
 
     [ServerRpc(RequireOwnership = false)]
     public void UpdateMomentumServerRpc(Vector2 momentum) { updateMomentum(momentum); }

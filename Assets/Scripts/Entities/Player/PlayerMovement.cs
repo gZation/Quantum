@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isDashing;
     private float coyoteTime;
     public float coyoteTimeStart = 0.05f;
+    private bool qlockRecieved;
 
 
     [Space]
@@ -54,6 +55,8 @@ public class PlayerMovement : MonoBehaviour
     public ParticleSystem jumpParticle;
     public ParticleSystem wallJumpParticle;
     public ParticleSystem slideParticle;
+    public ParticleSystem momentumOutParticle;
+    public ParticleSystem momentumInParticle;
     ParticleSystem.MinMaxGradient slideColor;
 
     public float currentSlide;
@@ -90,6 +93,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         coyoteTime = coyoteTimeStart;
+        qlockRecieved = false;
     }
 
     public void DisableLegacyInput()
@@ -323,6 +327,11 @@ public class PlayerMovement : MonoBehaviour
         dashExtra.x *= 6f;
         PlayerManager.instance.SendMomentum(dashExtra, this.gameObject);
 
+        if (PlayerManager.instance.qlocked)
+        {
+            momentumOutParticle.Play();
+        }
+
         StartCoroutine(DashWait());
     }
 
@@ -472,7 +481,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void QuantumLockAddMomentum(Vector2 momentum)
     {
+        momentumInParticle.Play();
         momentumToAdd.Add(momentum);
+        qlockRecieved = true;
     }
 
     public void WorldAddMomentum(Vector2 momentum)
@@ -480,13 +491,19 @@ public class PlayerMovement : MonoBehaviour
         momentumToAdd.Add(momentum);
 
         PlayerManager.instance.SendMomentum(momentum, this.gameObject);
+
+        if (PlayerManager.instance.qlocked)
+        {
+            momentumOutParticle.Play();
+        }
     }
 
     protected void AddMomentum()
     {
-        if (momentumToAdd.Count > 0)
+        if (qlockRecieved)
         {
             rb.velocity = Vector2.zero;
+            qlockRecieved = false;
         }
 
         foreach (Vector2 momentum in momentumToAdd)
