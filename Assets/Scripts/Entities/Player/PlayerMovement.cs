@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Space]
     [Header("Booleans")]
+    public bool legacyInput = true;
     public bool canMove = true;
     public bool wallGrab;
     public bool wallJumped;
@@ -59,6 +61,10 @@ public class PlayerMovement : MonoBehaviour
 
     public float currentSlide;
 
+    #region technical
+    private bool isMovingInputed;
+    #endregion
+
     // Start is called before the first frame update
     void Start()
     {
@@ -90,17 +96,25 @@ public class PlayerMovement : MonoBehaviour
         qlockRecieved = false;
     }
 
+    public void DisableLegacyInput()
+    {
+        legacyInput = false;
+    }
+
     // Update is called once per frame
     void Update()
     {
         // make sure the player rb doesnt go to sleep
         rb.AddForce(Vector2.zero);
-
+        
+        //-----Quantum Lock Legacy-----
         if (IsQLock())
         {
             QuantumLock();
         }
+        //-----------------------------
 
+        //-------Movement Legacy-------
         Vector2 dir = GetMovementDirection();
         float x = dir.x;
         float y = dir.y;
@@ -108,10 +122,10 @@ public class PlayerMovement : MonoBehaviour
         float xRaw = raw.x;
         float yRaw = raw.y;
 
-        Walk(dir); 
-        anim.SetHorizontalMovement(x, y, rb.velocity.y);
+        if (legacyInput) Move(dir);
+        //-----------------------------
 
-
+        // Jumping Check
         if (coll.onGround && !isDashing)
         {
             wallJumped = false;
@@ -120,7 +134,9 @@ public class PlayerMovement : MonoBehaviour
 
         rb.gravityScale = 3;
 
-        if (coll.onWall && !coll.onGround && x != 0)
+        // Wall Check
+        // if (coll.onWall && !coll.onGround && x != 0)
+        if (coll.onWall && !coll.onGround && isMovingInputed)
         {
             wallSlide = true;
             WallSlide();
@@ -132,6 +148,7 @@ public class PlayerMovement : MonoBehaviour
             wallSlide = false;
         }
 
+        // Based Coyote Time thingy!
         if (coll.onGround)
         {
             coyoteTime = coyoteTimeStart;
@@ -140,27 +157,19 @@ public class PlayerMovement : MonoBehaviour
             coyoteTime -= Time.deltaTime;
         }
 
-        if (IsJump() && canMove)
+        //---------Jump Legacy--------
+        if (IsJump())
         {
-            anim.SetTrigger("jump");
-
-            if (coyoteTime > 0)
-            {
-                Jump(Vector2.up, false);
-                coyoteTime = 0;
-            }
-
-            if (coll.onWall && !coll.onGround)
-            {
-                WallJump();
-            }
+            JumpLogic();
         }
+        //----------------------------
 
-        if (IsDash() && !hasDashed && canMove)
+        //---------Dash Legacy--------
+        if (IsDash())
         {
-            if (xRaw != 0 || yRaw != 0)
-                Dash(xRaw, yRaw);
+            Dash(xRaw, yRaw);
         }
+        //----------------------------
 
         if (coll.onGround && !groundTouch)
         {
@@ -212,13 +221,16 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    #region Legacyy Input Sheeezz
     protected virtual Vector2 GetMovementDirection()
     {
+        if (!legacyInput) return Vector2.zero;
         return new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
     }
 
     protected virtual Vector2 GetRawInput()
     {
+        if (!legacyInput) return Vector2.zero;
         float xRaw = Input.GetAxisRaw("Horizontal");
         float yRaw = Input.GetAxisRaw("Vertical");
         return new Vector2(xRaw, yRaw);
@@ -226,18 +238,19 @@ public class PlayerMovement : MonoBehaviour
 
     public virtual bool IsJump()
     {
-        return Input.GetButtonDown("Jump");
+        return legacyInput && Input.GetButtonDown("Jump");
     }
 
     public virtual bool IsDash()
     {
-        return Input.GetButtonDown("Fire1");
+        return legacyInput && Input.GetButtonDown("Fire1");
     }
 
     public virtual bool IsQLock()
     {
-        return Input.GetKeyDown(KeyCode.Q);
+        return legacyInput && Input.GetKeyDown(KeyCode.Q);
     }
+    #endregion
 
     void GroundTouch()
     {
@@ -249,8 +262,39 @@ public class PlayerMovement : MonoBehaviour
         jumpParticle.Play();
     }
 
-    private void Dash(float x, float y)
+    // Player Actions
+
+    public void JumpLogic()
     {
+        Debug.Log("Intiate Jump Logic");
+        if (!canMove) return;
+        Debug.Log("I can move");
+        anim.SetTrigger("jump");
+
+        if (coyoteTime > 0)
+        {
+            Debug.Log("I Jump");
+            Jump(Vector2.up, false);
+            coyoteTime = 0;
+        }
+
+        if (coll.onWall && !coll.onGround)
+        {
+            WallJump();
+        }
+    }
+
+    public void Move(Vector2 inputVector)
+    {
+        isMovingInputed = inputVector.x != 0;
+        Walk(inputVector);
+        anim.SetHorizontalMovement(inputVector.x, inputVector.y, rb.velocity.y);
+    }
+
+    public void Dash(float x, float y)
+    {
+        if ((x == 0 && y == 0) || hasDashed || !canMove) return;
+
         StartCoroutine(camera.GetComponent<CameraShake>().Shake(0.1f, 0.1f));
 
         hasDashed = true;

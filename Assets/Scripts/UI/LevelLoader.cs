@@ -23,6 +23,9 @@ public class LevelLoader : NetworkBehaviour
         instance = this;
     }
 
+    [ServerRpc(RequireOwnership = false)]
+    public void ReloadLevelServerRpc() { ReloadLevel(); }
+
     public void ReloadLevel()
     {
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
