@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     
     // Player Related
     [SerializeField] private GameObject m_playerReference;
-    private PlayerMovement pr_playerMovement;
+    [SerializeField] private PlayerMovement pr_playerMovement;
     //private PlayerJump pr_playerJump;
     #endregion
 
@@ -31,6 +31,14 @@ public class PlayerController : MonoBehaviour
             //pr_playerJump = m_playerReference.GetComponent<PlayerJump>();
         }
     }
+    public PlayerMovement PlayerMovementRef
+    {
+        set
+        {
+            if (m_playerReference == null) return;
+            pr_playerMovement = value;
+        }
+    }
 
     private void Awake()
     {
@@ -43,6 +51,7 @@ public class PlayerController : MonoBehaviour
         m_playerInput.actions["Jump"].started += JumpAction;
         m_playerInput.actions["Dash"].started += DashAction;
         m_playerInput.actions["Pause"].started += PauseAction;
+        m_playerInput.actions["Restart"].started += RestartAction;
 
         // Enable controlls by default
         m_playerInput.actions.actionMaps[0].Enable(); // Player Map
@@ -82,6 +91,10 @@ public class PlayerController : MonoBehaviour
     private void PauseAction(InputAction.CallbackContext context)
     {
         PauseMenu.instance.TriggerPause();
+    }
+    private void RestartAction(InputAction.CallbackContext context)
+    {
+        LevelLoader.instance.ReloadLevel();
     }
     #endregion
 }

@@ -98,15 +98,32 @@ public class PlayerManager : NetworkBehaviour
                 player1 = p;
 
                 if (playerControllers[0] != null)
+                {
                     playerControllers[0].PlayerReference = p;
+                    playerControllers[0].PlayerMovementRef = p.GetComponent<MovementWASD>();
+                    foreach (PlayerMovement pm in playerControllers[0].PlayerReference.GetComponents<PlayerMovement>())
+                    {
+                        pm.DisableLegacyInput();
+                    }
+                        
+                }
             }
             else
             {
                 player2 = p;
 
                 if (playerControllers[1] != null)
+                {
                     playerControllers[1].PlayerReference = p;
+                    playerControllers[1].PlayerMovementRef = p.GetComponent<MovementArrows>();
+                    foreach (PlayerMovement pm in playerControllers[1].PlayerReference.GetComponents<PlayerMovement>())
+                    {
+                        pm.DisableLegacyInput();
+                    }     
+                }
+                    
             }
+            Debug.Log("Play Reference Changed!!");
         }
         MakeShadows();
         if (GameManager.instance.IsNetworked()) { return setNetworkedPlayers(); }
@@ -285,6 +302,7 @@ public class PlayerManager : NetworkBehaviour
             {
                 playerControllers[i] = pi.GetComponent<PlayerController>();
                 playerControllers[i].PlayerReference = i == 0 ? player1 : player2;
+                playerControllers[i].PlayerReference.GetComponent<PlayerMovement>().DisableLegacyInput();
                 break;
             } 
         }   
