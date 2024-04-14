@@ -4,6 +4,7 @@ using UnityEngine.Tilemaps;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEngine.InputSystem;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance { get; private set; }
@@ -70,7 +71,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-private void OnDisable()
+    private void OnDisable()
     {
         SceneManager.sceneLoaded -= SetUpLevel;
     }
