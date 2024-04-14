@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public enum CharacterSelection {
     NEUTRAL = 1,
@@ -48,13 +49,13 @@ public class SelectScreenManager : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         
-        if (Input.GetButtonDown("Horizontal")) {
+        if (Input.GetButtonDown("Horizontal") || (Gamepad.current != null)) {
 
-            if (Input.GetAxisRaw("Horizontal") > 0 && selection != CharacterSelection.GIRL) {
+            if ((Input.GetAxisRaw("Horizontal") < 0 || (Gamepad.current != null && Gamepad.current.dpad.left.isPressed)) && selection != CharacterSelection.GIRL) {
                 selection = CharacterSelection.GIRL;
                 lerpProgress = 0;
             
-            } else if (Input.GetAxisRaw("Horizontal") < 0 && selection != CharacterSelection.BOY) {
+            } else if ((Input.GetAxisRaw("Horizontal") > 0 || (Gamepad.current != null && Gamepad.current.dpad.right.isPressed)) && selection != CharacterSelection.BOY) {
                 selection = CharacterSelection.BOY;
                 lerpProgress = 0;
 
@@ -64,7 +65,7 @@ public class SelectScreenManager : MonoBehaviour {
             cont.gameObject.SetActive(true);
         } 
 
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        if (Input.GetKeyDown(KeyCode.Space) || (Gamepad.current != null && Gamepad.current.buttonSouth.isPressed)) {
             GoToGame();
         } 
 
