@@ -54,6 +54,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Game Scenes/Rooms/Laddering.unity
     guid: e46d222c2f1906b41b2f1262a1f82ac3
   - enabled: 1
+    path: Assets/Scenes/Game Scenes/Rooms/BouncyHouse.unity
+    guid: 63af222a69091d349a00afce4f12f04a
+  - enabled: 1
     path: Assets/Scenes/Game Scenes/Rooms/Sakshi1.unity
     guid: 3e06a0bca07ac2b4e8b38dc976bcff29
   - enabled: 1
