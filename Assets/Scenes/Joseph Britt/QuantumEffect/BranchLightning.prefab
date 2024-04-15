@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7269545537334568345}
   - component: {fileID: 1237029178683820650}
   - component: {fileID: 1496796404392618442}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ElectricityVFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,8 +132,8 @@ VFXRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 61540405
+  m_SortingLayer: 5
   m_SortingOrder: 0
 --- !u!1 &7021462847030538343
 GameObject:
@@ -144,7 +144,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2347363890387738396}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: BranchLightning
   m_TagString: Untagged
   m_Icon: {fileID: 0}

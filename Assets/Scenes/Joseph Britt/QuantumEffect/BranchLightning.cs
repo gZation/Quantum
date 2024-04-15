@@ -6,12 +6,12 @@ public class BranchLightning : MonoBehaviour {
 
     [SerializeField] private GameObject lightningBoltPrefab;
     [SerializeField] private Vector3 center = new Vector3(0, 0, 0);
-    [SerializeField] private Vector3[] corners = { new Vector3(8, 4.5f, 0) };
+    [SerializeField] private Vector3[] corners = { new Vector3(49, 14, 0) };
     [SerializeField] private float lengthFactor = 0.5f;
-    [SerializeField] private int segments = 3;
+    [SerializeField] private int segments = 4;
     [SerializeField] private float branchDampingFactor = 0.8f;
     [SerializeField] private int minAngle = 20;
-    [SerializeField] private int maxAngle = 30;
+    [SerializeField] private int maxAngle = 40;
     private LinkedList<VisualEffect> boltVisualEffects;
 
     // Start is called before the first frame update

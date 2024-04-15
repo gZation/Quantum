@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8550978474893731606}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PosB
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 6910756203723210911}
   - component: {fileID: 1800275708169113815}
   - component: {fileID: 263990946287378831}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ElectricityVFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,8 +168,8 @@ VFXRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 61540405
+  m_SortingLayer: 5
   m_SortingOrder: 0
 --- !u!114 &536253512917975140
 MonoBehaviour:
@@ -259,7 +259,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5546919341810176187}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PosD
   m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
@@ -290,7 +290,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7094132306472436455}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PosA
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -357,7 +357,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2783740186508473062}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PosC
   m_TagString: Untagged
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
