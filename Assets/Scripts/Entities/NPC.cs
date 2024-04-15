@@ -12,9 +12,12 @@ public class NPC : MonoBehaviour
 
     private void Start()
     {
-        Color currColor = image.color;
-        currColor.a = 0;
-        image.color = currColor;
+        if (isImage)
+        {
+            Color currColor = image.color;
+            currColor.a = 0;
+            image.color = currColor;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

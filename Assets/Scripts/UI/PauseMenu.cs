@@ -10,11 +10,13 @@ public class PauseMenu: MonoBehaviour
 
     public static bool gamePaused = false;
     public GameObject pauseUI1;
+    public GameObject controlsUI1;
     public GameObject mainPause1;
     public GameObject optionsMenu1;
     public GameObject quitCheck1;
 
     public GameObject pauseUI2;
+    public GameObject controlsUI2;
     public GameObject mainPause2;
     public GameObject optionsMenu2;
     public GameObject quitCheck2;

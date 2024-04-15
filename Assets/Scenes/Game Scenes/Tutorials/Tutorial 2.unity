@@ -259,6 +259,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pause Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 5539615977008832477, guid: d84d7814d656ff946a44e740fec8ae48, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833994275524886849, guid: d84d7814d656ff946a44e740fec8ae48, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7717578894165375228, guid: d84d7814d656ff946a44e740fec8ae48, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 1853707011
