@@ -87,11 +87,14 @@ public class PlayerManager : NetworkBehaviour
     //Set up the players. If the players don't exist yet, then return false. Otherwise, return true
     public bool SetPlayersAndShadows()
     {
+        Debug.Log("Set PLayers shadwos called");
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        Debug.Log(players);
         if (players.Length == 0) return false;
 
         foreach (GameObject p in players)
         {
+            Debug.Log(p.name);
             PlayerSettings playerSetting = p.GetComponent<PlayerSettings>();
             if (playerSetting.world1)
             {
@@ -123,7 +126,7 @@ public class PlayerManager : NetworkBehaviour
                 }
                     
             }
-            Debug.Log("Play Reference Changed!!");
+            //Debug.Log("Play Reference Changed!!");
         }
         MakeShadows();
         if (GameManager.instance.IsNetworked()) { return setNetworkedPlayers(); }
@@ -132,6 +135,8 @@ public class PlayerManager : NetworkBehaviour
 
     private bool setNetworkedPlayers()
     {
+        Debug.Log("SetNetworkedPLayers Called");
+        Debug.Log(hostPlayer.Value);
         if (!IsHost)
         {
             if (hostPlayer.Value == 0) return false;
@@ -141,11 +146,14 @@ public class PlayerManager : NetworkBehaviour
         {
             hostPlayer.Value = currPlayer;
         }
+        Debug.Log("Here");
+        Debug.Log(player1);
+        Debug.Log(player2);
         currPlayerObject = (currPlayer == 1)  ? player1 : player2;
-
 
         otherPlayerObject = currPlayerObject == player1 ? player2 : player1;
         PlayerSettings playerSetting = currPlayerObject.GetComponent<PlayerSettings>();
+        Debug.Log($"Set player activation of {currPlayerObject.name}");
         playerSetting.isActivePlayer = true;
 
         // If the current user is the host, setup host specific stuff like variables

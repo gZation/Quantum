@@ -295,6 +295,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if ((x == 0 && y == 0) || hasDashed || !canMove) return;
 
+
         StartCoroutine(camera.GetComponent<CameraShake>().Shake(0.1f, 0.1f));
 
         hasDashed = true;
