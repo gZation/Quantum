@@ -66,26 +66,26 @@ public class PlayerController : MonoBehaviour
     private void MoveAction()
     {
         if (m_playerReference == null) return;
-
+        if (pr_playerMovement == null) pr_playerMovement = GetComponent<PlayerMovement>();
         pr_playerMovement.Move(ia_movement.ReadValue<Vector2>());
     }
     private void JumpAction(InputAction.CallbackContext context)
     {
         if (m_playerReference == null) return;
-
+        if (pr_playerMovement == null) pr_playerMovement = GetComponent<PlayerMovement>();
         pr_playerMovement.JumpLogic();
     }
     private void DashAction(InputAction.CallbackContext context)
     {
         if (m_playerReference == null) return;
-
+        if (pr_playerMovement == null) pr_playerMovement = GetComponent<PlayerMovement>();
         Vector2 dir = ia_movement.ReadValue<Vector2>();
         pr_playerMovement.Dash(dir.x, dir.y);
     }
     private void QuantumLockAction(InputAction.CallbackContext context)
     {
         if (m_playerReference == null) return;
-
+        if (pr_playerMovement == null) pr_playerMovement = GetComponent<PlayerMovement>();
         pr_playerMovement.QuantumLock();
     }
     private void PauseAction(InputAction.CallbackContext context)
