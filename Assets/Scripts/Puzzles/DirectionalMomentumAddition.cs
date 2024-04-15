@@ -73,6 +73,7 @@ public class DirectionalMomentumAddition : MonoBehaviour
     {
         if (active && collision.gameObject.tag == "Player")
         {
+            if (collision.gameObject != PlayerManager.instance.currPlayerObject) return;
             PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
             player.WorldAddMomentum(direction * strength);
         }

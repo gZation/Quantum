@@ -85,7 +85,6 @@ public class PlayerSettings : MonoBehaviour
 
     public void SetPlayerNetworked()
     {
-        Debug.Log($"Set PLayer Networked: {isActivePlayer} for {name}");
         if (isActivePlayer)
         {
             Destroy(this.gameObject.GetComponent<MovementWASD>());
