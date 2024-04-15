@@ -40,7 +40,8 @@ public class PlayerSettings : MonoBehaviour
         if (!GameManager.instance.IsNetworked())
         {
             SetPlayerSplit();
-        } else if (GameManager.instance.IsNetworked())
+        }
+        else if (GameManager.instance.IsNetworked())
         {
             SetPlayerNetworked();
         }
@@ -58,6 +59,24 @@ public class PlayerSettings : MonoBehaviour
         } else
         {
             Destroy(this.gameObject.GetComponent<PlayerMovement>());
+            Destroy(this.gameObject.GetComponent<MovementWASD>());
+        }
+        UpdatePlayerMovementRef();
+    }
+
+    public void SetPlayerControllerSplit()
+    {
+        int world = this.world1 ? 1 : 2;
+
+        // make the player have controllers
+        if (PlayerManager.instance.playerOnLeft == world)
+        {
+            Destroy(this.gameObject.GetComponent<MovementWASD>());
+            Destroy(this.gameObject.GetComponent<MovementArrows>());
+        }
+        else
+        {
+            Destroy(this.gameObject.GetComponent<MovementArrows>());
             Destroy(this.gameObject.GetComponent<MovementWASD>());
         }
         UpdatePlayerMovementRef();
