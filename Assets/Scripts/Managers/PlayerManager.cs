@@ -4,12 +4,15 @@ using UnityEngine;
 using Unity.Netcode;
 using System;
 using static PlayerSettings;
+using UnityEngine.InputSystem;
 
 public class PlayerManager : NetworkBehaviour
 {
     public static PlayerManager instance { get; private set; }
     [SerializeField] private GameObject player1;
     [SerializeField] private GameObject player2;
+    [SerializeField] private PlayerController[] playerControllers;
+    
     private GameObject shadow1;
     private GameObject shadow2;
     public bool isHost;
@@ -49,6 +52,7 @@ public class PlayerManager : NetworkBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        playerControllers = new PlayerController[2];
         if (instance != null && instance != this)
         {
             //Debug.LogError("Found more than one Player Manager in the scene.");
@@ -83,20 +87,46 @@ public class PlayerManager : NetworkBehaviour
     //Set up the players. If the players don't exist yet, then return false. Otherwise, return true
     public bool SetPlayersAndShadows()
     {
+        Debug.Log("Set PLayers shadwos called");
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        Debug.Log(players);
         if (players.Length == 0) return false;
 
         foreach (GameObject p in players)
         {
+            Debug.Log(p.name);
             PlayerSettings playerSetting = p.GetComponent<PlayerSettings>();
             if (playerSetting.world1)
             {
                 player1 = p;
+
+                if (playerControllers[0] != null)
+                {
+                    playerControllers[0].PlayerReference = p;
+                    playerControllers[0].PlayerMovementRef = p.GetComponent<MovementWASD>();
+                    foreach (PlayerMovement pm in playerControllers[0].PlayerReference.GetComponents<PlayerMovement>())
+                    {
+                        pm.DisableLegacyInput();
+                    }
+                        
+                }
             }
             else
             {
                 player2 = p;
+
+                if (playerControllers[1] != null)
+                {
+                    playerControllers[1].PlayerReference = p;
+                    playerControllers[1].PlayerMovementRef = p.GetComponent<MovementArrows>();
+                    foreach (PlayerMovement pm in playerControllers[1].PlayerReference.GetComponents<PlayerMovement>())
+                    {
+                        pm.DisableLegacyInput();
+                    }     
+                }
+                    
             }
+            //Debug.Log("Play Reference Changed!!");
         }
         MakeShadows();
         if (GameManager.instance.IsNetworked()) { return setNetworkedPlayers(); }
@@ -105,6 +135,8 @@ public class PlayerManager : NetworkBehaviour
 
     private bool setNetworkedPlayers()
     {
+        Debug.Log("SetNetworkedPLayers Called");
+        Debug.Log(hostPlayer.Value);
         if (!IsHost)
         {
             if (hostPlayer.Value == 0) return false;
@@ -114,11 +146,14 @@ public class PlayerManager : NetworkBehaviour
         {
             hostPlayer.Value = currPlayer;
         }
+        Debug.Log("Here");
+        Debug.Log(player1);
+        Debug.Log(player2);
         currPlayerObject = (currPlayer == 1)  ? player1 : player2;
-
 
         otherPlayerObject = currPlayerObject == player1 ? player2 : player1;
         PlayerSettings playerSetting = currPlayerObject.GetComponent<PlayerSettings>();
+        Debug.Log($"Set player activation of {currPlayerObject.name}");
         playerSetting.isActivePlayer = true;
 
         // If the current user is the host, setup host specific stuff like variables
@@ -158,9 +193,28 @@ public class PlayerManager : NetworkBehaviour
 
     public void ToggleQuantumLock()
     {
-        instance.qlocked = !instance.qlocked;
-
+        if (!GameManager.instance.IsNetworked())
+        { 
+            instance.qlocked = !instance.qlocked;
+        } else
+        {
+            UpdateQLockServerRpc();
+        }
     }
+
+    [ServerRpc(RequireOwnership=false)]
+    public void UpdateQLockServerRpc()
+    {
+        UpdateQLockClientRpc();
+    }
+
+    [ClientRpc]
+    public void UpdateQLockClientRpc()
+    {
+        instance.qlocked = !instance.qlocked;
+    }
+
+
 
     public void SendMomentum(Vector2 momentum, GameObject sender)
     {
@@ -175,6 +229,7 @@ public class PlayerManager : NetworkBehaviour
                 {
                     player1.gameObject.GetComponent<PlayerMovement>().QuantumLockAddMomentum(momentum);
                 }
+
             }
         } 
         else
@@ -190,7 +245,7 @@ public class PlayerManager : NetworkBehaviour
     }
 
     [ClientRpc]
-    public void UpdateMomentumClientRpc(Vector2 momentum) { if (!NetworkManager.Singleton.IsHost) updateMomentum(momentum); }
+    public void UpdateMomentumClientRpc(Vector2 momentum) { updateMomentum(momentum); }
 
     [ServerRpc(RequireOwnership = false)]
     public void UpdateMomentumServerRpc(Vector2 momentum) { updateMomentum(momentum); }
@@ -265,5 +320,26 @@ public class PlayerManager : NetworkBehaviour
     //        shadow2 = shadow;
     //    }
     //}
+
+
+    public void HandlePlayerControllerEnter(PlayerInput pi)
+    {
+        for (int i = 0; i < playerControllers.Length; i++)
+        {
+            if (playerControllers[i] == null)
+            {
+                playerControllers[i] = pi.GetComponent<PlayerController>();
+                playerControllers[i].PlayerReference = i == 0 ? player1 : player2;
+                playerControllers[i].PlayerReference.GetComponent<PlayerMovement>().DisableLegacyInput();
+                break;
+            } 
+        }   
+    }
+
+
+    public void HandlePlayerControllerExit(PlayerInput pi)
+    {
+
+    }
 
 }

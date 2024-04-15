@@ -40,11 +40,13 @@ public class PlayerSettings : MonoBehaviour
         if (!GameManager.instance.IsNetworked())
         {
             SetPlayerSplit();
-        } else if (GameManager.instance.IsNetworked())
+        }
+        else if (GameManager.instance.IsNetworked())
         {
             SetPlayerNetworked();
         }
     }
+
 
     public void SetPlayerSplit()
     {
@@ -63,8 +65,27 @@ public class PlayerSettings : MonoBehaviour
         UpdatePlayerMovementRef();
     }
 
+    public void SetPlayerControllerSplit()
+    {
+        int world = this.world1 ? 1 : 2;
+
+        // make the player have controllers
+        if (PlayerManager.instance.playerOnLeft == world)
+        {
+            Destroy(this.gameObject.GetComponent<MovementWASD>());
+            Destroy(this.gameObject.GetComponent<MovementArrows>());
+        }
+        else
+        {
+            Destroy(this.gameObject.GetComponent<MovementArrows>());
+            Destroy(this.gameObject.GetComponent<MovementWASD>());
+        }
+        UpdatePlayerMovementRef();
+    }
+
     public void SetPlayerNetworked()
     {
+        Debug.Log($"Set PLayer Networked: {isActivePlayer} for {name}");
         if (isActivePlayer)
         {
             Destroy(this.gameObject.GetComponent<MovementWASD>());
@@ -87,13 +108,22 @@ public class PlayerSettings : MonoBehaviour
 
     public void Die()
     {
-        LevelManager lm = LevelManager.instance;
+        // LevelManager lm = LevelManager.instance;
+        LevelLoader ll = LevelLoader.instance;
+        GameManager gm = GameManager.instance;
         PlayerMovement pm = GetComponent<PlayerMovement>();
 
         pm.canMove = false;
 
-        anim.SetTrigger("death");
+        if (gm.IsNetworked()) {
+            ll.ReloadLevelServerRpc();
+        } else {
+            anim.SetTrigger("death");
+            ll.ReloadLevel();
+        }
 
-        lm.Reload();
+        
+
+        
     }
 }

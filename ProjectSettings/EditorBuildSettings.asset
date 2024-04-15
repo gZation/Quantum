@@ -54,6 +54,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Game Scenes/Rooms/Laddering.unity
     guid: e46d222c2f1906b41b2f1262a1f82ac3
   - enabled: 1
+    path: Assets/Scenes/Game Scenes/Rooms/BouncyHouse.unity
+    guid: 63af222a69091d349a00afce4f12f04a
+  - enabled: 1
     path: Assets/Scenes/Game Scenes/Rooms/Sakshi1.unity
     guid: 3e06a0bca07ac2b4e8b38dc976bcff29
   - enabled: 1
@@ -63,6 +66,13 @@ EditorBuildSettings:
     path: Assets/Scenes/Game Scenes/Rooms/Sakshi2.unity
     guid: 982a7ab163611174d81252cf80748e1d
   - enabled: 1
+    path: Assets/Scenes/Game Scenes/Rooms/LRoom.unity
+    guid: b915894b1c1170e45a54e7dfcce04a8b
+  - enabled: 1
     path: Assets/Scenes/Game Scenes/CatScene.unity
-    guid: cf517ff4f0856a642b08e4bbe84073ea
-  m_configObjects: {}
+    guid: 2c6ac392af2d75547bd37e16605ac4a4
+  - enabled: 1
+    path: Assets/Scenes/Chase/Baseline.unity
+    guid: 8b7f97d6954765544a2423a4f461bbbf
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 23037376ef66b004887fd8047dec766b, type: 2}
