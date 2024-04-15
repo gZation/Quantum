@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine.InputSystem;
+using Unity.Collections.LowLevel.Unsafe;
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance { get; private set; }
@@ -97,16 +99,30 @@ public class GameManager : MonoBehaviour
         {
             if (Input.GetButtonDown("ToggleLeft"))
             {
-                w2Copy.gameObject.SetActive(!w2Copy.gameObject.activeSelf);
+                ToggleOverlay(false);
             }
             if (Input.GetButtonDown("ToggleRight"))
             {
-                w1Copy.gameObject.SetActive(!w1Copy.gameObject.activeSelf);
+                ToggleOverlay(true);
             }
         }
         if (Input.GetButton("Restart"))
         {
             LevelLoader.instance.ReloadLevel();
+        }
+    }
+
+    public void ToggleOverlay(bool world1)
+    {
+        // For Future Programmer reference: w#copy is the copy of the opposing world,
+        // not the current world doing the toggling
+        if (world1)
+        {
+            w2Copy.gameObject.SetActive(!w2Copy.gameObject.activeSelf);
+        }
+        else
+        {  
+            w1Copy.gameObject.SetActive(!w1Copy.gameObject.activeSelf);
         }
     }
 
