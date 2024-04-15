@@ -128,6 +128,7 @@ public class GameManager : MonoBehaviour
 
     public void SetUpLevel()
     {
+        Debug.Log("SetupLevel Called");
         // Don't set up the level if PlayerManager doesn't exist
         if (PlayerManager.instance == null) return;
 
