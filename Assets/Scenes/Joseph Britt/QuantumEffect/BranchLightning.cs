@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -36,6 +37,7 @@ public class BranchLightning : MonoBehaviour {
     }
 
     private void SpawnBolt(Vector3 startPos, Vector3 endPos) {
+        if (boltVisualEffects == null) { return; }
         VisualEffect boltVFX = Instantiate(lightningBoltPrefab, startPos, Quaternion.identity).GetComponentInChildren<VisualEffect>();
         boltVisualEffects.AddLast(boltVFX);
         boltVFX.SetVector3("PosA", startPos);
@@ -45,9 +47,13 @@ public class BranchLightning : MonoBehaviour {
     }
 
     public void SetEnabled(bool enabled) {
-        if (boltVisualEffects == null) return;
+        if (boltVisualEffects == null) { return; }
         foreach (VisualEffect boltVFX in boltVisualEffects) {
             boltVFX.enabled = enabled;
         }
+    }
+
+    public void OnDestroy() {
+        boltVisualEffects = null;
     }
 }
