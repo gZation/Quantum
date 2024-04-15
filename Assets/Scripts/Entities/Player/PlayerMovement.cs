@@ -233,7 +233,7 @@ public class PlayerMovement : MonoBehaviour
 
     public virtual bool IsQLock()
     {
-        return legacyInput && Input.GetKeyDown(KeyCode.Q);
+        return legacyInput && Input.GetKeyDown(KeyCode.C);
     }
     #endregion
 
