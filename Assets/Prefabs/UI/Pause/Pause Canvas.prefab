@@ -117,10 +117,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseUI1: {fileID: 5833994275524886849}
+  controlsUI1: {fileID: 5539615977008832477}
   mainPause1: {fileID: 8159970908948083269}
   optionsMenu1: {fileID: 5897176055788870274}
   quitCheck1: {fileID: 8136824645179086862}
   pauseUI2: {fileID: 132959434884165410}
+  controlsUI2: {fileID: 23970896419412685}
   mainPause2: {fileID: 2310581123161480230}
   optionsMenu2: {fileID: 69846906668348641}
   quitCheck2: {fileID: 2433370842937652845}
@@ -274,6 +276,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 472ac69210104db428d200aae439ca34, type: 3}
+--- !u!1 &5539615977008832477 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5750412207455351258, guid: 472ac69210104db428d200aae439ca34, type: 3}
+  m_PrefabInstance: {fileID: 228902988083801607}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5833994275524886849 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6042626649647771462, guid: 472ac69210104db428d200aae439ca34, type: 3}
@@ -346,6 +353,10 @@ PrefabInstance:
     - target: {fileID: 5294730327605774049, guid: 0da1e4215627dac45a7f3f1c9f94c6ea, type: 3}
       propertyPath: m_Name
       value: World2Pause
+      objectReference: {fileID: 0}
+    - target: {fileID: 5933154330874485417, guid: 0da1e4215627dac45a7f3f1c9f94c6ea, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6042626649647771462, guid: 0da1e4215627dac45a7f3f1c9f94c6ea, type: 3}
       propertyPath: m_IsActive
@@ -448,6 +459,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0da1e4215627dac45a7f3f1c9f94c6ea, type: 3}
+--- !u!1 &23970896419412685 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5933154330874485417, guid: 0da1e4215627dac45a7f3f1c9f94c6ea, type: 3}
+  m_PrefabInstance: {fileID: 5909818971437056100}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &69846906668348641 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5979584512231650437, guid: 0da1e4215627dac45a7f3f1c9f94c6ea, type: 3}

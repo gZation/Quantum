@@ -123,6 +123,8 @@ public class PauseMenu: MonoBehaviour
                 Time.timeScale = 1f;
                 mainPause1.SetActive(true);
                 optionsMenu1.SetActive(false);
+                controlsUI1.SetActive(false);
+
                 quitCheck1.SetActive(false);
                 gamePaused = false;
             } else
@@ -131,6 +133,7 @@ public class PauseMenu: MonoBehaviour
                 Time.timeScale = 1f;
                 mainPause2.SetActive(true);
                 optionsMenu2.SetActive(false);
+                controlsUI2.SetActive(false);
                 quitCheck2.SetActive(false);
                 gamePaused = false;
             }
@@ -140,6 +143,7 @@ public class PauseMenu: MonoBehaviour
             Time.timeScale = 1f;
             mainPause2.SetActive(true);
             optionsMenu2.SetActive(false);
+            controlsUI2.SetActive(false);
             quitCheck2.SetActive(false);
             gamePaused = false;
         }
