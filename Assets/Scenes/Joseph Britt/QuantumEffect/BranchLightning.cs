@@ -45,6 +45,7 @@ public class BranchLightning : MonoBehaviour {
     }
 
     public void SetEnabled(bool enabled) {
+        if (boltVisualEffects == null) return;
         foreach (VisualEffect boltVFX in boltVisualEffects) {
             boltVFX.enabled = enabled;
         }
