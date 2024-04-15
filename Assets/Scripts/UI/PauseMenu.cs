@@ -78,6 +78,31 @@ public class PauseMenu: MonoBehaviour
         }
     }
 
+    public void ForceOpenControls()
+    {
+        if (GameManager.instance.IsNetworked())
+        {
+            if (PlayerManager.instance.currPlayer == 1)
+            {
+                controlsUI1.SetActive(true);
+            }
+            else
+            {
+                controlsUI2.SetActive(true);
+            }
+        }
+        else
+        {
+            if (PlayerManager.instance.playerOnLeft == 2)
+            {
+                controlsUI2.SetActive(true);
+            } else
+            {
+                controlsUI1.SetActive(true);
+            }
+        }
+    }
+
     public void TriggerToMainMenu()
     {
         if (GameManager.instance.IsNetworked())
@@ -139,13 +164,26 @@ public class PauseMenu: MonoBehaviour
             }
         } else
         {
-            pauseUI2.SetActive(false);
-            Time.timeScale = 1f;
-            mainPause2.SetActive(true);
-            optionsMenu2.SetActive(false);
-            controlsUI2.SetActive(false);
-            quitCheck2.SetActive(false);
-            gamePaused = false;
+
+            if (PlayerManager.instance.playerOnLeft == 2)
+            {
+                pauseUI2.SetActive(false);
+                Time.timeScale = 1f;
+                mainPause2.SetActive(true);
+                optionsMenu2.SetActive(false);
+                controlsUI2.SetActive(false);
+                quitCheck2.SetActive(false);
+                gamePaused = false;
+            } else
+            {
+                pauseUI1.SetActive(false);
+                Time.timeScale = 1f;
+                mainPause1.SetActive(true);
+                optionsMenu1.SetActive(false);
+                controlsUI1.SetActive(false);
+                quitCheck1.SetActive(false);
+                gamePaused = false;
+            }
         }
     }
 
@@ -205,7 +243,13 @@ public class PauseMenu: MonoBehaviour
         }
         else
         {
-            pauseUI2.SetActive(true);
+            if (PlayerManager.instance.playerOnLeft == 2)
+            {
+                pauseUI2.SetActive(true);
+            } else
+            {
+                pauseUI1.SetActive(true);
+            }
         }
         Time.timeScale = 0f;
         gamePaused = true;
