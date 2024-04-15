@@ -11,7 +11,7 @@ public class GameModeMenu : MonoBehaviour
     public void setSplitScreen()
     {
         GameManager.instance.SetNetworkedScreen(false);
-        Screen.SetResolution(1280, 480, false);
+        //Screen.SetResolution(1280, 480, false);
         LevelLoader.instance.LoadLevelByName(nextSplit);
         //SceneManager.LoadScene(nextSplit);
     }

@@ -579,7 +579,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 196.37503, y: 75.67502}
+  m_AnchoredPosition: {x: 199, y: 75.67502}
   m_SizeDelta: {x: -22.805, y: -264.686}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &342799057
@@ -1452,7 +1452,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 196.37503, y: 55.80002}
+  m_AnchoredPosition: {x: 201, y: 47}
   m_SizeDelta: {x: -22.805, y: -264.686}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1193306134
@@ -1475,7 +1475,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Gabriel Yam\r"
+  m_text: 'Gabriel Yam
+
+    Chosic'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1701,8 +1703,7 @@ MonoBehaviour:
 
     Phi Cai
 
-    Victoria
-    Lau'
+    Victoria Lau'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3089,7 +3090,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 198.87503, y: 15.5000305}
+  m_AnchoredPosition: {x: 198.87503, y: 2.7500305}
   m_SizeDelta: {x: -22.805, y: -264.686}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2038586797
@@ -3357,7 +3358,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 199.87503, y: -26.74997}
+  m_AnchoredPosition: {x: 199.87503, y: -40}
   m_SizeDelta: {x: -22.805, y: -264.686}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2118579242

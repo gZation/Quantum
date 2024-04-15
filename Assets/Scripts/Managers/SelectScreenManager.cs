@@ -51,11 +51,11 @@ public class SelectScreenManager : MonoBehaviour {
         
         if (Input.GetButtonDown("Horizontal") || (Gamepad.current != null)) {
 
-            if ((Input.GetAxisRaw("Horizontal") < 0 || (Gamepad.current != null && Gamepad.current.dpad.left.isPressed)) && selection != CharacterSelection.GIRL) {
+            if ((Input.GetAxisRaw("Horizontal") > 0 || (Gamepad.current != null && Gamepad.current.dpad.right.isPressed)) && selection != CharacterSelection.GIRL) {
                 selection = CharacterSelection.GIRL;
                 lerpProgress = 0;
             
-            } else if ((Input.GetAxisRaw("Horizontal") > 0 || (Gamepad.current != null && Gamepad.current.dpad.right.isPressed)) && selection != CharacterSelection.BOY) {
+            } else if ((Input.GetAxisRaw("Horizontal") < 0 || (Gamepad.current != null && Gamepad.current.dpad.left.isPressed)) && selection != CharacterSelection.BOY) {
                 selection = CharacterSelection.BOY;
                 lerpProgress = 0;
 
