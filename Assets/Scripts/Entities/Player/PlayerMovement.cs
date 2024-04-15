@@ -251,14 +251,11 @@ public class PlayerMovement : MonoBehaviour
 
     public void JumpLogic()
     {
-        Debug.Log("Intiate Jump Logic");
         if (!canMove) return;
-        Debug.Log("I can move");
         anim.SetTrigger("jump");
 
         if (coyoteTime > 0)
         {
-            Debug.Log("I Jump");
             Jump(Vector2.up, false);
             coyoteTime = 0;
         }

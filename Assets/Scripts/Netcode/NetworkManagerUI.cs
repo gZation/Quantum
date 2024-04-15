@@ -68,7 +68,6 @@ public class NetworkManagerUI : NetworkBehaviour
 
     private ParticleSystem FindParticleSystem(string systemName, GameObject playerObject)
     {
-        Debug.Log($"Particle search in {playerObject.name}");
         Transform systemTransform = playerObject.transform.Find(systemName);
         if (systemTransform != null)
         {
@@ -91,57 +90,5 @@ public class NetworkManagerUI : NetworkBehaviour
             Destroy(player.GetComponent<PlayerMovement>());
         }
     }
-
-    //private void SetupTempNetworking(ulong clientId)
-    //{
-    //    Debug.Log($"Connected! With client id: {clientId}");
-    //    Debug.Log($"Current id: {NetworkManager.Singleton.LocalClientId}");
-    //    Debug.Log($"Host val: {PlayerManager.instance.hostPlayer.Value}");
-    //    if (clientId != NetworkManager.Singleton.LocalClientId) return;
-    //    NetworkManager.Singleton.OnClientConnectedCallback -= SetupTempNetworking;
-    //    SetupTempNetworkingHelper(0);
-    //}
-
-    //private void SetupTempNetworkingHelper(ulong clientId)
-    //{
-    //    // Remove previous clones that get spawned from initial level setup
-    //    foreach (GameObject cloneObject in GameObject.FindGameObjectsWithTag("clone")) { Destroy(cloneObject); }
-    //    Screen.SetResolution(640, 480, false);
-    //    GameManager.instance.SetNetworkedScreen(true);
-    //    ReplacePlayers();
-    //    GameManager.instance.SetUpLevel();
-    //    //GameObject currPlayer = PlayerManager.instance.currPlayerObject;
-    //}
-
-    // Game instantiates like the players are splitscreen.
-    // To get Networking working, the players have to essentially be "reset" i.e. replaced
-    // Ngl, the only reason why this is here is because of how particles work
-    //private void ReplacePlayers()
-    //{
-    //    GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-    //    foreach (GameObject player in players)
-    //    {
-    //        GameObject newPlayer;
-    //        Debug.Log($"Is Host? {IsHost}");
-    //        if (IsHost)
-    //        {
-    //            if (player.name == "Player 1")
-    //            {
-    //                newPlayer = Instantiate(Player1Prefab, player.transform.position, player.transform.rotation, player.transform.parent);
-    //            }
-    //            else
-    //            {
-    //                newPlayer = Instantiate(Player2Prefab, player.transform.position, player.transform.rotation, player.transform.parent);
-    //            }
-    //            Destroy(player);
-    //            Debug.Log($"Removing {player.name}");
-    //            newPlayer.GetComponent<NetworkObject>().Spawn();
-    //        }
-    //        Destroy(player);
-    //    }
-    //}
-
-
-
 
 }
