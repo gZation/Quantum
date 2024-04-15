@@ -193,9 +193,28 @@ public class PlayerManager : NetworkBehaviour
 
     public void ToggleQuantumLock()
     {
-        instance.qlocked = !instance.qlocked;
-
+        if (!GameManager.instance.IsNetworked())
+        { 
+            instance.qlocked = !instance.qlocked;
+        } else
+        {
+            UpdateQLockServerRpc();
+        }
     }
+
+    [ServerRpc(RequireOwnership=false)]
+    public void UpdateQLockServerRpc()
+    {
+        UpdateQLockClientRpc();
+    }
+
+    [ClientRpc]
+    public void UpdateQLockClientRpc()
+    {
+        instance.qlocked = !instance.qlocked;
+    }
+
+
 
     public void SendMomentum(Vector2 momentum, GameObject sender)
     {
