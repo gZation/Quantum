@@ -71,5 +71,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game Scenes/CatScene.unity
     guid: 2c6ac392af2d75547bd37e16605ac4a4
+  - enabled: 1
+    path: Assets/Scenes/Chase/Baseline.unity
+    guid: 8b7f97d6954765544a2423a4f461bbbf
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 23037376ef66b004887fd8047dec766b, type: 2}

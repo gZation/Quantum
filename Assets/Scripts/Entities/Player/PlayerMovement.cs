@@ -116,8 +116,6 @@ public class PlayerMovement : MonoBehaviour
 
         //-------Movement Legacy-------
         Vector2 dir = GetMovementDirection();
-        float x = dir.x;
-        float y = dir.y;
         Vector2 raw = GetRawInput();
         float xRaw = raw.x;
         float yRaw = raw.y;
@@ -182,21 +180,8 @@ public class PlayerMovement : MonoBehaviour
             groundTouch = false;
         }
 
-        WallParticle(y);
-
         if (wallGrab || wallSlide || !canMove)
             return;
-
-        if (x > 0)
-        {
-            side = 1;
-            anim.Flip(side);
-        }
-        if (x < 0)
-        {
-            side = -1;
-            anim.Flip(side);
-        }
 
         //check speed and cap at max speed
         Vector2 vel = rb.velocity;
@@ -266,14 +251,11 @@ public class PlayerMovement : MonoBehaviour
 
     public void JumpLogic()
     {
-        Debug.Log("Intiate Jump Logic");
         if (!canMove) return;
-        Debug.Log("I can move");
         anim.SetTrigger("jump");
 
         if (coyoteTime > 0)
         {
-            Debug.Log("I Jump");
             Jump(Vector2.up, false);
             coyoteTime = 0;
         }
@@ -289,11 +271,28 @@ public class PlayerMovement : MonoBehaviour
         isMovingInputed = inputVector.x != 0;
         Walk(inputVector);
         anim.SetHorizontalMovement(inputVector.x, inputVector.y, rb.velocity.y);
+
+        WallParticle(inputVector.y);
+
+        if (wallGrab || wallSlide || !canMove)
+            return;
+
+        if (inputVector.x > 0)
+        {
+            side = 1;
+            anim.Flip(side);
+        }
+        if (inputVector.x < 0)
+        {
+            side = -1;
+            anim.Flip(side);
+        }
     }
 
     public void Dash(float x, float y)
     {
         if ((x == 0 && y == 0) || hasDashed || !canMove) return;
+
 
         StartCoroutine(camera.GetComponent<CameraShake>().Shake(0.1f, 0.1f));
 

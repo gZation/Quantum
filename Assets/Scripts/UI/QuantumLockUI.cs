@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class QuantumLockUI : MonoBehaviour
 {
-    [SerializeField] private GameObject QuantumLockUIText;
+    [SerializeField] private BranchLightning quantumLightning;
 
 
     // Start is called before the first frame updatde
     void Start()
     {
-        QuantumLockUIText.SetActive(false);
         PlayerManager.instance.OnVariableQLockChange += DisplayQuantumLockUI;
     }
 
@@ -21,6 +20,6 @@ public class QuantumLockUI : MonoBehaviour
     }
     void DisplayQuantumLockUI(bool newVal)
     {
-        QuantumLockUIText.SetActive(newVal);
+        quantumLightning.SetEnabled(newVal);
     }
 }
