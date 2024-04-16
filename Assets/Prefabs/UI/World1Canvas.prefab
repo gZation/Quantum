@@ -135,7 +135,6 @@ MonoBehaviour:
   - {x: -7.4, y: 14.07, z: -5}
   - {x: 17.36, y: -4.23, z: -5}
   - {x: -7.4, y: -4.23, z: -5}
-  lengthFactor: 0.5
   color1: {r: 1, g: 0.92941177, b: 0.03529412, a: 1}
   color2: {r: 1, g: 1, b: 1, a: 1}
   lengthFactor: 0.3
