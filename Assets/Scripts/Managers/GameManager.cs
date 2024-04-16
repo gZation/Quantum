@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
 
     private GameObject w1Copy;
     private GameObject w2Copy;
+    private bool leftToggle;
+    private bool rightToggle;
+
     private float overlayAlpha = 0.3f;
 
     private void Awake()
@@ -43,10 +46,11 @@ public class GameManager : MonoBehaviour
         }
 
         if (isGameEnabled) GameEnable();
-
     }
     public void GameEnable()
     {
+        leftToggle = true;
+        rightToggle = true;
         isGameEnabled = true;
         if (!networkingOn) SceneManager.sceneLoaded += SetUpLevel;
         else NetworkManager.Singleton.SceneManager.OnLoadComplete += SetUpLevel;
@@ -88,10 +92,12 @@ public class GameManager : MonoBehaviour
 
                 if (currPlayer == 1)
                 {
-                    w2Copy.gameObject.SetActive(!w2Copy.gameObject.activeSelf);
+                    leftToggle = !w2Copy.gameObject.activeSelf;
+                    w2Copy.gameObject.SetActive(leftToggle);
                 } else if (currPlayer == 2)
                 {
-                    w1Copy.gameObject.SetActive(!w1Copy.gameObject.activeSelf);
+                    rightToggle = !w1Copy.gameObject.activeSelf;
+                    w1Copy.gameObject.SetActive(rightToggle);
                 }
             }
         }
@@ -99,11 +105,11 @@ public class GameManager : MonoBehaviour
         {
             if (Input.GetButtonDown("ToggleLeft"))
             {
-                ToggleOverlay(false);
+                ToggleOverlay(true);
             }
             if (Input.GetButtonDown("ToggleRight"))
             {
-                ToggleOverlay(true);
+                ToggleOverlay(false);
             }
         }
         if (Input.GetButton("Restart"))
@@ -118,11 +124,13 @@ public class GameManager : MonoBehaviour
         // not the current world doing the toggling
         if (world1)
         {
-            w2Copy.gameObject.SetActive(!w2Copy.gameObject.activeSelf);
+            leftToggle = !w2Copy.gameObject.activeSelf;
+            w2Copy.gameObject.SetActive(leftToggle);
         }
         else
-        {  
-            w1Copy.gameObject.SetActive(!w1Copy.gameObject.activeSelf);
+        {
+            rightToggle = !w1Copy.gameObject.activeSelf;
+            w1Copy.gameObject.SetActive(rightToggle);
         }
     }
 
@@ -148,6 +156,10 @@ public class GameManager : MonoBehaviour
 
         CopyAndSendWorldInfo();
         SetCameras();
+
+        // reset world toggle as needed
+        w2Copy.gameObject.SetActive(leftToggle);
+        w1Copy.gameObject.SetActive(rightToggle);
     }
 
     public void SetUpLevel(Scene scene, LoadSceneMode mode) {
