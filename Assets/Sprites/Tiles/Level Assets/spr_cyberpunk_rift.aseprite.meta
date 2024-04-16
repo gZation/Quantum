@@ -1,0 +1,1024 @@
+fileFormatVersion: 2
+guid: e2ee23fdd0bfab04f85df43e40c97b7e
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
+    isReadable: 0
+    streamingMipmaps: 0
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMipmapLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 0
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 20
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  previousAsepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 0
+    customPivotPosition: {x: 0.5, y: 0.5}
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  asepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 0
+    customPivotPosition: {x: 0.5, y: 0.5}
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 638488150209570812
+  textureAssetName: 
+  singleSpriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  animatedSpriteImportData:
+  - name: spr_cyberpunk_rift_Frame_0
+    originalName: 
+    pivot: {x: 0.50000006, y: 0.51282054}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 34
+      height: 39
+    spriteID: 2c3726d2a592a1e4b8d18dbf917b334a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+  - name: spr_cyberpunk_rift_Frame_1
+    originalName: 
+    pivot: {x: 0.50000006, y: 0.51282054}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 51
+      width: 34
+      height: 39
+    spriteID: 11e576794da0d564e871464ae30bc3d8
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 51}
+  - name: spr_cyberpunk_rift_Frame_2
+    originalName: 
+    pivot: {x: 0.50000006, y: 0.51282054}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 98
+      width: 34
+      height: 39
+    spriteID: bc99ed908ed983b48ab63591fcf3bd6e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 98}
+  - name: spr_cyberpunk_rift_Frame_3
+    originalName: 
+    pivot: {x: 0.50000006, y: 0.51282054}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 145
+      width: 34
+      height: 39
+    spriteID: 5549b55ec131dba4983f034445b54dc8
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 145}
+  - name: spr_cyberpunk_rift_Frame_4
+    originalName: 
+    pivot: {x: 0.50000006, y: 0.51282054}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 192
+      width: 34
+      height: 39
+    spriteID: 6ea24957d2a9eb4479d7ba1c697b725d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 192}
+  - name: spr_cyberpunk_rift_Frame_5
+    originalName: 
+    pivot: {x: 0.50000006, y: 0.51282054}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 46
+      y: 4
+      width: 34
+      height: 39
+    spriteID: b8e355df75c8049409fd48c0409b3942
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 46, y: 4}
+  - name: spr_cyberpunk_rift_Frame_6
+    originalName: 
+    pivot: {x: 0.50000006, y: 0.51282054}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 46
+      y: 51
+      width: 34
+      height: 39
+    spriteID: 0cd878bd0d39ac1428d9991ad2d1a666
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 46, y: 51}
+  - name: spr_cyberpunk_rift_Frame_7
+    originalName: 
+    pivot: {x: 0.50000006, y: 0.51282054}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 46
+      y: 98
+      width: 34
+      height: 39
+    spriteID: ee5d385c6b0bdd94389f45c646476d4f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 46, y: 98}
+  - name: spr_cyberpunk_rift_Frame_8
+    originalName: 
+    pivot: {x: 0.50000006, y: 0.51282054}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 46
+      y: 145
+      width: 34
+      height: 39
+    spriteID: b68002f547fa38746a267c855e505f5a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 46, y: 145}
+  - name: spr_cyberpunk_rift_Frame_9
+    originalName: 
+    pivot: {x: 0.50000006, y: 0.51282054}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 46
+      y: 192
+      width: 34
+      height: 39
+    spriteID: c33ad739a99ddec41a30d523c1b1a678
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 46, y: 192}
+  - name: spr_cyberpunk_rift_Frame_10
+    originalName: 
+    pivot: {x: 0.50000006, y: 0.51282054}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 88
+      y: 4
+      width: 34
+      height: 39
+    spriteID: c78830e9d1326ed4787704c1cd957cb5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 88, y: 4}
+  - name: spr_cyberpunk_rift_Frame_11
+    originalName: 
+    pivot: {x: 0.50000006, y: 0.51282054}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 88
+      y: 51
+      width: 34
+      height: 39
+    spriteID: ab2f50bfa928f764095c9601bb829e8a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 88, y: 51}
+  - name: spr_cyberpunk_rift_Frame_12
+    originalName: 
+    pivot: {x: 0.50000006, y: 0.51282054}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 88
+      y: 98
+      width: 34
+      height: 39
+    spriteID: 9dce046b2385ed24bbeb19a78190c0a2
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 88, y: 98}
+  - name: spr_cyberpunk_rift_Frame_13
+    originalName: 
+    pivot: {x: 0.50000006, y: 0.51282054}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 88
+      y: 145
+      width: 34
+      height: 39
+    spriteID: b4372b367011a414098b4d48003e3b42
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 88, y: 145}
+  - name: spr_cyberpunk_rift_Frame_14
+    originalName: 
+    pivot: {x: 0.50000006, y: 0.51282054}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 88
+      y: 192
+      width: 34
+      height: 39
+    spriteID: 07498adf00ba2974893a11d81df464eb
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 88, y: 192}
+  - name: spr_cyberpunk_rift_Frame_15
+    originalName: 
+    pivot: {x: 0.50000006, y: 0.51282054}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 130
+      y: 4
+      width: 34
+      height: 39
+    spriteID: 15422daf0d2d76442a52a19fb41b5d9c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 130, y: 4}
+  - name: spr_cyberpunk_rift_Frame_16
+    originalName: 
+    pivot: {x: 0.50000006, y: 0.51282054}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 130
+      y: 51
+      width: 34
+      height: 39
+    spriteID: 52d804acab8b63e4e9c5463706ad3b90
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 130, y: 51}
+  - name: spr_cyberpunk_rift_Frame_17
+    originalName: 
+    pivot: {x: 0.50000006, y: 0.51282054}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 130
+      y: 98
+      width: 34
+      height: 39
+    spriteID: 750b5bc6a421e9d46953cde345a5062c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 130, y: 98}
+  - name: spr_cyberpunk_rift_Frame_18
+    originalName: 
+    pivot: {x: 0.50000006, y: 0.51282054}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 130
+      y: 145
+      width: 34
+      height: 39
+    spriteID: f79310aedf0d0ef488ca4c3c6abb674f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 130, y: 145}
+  - name: spr_cyberpunk_rift_Frame_19
+    originalName: 
+    pivot: {x: 0.50000006, y: 0.51282054}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 130
+      y: 192
+      width: 34
+      height: 39
+    spriteID: 302c9098f4897f14a95af67b93b75a82
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 130, y: 192}
+  - name: spr_cyberpunk_rift_Frame_20
+    originalName: 
+    pivot: {x: 0.50000006, y: 0.51282054}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 172
+      y: 4
+      width: 34
+      height: 39
+    spriteID: 5d1260cab1b28f74098ba9434fdd89dd
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 172, y: 4}
+  - name: spr_cyberpunk_rift_Frame_21
+    originalName: 
+    pivot: {x: 0.50000006, y: 0.51282054}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 172
+      y: 51
+      width: 34
+      height: 39
+    spriteID: 832aff697d1362e418c05f2bc3edcfbd
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 172, y: 51}
+  - name: spr_cyberpunk_rift_Frame_22
+    originalName: 
+    pivot: {x: 0.50000006, y: 0.51282054}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 172
+      y: 98
+      width: 34
+      height: 39
+    spriteID: 429ff29a04ec872499bcc3918d56d119
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 172, y: 98}
+  - name: spr_cyberpunk_rift_Frame_23
+    originalName: 
+    pivot: {x: 0.50000006, y: 0.51282054}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 172
+      y: 145
+      width: 34
+      height: 39
+    spriteID: 448592195c74fc74e8fe791c3d793153
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 172, y: 145}
+  - name: spr_cyberpunk_rift_Frame_24
+    originalName: 
+    pivot: {x: 0.50000006, y: 0.51282054}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 172
+      y: 192
+      width: 34
+      height: 39
+    spriteID: d1c8817095a281c4b9f59dfddfbc1862
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 172, y: 192}
+  - name: spr_cyberpunk_rift_Frame_25
+    originalName: 
+    pivot: {x: 0.50000006, y: 0.51282054}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 214
+      y: 4
+      width: 34
+      height: 39
+    spriteID: 9f8d5400eba7fb44ab5738e56a720645
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 214, y: 4}
+  - name: spr_cyberpunk_rift_Frame_26
+    originalName: 
+    pivot: {x: 0.50000006, y: 0.51282054}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 214
+      y: 51
+      width: 34
+      height: 39
+    spriteID: 3819be4e751310c4c88fa8276cea0142
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 214, y: 51}
+  - name: spr_cyberpunk_rift_Frame_27
+    originalName: 
+    pivot: {x: 0.50000006, y: 0.51282054}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 214
+      y: 98
+      width: 34
+      height: 39
+    spriteID: 04a7ce64cbe8e7f479e091612e00511f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 214, y: 98}
+  - name: spr_cyberpunk_rift_Frame_28
+    originalName: 
+    pivot: {x: 0.50000006, y: 0.51282054}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 214
+      y: 145
+      width: 34
+      height: 39
+    spriteID: 1fb607f12c0a2c247a84d1b41856b604
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 214, y: 145}
+  - name: spr_cyberpunk_rift_Frame_29
+    originalName: 
+    pivot: {x: 0.50000006, y: 0.51282054}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 214
+      y: 192
+      width: 34
+      height: 39
+    spriteID: 452dfb6db86b59c45becf80b897c86e3
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 214, y: 192}
+  spriteSheetImportData: []
+  asepriteLayers:
+  - layerIndex: 0
+    guid: 809304515
+    name: spr_cyberpunk_rift
+    layerFlags: 0
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: spr_cyberpunk_rift_Frame_0
+      frameIndex: 0
+      cellRect:
+        x: 3
+        y: 0
+        width: 34
+        height: 39
+      spriteId: 2c3726d2a592a1e4b8d18dbf917b334a
+    - name: spr_cyberpunk_rift_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 3
+        y: 0
+        width: 34
+        height: 39
+      spriteId: 11e576794da0d564e871464ae30bc3d8
+    - name: spr_cyberpunk_rift_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 3
+        y: 0
+        width: 34
+        height: 39
+      spriteId: bc99ed908ed983b48ab63591fcf3bd6e
+    - name: spr_cyberpunk_rift_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 3
+        y: 0
+        width: 34
+        height: 39
+      spriteId: 5549b55ec131dba4983f034445b54dc8
+    - name: spr_cyberpunk_rift_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 3
+        y: 0
+        width: 34
+        height: 39
+      spriteId: 6ea24957d2a9eb4479d7ba1c697b725d
+    - name: spr_cyberpunk_rift_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 3
+        y: 0
+        width: 34
+        height: 39
+      spriteId: b8e355df75c8049409fd48c0409b3942
+    - name: spr_cyberpunk_rift_Frame_6
+      frameIndex: 6
+      cellRect:
+        x: 3
+        y: 0
+        width: 34
+        height: 39
+      spriteId: 0cd878bd0d39ac1428d9991ad2d1a666
+    - name: spr_cyberpunk_rift_Frame_7
+      frameIndex: 7
+      cellRect:
+        x: 3
+        y: 0
+        width: 34
+        height: 39
+      spriteId: ee5d385c6b0bdd94389f45c646476d4f
+    - name: spr_cyberpunk_rift_Frame_8
+      frameIndex: 8
+      cellRect:
+        x: 3
+        y: 0
+        width: 34
+        height: 39
+      spriteId: b68002f547fa38746a267c855e505f5a
+    - name: spr_cyberpunk_rift_Frame_9
+      frameIndex: 9
+      cellRect:
+        x: 3
+        y: 0
+        width: 34
+        height: 39
+      spriteId: c33ad739a99ddec41a30d523c1b1a678
+    - name: spr_cyberpunk_rift_Frame_10
+      frameIndex: 10
+      cellRect:
+        x: 3
+        y: 0
+        width: 34
+        height: 39
+      spriteId: c78830e9d1326ed4787704c1cd957cb5
+    - name: spr_cyberpunk_rift_Frame_11
+      frameIndex: 11
+      cellRect:
+        x: 3
+        y: 0
+        width: 34
+        height: 39
+      spriteId: ab2f50bfa928f764095c9601bb829e8a
+    - name: spr_cyberpunk_rift_Frame_12
+      frameIndex: 12
+      cellRect:
+        x: 3
+        y: 0
+        width: 34
+        height: 39
+      spriteId: 9dce046b2385ed24bbeb19a78190c0a2
+    - name: spr_cyberpunk_rift_Frame_13
+      frameIndex: 13
+      cellRect:
+        x: 3
+        y: 0
+        width: 34
+        height: 39
+      spriteId: b4372b367011a414098b4d48003e3b42
+    - name: spr_cyberpunk_rift_Frame_14
+      frameIndex: 14
+      cellRect:
+        x: 3
+        y: 0
+        width: 34
+        height: 39
+      spriteId: 07498adf00ba2974893a11d81df464eb
+    - name: spr_cyberpunk_rift_Frame_15
+      frameIndex: 15
+      cellRect:
+        x: 3
+        y: 0
+        width: 34
+        height: 39
+      spriteId: 15422daf0d2d76442a52a19fb41b5d9c
+    - name: spr_cyberpunk_rift_Frame_16
+      frameIndex: 16
+      cellRect:
+        x: 3
+        y: 0
+        width: 34
+        height: 39
+      spriteId: 52d804acab8b63e4e9c5463706ad3b90
+    - name: spr_cyberpunk_rift_Frame_17
+      frameIndex: 17
+      cellRect:
+        x: 3
+        y: 0
+        width: 34
+        height: 39
+      spriteId: 750b5bc6a421e9d46953cde345a5062c
+    - name: spr_cyberpunk_rift_Frame_18
+      frameIndex: 18
+      cellRect:
+        x: 3
+        y: 0
+        width: 34
+        height: 39
+      spriteId: f79310aedf0d0ef488ca4c3c6abb674f
+    - name: spr_cyberpunk_rift_Frame_19
+      frameIndex: 19
+      cellRect:
+        x: 3
+        y: 0
+        width: 34
+        height: 39
+      spriteId: 302c9098f4897f14a95af67b93b75a82
+    - name: spr_cyberpunk_rift_Frame_20
+      frameIndex: 20
+      cellRect:
+        x: 3
+        y: 0
+        width: 34
+        height: 39
+      spriteId: 5d1260cab1b28f74098ba9434fdd89dd
+    - name: spr_cyberpunk_rift_Frame_21
+      frameIndex: 21
+      cellRect:
+        x: 3
+        y: 0
+        width: 34
+        height: 39
+      spriteId: 832aff697d1362e418c05f2bc3edcfbd
+    - name: spr_cyberpunk_rift_Frame_22
+      frameIndex: 22
+      cellRect:
+        x: 3
+        y: 0
+        width: 34
+        height: 39
+      spriteId: 429ff29a04ec872499bcc3918d56d119
+    - name: spr_cyberpunk_rift_Frame_23
+      frameIndex: 23
+      cellRect:
+        x: 3
+        y: 0
+        width: 34
+        height: 39
+      spriteId: 448592195c74fc74e8fe791c3d793153
+    - name: spr_cyberpunk_rift_Frame_24
+      frameIndex: 24
+      cellRect:
+        x: 3
+        y: 0
+        width: 34
+        height: 39
+      spriteId: d1c8817095a281c4b9f59dfddfbc1862
+    - name: spr_cyberpunk_rift_Frame_25
+      frameIndex: 25
+      cellRect:
+        x: 3
+        y: 0
+        width: 34
+        height: 39
+      spriteId: 9f8d5400eba7fb44ab5738e56a720645
+    - name: spr_cyberpunk_rift_Frame_26
+      frameIndex: 26
+      cellRect:
+        x: 3
+        y: 0
+        width: 34
+        height: 39
+      spriteId: 3819be4e751310c4c88fa8276cea0142
+    - name: spr_cyberpunk_rift_Frame_27
+      frameIndex: 27
+      cellRect:
+        x: 3
+        y: 0
+        width: 34
+        height: 39
+      spriteId: 04a7ce64cbe8e7f479e091612e00511f
+    - name: spr_cyberpunk_rift_Frame_28
+      frameIndex: 28
+      cellRect:
+        x: 3
+        y: 0
+        width: 34
+        height: 39
+      spriteId: 1fb607f12c0a2c247a84d1b41856b604
+    - name: spr_cyberpunk_rift_Frame_29
+      frameIndex: 29
+      cellRect:
+        x: 3
+        y: 0
+        width: 34
+        height: 39
+      spriteId: 452dfb6db86b59c45becf80b897c86e3
+    linkedCells: []
+    parentIndex: -1
+  platformSettings:
+  - name: DefaultTexturePlatform
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Standalone
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Server
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: WebGL
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  secondarySpriteTextures: []
+  spritePackingTag: 
+  canvasSize: {x: 40, y: 40}

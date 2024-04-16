@@ -302,7 +302,7 @@ SpriteRenderer:
   m_SortingLayerID: 592770247
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b2ba8eb0907ead24a8c21b79a5fdb803, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5d13c2843d359a3499e147bfd71ace11, type: 3}
   m_Color: {r: 0.43529412, g: 0.43529412, b: 0.43529412, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -9760,7 +9760,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 649747222683364136, guid: d42848ee61d35d2459c2198cee9c74c2, type: 3}
       propertyPath: DialogText
-      value: Move to the green square to proceed!
+      value: Move to the Portal to proceed!
       objectReference: {fileID: 0}
     - target: {fileID: 1475211878432429469, guid: d42848ee61d35d2459c2198cee9c74c2, type: 3}
       propertyPath: m_Sprite
@@ -10221,7 +10221,11 @@ PrefabInstance:
       objectReference: {fileID: 1079154672}
     - target: {fileID: 8740964348576753061, guid: c4f844242d093284382abf4fee3f5752, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -36
+      value: -36.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8740964348576753061, guid: c4f844242d093284382abf4fee3f5752, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8914481014150422194, guid: c4f844242d093284382abf4fee3f5752, type: 3}
       propertyPath: m_Name
@@ -10299,7 +10303,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 649747222683364136, guid: d42848ee61d35d2459c2198cee9c74c2, type: 3}
       propertyPath: DialogText
-      value: Move to the green square to proceed!
+      value: Move to the Tori to proceed!
       objectReference: {fileID: 0}
     - target: {fileID: 1475211878432429469, guid: d42848ee61d35d2459c2198cee9c74c2, type: 3}
       propertyPath: m_Enabled
