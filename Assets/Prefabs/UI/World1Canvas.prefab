@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1056646519639399685}
   - component: {fileID: 8024485679581393378}
   - component: {fileID: 428912480350306926}
-  - component: {fileID: 6182535879864392602}
+  - component: {fileID: 4636527880354602288}
   m_Layer: 0
   m_Name: World1Canvas
   m_TagString: Untagged
@@ -115,8 +115,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c18648bd8b90ad4ba055ba8cfdad943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quantumLightning: {fileID: 6182535879864392602}
---- !u!114 &6182535879864392602
+  quantumLightning: {fileID: 4636527880354602288}
+--- !u!114 &4636527880354602288
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -136,6 +136,9 @@ MonoBehaviour:
   - {x: 17.36, y: -4.23, z: -5}
   - {x: -7.4, y: -4.23, z: -5}
   lengthFactor: 0.5
+  color1: {r: 1, g: 0.92941177, b: 0.03529412, a: 1}
+  color2: {r: 1, g: 1, b: 1, a: 1}
+  lengthFactor: 0.3
   segments: 4
   branchDampingFactor: 0.8
   minAngle: 20
