@@ -219,6 +219,10 @@ PrefabInstance:
       value: Button (1)
       objectReference: {fileID: 0}
     - target: {fileID: 6567901022380863639, guid: 74c87b0920de50445b1c81a16990b4ae, type: 3}
+      propertyPath: changes
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6567901022380863639, guid: 74c87b0920de50445b1c81a16990b4ae, type: 3}
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -965,6 +969,10 @@ PrefabInstance:
     - target: {fileID: 2978429492750256117, guid: 74c87b0920de50445b1c81a16990b4ae, type: 3}
       propertyPath: m_Name
       value: Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 6567901022380863639, guid: 74c87b0920de50445b1c81a16990b4ae, type: 3}
+      propertyPath: changes
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6567901022380863639, guid: 74c87b0920de50445b1c81a16990b4ae, type: 3}
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.size

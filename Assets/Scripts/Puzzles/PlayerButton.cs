@@ -9,12 +9,18 @@ public class PlayerButton : NetworkBehaviour
     public UnityEvent onEnter;
     public Sprite down;
     public Sprite up;
+    public Sprite down2;
+    public Sprite up2;
+    public bool changes;
+
+    private bool one;
 
     SpriteRenderer spriteRenderer;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        one = true;
     }
 
     public override void OnNetworkSpawn()
@@ -37,7 +43,18 @@ public class PlayerButton : NetworkBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            spriteRenderer.sprite = down;
+            if (one)
+            {
+                spriteRenderer.sprite = down;
+            } else
+            {
+                spriteRenderer.sprite = down2;
+            }
+            if (changes)
+            {
+                one = !one;
+            }
+
             if (!GameManager.instance.IsNetworked()) { onEnter.Invoke(); }
             else { if (IsOwner) OnTriggerServerRpc(); }
         }
@@ -54,7 +71,13 @@ public class PlayerButton : NetworkBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            spriteRenderer.sprite = up;
+            if (one)
+            {
+                spriteRenderer.sprite = up;
+            } else
+            {
+                spriteRenderer.sprite = up2;
+            }
         }
     }
 
