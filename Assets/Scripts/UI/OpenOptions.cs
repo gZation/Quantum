@@ -14,7 +14,7 @@ public class OpenOptions : MonoBehaviour
     private void Start()
     {
         timePassed = 0;
-        timeWait = 1f;
+        timeWait = 1.2f;
         happened = true;
         done = false;
     }

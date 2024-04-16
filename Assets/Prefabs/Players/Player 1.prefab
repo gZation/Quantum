@@ -264,6 +264,7 @@ MonoBehaviour:
   wallJumped: 0
   wallSlide: 0
   isDashing: 0
+  dashCD: 0.8
   coyoteTimeStart: 0.1
   sharingMomentum: 0
   side: 1
@@ -301,6 +302,7 @@ MonoBehaviour:
   wallJumped: 0
   wallSlide: 0
   isDashing: 0
+  dashCD: 0.8
   coyoteTimeStart: 0.1
   sharingMomentum: 0
   side: 1
@@ -338,6 +340,7 @@ MonoBehaviour:
   wallJumped: 0
   wallSlide: 0
   isDashing: 0
+  dashCD: 0.8
   coyoteTimeStart: 0.1
   sharingMomentum: 0
   side: 1

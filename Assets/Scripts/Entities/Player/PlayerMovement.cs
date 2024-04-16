@@ -31,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     public bool wallJumped;
     public bool wallSlide;
     public bool isDashing;
+    public float dashCD;
     private float coyoteTime;
     public float coyoteTimeStart = 0.05f;
     private bool qlockRecieved;
@@ -45,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool groundTouch;
     private bool hasDashed;
+    private float lastDash;
 
     public int side = 1;
 
@@ -94,6 +96,7 @@ public class PlayerMovement : MonoBehaviour
 
         coyoteTime = coyoteTimeStart;
         qlockRecieved = false;
+        lastDash = Time.time - dashCD;
     }
 
     public void DisableLegacyInput()
@@ -198,7 +201,7 @@ public class PlayerMovement : MonoBehaviour
         AddMomentum();
 
         Vector2 vel = rb.velocity;
-        if (vel.magnitude > speed * 5)
+        if (vel.magnitude > speed * 6)
         {
             vel = vel.normalized;
             vel = vel * speed * 7;
@@ -291,9 +294,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void Dash(float x, float y)
     {
-        if ((x == 0 && y == 0) || hasDashed || !canMove) return;
+        if ((x == 0 && y == 0) || hasDashed || !canMove || Time.time - lastDash < dashCD) return;
 
-
+        lastDash = Time.time;
         StartCoroutine(camera.GetComponent<CameraShake>().Shake(0.1f, 0.1f));
 
         hasDashed = true;
