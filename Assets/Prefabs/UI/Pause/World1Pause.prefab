@@ -3064,6 +3064,10 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5657364153438702897, guid: fb4c9f4dc25fd4742a871240add1d541, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 116523ac9e3a81c46aefc1b47b4bf588, type: 3}
     - target: {fileID: 5714627671706855173, guid: fb4c9f4dc25fd4742a871240add1d541, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
