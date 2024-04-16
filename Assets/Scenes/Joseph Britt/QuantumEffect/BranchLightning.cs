@@ -8,6 +8,8 @@ public class BranchLightning : MonoBehaviour {
     [SerializeField] private GameObject lightningBoltPrefab;
     [SerializeField] private Vector3 center = new Vector3(0, 0, 0);
     [SerializeField] private Vector3[] corners = { new Vector3(49, 14, 0) };
+    [SerializeField] private Color color1 = Color.white;
+    [SerializeField] private Color color2 = Color.blue;
     [SerializeField] private float lengthFactor = 0.5f;
     [SerializeField] private int segments = 4;
     [SerializeField] private float branchDampingFactor = 0.8f;
@@ -44,6 +46,8 @@ public class BranchLightning : MonoBehaviour {
         boltVFX.SetVector3("PosB", startPos);
         boltVFX.SetVector3("PosC", endPos);
         boltVFX.SetVector3("PosD", endPos);
+        boltVFX.SetVector4("Color1", color1);
+        boltVFX.SetVector4("Color2", color2);
     }
 
     public void SetEnabled(bool enabled) {
