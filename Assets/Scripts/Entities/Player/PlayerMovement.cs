@@ -198,7 +198,7 @@ public class PlayerMovement : MonoBehaviour
         AddMomentum();
 
         Vector2 vel = rb.velocity;
-        if (vel.magnitude > speed * 5)
+        if (vel.magnitude > speed * 6)
         {
             vel = vel.normalized;
             vel = vel * speed * 7;
