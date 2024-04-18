@@ -9,9 +9,9 @@ AnimatorOverrideController:
   m_Name: WhiteCat
   m_Controller: {fileID: 9100000, guid: 20b3ce38443ead54bb6b02a5ba700edb, type: 2}
   m_Clips:
-  - m_OriginalClip: {fileID: -3100369314251171874, guid: 508bfdb60294d8649b394a227429ada5, type: 3}
-    m_OverrideClip: {fileID: -5252816984213320552, guid: b387e4507724bc74dbaef5a29b283d08, type: 3}
   - m_OriginalClip: {fileID: 4292788596115522088, guid: 508bfdb60294d8649b394a227429ada5, type: 3}
     m_OverrideClip: {fileID: -8327685873668800961, guid: b387e4507724bc74dbaef5a29b283d08, type: 3}
   - m_OriginalClip: {fileID: -3302324166770105015, guid: 508bfdb60294d8649b394a227429ada5, type: 3}
     m_OverrideClip: {fileID: 5984496454500463648, guid: b387e4507724bc74dbaef5a29b283d08, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: f7074cfabcc43144cab1e017a78ac0c9, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 3b89ec3703c3e83469b9cffdb9ec8b43, type: 2}

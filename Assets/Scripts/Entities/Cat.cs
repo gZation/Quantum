@@ -18,4 +18,9 @@ public class Cat : MonoBehaviour
             animator.SetTrigger("out");
         }
     }
+
+    public void MoveOn()
+    {
+        LevelManager.instance.AddPlayerSuccess();
+    }
 }

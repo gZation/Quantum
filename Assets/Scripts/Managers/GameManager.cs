@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public bool isGameEnabled = true;
     [SerializeField] private bool networkingOn = false;
     public bool startFromScene = true;
+    public bool cutscene;
 
     private GameObject w1Copy;
     private GameObject w2Copy;
@@ -154,12 +155,15 @@ public class GameManager : MonoBehaviour
             Screen.SetResolution(1280, 480, false);
         }
 
-        CopyAndSendWorldInfo();
-        SetCameras();
+        if (!cutscene)
+        {
+            CopyAndSendWorldInfo();
 
-        // reset world toggle as needed
-        w2Copy.gameObject.SetActive(leftToggle);
-        w1Copy.gameObject.SetActive(rightToggle);
+            // reset world toggle as needed
+            w2Copy.gameObject.SetActive(leftToggle);
+            w1Copy.gameObject.SetActive(rightToggle);
+        }
+        SetCameras();
     }
 
     public void SetUpLevel(Scene scene, LoadSceneMode mode) {
