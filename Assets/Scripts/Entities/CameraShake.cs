@@ -1,28 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class CameraShake : MonoBehaviour
 {
-    
+    public AnimationCurve curve;
+    float returnSpeed = 0.1f;
+
     public IEnumerator Shake(float duration, float magnitude)
     {
-        Vector3 originalPos = transform.localPosition;
+        Vector3 startPos = transform.position;
+        float elapsedTime = 0f;
 
-        float elapsed = 0f;
-
-        while(elapsed < duration)
+        while (elapsedTime < duration)
         {
-            float x = Random.Range(-1f, 1f) * magnitude;
-            float y = Random.Range(-1f, 1f) * magnitude;
-
-            transform.localPosition = new Vector3 (originalPos.x + x, originalPos.y + y, originalPos.z);
-
-            elapsed += Time.deltaTime;
+            elapsedTime += Time.deltaTime;
+            float strength = curve.Evaluate(elapsedTime / duration) * magnitude;
+            Debug.Log(Random.insideUnitSphere);
+            transform.localPosition += Random.insideUnitSphere * (strength / 2);
             yield return null;
         }
 
-        transform.localPosition = originalPos;
-    }
+        while (Vector2.Distance(transform.position, startPos) > 0.0001f)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, startPos, returnSpeed);
+            yield return new WaitForEndOfFrame();
+        }
 
+    }
 }
