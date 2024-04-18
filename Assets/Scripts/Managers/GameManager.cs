@@ -141,7 +141,7 @@ public class GameManager : MonoBehaviour
         if (PlayerManager.instance == null) return;
 
         //Don't set up the level if the players don't exist
-        if (!PlayerManager.instance.SetPlayersAndShadows())
+        if (!cutscene && !PlayerManager.instance.SetPlayersAndShadows())
         {
             return;
         };
@@ -163,6 +163,7 @@ public class GameManager : MonoBehaviour
             w2Copy.gameObject.SetActive(leftToggle);
             w1Copy.gameObject.SetActive(rightToggle);
         }
+
         SetCameras();
     }
 

@@ -21,6 +21,7 @@ public class Cat : MonoBehaviour
 
     public void MoveOn()
     {
+        GameManager.instance.cutscene = true;
         LevelManager.instance.AddPlayerSuccess();
     }
 }
