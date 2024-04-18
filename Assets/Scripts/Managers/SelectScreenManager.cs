@@ -166,7 +166,7 @@ public class SelectScreenManager : MonoBehaviour {
             }
             GameManager.instance.GameEnable();
             LevelLoader.instance.LoadLevelByName("Tutorial 1");
-            // SceneManager.LoadScene("Tutorial 1");
+            MusicManager.instance.StartLevelMusic();
         }
         else
         // Handle character selection if indeed networked

@@ -82,6 +82,18 @@ public class PauseMenu: MonoBehaviour
     {
         if (GameManager.instance.IsNetworked())
         {
+            PauseMenuManager.instance.OpenControlsServerRpc();
+        }
+        else
+        {
+            PauseMenuManager.instance.OpenControls();
+        }
+    }
+
+    public void OpenControls()
+    {
+        if (GameManager.instance.IsNetworked())
+        {
             if (PlayerManager.instance.currPlayer == 1)
             {
                 controlsUI1.SetActive(true);
@@ -96,7 +108,8 @@ public class PauseMenu: MonoBehaviour
             if (PlayerManager.instance.playerOnLeft == 2)
             {
                 controlsUI2.SetActive(true);
-            } else
+            }
+            else
             {
                 controlsUI1.SetActive(true);
             }

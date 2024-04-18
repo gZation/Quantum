@@ -32,5 +32,6 @@ public class PlayerConnectManager : NetworkBehaviour
         NetworkManager.Singleton.OnClientConnectedCallback -= LoadNextLevel;
         GameManager.instance.GameEnable();
         LevelLoader.instance.LoadLevelByName(NextLevel);
+        MusicManager.instance.StartLevelMusic();
     }
 }

@@ -47,6 +47,19 @@ public class PauseMenuManager : NetworkBehaviour
     }
 
     [ClientRpc]
+    public void OpenControlsClientRpc() { OpenControls(); }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void OpenControlsServerRpc() { OpenControlsClientRpc(); }
+
+    // Does the pause variable automatically update between the two? like is that wat is happening?
+    public void OpenControls()
+    {
+        PauseMenu.instance.OpenControls();
+    }
+
+
+    [ClientRpc]
     public void RestartClientRpc() { Restart(); }
 
     [ServerRpc(RequireOwnership = false)]
