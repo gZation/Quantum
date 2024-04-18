@@ -297,7 +297,7 @@ public class PlayerMovement : MonoBehaviour
         if ((x == 0 && y == 0) || hasDashed || !canMove || Time.time - lastDash < dashCD) return;
 
         lastDash = Time.time;
-        StartCoroutine(camera.GetComponent<CameraShake>().Shake(0.1f, 0.1f));
+        StartCoroutine(camera.GetComponent<CameraShake>().Shake(0.1f, 0.3f));
 
         hasDashed = true;
 
