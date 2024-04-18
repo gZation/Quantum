@@ -18,4 +18,10 @@ public class Cat : MonoBehaviour
             animator.SetTrigger("out");
         }
     }
+
+    public void MoveOn()
+    {
+        GameManager.instance.cutscene = true;
+        LevelManager.instance.AddPlayerSuccess();
+    }
 }

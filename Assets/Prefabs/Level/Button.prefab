@@ -116,6 +116,9 @@ MonoBehaviour:
         m_CallState: 2
   down: {fileID: -969965153, guid: ca13f7e440b2c9f44b7bdf8f2c356acc, type: 3}
   up: {fileID: 399722779, guid: ca13f7e440b2c9f44b7bdf8f2c356acc, type: 3}
+  down2: {fileID: -1058801635, guid: 55f966bf9ab916f43875131d0cdd1a87, type: 3}
+  up2: {fileID: -1320256400, guid: 55f966bf9ab916f43875131d0cdd1a87, type: 3}
+  changes: 1
 --- !u!61 &3248975276687063243
 BoxCollider2D:
   m_ObjectHideFlags: 0
