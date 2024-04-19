@@ -76,7 +76,7 @@ public class LevelLoader : NetworkBehaviour
         //print($"Load level {GameManager.instance != null}, {GameManager.instance.IsNetworked()}, {NetworkManager.Singleton.IsHost}");
         if (GameManager.instance != null && GameManager.instance.IsNetworked())
         {
-            print("Network Level Load");
+            print($"Network Level Load {sceneName}");
             NetworkManager.Singleton.SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
         }
         else
