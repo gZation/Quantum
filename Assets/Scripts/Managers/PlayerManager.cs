@@ -28,7 +28,6 @@ public class PlayerManager : NetworkBehaviour
     public GameObject currPlayerObject;
     public GameObject otherPlayerObject;
 
-
     [SerializeField] protected GameObject shadowPrefab;
 
     public delegate void OnVariableChangeDelegate(bool newVal);
