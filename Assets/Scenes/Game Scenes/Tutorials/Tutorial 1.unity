@@ -1968,7 +1968,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 649747222683364136, guid: d42848ee61d35d2459c2198cee9c74c2, type: 3}
       propertyPath: DialogText
-      value: This worlds are colliding, and it is up to you...to...
+      value: The worlds are colliding, and it is up to you to...
       objectReference: {fileID: 0}
     - target: {fileID: 1475211878432429469, guid: d42848ee61d35d2459c2198cee9c74c2, type: 3}
       propertyPath: m_Enabled
@@ -9994,7 +9994,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 649747222683364136, guid: d42848ee61d35d2459c2198cee9c74c2, type: 3}
       propertyPath: DialogText
-      value: This worlds are colliding, and it is up to you...to...
+      value: The worlds are colliding, and it is up to you to...
       objectReference: {fileID: 0}
     - target: {fileID: 1475211878432429469, guid: d42848ee61d35d2459c2198cee9c74c2, type: 3}
       propertyPath: m_Enabled
