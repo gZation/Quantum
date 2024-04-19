@@ -71,7 +71,7 @@ public class LevelLoader : NetworkBehaviour
         string sceneName = (typeof(T) == typeof(string)) ? (string)(object)levelIndex : SceneManager.GetSceneByBuildIndex((int)(object)(levelIndex)).name;
 
         // Use NetworkSceneManager if networked. Otherwise, revert to normal SceneManager
-        if (GameManager.instance != null && GameManager.instance.IsNetworked())
+        if (GameManager.instance != null && GameManager.instance.IsNetworked() && IsHost)
         {
             NetworkManager.Singleton.SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
         }
