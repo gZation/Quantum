@@ -46,10 +46,11 @@ public class GameManager : MonoBehaviour
             SetUpLevel();
         }
 
-        if (isGameEnabled) GameEnable();
+        //if (isGameEnabled) GameEnable();
     }
     public void GameEnable()
     {
+        print("GameEnable");
         leftToggle = true;
         rightToggle = true;
         isGameEnabled = true;
@@ -138,11 +139,13 @@ public class GameManager : MonoBehaviour
     public void SetUpLevel()
     {
         // Don't set up the level if PlayerManager doesn't exist
+        //print($"PlayerManager: ${PlayerManager.instance.name}");
         if (PlayerManager.instance == null) return;
 
         //Don't set up the level if the players don't exist
         if (!cutscene && !PlayerManager.instance.SetPlayersAndShadows())
         {
+            //print($"SetUpLevel Failed. Cutscene ${cutscene}");
             return;
         };
 
@@ -175,6 +178,7 @@ public class GameManager : MonoBehaviour
     {
         if (clientId == NetworkManager.Singleton.LocalClientId)
         {
+            //print("Networked SetUpLevel");
             SetUpLevel();
         }
     }

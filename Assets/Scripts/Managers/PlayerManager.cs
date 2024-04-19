@@ -87,6 +87,7 @@ public class PlayerManager : NetworkBehaviour
     public bool SetPlayersAndShadows()
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        print($"Players Length: ${players.Length}");
         if (players.Length == 0) return false;
 
         foreach (GameObject p in players)
@@ -133,6 +134,7 @@ public class PlayerManager : NetworkBehaviour
     {
         if (!IsHost)
         {
+            print($"Host Val: ${hostPlayer.Value}");
             if (hostPlayer.Value == 0) return false;
             currPlayer = hostPlayer.Value == 1 ? 2 : 1;
         }

@@ -19,7 +19,7 @@ public class GameModeMenu : MonoBehaviour
     public void setNetworked()
     {
         GameManager.instance.SetNetworkedScreen(true);
-        Screen.SetResolution(640, 480, false);
+        //Screen.SetResolution(640, 480, false);
         LevelLoader.instance.LoadLevelByName(nextNetworked, false);
         //SceneManager.LoadScene(nextNetworked);
     }
