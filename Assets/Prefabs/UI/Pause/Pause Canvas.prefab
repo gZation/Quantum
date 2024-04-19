@@ -265,7 +265,7 @@ PrefabInstance:
       objectReference: {fileID: 4430507164763802167}
     - target: {fileID: 7956825660523505307, guid: 472ac69210104db428d200aae439ca34, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ToMainMenu
+      value: TriggerToMainMenu
       objectReference: {fileID: 0}
     - target: {fileID: 7956825660523505307, guid: 472ac69210104db428d200aae439ca34, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -448,7 +448,7 @@ PrefabInstance:
       objectReference: {fileID: 4430507164763802167}
     - target: {fileID: 7956825660523505307, guid: 0da1e4215627dac45a7f3f1c9f94c6ea, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ToMainMenu
+      value: TriggerToMainMenu
       objectReference: {fileID: 0}
     - target: {fileID: 7956825660523505307, guid: 0da1e4215627dac45a7f3f1c9f94c6ea, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
 
     // Should only be set to true when the main gameplay loop is running
     [SerializeField] public bool isGameEnabled = true;
-    [SerializeField] private bool networkingOn = false;
+    [SerializeField] public bool networkingOn = false;
     public bool startFromScene = true;
     public bool cutscene;
 
