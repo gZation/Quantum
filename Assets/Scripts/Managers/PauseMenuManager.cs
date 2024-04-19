@@ -73,7 +73,6 @@ public class PauseMenuManager : NetworkBehaviour
 
     [ClientRpc]
     public void ToMainMenuClientRPC() {
-        print("MMClientRpc Triggered");
         GameManager.instance.networkingOn = false;
         ToMainMenu();
         RemoveDoNotDestroyObjects();
@@ -81,7 +80,6 @@ public class PauseMenuManager : NetworkBehaviour
 
     [ServerRpc(RequireOwnership = false)]
     public void ToMainMenuServerRPC() {
-        print("MMServerRpc triggered");
         ToMainMenuClientRPC(); }
 
     // Does the pause variable automatically update between the two? like is that wat is happening?
@@ -110,7 +108,6 @@ public class PauseMenuManager : NetworkBehaviour
 
     public void RemoveDoNotDestroyObjects()
     {
-        print("Remove Objects");
         Destroy(FindAnyObjectByType<GameManager>().gameObject);
         Destroy(FindAnyObjectByType<PlayerManager>().gameObject);
         Destroy(FindAnyObjectByType<NetworkManager>().gameObject);

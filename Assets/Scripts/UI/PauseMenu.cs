@@ -120,7 +120,6 @@ public class PauseMenu: MonoBehaviour
     {
         if (GameManager.instance.IsNetworked())
         {
-            print("NetMMTriggered");
             PauseMenuManager.instance.ToMainMenuServerRPC();
         }
         else

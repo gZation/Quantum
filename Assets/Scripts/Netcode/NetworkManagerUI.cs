@@ -42,32 +42,6 @@ public class NetworkManagerUI : MonoBehaviour
 
     private void SetupTempNetworking(ulong clientId)
     {
-        print("SetupTempNetworking");
-        //foreach (GameObject cloneObject in GameObject.FindGameObjectsWithTag("clone")) { Destroy(cloneObject); }
-
-
-        //GameManager.instance.SetUpLevel();
-        //GameObject currPlayer = PlayerManager.instance.currPlayerObject;
-        //Destroy(currPlayer.GetComponent<MovementWASD>());
-        //Destroy(currPlayer.GetComponent<MovementArrows>());
-        //Destroy(currPlayer.GetComponent<PlayerMovement>());
-        //PlayerMovement pm = currPlayer.AddComponent<PlayerMovement>();
-        //pm.dashParticle = FindParticleSystem("DashParticles", currPlayer);
-        //pm.momentumOutParticle = FindParticleSystem("MomentumTransferParticles", currPlayer);
-        //pm.momentumInParticle = FindParticleSystem("MomentumRecieveParticle", currPlayer);
-        //if (currPlayer.name == "Player 1") 
-        //{ 
-        //    pm.jumpParticle = FindParticleSystem("JumpPartRed", currPlayer);
-        //    pm.wallJumpParticle = FindParticleSystem("SlideParticleParent/WallJumpRed", currPlayer);
-        //    pm.slideParticle = FindParticleSystem("SlideParticleParent/SlideRed", currPlayer);
-        //    pm.world = 1;
-        //} else
-        //{
-        //    pm.jumpParticle = FindParticleSystem("JumpPartPurp", currPlayer);
-        //    pm.wallJumpParticle = FindParticleSystem("SlideParticleParent/WallJumpPurp", currPlayer);
-        //    pm.slideParticle = FindParticleSystem("SlideParticleParent/SlidePurp", currPlayer);
-        //    pm.world = 2;
-        //}
         GameManager.instance.GameEnable();
         SceneManager.sceneLoaded -= GameManager.instance.SetUpLevel;
         LevelLoader.instance.ReloadLevel();

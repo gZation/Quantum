@@ -134,7 +134,6 @@ public class PlayerManager : NetworkBehaviour
     {
         if (!IsHost)
         {
-            print($"Host Val: ${hostPlayer.Value}");
             if (hostPlayer.Value == 0) return false;
             currPlayer = hostPlayer.Value == 1 ? 2 : 1;
         }

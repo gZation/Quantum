@@ -177,10 +177,8 @@ public class GameManager : MonoBehaviour
 
     public void SetUpLevel(ulong clientId, string sceneName, LoadSceneMode loadSceneMode)
     {
-        print($"In Network Setup ${clientId}");
         if (clientId == NetworkManager.Singleton.LocalClientId)
         {
-            print("Networked SetUpLevel");
             SetUpLevel();
         }
     }

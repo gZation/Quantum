@@ -46,7 +46,6 @@ public class PlayerButton : NetworkBehaviour
         {
             if (currentParent.CompareTag(tag)) // Check if the current parent has the required tag
             {
-                print("Found :D");
                 return true; // Tag found, return true
             }
             currentParent = currentParent.parent; // Move up to the next parent
