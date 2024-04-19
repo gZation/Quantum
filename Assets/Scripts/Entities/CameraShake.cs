@@ -17,7 +17,6 @@ public class CameraShake : MonoBehaviour
         {
             elapsedTime += Time.deltaTime;
             float strength = curve.Evaluate(elapsedTime / duration) * magnitude;
-            Debug.Log(Random.insideUnitSphere);
             transform.localPosition += Random.insideUnitSphere * (strength / 2);
             yield return null;
         }

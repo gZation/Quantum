@@ -1,39 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Multiplayer.Samples.Utilities.ClientAuthority;
+using Unity.Netcode;
 using Unity.Netcode.Components;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerSettings : MonoBehaviour
 {
-    public bool world1 = false;
+    public bool world1 = false; // if world1 = player1 :D
     public bool isActivePlayer = false;
 
     public PlayerJump jump;
     public PlayerAnimation anim;
-
-/*  public delegate void OnVariableChangeDelegate(bool newVal);
-    public event OnVariableChangeDelegate OnVariableQLockChange;
-    private bool m_qlocked = false;
-
-    public bool qlocked
-    {
-        get { return m_qlocked; }
-        set
-        {
-            if (m_qlocked == value) return;
-            m_qlocked = value;
-            if (OnVariableQLockChange != null) OnVariableQLockChange(m_qlocked);
-        }
-    }*/
 
     private void Awake()
     {
         jump = GetComponent<PlayerJump>();
         anim = GetComponentInChildren<PlayerAnimation>();
     }
-
 
     void Start()
     {
@@ -95,6 +80,7 @@ public class PlayerSettings : MonoBehaviour
             Destroy(this.gameObject.GetComponent<MovementWASD>());
             Destroy(this.gameObject.GetComponent<MovementArrows>());
             Destroy(this.gameObject.GetComponent<PlayerMovement>());
+           // this.gameObject.AddComponent<PlayerSpriteUpdater>();
             UpdatePlayerMovementRef();
         }
     }
@@ -117,12 +103,9 @@ public class PlayerSettings : MonoBehaviour
         if (gm.IsNetworked()) {
             ll.ReloadLevelServerRpc();
         } else {
-            anim.SetTrigger("death");
             ll.ReloadLevel();
         }
 
-        
-
-        
+        anim.SetTrigger("death");
     }
 }

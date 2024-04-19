@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class OpenOptions : MonoBehaviour
 {
-
-    bool happened;
     float timeWait;
     float timePassed;
     bool done;
@@ -15,8 +13,12 @@ public class OpenOptions : MonoBehaviour
     {
         timePassed = 0;
         timeWait = 1.2f;
-        happened = true;
         done = false;
+
+        if (PlayerManager.instance.hostPlayer.Value != PlayerManager.instance.currPlayer)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     private void Update()
@@ -24,18 +26,17 @@ public class OpenOptions : MonoBehaviour
         timePassed += Time.deltaTime;
         if (timePassed > timeWait && !done)
         {
-            happened = false;
             done = true;
         }
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.tag == "Player" && !happened)
+        if (other.tag == "Player" && done)
         {
             PauseMenu.instance.TriggerPause();
             PauseMenu.instance.ForceOpenControls();
-            happened = true;
+            Destroy(this.gameObject);
         }
     }
 

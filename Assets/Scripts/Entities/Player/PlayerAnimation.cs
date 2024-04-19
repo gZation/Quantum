@@ -6,6 +6,7 @@ public class PlayerAnimation : MonoBehaviour
 {
 
     private Animator anim;
+    //private NetworkAnimatorClientAuth nanim;
     public PlayerMovement move;
     private PlayerCollision coll;
     [HideInInspector]
@@ -17,6 +18,8 @@ public class PlayerAnimation : MonoBehaviour
         coll = GetComponentInParent<PlayerCollision>();
         move = GetComponentInParent<PlayerMovement>();
         sr = GetComponent<SpriteRenderer>();
+
+        //nanim = GetComponent<NetworkAnimatorClientAuth>();
     }
 
     void Update()
@@ -44,6 +47,13 @@ public class PlayerAnimation : MonoBehaviour
 
     public void SetTrigger(string trigger)
     {
+        /*if (!GameManager.instance.IsNetworked()) { 
+            anim.SetTrigger(trigger);
+        } else
+        {
+            nanim.SetTrigger(trigger);
+        }*/
+
         anim.SetTrigger(trigger);
     }
 
