@@ -8,12 +8,15 @@ public class MusicManager : MonoBehaviour {
     public static MusicManager instance { get; private set; }
 
     private AudioSource edoTrackSource, cyberTrackSource, mainMenuSource;
+    public List<AudioSource> sfxSources;
     public bool mainMenu = false;
     public bool cyberActive = false;
     public float masterVolume;
     public float sfxVolume;
     private float edoVolume, cyberVolume, mmVolume;
     public float crossfadeSpeed = 0.8f;
+
+    private Dictionary<string, AudioSource> soundfx;
 
     private void Awake()
     {
@@ -24,6 +27,12 @@ public class MusicManager : MonoBehaviour {
         }
 
         instance = this;
+
+        soundfx = new Dictionary<string, AudioSource>();
+        foreach (AudioSource sfx in sfxSources)
+        {
+            soundfx[sfx.name] = sfx;
+        }
     }
 
     // Start is called before the first frame update
@@ -117,6 +126,16 @@ public class MusicManager : MonoBehaviour {
         }
 
         instance.UnPause();
+    }
+
+    public void Play(string sfx)
+    {
+        soundfx[sfx].Play();
+    }
+
+    public void Stop(string sfx)
+    {
+        soundfx[sfx].Stop();
     }
 
 } // MusicManager
