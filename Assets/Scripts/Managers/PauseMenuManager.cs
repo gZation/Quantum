@@ -32,6 +32,11 @@ public class PauseMenuManager : NetworkBehaviour
         instance = this;
     }
 
+    public override void OnNetworkSpawn()
+    {
+        NetworkManager.Singleton.OnClientDisconnectCallback += NetworkedToMainMenu;
+    }
+
     [ClientRpc]
     public void TogglePauseClientRpc() { TogglePause(); }
 
@@ -73,9 +78,7 @@ public class PauseMenuManager : NetworkBehaviour
 
     [ClientRpc]
     public void ToMainMenuClientRPC() {
-        GameManager.instance.networkingOn = false;
-        ToMainMenu();
-        RemoveDoNotDestroyObjects();
+        NetworkedToMainMenu(0);
     }
 
     [ServerRpc(RequireOwnership = false)]
@@ -86,6 +89,13 @@ public class PauseMenuManager : NetworkBehaviour
     public void ToMainMenu()
     {
         PauseMenu.instance.ToMainMenu();
+    }
+
+    public void NetworkedToMainMenu(ulong _)
+    {
+        GameManager.instance.networkingOn = false;
+        ToMainMenu();
+        RemoveDoNotDestroyObjects();
     }
 
     [ClientRpc]
@@ -103,6 +113,7 @@ public class PauseMenuManager : NetworkBehaviour
         } else
         {
             PauseMenu.instance.ToMainMenu();
+            RemoveDoNotDestroyObjects();
         }
     }
 
