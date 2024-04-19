@@ -15,13 +15,13 @@ public class PlayerConnectManager : NetworkBehaviour
         {
             Debug.Log("Client starting");
             NetworkManager.Singleton.StartClient();
-            GameManager.instance.SetSceneLoad();
+            //GameManager.instance.SetSceneLoad();
         }
         else
         {
             Debug.Log("Host starting");
             NetworkManager.Singleton.StartHost();
-            GameManager.instance.SetSceneLoad();
+            //GameManager.instance.SetSceneLoad();
         }
         //This has to occur after StartHost() and StartClient()
         NetworkManager.Singleton.OnClientConnectedCallback += LoadNextLevel;
