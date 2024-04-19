@@ -407,7 +407,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3622792529283053304, guid: b7dceb57a59b0a843ba0928109e3ca6c, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 1822533280
+      value: 1045183280
+      objectReference: {fileID: 0}
+    - target: {fileID: 3622792529283053304, guid: b7dceb57a59b0a843ba0928109e3ca6c, type: 3}
+      propertyPath: InScenePlacedSourceGlobalObjectIdHash
+      value: 2344070099
       objectReference: {fileID: 0}
     - target: {fileID: 3641129102115278543, guid: b7dceb57a59b0a843ba0928109e3ca6c, type: 3}
       propertyPath: m_Name
@@ -432,7 +436,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2005646505570562225, guid: 26263887c9dd7e346aec37ac31be6131, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 2164771139
+      value: 472211355
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005646505570562225, guid: 26263887c9dd7e346aec37ac31be6131, type: 3}
+      propertyPath: InScenePlacedSourceGlobalObjectIdHash
+      value: 4101193556
       objectReference: {fileID: 0}
     - target: {fileID: 2607768241723858312, guid: 26263887c9dd7e346aec37ac31be6131, type: 3}
       propertyPath: m_LocalPosition.x
@@ -491,6 +499,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1520853944}
     m_Modifications:
+    - target: {fileID: 72986062903550764, guid: 74c87b0920de50445b1c81a16990b4ae, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1716409946
+      objectReference: {fileID: 0}
+    - target: {fileID: 72986062903550764, guid: 74c87b0920de50445b1c81a16990b4ae, type: 3}
+      propertyPath: InScenePlacedSourceGlobalObjectIdHash
+      value: 239526172
+      objectReference: {fileID: 0}
     - target: {fileID: 1575716799087197014, guid: 74c87b0920de50445b1c81a16990b4ae, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.5
@@ -2603,6 +2619,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GlobalObjectIdHash: 2348222659
+  InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -2767,6 +2784,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2009113373}
     m_Modifications:
+    - target: {fileID: 72986062903550764, guid: 74c87b0920de50445b1c81a16990b4ae, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 120110408
+      objectReference: {fileID: 0}
+    - target: {fileID: 72986062903550764, guid: 74c87b0920de50445b1c81a16990b4ae, type: 3}
+      propertyPath: InScenePlacedSourceGlobalObjectIdHash
+      value: 239526172
+      objectReference: {fileID: 0}
     - target: {fileID: 1575716799087197014, guid: 74c87b0920de50445b1c81a16990b4ae, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.5
@@ -12225,7 +12250,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5639476350201221156, guid: 30063eee9c085c24da5c556c890eb64a, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 63703088
+      value: 4042964058
+      objectReference: {fileID: 0}
+    - target: {fileID: 5639476350201221156, guid: 30063eee9c085c24da5c556c890eb64a, type: 3}
+      propertyPath: InScenePlacedSourceGlobalObjectIdHash
+      value: 1972261154
       objectReference: {fileID: 0}
     - target: {fileID: 7901648596648922838, guid: 30063eee9c085c24da5c556c890eb64a, type: 3}
       propertyPath: m_Name
@@ -12331,7 +12360,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 375964731186814185, guid: b2039085561329543995b3c5e313b3b0, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 1021215306
+      value: 2135781833
+      objectReference: {fileID: 0}
+    - target: {fileID: 375964731186814185, guid: b2039085561329543995b3c5e313b3b0, type: 3}
+      propertyPath: InScenePlacedSourceGlobalObjectIdHash
+      value: 303992650
       objectReference: {fileID: 0}
     - target: {fileID: 1715274008313498054, guid: b2039085561329543995b3c5e313b3b0, type: 3}
       propertyPath: m_LocalPosition.x
