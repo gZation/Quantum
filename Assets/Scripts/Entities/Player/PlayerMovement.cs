@@ -61,6 +61,9 @@ public class PlayerMovement : MonoBehaviour
     public ParticleSystem momentumInParticle;
     ParticleSystem.MinMaxGradient slideColor;
 
+    float momentumParticleCD = 0.3f;
+    float lastMomentumParticle;
+
     public float currentSlide;
 
     #region technical
@@ -97,6 +100,7 @@ public class PlayerMovement : MonoBehaviour
         coyoteTime = coyoteTimeStart;
         qlockRecieved = false;
         lastDash = Time.time - dashCD;
+        lastMomentumParticle = Time.time;
     }
 
     public void DisableLegacyInput()
@@ -483,7 +487,11 @@ public class PlayerMovement : MonoBehaviour
 
     public void QuantumLockAddMomentum(Vector2 momentum)
     {
-        momentumInParticle.Play();
+        if (Time.time - lastMomentumParticle > momentumParticleCD)
+        {
+            momentumInParticle.Play();
+            lastMomentumParticle = Time.time;
+        }
         momentumToAdd.Add(momentum);
         qlockRecieved = true;
     }
@@ -494,9 +502,10 @@ public class PlayerMovement : MonoBehaviour
 
         PlayerManager.instance.SendMomentum(momentum, this.gameObject);
 
-        if (PlayerManager.instance.qlocked)
+        if (PlayerManager.instance.qlocked && Time.time - lastMomentumParticle > momentumParticleCD)
         {
             momentumOutParticle.Play();
+            lastMomentumParticle = Time.time;
         }
     }
 
