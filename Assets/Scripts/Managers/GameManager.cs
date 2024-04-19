@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
         leftToggle = true;
         rightToggle = true;
         isGameEnabled = true;
+        print($"Networking on? {networkingOn}");
         if (!networkingOn) SceneManager.sceneLoaded += SetUpLevel;
         else NetworkManager.Singleton.SceneManager.OnLoadComplete += SetUpLevel;
     }
@@ -139,13 +140,13 @@ public class GameManager : MonoBehaviour
     public void SetUpLevel()
     {
         // Don't set up the level if PlayerManager doesn't exist
-        //print($"PlayerManager: ${PlayerManager.instance.name}");
+        print($"PlayerManager: ${PlayerManager.instance.name}");
         if (PlayerManager.instance == null) return;
 
         //Don't set up the level if the players don't exist
         if (!cutscene && !PlayerManager.instance.SetPlayersAndShadows())
         {
-            //print($"SetUpLevel Failed. Cutscene ${cutscene}");
+            print($"SetUpLevel Failed. Cutscene ${cutscene}");
             return;
         };
 
@@ -176,9 +177,10 @@ public class GameManager : MonoBehaviour
 
     public void SetUpLevel(ulong clientId, string sceneName, LoadSceneMode loadSceneMode)
     {
+        print($"In Network Setup ${clientId}");
         if (clientId == NetworkManager.Singleton.LocalClientId)
         {
-            //print("Networked SetUpLevel");
+            print("Networked SetUpLevel");
             SetUpLevel();
         }
     }

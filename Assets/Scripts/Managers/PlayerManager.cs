@@ -87,7 +87,7 @@ public class PlayerManager : NetworkBehaviour
     public bool SetPlayersAndShadows()
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        print($"Players Length: ${players.Length}");
+        //print($"Players Length: ${players.Length}");
         if (players.Length == 0) return false;
 
         foreach (GameObject p in players)
