@@ -33,11 +33,28 @@ public class PlayerButton : NetworkBehaviour
         //Check if curr moving platform is under Host's world grid level. If not, give ownership to client. 
         string hostWorldLevelTag = "World" + PlayerManager.instance.currPlayer + "Level";
         GameObject hostWorldGridLevel = GameObject.FindGameObjectWithTag(hostWorldLevelTag);
-        if (transform.parent != hostWorldGridLevel.transform)
+        if (!CheckAncestorsWithTag(hostWorldLevelTag, transform))
         {
             this.GetComponent<NetworkObject>().ChangeOwnership((ulong)clientId);
         }
     }
+    private bool CheckAncestorsWithTag(string tag, Transform targetObj)
+    {
+        Transform currentParent = targetObj.transform.parent; // Start with the direct parent
+
+        while (currentParent != null) // Loop until there are no more parents
+        {
+            if (currentParent.CompareTag(tag)) // Check if the current parent has the required tag
+            {
+                print("Found :D");
+                return true; // Tag found, return true
+            }
+            currentParent = currentParent.parent; // Move up to the next parent
+        }
+
+        return false; // No tagged ancestors found, return false
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
