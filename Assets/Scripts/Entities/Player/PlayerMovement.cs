@@ -66,6 +66,8 @@ public class PlayerMovement : MonoBehaviour
 
     public float currentSlide;
 
+    public bool playingSlide;
+
     #region technical
     private bool isMovingInputed;
     #endregion
@@ -101,6 +103,7 @@ public class PlayerMovement : MonoBehaviour
         qlockRecieved = false;
         lastDash = Time.time - dashCD;
         lastMomentumParticle = Time.time;
+        playingSlide = false;
     }
 
     public void DisableLegacyInput()
@@ -252,6 +255,7 @@ public class PlayerMovement : MonoBehaviour
         side = anim.sr.flipX ? -1 : 1;
 
         jumpParticle.Play();
+        MusicManager.instance.Play("Walk");
     }
 
     // Player Actions
@@ -333,9 +337,10 @@ public class PlayerMovement : MonoBehaviour
         dashExtra.x *= 6f;
         PlayerManager.instance.SendMomentum(dashExtra, this.gameObject);
 
-        if (PlayerManager.instance.qlocked)
+        if (PlayerManager.instance.qlocked && Time.time - lastMomentumParticle > momentumParticleCD)
         {
             momentumOutParticle.Play();
+            lastMomentumParticle = Time.time;
         }
 
         StartCoroutine(DashWait());
@@ -346,6 +351,7 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(GroundDash());
 
         dashParticle.Play();
+        MusicManager.instance.Play("Dash");
         rb.gravityScale = 0;
         GetComponent<PlayerJump>().enabled = false;
         wallJumped = true;
@@ -442,6 +448,7 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.velocity += dir * jumpForce;
 
+        MusicManager.instance.Play("Jump");
         particle.Play();
     }
 
@@ -467,10 +474,23 @@ public class PlayerMovement : MonoBehaviour
         {
             slideParticle.transform.parent.localScale = new Vector3(ParticleSide(), 1, 1);
             main.startColor = slideColor;
+
+            if (!playingSlide)
+            {
+                MusicManager.instance.Play("Wallslide");
+                playingSlide = true;
+            }
         }
         else
         {
             main.startColor = Color.clear;
+
+
+            if (playingSlide)
+            {
+                MusicManager.instance.Stop("Wallslide");
+                playingSlide = false;
+            }
         }
     }
 

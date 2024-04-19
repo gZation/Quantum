@@ -71,6 +71,7 @@ public class PlayerButton : NetworkBehaviour
                 one = !one;
             }
 
+            MusicManager.instance.Play("Button");
             if (!GameManager.instance.IsNetworked()) { onEnter.Invoke(); }
             else { if (IsOwner) OnTriggerServerRpc(); }
         }

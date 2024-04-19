@@ -19,6 +19,7 @@ public class Bouncy : MonoBehaviour
             PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
             player.WorldAddMomentum(Vector2.up * magnitude);
             animator.SetTrigger("bounce");
+            MusicManager.instance.Play("Bouncything");
         }
     }
 }

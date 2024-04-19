@@ -2884,10 +2884,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3905956770190817405, guid: b5328c0e51fe8f848af2db13ac1e047e, type: 3}
-      propertyPath: masterVolume
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6020282440061634743, guid: b5328c0e51fe8f848af2db13ac1e047e, type: 3}
       propertyPath: m_Name
       value: MusicManager
@@ -2932,10 +2928,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8734017811784244985, guid: b5328c0e51fe8f848af2db13ac1e047e, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 772ca16d1b3a675458d3c438257f3b99, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
