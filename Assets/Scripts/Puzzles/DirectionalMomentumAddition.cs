@@ -11,6 +11,7 @@ public class DirectionalMomentumAddition : MonoBehaviour
     [SerializeField] bool active;
     Animator animator;
 
+    public bool isWind;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +23,11 @@ public class DirectionalMomentumAddition : MonoBehaviour
         if (VFX != null)
         {
             VFX.enabled = active;
+        }
+
+        if (isWind && active)
+        {
+            MusicManager.instance.Play("Wind");
         }
     }
 
@@ -41,6 +47,14 @@ public class DirectionalMomentumAddition : MonoBehaviour
         {
             VFX.enabled = active;
         }
+
+        if (isWind && active)
+        {
+            MusicManager.instance.Play("Wind");
+        } else if (isWind)
+        {
+            MusicManager.instance.Stop("Wind");
+        }
     }
 
     public void Off()
@@ -53,6 +67,11 @@ public class DirectionalMomentumAddition : MonoBehaviour
         if (VFX != null)
         {
             VFX.enabled = active;
+        }
+
+        if (isWind)
+        {
+            MusicManager.instance.Stop("Wind");
         }
     }
 
@@ -67,12 +86,18 @@ public class DirectionalMomentumAddition : MonoBehaviour
         {
             VFX.enabled = active;
         }
+
+        if (isWind)
+        {
+            MusicManager.instance.Play("Wind");
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (active && collision.gameObject.tag == "Player")
         {
+            if (GameManager.instance.IsNetworked() && collision.gameObject != PlayerManager.instance.currPlayerObject) return;
             PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
             player.WorldAddMomentum(direction * strength);
         }

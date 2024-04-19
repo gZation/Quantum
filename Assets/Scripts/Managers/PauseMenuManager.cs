@@ -32,6 +32,11 @@ public class PauseMenuManager : NetworkBehaviour
         instance = this;
     }
 
+    public override void OnNetworkSpawn()
+    {
+        NetworkManager.Singleton.OnClientDisconnectCallback += NetworkedToMainMenu;
+    }
+
     [ClientRpc]
     public void TogglePauseClientRpc() { TogglePause(); }
 
@@ -47,6 +52,19 @@ public class PauseMenuManager : NetworkBehaviour
     }
 
     [ClientRpc]
+    public void OpenControlsClientRpc() { OpenControls(); }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void OpenControlsServerRpc() { OpenControlsClientRpc(); }
+
+    // Does the pause variable automatically update between the two? like is that wat is happening?
+    public void OpenControls()
+    {
+        PauseMenu.instance.OpenControls();
+    }
+
+
+    [ClientRpc]
     public void RestartClientRpc() { Restart(); }
 
     [ServerRpc(RequireOwnership = false)]
@@ -59,15 +77,25 @@ public class PauseMenuManager : NetworkBehaviour
     }
 
     [ClientRpc]
-    public void ToMainMenuClientRPC() { ToMainMenu(); }
+    public void ToMainMenuClientRPC() {
+        NetworkedToMainMenu(0);
+    }
 
     [ServerRpc(RequireOwnership = false)]
-    public void ToMainMenuServerRPC() { ToMainMenuClientRPC(); }
+    public void ToMainMenuServerRPC() {
+        ToMainMenuClientRPC(); }
 
     // Does the pause variable automatically update between the two? like is that wat is happening?
     public void ToMainMenu()
     {
         PauseMenu.instance.ToMainMenu();
+    }
+
+    public void NetworkedToMainMenu(ulong _)
+    {
+        GameManager.instance.networkingOn = false;
+        ToMainMenu();
+        RemoveDoNotDestroyObjects();
     }
 
     [ClientRpc]
@@ -85,6 +113,14 @@ public class PauseMenuManager : NetworkBehaviour
         } else
         {
             PauseMenu.instance.ToMainMenu();
+            RemoveDoNotDestroyObjects();
         }
+    }
+
+    public void RemoveDoNotDestroyObjects()
+    {
+        Destroy(FindAnyObjectByType<GameManager>().gameObject);
+        Destroy(FindAnyObjectByType<PlayerManager>().gameObject);
+        Destroy(FindAnyObjectByType<NetworkManager>().gameObject);
     }
 }

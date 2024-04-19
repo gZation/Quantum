@@ -31,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     public bool wallJumped;
     public bool wallSlide;
     public bool isDashing;
+    public float dashCD;
     private float coyoteTime;
     public float coyoteTimeStart = 0.05f;
     private bool qlockRecieved;
@@ -45,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool groundTouch;
     private bool hasDashed;
+    private float lastDash;
 
     public int side = 1;
 
@@ -59,7 +61,12 @@ public class PlayerMovement : MonoBehaviour
     public ParticleSystem momentumInParticle;
     ParticleSystem.MinMaxGradient slideColor;
 
+    float momentumParticleCD = 0.3f;
+    float lastMomentumParticle;
+
     public float currentSlide;
+
+    public bool playingSlide;
 
     #region technical
     private bool isMovingInputed;
@@ -94,6 +101,9 @@ public class PlayerMovement : MonoBehaviour
 
         coyoteTime = coyoteTimeStart;
         qlockRecieved = false;
+        lastDash = Time.time - dashCD;
+        lastMomentumParticle = Time.time;
+        playingSlide = false;
     }
 
     public void DisableLegacyInput()
@@ -116,8 +126,6 @@ public class PlayerMovement : MonoBehaviour
 
         //-------Movement Legacy-------
         Vector2 dir = GetMovementDirection();
-        float x = dir.x;
-        float y = dir.y;
         Vector2 raw = GetRawInput();
         float xRaw = raw.x;
         float yRaw = raw.y;
@@ -182,21 +190,8 @@ public class PlayerMovement : MonoBehaviour
             groundTouch = false;
         }
 
-        WallParticle(y);
-
         if (wallGrab || wallSlide || !canMove)
             return;
-
-        if (x > 0)
-        {
-            side = 1;
-            anim.Flip(side);
-        }
-        if (x < 0)
-        {
-            side = -1;
-            anim.Flip(side);
-        }
 
         //check speed and cap at max speed
         Vector2 vel = rb.velocity;
@@ -216,7 +211,7 @@ public class PlayerMovement : MonoBehaviour
         if (vel.magnitude > speed * 5)
         {
             vel = vel.normalized;
-            vel = vel * speed * 7;
+            vel = vel * speed * 5;
             rb.velocity = vel;
         }
     }
@@ -248,7 +243,7 @@ public class PlayerMovement : MonoBehaviour
 
     public virtual bool IsQLock()
     {
-        return legacyInput && Input.GetKeyDown(KeyCode.Q);
+        return legacyInput && Input.GetKeyDown(KeyCode.C);
     }
     #endregion
 
@@ -260,20 +255,18 @@ public class PlayerMovement : MonoBehaviour
         side = anim.sr.flipX ? -1 : 1;
 
         jumpParticle.Play();
+        MusicManager.instance.Play("Walk");
     }
 
     // Player Actions
 
     public void JumpLogic()
     {
-        Debug.Log("Intiate Jump Logic");
         if (!canMove) return;
-        Debug.Log("I can move");
         anim.SetTrigger("jump");
 
         if (coyoteTime > 0)
         {
-            Debug.Log("I Jump");
             Jump(Vector2.up, false);
             coyoteTime = 0;
         }
@@ -289,13 +282,30 @@ public class PlayerMovement : MonoBehaviour
         isMovingInputed = inputVector.x != 0;
         Walk(inputVector);
         anim.SetHorizontalMovement(inputVector.x, inputVector.y, rb.velocity.y);
+
+        WallParticle(inputVector.y);
+
+        if (wallGrab || wallSlide || !canMove)
+            return;
+
+        if (inputVector.x > 0)
+        {
+            side = 1;
+            anim.Flip(side);
+        }
+        if (inputVector.x < 0)
+        {
+            side = -1;
+            anim.Flip(side);
+        }
     }
 
     public void Dash(float x, float y)
     {
-        if ((x == 0 && y == 0) || hasDashed || !canMove) return;
+        if ((x == 0 && y == 0) || hasDashed || !canMove || Time.time - lastDash < dashCD) return;
 
-        StartCoroutine(camera.GetComponent<CameraShake>().Shake(0.1f, 0.1f));
+        lastDash = Time.time;
+        StartCoroutine(camera.GetComponent<CameraShake>().Shake(0.1f, 0.2f));
 
         hasDashed = true;
 
@@ -327,9 +337,10 @@ public class PlayerMovement : MonoBehaviour
         dashExtra.x *= 6f;
         PlayerManager.instance.SendMomentum(dashExtra, this.gameObject);
 
-        if (PlayerManager.instance.qlocked)
+        if (PlayerManager.instance.qlocked && Time.time - lastMomentumParticle > momentumParticleCD)
         {
             momentumOutParticle.Play();
+            lastMomentumParticle = Time.time;
         }
 
         StartCoroutine(DashWait());
@@ -340,6 +351,7 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(GroundDash());
 
         dashParticle.Play();
+        MusicManager.instance.Play("Dash");
         rb.gravityScale = 0;
         GetComponent<PlayerJump>().enabled = false;
         wallJumped = true;
@@ -436,6 +448,7 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.velocity += dir * jumpForce;
 
+        MusicManager.instance.Play("Jump");
         particle.Play();
     }
 
@@ -461,10 +474,23 @@ public class PlayerMovement : MonoBehaviour
         {
             slideParticle.transform.parent.localScale = new Vector3(ParticleSide(), 1, 1);
             main.startColor = slideColor;
+
+            if (!playingSlide)
+            {
+                MusicManager.instance.Play("Wallslide");
+                playingSlide = true;
+            }
         }
         else
         {
             main.startColor = Color.clear;
+
+
+            if (playingSlide)
+            {
+                MusicManager.instance.Stop("Wallslide");
+                playingSlide = false;
+            }
         }
     }
 
@@ -481,7 +507,11 @@ public class PlayerMovement : MonoBehaviour
 
     public void QuantumLockAddMomentum(Vector2 momentum)
     {
-        momentumInParticle.Play();
+        if (Time.time - lastMomentumParticle > momentumParticleCD)
+        {
+            momentumInParticle.Play();
+            lastMomentumParticle = Time.time;
+        }
         momentumToAdd.Add(momentum);
         qlockRecieved = true;
     }
@@ -492,9 +522,10 @@ public class PlayerMovement : MonoBehaviour
 
         PlayerManager.instance.SendMomentum(momentum, this.gameObject);
 
-        if (PlayerManager.instance.qlocked)
+        if (PlayerManager.instance.qlocked && Time.time - lastMomentumParticle > momentumParticleCD)
         {
             momentumOutParticle.Play();
+            lastMomentumParticle = Time.time;
         }
     }
 

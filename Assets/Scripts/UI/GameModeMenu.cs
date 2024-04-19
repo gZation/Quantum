@@ -11,7 +11,7 @@ public class GameModeMenu : MonoBehaviour
     public void setSplitScreen()
     {
         GameManager.instance.SetNetworkedScreen(false);
-        Screen.SetResolution(1280, 480, false);
+        //Screen.SetResolution(1280, 480, false);
         LevelLoader.instance.LoadLevelByName(nextSplit);
         //SceneManager.LoadScene(nextSplit);
     }
@@ -19,7 +19,7 @@ public class GameModeMenu : MonoBehaviour
     public void setNetworked()
     {
         GameManager.instance.SetNetworkedScreen(true);
-        Screen.SetResolution(640, 480, false);
+        //Screen.SetResolution(640, 480, false);
         LevelLoader.instance.LoadLevelByName(nextNetworked, false);
         //SceneManager.LoadScene(nextNetworked);
     }

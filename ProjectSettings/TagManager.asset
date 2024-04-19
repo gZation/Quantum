@@ -6,6 +6,7 @@ TagManager:
   tags:
   - World1Level
   - World2Level
+  - clone
   layers:
   - Default
   - TransparentFX
@@ -51,6 +52,9 @@ TagManager:
     locked: 0
   - name: entities
     uniqueID: 3010747581
+    locked: 0
+  - name: clone
+    uniqueID: 1330407721
     locked: 0
   - name: UI
     uniqueID: 61540405

@@ -36,7 +36,7 @@ public class DialogWindow : MonoBehaviour
         foreach(char c in currentText.ToCharArray())
         {
             text.text += c;
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.03f);
         }
         yield return null;
     }

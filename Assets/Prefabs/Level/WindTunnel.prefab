@@ -203,6 +203,7 @@ MonoBehaviour:
   direction: {x: -1, y: 0}
   strength: 100
   active: 0
+  isWind: 1
 --- !u!61 &5278566331805104836
 BoxCollider2D:
   m_ObjectHideFlags: 0
