@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine.InputSystem;
+using Unity.Collections.LowLevel.Unsafe;
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance { get; private set; }
@@ -14,11 +16,15 @@ public class GameManager : MonoBehaviour
 
     // Should only be set to true when the main gameplay loop is running
     [SerializeField] public bool isGameEnabled = true;
-    [SerializeField] private bool networkingOn = false;
+    [SerializeField] public bool networkingOn = false;
     public bool startFromScene = true;
+    public bool cutscene;
 
     private GameObject w1Copy;
     private GameObject w2Copy;
+    private bool leftToggle;
+    private bool rightToggle;
+
     private float overlayAlpha = 0.3f;
 
     private void Awake()
@@ -40,12 +46,15 @@ public class GameManager : MonoBehaviour
             SetUpLevel();
         }
 
-        if (isGameEnabled) GameEnable();
-
+        //if (isGameEnabled) GameEnable();
     }
     public void GameEnable()
     {
+        //print("GameEnable");
+        leftToggle = true;
+        rightToggle = true;
         isGameEnabled = true;
+        //print($"Networking on? {networkingOn}");
         if (!networkingOn) SceneManager.sceneLoaded += SetUpLevel;
         else NetworkManager.Singleton.SceneManager.OnLoadComplete += SetUpLevel;
     }
@@ -86,10 +95,12 @@ public class GameManager : MonoBehaviour
 
                 if (currPlayer == 1)
                 {
-                    w2Copy.gameObject.SetActive(!w2Copy.gameObject.activeSelf);
+                    leftToggle = !w2Copy.gameObject.activeSelf;
+                    w2Copy.gameObject.SetActive(leftToggle);
                 } else if (currPlayer == 2)
                 {
-                    w1Copy.gameObject.SetActive(!w1Copy.gameObject.activeSelf);
+                    rightToggle = !w1Copy.gameObject.activeSelf;
+                    w1Copy.gameObject.SetActive(rightToggle);
                 }
             }
         }
@@ -97,11 +108,11 @@ public class GameManager : MonoBehaviour
         {
             if (Input.GetButtonDown("ToggleLeft"))
             {
-                w2Copy.gameObject.SetActive(!w2Copy.gameObject.activeSelf);
+                ToggleOverlay(true);
             }
             if (Input.GetButtonDown("ToggleRight"))
             {
-                w1Copy.gameObject.SetActive(!w1Copy.gameObject.activeSelf);
+                ToggleOverlay(false);
             }
         }
         if (Input.GetButton("Restart"))
@@ -110,14 +121,32 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void ToggleOverlay(bool world1)
+    {
+        // For Future Programmer reference: w#copy is the copy of the opposing world,
+        // not the current world doing the toggling
+        if (world1)
+        {
+            leftToggle = !w2Copy.gameObject.activeSelf;
+            w2Copy.gameObject.SetActive(leftToggle);
+        }
+        else
+        {
+            rightToggle = !w1Copy.gameObject.activeSelf;
+            w1Copy.gameObject.SetActive(rightToggle);
+        }
+    }
+
     public void SetUpLevel()
     {
         // Don't set up the level if PlayerManager doesn't exist
+        //print($"PlayerManager: ${PlayerManager.instance.name}");
         if (PlayerManager.instance == null) return;
 
         //Don't set up the level if the players don't exist
-        if (!PlayerManager.instance.SetPlayersAndShadows())
+        if (!cutscene && !PlayerManager.instance.SetPlayersAndShadows())
         {
+            //print($"SetUpLevel Failed. Cutscene ${cutscene}");
             return;
         };
 
@@ -130,7 +159,15 @@ public class GameManager : MonoBehaviour
             Screen.SetResolution(1280, 480, false);
         }
 
-        CopyAndSendWorldInfo();
+        if (!cutscene)
+        {
+            CopyAndSendWorldInfo();
+
+            // reset world toggle as needed
+            w2Copy.gameObject.SetActive(leftToggle);
+            w1Copy.gameObject.SetActive(rightToggle);
+        }
+
         SetCameras();
     }
 

@@ -53,7 +53,7 @@ public class ShowIPAddress : MonoBehaviour
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData(hostIP, (ushort)7777);
         //NetworkManager.Singleton.StartHost();
         //NetworkManager.Singleton.LevelLoader.instance.LoadLevelByName("Tutorial 1", LoadSceneMode.Single);
-        PlayerManager.instance.isHost = true;
+        //PlayerManager.instance.isHost = true;
         LevelLoader.instance.LoadLevelByName("WaitingForPlayers", false);
     }
 }

@@ -28,7 +28,6 @@ public class PlayerManager : NetworkBehaviour
     public GameObject currPlayerObject;
     public GameObject otherPlayerObject;
 
-
     [SerializeField] protected GameObject shadowPrefab;
 
     public delegate void OnVariableChangeDelegate(bool newVal);
@@ -88,6 +87,7 @@ public class PlayerManager : NetworkBehaviour
     public bool SetPlayersAndShadows()
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        //print($"Players Length: ${players.Length}");
         if (players.Length == 0) return false;
 
         foreach (GameObject p in players)
@@ -123,7 +123,7 @@ public class PlayerManager : NetworkBehaviour
                 }
                     
             }
-            Debug.Log("Play Reference Changed!!");
+            //Debug.Log("Play Reference Changed!!");
         }
         MakeShadows();
         if (GameManager.instance.IsNetworked()) { return setNetworkedPlayers(); }
@@ -142,7 +142,6 @@ public class PlayerManager : NetworkBehaviour
             hostPlayer.Value = currPlayer;
         }
         currPlayerObject = (currPlayer == 1)  ? player1 : player2;
-
 
         otherPlayerObject = currPlayerObject == player1 ? player2 : player1;
         PlayerSettings playerSetting = currPlayerObject.GetComponent<PlayerSettings>();
@@ -185,9 +184,28 @@ public class PlayerManager : NetworkBehaviour
 
     public void ToggleQuantumLock()
     {
-        instance.qlocked = !instance.qlocked;
-
+        if (!GameManager.instance.IsNetworked())
+        { 
+            instance.qlocked = !instance.qlocked;
+        } else
+        {
+            UpdateQLockServerRpc();
+        }
     }
+
+    [ServerRpc(RequireOwnership=false)]
+    public void UpdateQLockServerRpc()
+    {
+        UpdateQLockClientRpc();
+    }
+
+    [ClientRpc]
+    public void UpdateQLockClientRpc()
+    {
+        instance.qlocked = !instance.qlocked;
+    }
+
+
 
     public void SendMomentum(Vector2 momentum, GameObject sender)
     {

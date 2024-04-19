@@ -10,11 +10,13 @@ public class PauseMenu: MonoBehaviour
 
     public static bool gamePaused = false;
     public GameObject pauseUI1;
+    public GameObject controlsUI1;
     public GameObject mainPause1;
     public GameObject optionsMenu1;
     public GameObject quitCheck1;
 
     public GameObject pauseUI2;
+    public GameObject controlsUI2;
     public GameObject mainPause2;
     public GameObject optionsMenu2;
     public GameObject quitCheck2;
@@ -76,6 +78,44 @@ public class PauseMenu: MonoBehaviour
         }
     }
 
+    public void ForceOpenControls()
+    {
+        if (GameManager.instance.IsNetworked())
+        {
+            PauseMenuManager.instance.OpenControlsServerRpc();
+        }
+        else
+        {
+            PauseMenuManager.instance.OpenControls();
+        }
+    }
+
+    public void OpenControls()
+    {
+        if (GameManager.instance.IsNetworked())
+        {
+            if (PlayerManager.instance.currPlayer == 1)
+            {
+                controlsUI1.SetActive(true);
+            }
+            else
+            {
+                controlsUI2.SetActive(true);
+            }
+        }
+        else
+        {
+            if (PlayerManager.instance.playerOnLeft == 2)
+            {
+                controlsUI2.SetActive(true);
+            }
+            else
+            {
+                controlsUI1.SetActive(true);
+            }
+        }
+    }
+
     public void TriggerToMainMenu()
     {
         if (GameManager.instance.IsNetworked())
@@ -121,6 +161,8 @@ public class PauseMenu: MonoBehaviour
                 Time.timeScale = 1f;
                 mainPause1.SetActive(true);
                 optionsMenu1.SetActive(false);
+                controlsUI1.SetActive(false);
+
                 quitCheck1.SetActive(false);
                 gamePaused = false;
             } else
@@ -129,17 +171,32 @@ public class PauseMenu: MonoBehaviour
                 Time.timeScale = 1f;
                 mainPause2.SetActive(true);
                 optionsMenu2.SetActive(false);
+                controlsUI2.SetActive(false);
                 quitCheck2.SetActive(false);
                 gamePaused = false;
             }
         } else
         {
-            pauseUI2.SetActive(false);
-            Time.timeScale = 1f;
-            mainPause2.SetActive(true);
-            optionsMenu2.SetActive(false);
-            quitCheck2.SetActive(false);
-            gamePaused = false;
+
+            if (PlayerManager.instance.playerOnLeft == 2)
+            {
+                pauseUI2.SetActive(false);
+                Time.timeScale = 1f;
+                mainPause2.SetActive(true);
+                optionsMenu2.SetActive(false);
+                controlsUI2.SetActive(false);
+                quitCheck2.SetActive(false);
+                gamePaused = false;
+            } else
+            {
+                pauseUI1.SetActive(false);
+                Time.timeScale = 1f;
+                mainPause1.SetActive(true);
+                optionsMenu1.SetActive(false);
+                controlsUI1.SetActive(false);
+                quitCheck1.SetActive(false);
+                gamePaused = false;
+            }
         }
     }
 
@@ -199,7 +256,13 @@ public class PauseMenu: MonoBehaviour
         }
         else
         {
-            pauseUI2.SetActive(true);
+            if (PlayerManager.instance.playerOnLeft == 2)
+            {
+                pauseUI2.SetActive(true);
+            } else
+            {
+                pauseUI1.SetActive(true);
+            }
         }
         Time.timeScale = 0f;
         gamePaused = true;

@@ -58,6 +58,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Overlay",
+                    "type": "Button",
+                    "id": "c57f3102-fad3-456e-8959-af67b7814387",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -239,17 +248,6 @@
                 },
                 {
                     "name": "",
-                    "id": "a3a4a97c-b677-45d7-8181-0588823a0e8f",
-                    "path": "<Gamepad>/leftShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Dash",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "e7b6501b-b846-4e09-ba5b-b73f6e35cc08",
                     "path": "<Keyboard>/x",
                     "interactions": "",
@@ -333,6 +331,17 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Restart",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4e89130f-ab49-4499-8c93-d594712ea973",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Overlay",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

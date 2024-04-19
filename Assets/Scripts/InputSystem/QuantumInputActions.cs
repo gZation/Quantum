@@ -80,6 +80,15 @@ public partial class @QuantumInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Overlay"",
+                    ""type"": ""Button"",
+                    ""id"": ""c57f3102-fad3-456e-8959-af67b7814387"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -261,17 +270,6 @@ public partial class @QuantumInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""a3a4a97c-b677-45d7-8181-0588823a0e8f"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Dash"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""e7b6501b-b846-4e09-ba5b-b73f6e35cc08"",
                     ""path"": ""<Keyboard>/x"",
                     ""interactions"": """",
@@ -355,6 +353,17 @@ public partial class @QuantumInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Restart"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4e89130f-ab49-4499-8c93-d594712ea973"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Overlay"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -948,6 +957,7 @@ public partial class @QuantumInputActions: IInputActionCollection2, IDisposable
         m_Player_QuantumLock = m_Player.FindAction("QuantumLock", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         m_Player_Restart = m_Player.FindAction("Restart", throwIfNotFound: true);
+        m_Player_Overlay = m_Player.FindAction("Overlay", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1027,6 +1037,7 @@ public partial class @QuantumInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_QuantumLock;
     private readonly InputAction m_Player_Pause;
     private readonly InputAction m_Player_Restart;
+    private readonly InputAction m_Player_Overlay;
     public struct PlayerActions
     {
         private @QuantumInputActions m_Wrapper;
@@ -1037,6 +1048,7 @@ public partial class @QuantumInputActions: IInputActionCollection2, IDisposable
         public InputAction @QuantumLock => m_Wrapper.m_Player_QuantumLock;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputAction @Restart => m_Wrapper.m_Player_Restart;
+        public InputAction @Overlay => m_Wrapper.m_Player_Overlay;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1064,6 +1076,9 @@ public partial class @QuantumInputActions: IInputActionCollection2, IDisposable
             @Restart.started += instance.OnRestart;
             @Restart.performed += instance.OnRestart;
             @Restart.canceled += instance.OnRestart;
+            @Overlay.started += instance.OnOverlay;
+            @Overlay.performed += instance.OnOverlay;
+            @Overlay.canceled += instance.OnOverlay;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1086,6 +1101,9 @@ public partial class @QuantumInputActions: IInputActionCollection2, IDisposable
             @Restart.started -= instance.OnRestart;
             @Restart.performed -= instance.OnRestart;
             @Restart.canceled -= instance.OnRestart;
+            @Overlay.started -= instance.OnOverlay;
+            @Overlay.performed -= instance.OnOverlay;
+            @Overlay.canceled -= instance.OnOverlay;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1274,6 +1292,7 @@ public partial class @QuantumInputActions: IInputActionCollection2, IDisposable
         void OnQuantumLock(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnRestart(InputAction.CallbackContext context);
+        void OnOverlay(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

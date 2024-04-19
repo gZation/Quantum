@@ -300,7 +300,7 @@ SpriteRenderer:
   m_SortingLayerID: 592770247
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b2ba8eb0907ead24a8c21b79a5fdb803, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5d13c2843d359a3499e147bfd71ace11, type: 3}
   m_Color: {r: 0.43529412, g: 0.43529412, b: 0.43529412, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -482,6 +482,10 @@ PrefabInstance:
     - target: {fileID: 3641129102115278543, guid: b7dceb57a59b0a843ba0928109e3ca6c, type: 3}
       propertyPath: m_Name
       value: PlayerManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8647718153628887406, guid: b7dceb57a59b0a843ba0928109e3ca6c, type: 3}
+      propertyPath: playerOnLeft
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1905,7 +1909,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1695020630513027706, guid: 0ce688cf9babd9f4ca9b0f3f25788c31, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 22
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1695020630513027706, guid: 0ce688cf9babd9f4ca9b0f3f25788c31, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10081,7 +10085,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5156991211787847073, guid: c4f844242d093284382abf4fee3f5752, type: 3}
       propertyPath: nextLevel
-      value: Tutorial 2
+      value: Ending1
       objectReference: {fileID: 0}
     - target: {fileID: 5156991211787847073, guid: c4f844242d093284382abf4fee3f5752, type: 3}
       propertyPath: levelLoader

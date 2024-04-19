@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &422466605370987703
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3781336016640424573}
+  - component: {fileID: 4899282583798894623}
+  - component: {fileID: 1375709264339176443}
+  m_Layer: 0
+  m_Name: QuantumLockEffect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3781336016640424573
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 422466605370987703}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 19.750235, y: 4.143731, z: -1.125556}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4899282583798894623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 422466605370987703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3391c566a1ba8f54194a7042febb0c56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightningBoltPrefab: {fileID: 7021462847030538343, guid: 9dbd31dee184b9146b49491a8db4f1e7, type: 3}
+  center: {x: 5.02, y: 4.8, z: 0}
+  corners:
+  - {x: 17.36, y: 14.07, z: 0}
+  - {x: -7.4, y: 14.07, z: 0}
+  - {x: 17.36, y: -4.23, z: 0}
+  - {x: -7.4, y: -4.23, z: 0}
+  lengthFactor: 0.5
+  segments: 4
+  branchDampingFactor: 0.8
+  minAngle: 20
+  maxAngle: 40
+--- !u!114 &1375709264339176443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 422466605370987703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3391c566a1ba8f54194a7042febb0c56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightningBoltPrefab: {fileID: 7021462847030538343, guid: 9dbd31dee184b9146b49491a8db4f1e7, type: 3}
+  center: {x: 36.4, y: 4.8, z: 0}
+  corners:
+  - {x: 49.36, y: 14.07, z: 0}
+  - {x: 24.8, y: 14.07, z: 0}
+  - {x: 49.36, y: -4.23, z: 0}
+  - {x: 24.8, y: -4.23, z: 0}
+  lengthFactor: 0.5
+  segments: 4
+  branchDampingFactor: 0.8
+  minAngle: 20
+  maxAngle: 40
