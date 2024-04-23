@@ -162,7 +162,7 @@ public class PlayerMovement : MonoBehaviour
         if (vel.magnitude > speed * 3)
         {
             vel = vel.normalized;
-            vel = vel * speed * 4;
+            vel = vel * speed * 3;
             rb.velocity = vel;
         }
     }
