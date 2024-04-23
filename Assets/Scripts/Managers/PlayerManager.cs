@@ -327,6 +327,7 @@ public class PlayerManager : NetworkBehaviour
                     {
                         playerControllers[i].PlayerReference = player2;
                     }
+                    break;
                 } else
                 {
                     if (i == 0)
