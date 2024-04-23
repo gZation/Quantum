@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     [Space]
     [Header("Booleans")]
     public bool canMove = true;
+    public bool canSlide = true;
     public bool wallGrab;
     public bool wallJumped;
     public bool wallSlide;
@@ -122,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Wall Check
         // if (coll.onWall && !coll.onGround && x != 0)
-        if (coll.onWall && !coll.onGround && isMovingInputed)
+        if (coll.onWall && !coll.onGround && isMovingInputed && canSlide)
         {
             wallSlide = true;
             WallSlide();
@@ -162,7 +163,7 @@ public class PlayerMovement : MonoBehaviour
         if (vel.magnitude > speed * 3)
         {
             vel = vel.normalized;
-            vel = vel * speed * 4;
+            vel = vel * speed * 3;
             rb.velocity = vel;
         }
     }
@@ -178,7 +179,7 @@ public class PlayerMovement : MonoBehaviour
             vel = vel * speed * 5;
             rb.velocity = vel;
         }
-    }
+    } 
 
     void GroundTouch()
     {
@@ -305,11 +306,9 @@ public class PlayerMovement : MonoBehaviour
         if (coll.onGround)
             hasDashed = false;
     }
-
    
      private void WallJump()
      {
-
 
         if ((side == 1 && coll.onRightWall) || side == -1 && !coll.onRightWall)
         {
@@ -489,7 +488,7 @@ public class PlayerMovement : MonoBehaviour
 
         rb.gravityScale = 0;
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.8f);
 
         rb.gravityScale = 3;
     }
