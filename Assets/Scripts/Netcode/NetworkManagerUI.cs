@@ -66,8 +66,6 @@ public class NetworkManagerUI : MonoBehaviour
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         foreach (GameObject player in players)
         {
-            Destroy(player.GetComponent<MovementWASD>());
-            Destroy(player.GetComponent<MovementArrows>());
             Destroy(player.GetComponent<PlayerMovement>());
         }
     }

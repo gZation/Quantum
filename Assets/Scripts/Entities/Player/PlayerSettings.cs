@@ -20,19 +20,20 @@ public class PlayerSettings : MonoBehaviour
         anim = GetComponentInChildren<PlayerAnimation>();
     }
 
-    void Start()
+/*    void Start()
     {
         if (!GameManager.instance.IsNetworked())
         {
+            // check if controlelrs?
             SetPlayerSplit();
         }
         else if (GameManager.instance.IsNetworked())
         {
             SetPlayerNetworked();
         }
-    }
+    }*/
 
-
+/*
     public void SetPlayerSplit()
     {
         int world = this.world1 ? 1 : 2;
@@ -48,9 +49,9 @@ public class PlayerSettings : MonoBehaviour
             Destroy(this.gameObject.GetComponent<MovementWASD>());
         }
         UpdatePlayerMovementRef();
-    }
+    } */
 
-    public void SetPlayerControllerSplit()
+/*    public void SetPlayerControllerSplit()
     {
         int world = this.world1 ? 1 : 2;
 
@@ -66,9 +67,9 @@ public class PlayerSettings : MonoBehaviour
             Destroy(this.gameObject.GetComponent<MovementWASD>());
         }
         UpdatePlayerMovementRef();
-    }
+    }*/
 
-    public void SetPlayerNetworked()
+/*    public void SetPlayerNetworked()
     {
         if (isActivePlayer)
         {
@@ -89,11 +90,10 @@ public class PlayerSettings : MonoBehaviour
     {
         jump.SetMovementRef();
         anim.SetMovementRef();
-    }
+    }*/
 
     public void Die()
     {
-        // LevelManager lm = LevelManager.instance;
         LevelLoader ll = LevelLoader.instance;
         GameManager gm = GameManager.instance;
         PlayerMovement pm = GetComponent<PlayerMovement>();

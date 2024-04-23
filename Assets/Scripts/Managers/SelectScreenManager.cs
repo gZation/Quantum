@@ -146,6 +146,8 @@ public class SelectScreenManager : MonoBehaviour {
     public void GoToGame() {
         if (selection == CharacterSelection.NEUTRAL) return;
 
+        PlayerManager.instance.EnableControllerJoin();
+
         //Handle character selection if not networked
         if (!GameManager.instance.IsNetworked())
         {
