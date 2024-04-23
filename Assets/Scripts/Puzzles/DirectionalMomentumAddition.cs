@@ -99,7 +99,18 @@ public class DirectionalMomentumAddition : MonoBehaviour
         {
             if (GameManager.instance.IsNetworked() && collision.gameObject != PlayerManager.instance.currPlayerObject) return;
             PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
+            player.canSlide = false;
             player.WorldAddMomentum(direction * strength);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (active && collision.gameObject.tag == "Player")
+        {
+            if (GameManager.instance.IsNetworked() && collision.gameObject != PlayerManager.instance.currPlayerObject) return;
+            PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
+            player.canSlide = true;
         }
     }
 }

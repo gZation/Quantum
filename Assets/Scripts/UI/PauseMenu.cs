@@ -131,6 +131,7 @@ public class PauseMenu: MonoBehaviour
     public void ToMainMenu()
     {
         LevelLoader.instance.LoadLevelByName("StartMenu");
+        MusicManager.instance.mainMenu = true;
     }
 
     public void TriggerQuit()
