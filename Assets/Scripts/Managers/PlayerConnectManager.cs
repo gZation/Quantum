@@ -33,5 +33,6 @@ public class PlayerConnectManager : NetworkBehaviour
         GameManager.instance.GameEnable();
         LevelLoader.instance.LoadLevelByName(NextLevel);
         MusicManager.instance.StartLevelMusic();
+        PlayerManager.instance.EnableControllerJoin();
     }
 }

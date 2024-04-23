@@ -80,6 +80,7 @@ public class PlayerManager : NetworkBehaviour
         {
             return;
         }
+
         CopyAndSendPlayerInfo();
     }
 
@@ -99,13 +100,7 @@ public class PlayerManager : NetworkBehaviour
 
                 if (playerControllers[0] != null)
                 {
-                    playerControllers[0].PlayerReference = p;
-                    playerControllers[0].PlayerMovementRef = p.GetComponent<MovementWASD>();
-                    foreach (PlayerMovement pm in playerControllers[0].PlayerReference.GetComponents<PlayerMovement>())
-                    {
-                        pm.DisableLegacyInput();
-                    }
-                        
+                    playerControllers[0].PlayerReference = p;                        
                 }
             }
             else
@@ -114,12 +109,7 @@ public class PlayerManager : NetworkBehaviour
 
                 if (playerControllers[1] != null)
                 {
-                    playerControllers[1].PlayerReference = p;
-                    playerControllers[1].PlayerMovementRef = p.GetComponent<MovementArrows>();
-                    foreach (PlayerMovement pm in playerControllers[1].PlayerReference.GetComponents<PlayerMovement>())
-                    {
-                        pm.DisableLegacyInput();
-                    }     
+                    playerControllers[1].PlayerReference = p; 
                 }
                     
             }
@@ -128,6 +118,18 @@ public class PlayerManager : NetworkBehaviour
         MakeShadows();
         if (GameManager.instance.IsNetworked()) { return setNetworkedPlayers(); }
         else return true;
+    }
+
+    public void EnableControllerJoin()
+    {
+        GetComponent<PlayerInputManager>().EnableJoining();
+    } 
+    public void DisableControllerJoin()
+    {
+        if (playerControllers.Length == 2)
+        {
+            GetComponent<PlayerInputManager>().DisableJoining();
+        }
     }
 
     private bool setNetworkedPlayers()
@@ -172,8 +174,15 @@ public class PlayerManager : NetworkBehaviour
 
     public void MakeShadows()
     {
-        shadow1 = Instantiate(shadowPrefab);
-        shadow2 = Instantiate(shadowPrefab);
+        if (shadow1 == null)
+        {
+            shadow1 = Instantiate(shadowPrefab);
+        }
+
+        if (shadow2 == null)
+        {
+            shadow2 = Instantiate(shadowPrefab);
+        }
     }
  
 
@@ -298,30 +307,50 @@ public class PlayerManager : NetworkBehaviour
         return null;
     }
 
-    //public void SetPlayerAndShadow(GameObject player, GameObject shadow, int num)
-    //{
-    //    if (num == 1)
-    //    {
-    //        player1 = player;
-    //        shadow1 = shadow;
-    //    }
-    //    else if (num == 2)
-    //    {
-    //        player2 = player;
-    //        shadow2 = shadow;
-    //    }
-    //}
-
 
     public void HandlePlayerControllerEnter(PlayerInput pi)
     {
+        if (player1 == null || player2 == null) return;
+
         for (int i = 0; i < playerControllers.Length; i++)
         {
             if (playerControllers[i] == null)
             {
                 playerControllers[i] = pi.GetComponent<PlayerController>();
-                playerControllers[i].PlayerReference = i == 0 ? player1 : player2;
-                playerControllers[i].PlayerReference.GetComponent<PlayerMovement>().DisableLegacyInput();
+                
+                if (GameManager.instance.IsNetworked())
+                {
+                    if (currPlayer == 1)
+                    {
+                        playerControllers[i].PlayerReference = player1;
+                    } else
+                    {
+                        playerControllers[i].PlayerReference = player2;
+                    }
+                    break;
+                } else
+                {
+                    if (i == 0)
+                    {
+                        if (playerOnLeft == 1)
+                        {
+                            playerControllers[i].PlayerReference = player1;
+                        } else
+                        {
+                            playerControllers[i].PlayerReference = player2;
+                        }
+                    } else
+                    {
+                        if (playerOnLeft == 1)
+                        {
+                            playerControllers[i].PlayerReference = player2;
+                        }
+                        else
+                        {
+                            playerControllers[i].PlayerReference = player1;
+                        }
+                    }
+                }
                 break;
             } 
         }   

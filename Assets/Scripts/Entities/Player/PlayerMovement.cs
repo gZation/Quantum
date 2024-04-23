@@ -25,7 +25,6 @@ public class PlayerMovement : MonoBehaviour
 
     [Space]
     [Header("Booleans")]
-    public bool legacyInput = true;
     public bool canMove = true;
     public bool canSlide = true;
     public bool wallGrab;
@@ -107,33 +106,12 @@ public class PlayerMovement : MonoBehaviour
         playingSlide = false;
     }
 
-    public void DisableLegacyInput()
-    {
-        legacyInput = false;
-    }
-
     // Update is called once per frame
     void Update()
     {
         // make sure the player rb doesnt go to sleep
         rb.AddForce(Vector2.zero);
         
-        //-----Quantum Lock Legacy-----
-        if (IsQLock())
-        {
-            QuantumLock();
-        }
-        //-----------------------------
-
-        //-------Movement Legacy-------
-        Vector2 dir = GetMovementDirection();
-        Vector2 raw = GetRawInput();
-        float xRaw = raw.x;
-        float yRaw = raw.y;
-
-        if (legacyInput) Move(dir);
-        //-----------------------------
-
         // Jumping Check
         if (coll.onGround && !isDashing)
         {
@@ -166,20 +144,6 @@ public class PlayerMovement : MonoBehaviour
             coyoteTime -= Time.deltaTime;
         }
 
-        //---------Jump Legacy--------
-        if (IsJump())
-        {
-            JumpLogic();
-        }
-        //----------------------------
-
-        //---------Dash Legacy--------
-        if (IsDash())
-        {
-            Dash(xRaw, yRaw);
-        }
-        //----------------------------
-
         if (coll.onGround && !groundTouch)
         {
             GroundTouch();
@@ -202,11 +166,9 @@ public class PlayerMovement : MonoBehaviour
             vel = vel * speed * 3;
             rb.velocity = vel;
         }
-
-        AddMomentum();
     }
 
-/*    protected void FixedUpdate()
+    protected void FixedUpdate()
     {
         AddMomentum();
 
@@ -217,38 +179,7 @@ public class PlayerMovement : MonoBehaviour
             vel = vel * speed * 5;
             rb.velocity = vel;
         }
-    }*/
-
-    #region Legacyy Input Sheeezz
-    protected virtual Vector2 GetMovementDirection()
-    {
-        if (!legacyInput) return Vector2.zero;
-        return new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-    }
-
-    protected virtual Vector2 GetRawInput()
-    {
-        if (!legacyInput) return Vector2.zero;
-        float xRaw = Input.GetAxisRaw("Horizontal");
-        float yRaw = Input.GetAxisRaw("Vertical");
-        return new Vector2(xRaw, yRaw);
-    }
-
-    public virtual bool IsJump()
-    {
-        return legacyInput && Input.GetButtonDown("Jump");
-    }
-
-    public virtual bool IsDash()
-    {
-        return legacyInput && Input.GetButtonDown("Fire1");
-    }
-
-    public virtual bool IsQLock()
-    {
-        return legacyInput && Input.GetKeyDown(KeyCode.C);
-    }
-    #endregion
+    } 
 
     void GroundTouch()
     {
