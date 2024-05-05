@@ -91,29 +91,59 @@ public class PlayerManager : NetworkBehaviour
         //print($"Players Length: ${players.Length}");
         if (players.Length == 0) return false;
 
-        foreach (GameObject p in players)
+        if (GameManager.instance.IsNetworked())
         {
-            PlayerSettings playerSetting = p.GetComponent<PlayerSettings>();
-            if (playerSetting.world1)
+            foreach (GameObject p in players)
             {
-                player1 = p;
-
-                if (playerControllers[0] != null)
+                PlayerSettings playerSetting = p.GetComponent<PlayerSettings>();
+                if (playerSetting.world1)
                 {
-                    playerControllers[0].PlayerReference = p;                        
+                    player1 = p;
+
+                    if (playerControllers[0] != null && currPlayer == 1)
+                    {
+                        playerControllers[0].PlayerReference = p;
+                    }
                 }
+                else 
+                {
+                    player2 = p;
+
+                    if (playerControllers[0] != null && currPlayer == 2)
+                    {
+                        playerControllers[0].PlayerReference = p;
+                    }
+
+                }
+                //Debug.Log("Play Reference Changed!!");
             }
-            else
+        }
+        else
+        {
+            foreach (GameObject p in players)
             {
-                player2 = p;
-
-                if (playerControllers[1] != null)
+                PlayerSettings playerSetting = p.GetComponent<PlayerSettings>();
+                if (playerSetting.world1)
                 {
-                    playerControllers[1].PlayerReference = p; 
+                    player1 = p;
+
+                    if (playerControllers[0] != null)
+                    {
+                        playerControllers[0].PlayerReference = p;
+                    }
                 }
-                    
+                else
+                {
+                    player2 = p;
+
+                    if (playerControllers[1] != null)
+                    {
+                        playerControllers[1].PlayerReference = p;
+                    }
+
+                }
+                //Debug.Log("Play Reference Changed!!");
             }
-            //Debug.Log("Play Reference Changed!!");
         }
         MakeShadows();
         if (GameManager.instance.IsNetworked()) { return setNetworkedPlayers(); }
