@@ -60,7 +60,7 @@ public class MusicManager : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 
-        if (!instance.mainMenu)
+        if (instance && !instance.mainMenu)
         {
             if (instance.cyberActive && cyberVolume < 1.0f)
             {
