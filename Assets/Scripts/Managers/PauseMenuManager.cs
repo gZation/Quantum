@@ -95,7 +95,7 @@ public class PauseMenuManager : NetworkBehaviour
     {
         GameManager.instance.networkingOn = false;
         ToMainMenu();
-        RemoveDoNotDestroyObjects();
+        GameManager.instance.RemoveDoNotDestroyObjects();
     }
 
     [ClientRpc]
@@ -113,14 +113,7 @@ public class PauseMenuManager : NetworkBehaviour
         } else
         {
             PauseMenu.instance.ToMainMenu();
-            RemoveDoNotDestroyObjects();
+            GameManager.instance.RemoveDoNotDestroyObjects();
         }
-    }
-
-    public void RemoveDoNotDestroyObjects()
-    {
-        Destroy(FindAnyObjectByType<GameManager>().gameObject);
-        Destroy(FindAnyObjectByType<PlayerManager>().gameObject);
-        Destroy(FindAnyObjectByType<NetworkManager>().gameObject);
     }
 }

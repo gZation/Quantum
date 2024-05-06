@@ -362,6 +362,12 @@ public class GameManager : MonoBehaviour
         return networkingOn;
     }
 
+    public void RemoveDoNotDestroyObjects() {
+        Destroy(FindAnyObjectByType<PlayerManager>().gameObject);
+        Destroy(FindAnyObjectByType<NetworkManager>().gameObject);
+        Destroy(gameObject);
+    }
+
     // To deal with external functions that still call Game Manager. Should be refactored to be removed but still may be necessary for older scenes. 
     public GameObject GetPlayer(int num) { return PlayerManager.instance.GetPlayer(num); }
     public GameObject GetShadow(int num) { return PlayerManager.instance.GetShadow(num); }

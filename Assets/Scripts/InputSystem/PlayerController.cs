@@ -25,7 +25,6 @@ public class PlayerController : MonoBehaviour
         set
         {
             m_playerReference = value;
-
             if (m_playerReference == null) return;
             pr_playerSettings = m_playerReference.GetComponent<PlayerSettings>();
             pr_playerMovement = m_playerReference.GetComponent<PlayerMovement>();

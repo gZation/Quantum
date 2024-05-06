@@ -11,6 +11,7 @@ public class NetworkManagerUI : MonoBehaviour
     [SerializeField]private Button hostBtn;
     [SerializeField]private Button clientBtn;
     public GameObject NetworkManagerPrefab;
+    public GameObject LocalPlayerControllerPrefab;
     public GameObject Player1Prefab;
     public GameObject Player2Prefab;
 
@@ -33,6 +34,7 @@ public class NetworkManagerUI : MonoBehaviour
             //RemovePlayerControls();
             GameManager.instance.SetNetworkedScreen(true);
             PlayerManager.instance.isHost = false;
+            PlayerManager.instance.currPlayer = 2;
             NetworkManager.Singleton.StartClient();
             NetworkManager.Singleton.OnClientConnectedCallback += SetupTempNetworking;
             //PlayerManager.instance.currPlayerObject = GameObject.Find("Player 2");
@@ -42,8 +44,10 @@ public class NetworkManagerUI : MonoBehaviour
 
     private void SetupTempNetworking(ulong clientId)
     {
+        GameManager.instance.networkingOn = true;
         GameManager.instance.GameEnable();
         SceneManager.sceneLoaded -= GameManager.instance.SetUpLevel;
+        Instantiate(LocalPlayerControllerPrefab);
         LevelLoader.instance.ReloadLevel();
     }
 
