@@ -368,6 +368,18 @@ public class GameManager : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void BackToMainMenu(ulong _)
+    {
+        PlayerManager.instance.CleanDisconnect();
+        MusicManager.instance.mainMenu = true;
+        LevelLoader.instance.LoadLevelByName("StartMenu");
+        MusicManager.instance.mainMenu = true;
+        instance.RemoveDoNotDestroyObjects();
+    }
+    public void BackToMainMenu() {
+        BackToMainMenu(0);
+    }
+
     // To deal with external functions that still call Game Manager. Should be refactored to be removed but still may be necessary for older scenes. 
     public GameObject GetPlayer(int num) { return PlayerManager.instance.GetPlayer(num); }
     public GameObject GetShadow(int num) { return PlayerManager.instance.GetShadow(num); }

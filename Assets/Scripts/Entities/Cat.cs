@@ -21,6 +21,9 @@ public class Cat : MonoBehaviour
 
     public void MoveOn()
     {
+        if (GameManager.instance.IsNetworked()) {
+            PlayerManager.instance.CleanDisconnect();
+        }
         GameManager.instance.cutscene = true;
         LevelManager.instance.AddPlayerSuccess();
     }

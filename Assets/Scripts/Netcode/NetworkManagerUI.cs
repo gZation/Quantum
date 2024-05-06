@@ -45,8 +45,8 @@ public class NetworkManagerUI : MonoBehaviour
     private void SetupTempNetworking(ulong clientId)
     {
         GameManager.instance.networkingOn = true;
-        GameManager.instance.GameEnable();
         SceneManager.sceneLoaded -= GameManager.instance.SetUpLevel;
+        GameManager.instance.GameEnable();
         Instantiate(LocalPlayerControllerPrefab);
         LevelLoader.instance.ReloadLevel();
     }

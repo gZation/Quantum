@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class KeyContinue : MonoBehaviour
 {
     public string next;
+
     private void Update()
     {
         if (Input.anyKey)
@@ -17,7 +18,9 @@ public class KeyContinue : MonoBehaviour
     public void MoveOn()
     {
         GameManager.instance.cutscene = true;
-
+        if (next == "StartMenu") {
+            GameManager.instance.RemoveDoNotDestroyObjects();
+        }
         LevelLoader.instance.LoadLevelByName(next);
     }
 }

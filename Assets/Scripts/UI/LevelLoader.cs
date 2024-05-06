@@ -47,9 +47,6 @@ public class LevelLoader : NetworkBehaviour
             {
                 Destroy(input);
             }
-
-            Destroy(GameManager.instance.gameObject);
-            Destroy(PlayerManager.instance.gameObject);
         }
 
         StartCoroutine(LoadLevel(name));
@@ -101,7 +98,7 @@ public class LevelLoader : NetworkBehaviour
         //print($"LL Spawned? {IsSpawned}");
         //print($"{NetworkManager.Singleton.IsHost}, {IsClient}");
         //print($"Load level {GameManager.instance != null}, {GameManager.instance.IsNetworked()}, {NetworkManager.Singleton.IsHost}");
-        if (GameManager.instance != null && GameManager.instance.IsNetworked())
+        if (GameManager.instance != null && GameManager.instance.IsNetworked() && IsHost)
         {
             NetworkManager.Singleton.SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
         }

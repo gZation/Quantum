@@ -336,6 +336,14 @@ public class PlayerManager : NetworkBehaviour
         return null;
     }
 
+    public void CleanDisconnect() 
+    {
+        if (!GameManager.instance.IsNetworked()) { return; }
+        NetworkManager.Singleton.OnClientDisconnectCallback -= GameManager.instance.BackToMainMenu;
+        GameManager.instance.networkingOn = false;
+        NetworkManager.Singleton.Shutdown();
+    }
+
 
     public void HandlePlayerControllerEnter(PlayerInput pi)
     {
