@@ -51,8 +51,6 @@ GameObject:
   - component: {fileID: -2760580113995071718}
   - component: {fileID: 4414658406679528774}
   - component: {fileID: 6861553237000898895}
-  - component: {fileID: 3205094810703353517}
-  - component: {fileID: 148218394243981072}
   m_Layer: 7
   m_Name: Player 2
   m_TagString: Player
@@ -310,82 +308,7 @@ MonoBehaviour:
   momentumOutParticle: {fileID: 5607092861093560087}
   momentumInParticle: {fileID: 3427290161026724800}
   currentSlide: 0
---- !u!114 &3205094810703353517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7901648596648922838}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59e36e03f623ff9438757a4ba47af0fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 0}
-  speed: 7
-  jumpForce: 12
-  maxSlideSpeed: 6
-  minSlideSpeed: 1.5
-  accelerationFactor: 6
-  wallJumpLerp: 5
-  dashSpeed: 25
-  world: 2
-  legacyInput: 1
-  canMove: 1
-  wallGrab: 0
-  wallJumped: 0
-  wallSlide: 0
-  isDashing: 0
-  dashCD: 0.4
-  coyoteTimeStart: 0.1
-  sharingMomentum: 0
-  side: 1
-  dashParticle: {fileID: 2180116537646740682}
-  jumpParticle: {fileID: 2634847382010418216}
-  wallJumpParticle: {fileID: 8122526695765193081}
-  slideParticle: {fileID: 6075663719978407109}
-  momentumOutParticle: {fileID: 5607092861093560087}
-  momentumInParticle: {fileID: 3427290161026724800}
-  currentSlide: 0
---- !u!114 &148218394243981072
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7901648596648922838}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 848630e4291a6ff44b4c20c0800e4f8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 0}
-  speed: 7
-  jumpForce: 12
-  maxSlideSpeed: 6
-  minSlideSpeed: 1.5
-  accelerationFactor: 6
-  wallJumpLerp: 5
-  dashSpeed: 25
-  world: 2
-  legacyInput: 1
-  canMove: 1
-  wallGrab: 0
-  wallJumped: 0
-  wallSlide: 0
-  isDashing: 0
-  dashCD: 0.4
-  coyoteTimeStart: 0.1
-  sharingMomentum: 0
-  side: 1
-  dashParticle: {fileID: 2180116537646740682}
-  jumpParticle: {fileID: 2634847382010418216}
-  wallJumpParticle: {fileID: 8122526695765193081}
-  slideParticle: {fileID: 6075663719978407109}
-  momentumOutParticle: {fileID: 5607092861093560087}
-  momentumInParticle: {fileID: 3427290161026724800}
-  currentSlide: 0
+  playingSlide: 0
 --- !u!1 &8586785491372393179
 GameObject:
   m_ObjectHideFlags: 0

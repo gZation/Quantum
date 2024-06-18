@@ -25,6 +25,7 @@ public class PlayerConnectManager : NetworkBehaviour
         }
         //This has to occur after StartHost() and StartClient()
         NetworkManager.Singleton.OnClientConnectedCallback += LoadNextLevel;
+        NetworkManager.Singleton.OnClientDisconnectCallback += GameManager.instance.BackToMainMenu;
     }
 
     private void LoadNextLevel(ulong clientId)
@@ -33,5 +34,6 @@ public class PlayerConnectManager : NetworkBehaviour
         GameManager.instance.GameEnable();
         LevelLoader.instance.LoadLevelByName(NextLevel);
         MusicManager.instance.StartLevelMusic();
+        PlayerManager.instance.EnableControllerJoin();
     }
 }

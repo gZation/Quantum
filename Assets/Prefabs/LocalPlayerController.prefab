@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 218310169515979271}
   m_Layer: 0
   m_Name: LocalPlayerController
-  m_TagString: Untagged
+  m_TagString: Inputs
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,6 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerReference: {fileID: 0}
+  pr_playerSettings: {fileID: 0}
+  pr_playerMovement: {fileID: 0}
 --- !u!114 &3904879531002131731
 MonoBehaviour:
   m_ObjectHideFlags: 0

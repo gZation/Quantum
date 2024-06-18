@@ -32,11 +32,6 @@ public class PauseMenuManager : NetworkBehaviour
         instance = this;
     }
 
-    public override void OnNetworkSpawn()
-    {
-        NetworkManager.Singleton.OnClientDisconnectCallback += NetworkedToMainMenu;
-    }
-
     [ClientRpc]
     public void TogglePauseClientRpc() { TogglePause(); }
 
@@ -85,17 +80,9 @@ public class PauseMenuManager : NetworkBehaviour
     public void ToMainMenuServerRPC() {
         ToMainMenuClientRPC(); }
 
-    // Does the pause variable automatically update between the two? like is that wat is happening?
-    public void ToMainMenu()
-    {
-        PauseMenu.instance.ToMainMenu();
-    }
-
     public void NetworkedToMainMenu(ulong _)
     {
-        GameManager.instance.networkingOn = false;
-        ToMainMenu();
-        RemoveDoNotDestroyObjects();
+        GameManager.instance.BackToMainMenu();
     }
 
     [ClientRpc]
@@ -113,14 +100,7 @@ public class PauseMenuManager : NetworkBehaviour
         } else
         {
             PauseMenu.instance.ToMainMenu();
-            RemoveDoNotDestroyObjects();
+            GameManager.instance.RemoveDoNotDestroyObjects();
         }
-    }
-
-    public void RemoveDoNotDestroyObjects()
-    {
-        Destroy(FindAnyObjectByType<GameManager>().gameObject);
-        Destroy(FindAnyObjectByType<PlayerManager>().gameObject);
-        Destroy(FindAnyObjectByType<NetworkManager>().gameObject);
     }
 }

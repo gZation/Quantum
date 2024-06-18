@@ -165,6 +165,7 @@ public class SelectScreenManager : MonoBehaviour {
                     break;
             }
             GameManager.instance.GameEnable();
+            PlayerManager.instance.EnableControllerJoin();
             LevelLoader.instance.LoadLevelByName("Tutorial 1");
             MusicManager.instance.StartLevelMusic();
         }

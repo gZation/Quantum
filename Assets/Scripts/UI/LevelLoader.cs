@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections.LowLevel.Unsafe;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -38,11 +39,34 @@ public class LevelLoader : NetworkBehaviour
 
     public void LoadLevelByName(string name)
     {
+        if (name.Equals("StartMenu"))
+        {
+            GameObject[] inputs = GameObject.FindGameObjectsWithTag("Inputs");
+
+            foreach (GameObject input in inputs)
+            {
+                Destroy(input);
+            }
+        }
+
         StartCoroutine(LoadLevel(name));
     }
 
     public void LoadLevelByName(string name, bool check)
     {
+        if (name.Equals("StartMenu"))
+        {
+            GameObject[] inputs = GameObject.FindGameObjectsWithTag("Inputs");
+
+            foreach (GameObject input in inputs)
+            {
+                Destroy(input);
+            }
+
+            Destroy(GameManager.instance.gameObject);
+            Destroy(PlayerManager.instance.gameObject);
+        }
+
         if (check)
         {
             StartCoroutine(LoadLevel(name));
@@ -74,7 +98,7 @@ public class LevelLoader : NetworkBehaviour
         //print($"LL Spawned? {IsSpawned}");
         //print($"{NetworkManager.Singleton.IsHost}, {IsClient}");
         //print($"Load level {GameManager.instance != null}, {GameManager.instance.IsNetworked()}, {NetworkManager.Singleton.IsHost}");
-        if (GameManager.instance != null && GameManager.instance.IsNetworked())
+        if (GameManager.instance != null && GameManager.instance.IsNetworked() && IsHost)
         {
             NetworkManager.Singleton.SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
         }

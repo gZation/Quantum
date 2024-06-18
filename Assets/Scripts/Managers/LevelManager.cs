@@ -48,7 +48,7 @@ public class LevelManager : MonoBehaviour
 
     void MoveOn()
     {
+       PlayerManager.instance.DisableControllerJoin();
        levelLoader.LoadLevelByName(nextLevel);
-       //levelLoader.LoadNextLevel();
     }
 }

@@ -18,8 +18,6 @@ GameObject:
   - component: {fileID: -5146849112117003517}
   - component: {fileID: 2948562473461264756}
   - component: {fileID: 1646257215304899982}
-  - component: {fileID: 8505345009839983069}
-  - component: {fileID: 5490390521861608361}
   m_Layer: 6
   m_Name: Player 1
   m_TagString: Player
@@ -132,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 303992650
+  GlobalObjectIdHash: 2234846444
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -277,82 +275,7 @@ MonoBehaviour:
   momentumOutParticle: {fileID: 8914649702504713518}
   momentumInParticle: {fileID: 179084676084822182}
   currentSlide: 0
---- !u!114 &8505345009839983069
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 106941480838844296}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59e36e03f623ff9438757a4ba47af0fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 0}
-  speed: 7
-  jumpForce: 12
-  maxSlideSpeed: 6
-  minSlideSpeed: 1.5
-  accelerationFactor: 6
-  wallJumpLerp: 5
-  dashSpeed: 25
-  world: 1
-  legacyInput: 1
-  canMove: 1
-  wallGrab: 0
-  wallJumped: 0
-  wallSlide: 0
-  isDashing: 0
-  dashCD: 0.4
-  coyoteTimeStart: 0.1
-  sharingMomentum: 0
-  side: 1
-  dashParticle: {fileID: 7270456102558197520}
-  jumpParticle: {fileID: 5077882394773441726}
-  wallJumpParticle: {fileID: 3451269928744493914}
-  slideParticle: {fileID: 7192988849610433625}
-  momentumOutParticle: {fileID: 8914649702504713518}
-  momentumInParticle: {fileID: 179084676084822182}
-  currentSlide: 0
---- !u!114 &5490390521861608361
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 106941480838844296}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 848630e4291a6ff44b4c20c0800e4f8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 0}
-  speed: 7
-  jumpForce: 12
-  maxSlideSpeed: 6
-  minSlideSpeed: 1.5
-  accelerationFactor: 6
-  wallJumpLerp: 5
-  dashSpeed: 25
-  world: 1
-  legacyInput: 1
-  canMove: 1
-  wallGrab: 0
-  wallJumped: 0
-  wallSlide: 0
-  isDashing: 0
-  dashCD: 0.4
-  coyoteTimeStart: 0.1
-  sharingMomentum: 0
-  side: 1
-  dashParticle: {fileID: 7270456102558197520}
-  jumpParticle: {fileID: 5077882394773441726}
-  wallJumpParticle: {fileID: 3451269928744493914}
-  slideParticle: {fileID: 7192988849610433625}
-  momentumOutParticle: {fileID: 8914649702504713518}
-  momentumInParticle: {fileID: 179084676084822182}
-  currentSlide: 0
+  playingSlide: 0
 --- !u!1 &1940521423388946917
 GameObject:
   m_ObjectHideFlags: 0

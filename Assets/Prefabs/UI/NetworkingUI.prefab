@@ -611,6 +611,7 @@ MonoBehaviour:
   hostBtn: {fileID: 2710438840593278551}
   clientBtn: {fileID: 807390346191899994}
   NetworkManagerPrefab: {fileID: 6406310276292707783, guid: 47022ca231c46574398bd2607818dfa7, type: 3}
+  LocalPlayerControllerPrefab: {fileID: 3035008058038739341, guid: 2585773d058aecb4f8c5915b0f96bd9e, type: 3}
   Player1Prefab: {fileID: 106941480838844296, guid: b2039085561329543995b3c5e313b3b0, type: 3}
   Player2Prefab: {fileID: 7901648596648922838, guid: 30063eee9c085c24da5c556c890eb64a, type: 3}
 --- !u!1 &5738443152960402993

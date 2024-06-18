@@ -180,7 +180,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8001046867677948227, guid: 559fce262c9ffc445b3d0846e52af528, type: 3}
-      insertIndex: -1
+      insertIndex: 1
       addedObject: {fileID: 323774679}
   m_SourcePrefab: {fileID: 100100000, guid: 559fce262c9ffc445b3d0846e52af528, type: 3}
 --- !u!1 &323774678 stripped
@@ -201,6 +201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GlobalObjectIdHash: 4227647824
+  InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -670,8 +671,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1975720200}
-  - component: {fileID: 1975720199}
   - component: {fileID: 1975720198}
+  - component: {fileID: 1975720199}
   m_Layer: 0
   m_Name: PlayerConnectManager
   m_TagString: Untagged
@@ -692,6 +693,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GlobalObjectIdHash: 1702983164
+  InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0

@@ -17,7 +17,7 @@ public class PlayerJump : MonoBehaviour
 
     void Update()
     {
-        if (movement != null)
+      /*  if (movement != null)
         {
             if (rb.velocity.y < 0)
             {
@@ -27,7 +27,7 @@ public class PlayerJump : MonoBehaviour
             {
                 rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
             }
-        }
+        }*/
     }
 
     public void SetMovementRef()
